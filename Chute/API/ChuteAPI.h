@@ -33,16 +33,16 @@ typedef enum {
 
 + (ChuteAPI *)shared;
 
-- (void) loginSuccess:(void (^)(void))successBlock 
+- (void)loginSuccess:(void (^)(void))successBlock 
              andError:(void (^)(NSError *))errorBlock;
 
-- (void) syncDidComplete:(void (^)(void))successBlock 
+- (void)syncDidComplete:(void (^)(void))successBlock 
                 andError:(void (^)(NSError *))errorBlock;
 
-- (void)getEvernoteChutesForResponse:(void (^)(id))aResponseBlock
-                            andError:(void (^)(NSError *))anErrorBlock;
+- (void)getChutesForResponse:(void (^)(id))aResponseBlock
+                    andError:(void (^)(NSError *))anErrorBlock;
 
-- (void)createEvernote:(NSString *)name 
+- (void)createChute:(NSString *)name 
             withParent:(int)parentId
            andResponse:(void (^)(id))responseBlock 
               andError:(void (^)(NSError *))errorBlock;
@@ -63,7 +63,7 @@ typedef enum {
                   andError:(void (^)(NSError *))anErrorBlock;
 
 - (void)getProfileInfoWithResponse:(void (^)(id))aResponseBlock
-andError:(void (^)(NSError *))anErrorBlock;
+                          andError:(void (^)(NSError *))anErrorBlock;
 
 
 @end

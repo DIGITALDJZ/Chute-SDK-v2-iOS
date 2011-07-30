@@ -45,65 +45,20 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [super dealloc];
 }
 
-- (void) setAccountStatus:(ChuteAccountStatus)_accountStatus {
-    accountStatus = _accountStatus;
-    [[NSNotificationCenter defaultCenter] postNotificationName:ChuteLoginStatusChanged object:self];
-}
-
-- (void) loginSuccess:(void (^)(void))successBlock andError:(void (^)(NSError *))errorBlock {
-    [self setAccountStatus:ChuteAccountStatusLoggingIn];
-
-    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me?api_key=%@", API_URL, apiKey]]];
-    
-    [_request setShouldRedirect:NO];
-    [_request startAsynchronous];
-    
-    [_request setCompletionBlock:^{
-        if ([_request responseStatusCode] == 200) {
-            [self setAccountStatus:ChuteAccountStatusLoggedIn];
-            successBlock();
-        } else {
-            [self setAccountStatus:ChuteAccountStatusLoginFailed];
-            errorBlock([NSError errorWithDomain:@"Unidentified Error for Login" code:[_request responseStatusCode] userInfo:nil]);
-        }
-    }];
-    
-    [_request setFailedBlock:^{
-        [self setAccountStatus:ChuteAccountStatusLoginFailed];
-        errorBlock([_request error]);
-    }];
-}
-
-- (void) syncDidComplete:(void (^)(void))successBlock andError:(void (^)(NSError *))errorBlock {
-    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me/chutes/evernote/sync", API_URL]]];
-    [_request setTimeOutSeconds:300];
-    [_request startAsynchronous];
-    
-    [_request setCompletionBlock:^{
-        if ([_request responseStatusCode] == 200) {
-            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-            [prefs setObject:[[[[_request responseString] JSONValue] objectAtIndex:0] objectForKey:@"id"] forKey:@"id"];
-            [prefs synchronize];
-            successBlock();
-        } else {
-            errorBlock([NSError errorWithDomain:@"Unidentified Error for Sync" code:[_request responseStatusCode] userInfo:nil]);
-        }
-    }];
-    
-    [_request setFailedBlock:^{
-        errorBlock([_request error]);
-    }];
-}
+#pragma mark Generate Request Headers
 
 - (NSMutableDictionary *)headers{
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
-        kDEVICE_NAME, @"x-device-name",
-        kUDID, @"x-device-identifier",
-        kDEVICE_OS, @"x-device-os",
-        kDEVICE_VERSION, @"x-device-version",
-        [NSString stringWithFormat:@"OAuth %@", accessToken], @"Authorization",
-        nil];
+            kDEVICE_NAME, @"x-device-name",
+            kUDID, @"x-device-identifier",
+            kDEVICE_OS, @"x-device-os",
+            kDEVICE_VERSION, @"x-device-version",
+            [NSString stringWithFormat:@"OAuth %@", accessToken], @"Authorization",
+            nil];
 }
+
+
+#pragma mark GET and POST convinence methods
 
 - (void)postRequestWithPath:(NSString *)path
                   andParams:(NSDictionary *)params
@@ -154,8 +109,74 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [_request startAsynchronous];
 }
 
-- (void)getEvernoteChutesForResponse:(void (^)(id))aResponseBlock
-                            andError:(void (^)(NSError *))anErrorBlock{
+#pragma mark Authorization Methods
+
+- (void) setAccountStatus:(ChuteAccountStatus)_accountStatus {
+    accountStatus = _accountStatus;
+    [[NSNotificationCenter defaultCenter] postNotificationName:ChuteLoginStatusChanged object:self];
+}
+
+- (void) loginSuccess:(void (^)(void))successBlock andError:(void (^)(NSError *))errorBlock {
+    [self setAccountStatus:ChuteAccountStatusLoggingIn];
+
+    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me?api_key=%@", API_URL, apiKey]]];
+    
+    [_request setShouldRedirect:NO];
+    [_request startAsynchronous];
+    
+    [_request setCompletionBlock:^{
+        if ([_request responseStatusCode] == 200) {
+            [self setAccountStatus:ChuteAccountStatusLoggedIn];
+            successBlock();
+        } else {
+            [self setAccountStatus:ChuteAccountStatusLoginFailed];
+            errorBlock([NSError errorWithDomain:@"Unidentified Error for Login" code:[_request responseStatusCode] userInfo:nil]);
+        }
+    }];
+    
+    [_request setFailedBlock:^{
+        [self setAccountStatus:ChuteAccountStatusLoginFailed];
+        errorBlock([_request error]);
+    }];
+}
+
+- (void)reset {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:nil forKey:@"api_key"];
+    [prefs setObject:nil forKey:@"id"];
+    [prefs synchronize];
+    [_evernoteData release], _evernoteData = nil;
+    [ASIHTTPRequest setSessionCookies:nil];
+}
+
+#pragma mark Sync with 3rd party services
+
+- (void) syncDidComplete:(void (^)(void))successBlock andError:(void (^)(NSError *))errorBlock {
+    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me/chutes/evernote/sync", API_URL]]];
+    [_request setTimeOutSeconds:300];
+    [_request startAsynchronous];
+    
+    [_request setCompletionBlock:^{
+        if ([_request responseStatusCode] == 200) {
+            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setObject:[[[[_request responseString] JSONValue] objectAtIndex:0] objectForKey:@"id"] forKey:@"id"];
+            [prefs synchronize];
+            successBlock();
+        } else {
+            errorBlock([NSError errorWithDomain:@"Unidentified Error for Sync" code:[_request responseStatusCode] userInfo:nil]);
+        }
+    }];
+    
+    [_request setFailedBlock:^{
+        errorBlock([_request error]);
+    }];
+}
+
+#pragma mark -
+#pragma mark Data Wrappers
+
+- (void)getChutesForResponse:(void (^)(id))aResponseBlock
+                    andError:(void (^)(NSError *))anErrorBlock {
     
     [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes/deep", API_URL] andParams: nil andResponse:^(id response) {
         if (_evernoteData) {
@@ -203,10 +224,10 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
 }
 
-- (void)createEvernote:(NSString *)name 
-            withParent:(int)parentId
-           andResponse:(void (^)(id))responseBlock 
-              andError:(void (^)(NSError *))errorBlock {
+- (void)createChute:(NSString *)name 
+         withParent:(int)parentId
+        andResponse:(void (^)(id))responseBlock 
+           andError:(void (^)(NSError *))errorBlock {
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:name forKey:@"chute[name]"];
@@ -230,15 +251,17 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [params release];
 }
 
-- (void)reset {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:nil forKey:@"api_key"];
-    [prefs setObject:nil forKey:@"id"];
-    [prefs synchronize];
+- (void)getProfileInfoWithResponse:(void (^)(id))aResponseBlock
+                          andError:(void (^)(NSError *))anErrorBlock{
     
-    [_evernoteData release], _evernoteData = nil;
-    [ASIHTTPRequest setSessionCookies:nil];
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@/me", API_URL] andParams: nil andResponse:^(id response) {
+        aResponseBlock(response);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
 }
+
+#pragma mark Helper methods for Asset Uploader
 
 - (void)initThumbnail:(UIImage *)thumbnail
            forAssetId:(NSString *)assetId
@@ -271,16 +294,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
                   andError:(void (^)(NSError *))anErrorBlock{
     
     [self getRequestWithPath:[NSString stringWithFormat:@"%@/uploads/%@/complete", API_URL, assetId] andParams: nil andResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)getProfileInfoWithResponse:(void (^)(id))aResponseBlock
-                  andError:(void (^)(NSError *))anErrorBlock{
-    
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@/me", API_URL] andParams: nil andResponse:^(id response) {
         aResponseBlock(response);
     } andError:^(NSError *error) {
         anErrorBlock(error);
