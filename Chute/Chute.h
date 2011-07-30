@@ -11,4 +11,4 @@
 #import "ChuteAssetManager.h"
 #import "ChuteAssetUploader.h"
 
-#import "LoginViewController.h"
+#import "ChuteLoginViewController.h"

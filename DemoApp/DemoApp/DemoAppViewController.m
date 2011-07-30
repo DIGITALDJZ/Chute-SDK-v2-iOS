@@ -7,6 +7,7 @@
 //
 
 #import "DemoAppViewController.h"
+#import "Chute.h"
 
 @implementation DemoAppViewController
 
@@ -20,13 +21,16 @@
 
 #pragma mark - View lifecycle
 
-/*
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [ChuteLoginViewController presentInController:self];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
-*/
 
 - (void)viewDidUnload
 {

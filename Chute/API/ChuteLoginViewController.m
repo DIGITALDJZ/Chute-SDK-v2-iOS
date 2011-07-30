@@ -6,18 +6,24 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "ChuteLoginViewController.h"
 
-@interface LoginViewController()
+@interface ChuteLoginViewController()
 -(void) loginWithAPIKey:(NSString *) apiKey;
 -(void) hideAuthViewCompletion:(void (^)(void))completion;
 @end
 
 
-@implementation LoginViewController
+@implementation ChuteLoginViewController
 
 @synthesize authView;
 @synthesize authWebView;
+
++(void)presentInController:(UIViewController *)controller {
+    ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
+    [controller presentModalViewController:loginController animated:YES];
+    [loginController release];
+}
 
 -(IBAction) loginWithEvernote {
     

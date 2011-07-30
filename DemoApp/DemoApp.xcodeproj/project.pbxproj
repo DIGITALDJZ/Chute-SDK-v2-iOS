@@ -27,7 +27,6 @@
 		ECAA8DE213E4822400D18422 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9113E4822400D18422 /* ChuteAssetManager.m */; };
 		ECAA8DE313E4822400D18422 /* ChuteAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9313E4822400D18422 /* ChuteAssetUploader.m */; };
 		ECAA8DE413E4822400D18422 /* ChuteBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */; };
-		ECAA8DE513E4822400D18422 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9813E4822400D18422 /* LoginViewController.m */; };
 		ECAA8DE613E4822400D18422 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9D13E4822400D18422 /* ASIAuthenticationDialog.m */; };
 		ECAA8DE713E4822400D18422 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DA013E4822400D18422 /* ASIDataCompressor.m */; };
 		ECAA8DE813E4822400D18422 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DA213E4822400D18422 /* ASIDataDecompressor.m */; };
@@ -55,7 +54,8 @@
 		ECAA8DFE13E4822400D18422 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DD913E4822400D18422 /* SBJsonTokeniser.m */; };
 		ECAA8DFF13E4822400D18422 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DDB13E4822400D18422 /* SBJsonUTF8Stream.m */; };
 		ECAA8E0013E4822400D18422 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DDD13E4822400D18422 /* SBJsonWriter.m */; };
-		ECAA8E0113E4822400D18422 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAA8DDF13E4822400D18422 /* LoginViewController.xib */; };
+		ECAA8E0113E4822400D18422 /* ChuteLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAA8DDF13E4822400D18422 /* ChuteLoginViewController.xib */; };
+		ECAA8E0713E4AC8100D18422 /* ChuteLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8E0613E4AC8100D18422 /* ChuteLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,8 +90,7 @@
 		ECAA8D9413E4822400D18422 /* ChuteBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteBaseViewController.h; sourceTree = "<group>"; };
 		ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteBaseViewController.m; sourceTree = "<group>"; };
 		ECAA8D9613E4822400D18422 /* ChuteConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteConstants.h; sourceTree = "<group>"; };
-		ECAA8D9713E4822400D18422 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		ECAA8D9813E4822400D18422 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		ECAA8D9713E4822400D18422 /* ChuteLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteLoginViewController.h; sourceTree = "<group>"; };
 		ECAA8D9913E4822400D18422 /* Chute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chute.h; sourceTree = "<group>"; };
 		ECAA8D9C13E4822400D18422 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		ECAA8D9D13E4822400D18422 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
@@ -153,7 +152,8 @@
 		ECAA8DDB13E4822400D18422 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		ECAA8DDC13E4822400D18422 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		ECAA8DDD13E4822400D18422 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		ECAA8DDF13E4822400D18422 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		ECAA8DDF13E4822400D18422 /* ChuteLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChuteLoginViewController.xib; sourceTree = "<group>"; };
+		ECAA8E0613E4AC8100D18422 /* ChuteLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,8 +261,8 @@
 				ECAA8D9413E4822400D18422 /* ChuteBaseViewController.h */,
 				ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */,
 				ECAA8D9613E4822400D18422 /* ChuteConstants.h */,
-				ECAA8D9713E4822400D18422 /* LoginViewController.h */,
-				ECAA8D9813E4822400D18422 /* LoginViewController.m */,
+				ECAA8D9713E4822400D18422 /* ChuteLoginViewController.h */,
+				ECAA8E0613E4AC8100D18422 /* ChuteLoginViewController.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -393,7 +393,7 @@
 		ECAA8DDE13E4822400D18422 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				ECAA8DDF13E4822400D18422 /* LoginViewController.xib */,
+				ECAA8DDF13E4822400D18422 /* ChuteLoginViewController.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -451,7 +451,7 @@
 				ECAA8C7013E47BD700D18422 /* InfoPlist.strings in Resources */,
 				ECAA8C7913E47BD700D18422 /* MainWindow.xib in Resources */,
 				ECAA8C7F13E47BD700D18422 /* DemoAppViewController.xib in Resources */,
-				ECAA8E0113E4822400D18422 /* LoginViewController.xib in Resources */,
+				ECAA8E0113E4822400D18422 /* ChuteLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +470,6 @@
 				ECAA8DE213E4822400D18422 /* ChuteAssetManager.m in Sources */,
 				ECAA8DE313E4822400D18422 /* ChuteAssetUploader.m in Sources */,
 				ECAA8DE413E4822400D18422 /* ChuteBaseViewController.m in Sources */,
-				ECAA8DE513E4822400D18422 /* LoginViewController.m in Sources */,
 				ECAA8DE613E4822400D18422 /* ASIAuthenticationDialog.m in Sources */,
 				ECAA8DE713E4822400D18422 /* ASIDataCompressor.m in Sources */,
 				ECAA8DE813E4822400D18422 /* ASIDataDecompressor.m in Sources */,
@@ -498,6 +497,7 @@
 				ECAA8DFE13E4822400D18422 /* SBJsonTokeniser.m in Sources */,
 				ECAA8DFF13E4822400D18422 /* SBJsonUTF8Stream.m in Sources */,
 				ECAA8E0013E4822400D18422 /* SBJsonWriter.m in Sources */,
+				ECAA8E0713E4AC8100D18422 /* ChuteLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

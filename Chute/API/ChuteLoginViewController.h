@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChuteBaseViewController.h"
 
-@interface LoginViewController : ChuteBaseViewController <UIWebViewDelegate> {
+@interface ChuteLoginViewController : ChuteBaseViewController <UIWebViewDelegate> {
     IBOutlet UIButton *evernoteLogin;
 }
 
@@ -17,5 +17,7 @@
 @property (nonatomic, retain) IBOutlet UIWebView *authWebView;
 
 -(IBAction) loginWithEvernote;
+
++(void)presentInController:(UIViewController *)controller;
 
 @end
