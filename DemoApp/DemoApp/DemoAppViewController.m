@@ -11,6 +11,10 @@
 
 @implementation DemoAppViewController
 
+- (IBAction)test:(id)sender {
+    [[ChuteAPI shared] test];
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.

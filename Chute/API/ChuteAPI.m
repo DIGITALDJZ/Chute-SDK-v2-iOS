@@ -321,4 +321,24 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
 }
 
+- (void) test {
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams: nil andResponse:^(id response) {
+        DLog(@"%@", response);
+        //aResponseBlock(response);
+    } andError:^(NSError *error) {
+        DLog(@"%@", [error localizedDescription]);
+    }];
+    
+//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//    [params setValue:@"test" forKey:@"chute[name]"];
+//    
+//    [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams:params andResponse:^(id response) {
+//        DLog(@"%@", response);
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+//    
+//    [params release];
+}
+
 @end

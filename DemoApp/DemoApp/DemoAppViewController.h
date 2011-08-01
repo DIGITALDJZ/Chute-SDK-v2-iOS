@@ -10,4 +10,6 @@
 
 @interface DemoAppViewController : UIViewController
 
+- (IBAction)test:(id)sender;
+
 @end

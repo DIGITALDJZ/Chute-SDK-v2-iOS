@@ -68,4 +68,6 @@ typedef enum {
                           andError:(void (^)(NSError *))anErrorBlock;
 
 
+- (void) test;
+
 @end
