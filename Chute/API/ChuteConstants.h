@@ -21,7 +21,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef DEBUG
-//#define LOCAL_SERVER
+#define LOCAL_SERVER
 #ifdef LOCAL_SERVER
 #define API_URL @"http://api.getchute.local:8080/v1/"
 #define SERVER_URL @"http://getchute.local:8080"
@@ -46,8 +46,9 @@
 #define kDEVICE_VERSION     [[UIDevice currentDevice] systemVersion]
 
 
-#define kOAuthRedirectURL               @"http://notechute.com/auth/chute/callback"
+//#define kOAuthRedirectURL               @"http://notechute.com/auth/chute/callback"
+#define kOAuthRedirectURL               @"http://getchute.local:8080/auth/chute/callback"
 #define kOAuthRedirectRelativeURL       @"/auth/chute/callback"
-#define kOAuthClientID                  @"4e2bc4455025171430000001"
-#define kOAuthClientSecret              @"f25aeafbceea2365cb8ccdce771fff5c59bc361db58e140d3ca352982cf563ec"
+#define kOAuthClientID                  @"4e366604ddccbf6a2a000001"
+#define kOAuthClientSecret              @"f51e056905ea6becb1c911b10fabaaeb650a680870a4da30126e8a586cf39f78"
 #define kOAuthTokenURL                  @"http://getchute.local:8080/oauth/access_token"

@@ -20,6 +20,14 @@
 @synthesize authWebView;
 
 +(void)presentInController:(UIViewController *)controller {
+    if ([[ChuteAPI shared] accessToken]) {
+        [[ChuteAPI shared] getProfileInfoWithResponse:^(id response) {
+            DLog(@"%@", response);
+        } andError:^(NSError *error) {
+            DLog(@"%@", [error localizedDescription]);
+        }];
+        return;
+    }
     ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
     [controller presentModalViewController:loginController animated:YES];
     [loginController release];
@@ -143,11 +151,12 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if ([[[request URL] path] isEqualToString:kOAuthRedirectRelativeURL]) {
+        DLog(@"%@", [NSDictionary dictionaryWithFormEncodedString:[[request URL] query]]);
         NSString *_code = [[NSDictionary dictionaryWithFormEncodedString:[[request URL] query]] objectForKey:@"code"];
         [self verifyAuthorizationWithAccessCode:_code];
 
         [self hideAuthViewCompletion:^{
-            [self quickAlertWithTitle:@"Done" message:@"" button:@"Okay"];
+            [super dismissModalViewControllerAnimated:YES];
         }];
         return NO;
     }
@@ -164,7 +173,6 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self hideHUD];
-    //[self quickAlertWithTitle:@"Error" message:[error localizedDescription] button:@"Okay"];
 }
 
 - (void)dealloc

@@ -53,10 +53,31 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
             kUDID, @"x-device-identifier",
             kDEVICE_OS, @"x-device-os",
             kDEVICE_VERSION, @"x-device-version",
-            [NSString stringWithFormat:@"OAuth %@", accessToken], @"Authorization",
+            [NSString stringWithFormat:@"OAuth %@", [self accessToken]], @"Authorization",
             nil];
 }
 
+#pragma set Access Token
+
+- (void) setAccessToken:(NSString *)accessTkn {
+    if (_accessToken) {
+        [_accessToken release], _accessToken = nil;
+    }
+    
+    _accessToken = [accessTkn retain];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:_accessToken forKey:@"access_token"];
+    [prefs synchronize];
+}
+
+- (NSString *) accessToken {
+    if (_accessToken == nil) {
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        _accessToken = [[prefs objectForKey:@"access_token"] retain];
+    }
+    
+    return _accessToken;
+}
 
 #pragma mark GET and POST convinence methods
 

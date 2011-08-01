@@ -23,6 +23,8 @@ typedef enum {
     ChuteAccountStatus accountStatus;
     
     NSMutableArray *_evernoteData;
+    
+    NSString *_accessToken;
 }
 
 @property (nonatomic) ChuteAccountStatus accountStatus;
