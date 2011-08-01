@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "ChuteConstants.h"
 #import "NSData+Base64.h"
+#import "NSDictionary+QueryString.h"
 
 static ChuteAPI *shared=nil;
 NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
@@ -57,7 +58,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
             nil];
 }
 
-#pragma set Access Token
+#pragma mark Access Token
 
 - (void) setAccessToken:(NSString *)accessTkn {
     if (_accessToken) {
@@ -77,6 +78,19 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }
     
     return _accessToken;
+}
+
+#pragma mark User id
+
+- (void) setUserId:(NSUInteger) userId {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:[NSNumber numberWithInt:userId] forKey:@"user_id"];
+    [prefs synchronize];
+}
+
+- (NSUInteger) userId {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    return [[prefs objectForKey:@"user_id"] intValue];
 }
 
 #pragma mark GET and POST convinence methods
@@ -137,28 +151,71 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [[NSNotificationCenter defaultCenter] postNotificationName:ChuteLoginStatusChanged object:self];
 }
 
-- (void) loginSuccess:(void (^)(void))successBlock andError:(void (^)(NSError *))errorBlock {
+- (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
+                                   success:(void (^)(void))successBlock 
+                                  andError:(void (^)(NSError *))errorBlock {
+    
+    DLog();
+    
     [self setAccountStatus:ChuteAccountStatusLoggingIn];
+    
+    NSDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@"read write" forKey:@"scope"];
+    [params setValue:@"profile" forKey:@"scope"];
+    [params setValue:kOAuthClientID forKey:@"client_id"];
+    [params setValue:kOAuthClientSecret forKey:@"client_secret"];
+    [params setValue:@"authorization_code" forKey:@"grant_type"];
+    [params setValue:kOAuthRedirectURL forKey:@"redirect_uri"];
+    
+    if (accessCode == nil) {
+        DLog();
+        if ([self accessToken] == nil) {
+            DLog();
+            errorBlock(nil);
+            return;
+        }
+        DLog();
+        [params setValue:[self accessToken] forKey:@"code"];
+    }
+    else {
+        DLog();
+        [params setValue:accessCode forKey:@"code"];
+    }
 
-    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me?api_key=%@", API_URL, apiKey]]];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:kOAuthTokenURL]];
+    [request setRequestMethod:@"POST"];
+    [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
+    [request appendPostData:[[params stringWithFormEncodedComponents] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setDelegate:self];
     
-    [_request setShouldRedirect:NO];
-    [_request startAsynchronous];
-    
-    [_request setCompletionBlock:^{
-        if ([_request responseStatusCode] == 200) {
+    [request setTimeOutSeconds:300.0];
+    [request setCompletionBlock:^{
+        DLog();
+        //save access code
+        NSDictionary *_response = [[request responseString] JSONValue];
+        [[ChuteAPI shared] setAccessToken:[_response objectForKey:@"access_token"]];
+        
+        //send request to save userid
+        [[ChuteAPI shared] getProfileInfoWithResponse:^(id response) {
+            DLog(@"%@", response);
+            [self setUserId:[[response valueForKey:@"id"] intValue]];
             [self setAccountStatus:ChuteAccountStatusLoggedIn];
             successBlock();
-        } else {
+        } andError:^(NSError *error) {
+            DLog(@"%@", [error localizedDescription]);
             [self setAccountStatus:ChuteAccountStatusLoginFailed];
-            errorBlock([NSError errorWithDomain:@"Unidentified Error for Login" code:[_request responseStatusCode] userInfo:nil]);
-        }
+            errorBlock([request error]);
+        }];
     }];
     
-    [_request setFailedBlock:^{
+    [request setFailedBlock:^{
+        DLog();
+        DLog(@"%@", [[request error] localizedDescription]);
         [self setAccountStatus:ChuteAccountStatusLoginFailed];
-        errorBlock([_request error]);
+        errorBlock([request error]);
     }];
+    
+    [request startAsynchronous];
 }
 
 - (void)reset {
@@ -339,6 +396,9 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 //    }];
 //    
 //    [params release];
+    
+///v1/:user_id/assets/all
+    
 }
 
 @end

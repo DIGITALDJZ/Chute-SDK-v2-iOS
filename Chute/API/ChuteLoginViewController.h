@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "ChuteBaseViewController.h"
 
+#define SERVICES_ARRAY [NSArray arrayWithObjects:@"facebook", @"evernote", nil]
+
 @interface ChuteLoginViewController : ChuteBaseViewController <UIWebViewDelegate> {
-    IBOutlet UIButton *evernoteLogin;
+    IBOutlet UIButton *loginButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *authView;
 @property (nonatomic, retain) IBOutlet UIWebView *authWebView;
 
--(IBAction) loginWithEvernote;
+-(IBAction) login;
 
 +(void)presentInController:(UIViewController *)controller;
 

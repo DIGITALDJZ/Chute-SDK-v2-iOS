@@ -35,8 +35,9 @@ typedef enum {
 
 + (ChuteAPI *)shared;
 
-- (void)loginSuccess:(void (^)(void))successBlock 
-             andError:(void (^)(NSError *))errorBlock;
+- (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
+                                   success:(void (^)(void))successBlock 
+                                  andError:(void (^)(NSError *))errorBlock;
 
 - (void)syncDidComplete:(void (^)(void))successBlock 
                 andError:(void (^)(NSError *))errorBlock;

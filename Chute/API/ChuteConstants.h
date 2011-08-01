@@ -7,6 +7,13 @@
 //
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Set which service is to be used
+// 0 - Facebook
+// 1 - Evernote
+
+#define kSERVICE 1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef DEBUG
 #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -45,8 +52,6 @@
 #define kDEVICE_OS          [[UIDevice currentDevice] systemName]
 #define kDEVICE_VERSION     [[UIDevice currentDevice] systemVersion]
 
-
-//#define kOAuthRedirectURL               @"http://notechute.com/auth/chute/callback"
 #define kOAuthRedirectURL               @"http://getchute.local:8080/auth/chute/callback"
 #define kOAuthRedirectRelativeURL       @"/auth/chute/callback"
 #define kOAuthClientID                  @"4e366604ddccbf6a2a000001"
