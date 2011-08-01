@@ -2690,9 +2690,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>333905479.59853297</real>
-		<string>{458, 1689}</string>
-		<string>{1034, 0}</string>
+		<real>333910747.15822297</real>
+		<string>{208, 740}</string>
+		<string>{597, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -2977,9 +2977,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>333910315.99291903</real>
-		<string>{368, 1018}</string>
-		<string>{805, 0}</string>
+		<real>333910581.15188497</real>
+		<string>{4358, 652}</string>
+		<string>{1784, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -3025,9 +3025,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>333910252.240677</real>
-		<string>{5707, 1015}</string>
-		<string>{6704, 0}</string>
+		<real>333911086.68226999</real>
+		<string>{12428, 940}</string>
+		<string>{12474, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4398,7 +4398,7 @@
 				<integer>364</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>333910264.71917599</real>
+			<real>333910962.92450303</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -4409,7 +4409,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 10:21 PM</string>
+		<string>Today at 10:32 PM</string>
 		<integer>234</integer>
 		<string>DemoApp</string>
 		<dict>
@@ -4493,7 +4493,7 @@
 				<integer>371</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteLoginViewController.m</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteAPI.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4511,7 +4511,7 @@
 				<integer>373</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteAPI.m</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteAPI.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4529,7 +4529,7 @@
 				<integer>375</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/DemoApp/DemoApp/DemoAppViewController.m</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteLoginViewController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4547,7 +4547,7 @@
 				<integer>377</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/DemoApp/DemoApp/main.m</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/DemoApp/DemoApp/DemoAppViewController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4565,7 +4565,7 @@
 				<integer>379</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/XIB/ChuteLoginViewController.xib</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/DemoApp/DemoApp/main.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4583,7 +4583,7 @@
 				<integer>381</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteAPI.h</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/XIB/ChuteLoginViewController.xib</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4845,7 +4845,7 @@
 		<string>IDEWorkspaceTabControllerDesignAreaSplitView</string>
 		<string>IDEShowUtilities</string>
 		<string>IDEEditorArea</string>
-		<string>ChuteLoginViewController.m</string>
+		<string>ChuteAPI.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5145,7 +5145,7 @@
 		<string>DemoApp</string>
 		<string>Chute</string>
 		<string>API</string>
-		<string>ChuteLoginViewController.m</string>
+		<string>ChuteAPI.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6682,7 +6682,7 @@
 				<integer>25</integer>
 			</dict>
 			<key>NS.string</key>
-			<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteLoginViewController.m</string>
+			<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteAPI.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -6747,10 +6747,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>333910315.99422401</real>
-		<string>{368, 1018}</string>
-		<string>{805, 0}</string>
-		<string>+presentInController:</string>
+		<real>333911086.68346399</real>
+		<string>{12428, 940}</string>
+		<string>{12474, 0}</string>
+		<string>-completeForAssetId:andResponse:andError:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -6769,7 +6769,7 @@
 				<integer>594</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteLoginViewController.m</string>
+		<string>file://localhost/Users/Achal/Desktop/ChuteSDKv2/Chute/API/ChuteAPI.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6784,7 +6784,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {1139, 446}}</string>
+		<string>{{0, 0}, {1139, 400}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7249,7 +7249,7 @@
 			</array>
 		</dict>
 		<string>IDEEditor</string>
-		<real>468</real>
+		<real>422</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7280,7 +7280,7 @@
 			</array>
 		</dict>
 		<string>IDEDebuggerArea</string>
-		<real>312</real>
+		<real>358</real>
 		<dict>
 			<key>$class</key>
 			<dict>

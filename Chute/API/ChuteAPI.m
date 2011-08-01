@@ -19,9 +19,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 @implementation ChuteAPI
 
-@synthesize apiKey;
 @synthesize accountStatus;
-@synthesize evernoteData = _evernoteData;
+@synthesize data = _data;
 @synthesize accessToken;
 
 + (ChuteAPI *)shared{
@@ -42,7 +41,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void)dealloc{
     [accessToken release];
-    [apiKey release];
     [super dealloc];
 }
 
@@ -64,7 +62,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     if (_accessToken) {
         [_accessToken release], _accessToken = nil;
     }
-    
     _accessToken = [accessTkn retain];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [prefs setObject:_accessToken forKey:@"access_token"];
@@ -76,7 +73,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         _accessToken = [[prefs objectForKey:@"access_token"] retain];
     }
-    
     return _accessToken;
 }
 
@@ -221,10 +217,10 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void)reset {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:nil forKey:@"api_key"];
+    [prefs setObject:nil forKey:@"access_token"];
     [prefs setObject:nil forKey:@"id"];
     [prefs synchronize];
-    [_evernoteData release], _evernoteData = nil;
+    [_data release], _data = nil;
     [ASIHTTPRequest setSessionCookies:nil];
 }
 
@@ -258,13 +254,13 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
                     andError:(void (^)(NSError *))anErrorBlock {
     
     [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes/deep", API_URL] andParams: nil andResponse:^(id response) {
-        if (_evernoteData) {
-            [_evernoteData release], _evernoteData = nil;
+        if (_data) {
+            [_data release], _data = nil;
         }
         
         DLog(@"%@", response);
         
-        _evernoteData = [[NSMutableArray alloc] init];
+        _data = [[NSMutableArray alloc] init];
         
         NSMutableSet *_sections = [[NSMutableSet alloc] init];
         
@@ -288,7 +284,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
             }
             
             [dictionary setObject:arr forKey:_section];
-            [_evernoteData addObject:dictionary];
+            [_data addObject:dictionary];
             
             [arr release];
             [dictionary release];
@@ -380,12 +376,31 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void) test {
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams: nil andResponse:^(id response) {
-        DLog(@"%@", response);
-        //aResponseBlock(response);
-    } andError:^(NSError *error) {
-        DLog(@"%@", [error localizedDescription]);
-    }];
+/////////////////////////////////////////////////////////////////////////////////
+    
+//    //my chutes
+    
+//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes", API_URL] andParams: nil andResponse:^(id response) {
+//        DLog(@"%@", response);
+//        //aResponseBlock(response);
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+    
+/////////////////////////////////////////////////////////////////////////////////
+    
+//    my chutes deep
+    
+//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes/deep", API_URL] andParams: nil andResponse:^(id response) {
+//        DLog(@"%@", response);
+//        //aResponseBlock(response);
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+
+/////////////////////////////////////////////////////////////////////////////////
+    
+//    create chute
     
 //    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 //    [params setValue:@"test" forKey:@"chute[name]"];
@@ -398,8 +413,18 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 //    
 //    [params release];
     
-///v1/:user_id/assets/all
+/////////////////////////////////////////////////////////////////////////////////
     
+//    my assets
+    
+//    [self getRequestWithPath:[NSString stringWithFormat:@"%@1/assets/all", API_URL] andParams: nil andResponse:^(id response) {
+//        DLog(@"%@", response);
+//        //aResponseBlock(response);
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+    
+/////////////////////////////////////////////////////////////////////////////////
 }
 
 @end

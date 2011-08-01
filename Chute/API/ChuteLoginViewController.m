@@ -9,7 +9,7 @@
 #import "ChuteLoginViewController.h"
 
 @interface ChuteLoginViewController()
-//-(void) loginWithAPIKey:(NSString *) apiKey;
+-(void) showAuthViewCompletion:(void (^)(void))completion;
 -(void) hideAuthViewCompletion:(void (^)(void))completion;
 @end
 
@@ -29,7 +29,25 @@
 }
 
 -(IBAction) login {
+    NSDictionary *params = [NSMutableDictionary new];
+    [params setValue:@"profile" forKey:@"scope"];
+    [params setValue:@"web_server" forKey:@"type"];
+    [params setValue:@"code" forKey:@"response_type"];
+    [params setValue:kOAuthClientID forKey:@"client_id"];
+    [params setValue:kOAuthRedirectURL forKey:@"redirect_uri"];
     
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/%@?%@", 
+                                                                               SERVER_URL, 
+                                                                               [SERVICES_ARRAY objectAtIndex:kSERVICE],
+                                                                               [params stringWithFormEncodedComponents]]]];
+    [authWebView sizeToFit];
+    [self showAuthViewCompletion:^(void) {
+        [authWebView loadRequest:request];
+    }];
+    [params release];
+}
+
+-(void) showAuthViewCompletion:(void (^)(void))completion {
     CGAffineTransform t1 = CGAffineTransformMakeScale(0.6, 0.6);
     CGAffineTransform t2 = CGAffineTransformMakeScale(0.99, 0.99);
     CGAffineTransform t3 = CGAffineTransformMakeScale(0.85, 0.85);
@@ -49,26 +67,11 @@
             [authView setTransform:t3]; 
         }completion:^(BOOL finished) {
             [UIView animateWithDuration:0.2f animations:^{
-                [authView setTransform:CGAffineTransformIdentity]; 
+                [authView setTransform:CGAffineTransformIdentity];
+                completion();
             }]; 
         }];
     }];
-    
-    NSDictionary *params = [NSMutableDictionary new];
-    [params setValue:@"profile" forKey:@"scope"];
-    [params setValue:@"web_server" forKey:@"type"];
-    [params setValue:@"code" forKey:@"response_type"];
-    [params setValue:kOAuthClientID forKey:@"client_id"];
-    [params setValue:kOAuthRedirectURL forKey:@"redirect_uri"];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/%@?%@", 
-                                                                               SERVER_URL, 
-                                                                               [SERVICES_ARRAY objectAtIndex:kSERVICE],
-                                                                               [params stringWithFormEncodedComponents]]]];
-    [authWebView sizeToFit];
-    [authWebView loadRequest:request];
-    
-    [params release];
 }
 
 -(void) hideAuthViewCompletion:(void (^)(void))completion {
@@ -82,30 +85,6 @@
         completion();
     }];
 }
-
-
-//-(void) loginWithAPIKey:(NSString *) apiKey {
-//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//    [prefs setObject:apiKey forKey:@"api_key"];
-//    [prefs synchronize];
-//    
-//    [[ChuteAPI shared] setApiKey:apiKey];
-//    
-//    [[ChuteAPI shared] loginSuccess:^(void) {
-//        [self quickAlertWithTitle:@"" message:@"We're importing your notebooks and photos, this may take a few minutes or more" button:@"Okay"];
-//        [super dismissModalViewControllerAnimated:YES];
-//        [[ChuteAPI shared] syncDidComplete:^(void) {
-//            DLog();
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"SyncComplete" object:nil];
-//        } andError:^(NSError *error) {
-//            DLog();
-//        }];   
-//    } andError:^(NSError *error) {
-//        DLog();
-//        [loginButton setHidden:NO];
-//        [self quickAlertWithTitle:@"Error" message:[error localizedDescription] button:@"Okay"];
-//    }];
-//}
 
 #pragma mark WebView Delegate Methods
 

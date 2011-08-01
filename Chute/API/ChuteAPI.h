@@ -17,21 +17,19 @@ typedef enum {
 } ChuteAccountStatus;
 
 @interface ChuteAPI : NSObject {
-    NSString *apiKey;
     BOOL loggedIn;
     
     ChuteAccountStatus accountStatus;
     
-    NSMutableArray *_evernoteData;
+    NSMutableArray *_data;
     
     NSString *_accessToken;
 }
 
 @property (nonatomic) ChuteAccountStatus accountStatus;
-@property (nonatomic, retain) NSString *apiKey;
 @property (nonatomic, retain) NSString *accessToken;
 
-@property (nonatomic, readonly) NSMutableArray *evernoteData;
+@property (nonatomic, readonly) NSMutableArray *data;
 
 + (ChuteAPI *)shared;
 
