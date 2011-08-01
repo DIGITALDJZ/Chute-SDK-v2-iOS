@@ -110,6 +110,7 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
     return nil;
 }
 
+//Chutes is an array of Chute IDs
 - (void)startUploadingAssets:(NSArray *) assets forChutes:(NSArray *) chutes {
     NSMutableArray *_filesToVerify = [NSMutableArray new];
 

@@ -1,6 +1,5 @@
 //
 //  LoginViewController.m
-//  NoteChute
 //
 //  Created by Achal Aggarwal on 09/07/11.
 //  Copyright 2011 NA. All rights reserved.

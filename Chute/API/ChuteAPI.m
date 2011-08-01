@@ -1,6 +1,5 @@
 //
 //  ChuteAPI.m
-//  TTT
 //
 //  Created by Gaurav Sharma on 7/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
@@ -404,6 +403,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     
 //    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 //    [params setValue:@"test" forKey:@"chute[name]"];
+//    [params setValue:[NSString stringWithFormat:@"%d", parentId] forKey:@"chute[parent_id]"];
 //    
 //    [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams:params andResponse:^(id response) {
 //        DLog(@"%@", response);
@@ -415,9 +415,9 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     
 /////////////////////////////////////////////////////////////////////////////////
     
-//    my assets
+//    assets
     
-//    [self getRequestWithPath:[NSString stringWithFormat:@"%@1/assets/all", API_URL] andParams: nil andResponse:^(id response) {
+//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/assets", API_URL] andParams: nil andResponse:^(id response) {
 //        DLog(@"%@", response);
 //        //aResponseBlock(response);
 //    } andError:^(NSError *error) {
