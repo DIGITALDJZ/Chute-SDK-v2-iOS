@@ -157,6 +157,12 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     
     DLog();
     
+    if ([self accessToken]) {
+        [self setAccountStatus:ChuteAccountStatusLoggedIn];
+        successBlock();
+        return;
+    }
+    
     [self setAccountStatus:ChuteAccountStatusLoggingIn];
     
     NSDictionary *params = [NSMutableDictionary dictionary];
@@ -169,13 +175,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     
     if (accessCode == nil) {
         DLog();
-        if ([self accessToken] == nil) {
-            DLog();
-            errorBlock(nil);
-            return;
-        }
-        DLog();
-        [params setValue:[self accessToken] forKey:@"code"];
+        errorBlock(nil);
+        return;
     }
     else {
         DLog();

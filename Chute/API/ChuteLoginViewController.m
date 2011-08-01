@@ -20,21 +20,12 @@
 @synthesize authWebView;
 
 +(void)presentInController:(UIViewController *)controller {
-    
-    if ([[ChuteAPI shared] accessToken] == nil) {
-        ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
-        [controller presentModalViewController:loginController animated:YES];
-        [loginController release];
-    }
-    
-    /*
     [[ChuteAPI shared] verifyAuthorizationWithAccessCode:nil success:^(void) {
     } andError:^(NSError *error) {
         ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
         [controller presentModalViewController:loginController animated:YES];
         [loginController release];
     }];
-     */
 }
 
 -(IBAction) login {
