@@ -306,21 +306,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [params setValue:[NSString stringWithFormat:@"%d", parentId] forKey:@"chute[parent_id]"];
     
     [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams:params andResponse:^(id response) {
-
         responseBlock(response);
-        
-        /*
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        
-        NSString *syncURL = [NSString stringWithFormat:@"%@chutes/%d/sync/evernote/%d", API_URL, [[response valueForKey:@"id"] intValue], [[prefs objectForKey:@"id"] intValue]];
-        
-        [self postRequestWithPath:syncURL andParams:nil andResponse:^(id response) {
-            responseBlock(response);
-        } andError:^(NSError *error) {
-            errorBlock(error);
-        }];
-         */
-        
     } andError:^(NSError *error) {
         errorBlock(error);
     }];
@@ -394,27 +380,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void) test {
-/////////////////////////////////////////////////////////////////////////////////
-    
-//    //my chutes
-    
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes", API_URL] andParams: nil andResponse:^(id response) {
-        DLog(@"%@", response);
-        //aResponseBlock(response);
-    } andError:^(NSError *error) {
-        DLog(@"%@", [error localizedDescription]);
-    }];
-    
-/////////////////////////////////////////////////////////////////////////////////
-    
-//    my chutes deep
-    
-//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes/deep", API_URL] andParams: nil andResponse:^(id response) {
-//        DLog(@"%@", response);
-//        //aResponseBlock(response);
-//    } andError:^(NSError *error) {
-//        DLog(@"%@", [error localizedDescription]);
-//    }];
 
 /////////////////////////////////////////////////////////////////////////////////
     

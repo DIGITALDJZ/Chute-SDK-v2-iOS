@@ -33,7 +33,6 @@
 }
 
 - (IBAction)listChutes:(id)sender {
-    
     [[ChuteAPI shared] getMyChutesWithResponse:^(NSArray *array) {
         NSArray *arr = [array retain];
         DLog(@"%@", arr);

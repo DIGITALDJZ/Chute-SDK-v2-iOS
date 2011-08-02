@@ -9,6 +9,7 @@
 // Set which service is to be used
 // 0 - Facebook
 // 1 - Evernote
+// 2 - Chute
 
 #define kSERVICE 0
 
