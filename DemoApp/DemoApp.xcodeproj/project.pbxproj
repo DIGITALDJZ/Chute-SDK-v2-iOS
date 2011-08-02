@@ -91,7 +91,7 @@
 		ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteBaseViewController.m; sourceTree = "<group>"; };
 		ECAA8D9613E4822400D18422 /* ChuteConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteConstants.h; sourceTree = "<group>"; };
 		ECAA8D9713E4822400D18422 /* ChuteLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteLoginViewController.h; sourceTree = "<group>"; };
-		ECAA8D9913E4822400D18422 /* Chute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chute.h; sourceTree = "<group>"; };
+		ECAA8D9913E4822400D18422 /* ChuteSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ChuteSDK.h; sourceTree = "<group>"; };
 		ECAA8D9C13E4822400D18422 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		ECAA8D9D13E4822400D18422 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		ECAA8D9E13E4822400D18422 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				ECAA8D8B13E4822400D18422 /* API */,
-				ECAA8D9913E4822400D18422 /* Chute.h */,
+				ECAA8D9913E4822400D18422 /* ChuteSDK.h */,
 				ECAA8D9A13E4822400D18422 /* Vendor */,
 				ECAA8DDE13E4822400D18422 /* XIB */,
 			);
@@ -615,6 +615,7 @@
 				ECAA8C8413E47BD700D18422 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

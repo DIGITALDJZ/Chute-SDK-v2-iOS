@@ -7,12 +7,52 @@
 //
 
 #import "DemoAppViewController.h"
-#import "Chute.h"
+#import "ChuteSDK.h"
 
 @implementation DemoAppViewController
+@synthesize chuteName;
+
+- (void) quickAlertWithTitle:(NSString *) title message:(NSString *) message button:(NSString *) buttonTitle {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:buttonTitle otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
 
 - (IBAction)test:(id)sender {
     [[ChuteAPI shared] test];
+}
+
+- (IBAction)create:(id)sender {
+    [chuteName resignFirstResponder];
+    [[ChuteAPI shared] createChute:chuteName.text withParent:0 andResponse:^(id response) {
+        DLog(@"%@", response);
+        [self quickAlertWithTitle:@"Chute Created" message:@"The Chute has been created" button:@"okay"];
+    } andError:^(NSError *error) {
+        DLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (IBAction)listChutes:(id)sender {
+    
+    [[ChuteAPI shared] getMyChutesWithResponse:^(NSArray *array) {
+        NSArray *arr = [array retain];
+        DLog(@"%@", arr);
+        [arr release];
+        [self quickAlertWithTitle:@"hello" message:@"world" button:@"okay"];
+    } andError:^(NSError *error) {
+        [self quickAlertWithTitle:@"error" message:@"error" button:@"okay"];
+    }];
+}
+
+- (IBAction)listParcels:(id)sender {
+}
+
+- (IBAction)showInbox:(id)sender {
+}
+
+- (IBAction)logout:(id)sender {
+    [[ChuteAPI shared] reset];
+    [ChuteLoginViewController presentInController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +78,7 @@
 
 - (void)viewDidUnload
 {
+    [self setChuteName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -49,4 +90,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [chuteName release];
+    [super dealloc];
+}
 @end

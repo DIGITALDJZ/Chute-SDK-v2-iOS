@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DemoAppViewController : UIViewController
+@interface DemoAppViewController : UIViewController {
+    UITextField *chuteName;
+}
+
+@property (nonatomic, retain) IBOutlet UITextField *chuteName;
+
+- (void) quickAlertWithTitle:(NSString *) title message:(NSString *) message button:(NSString *) buttonTitle;
 
 - (IBAction)test:(id)sender;
+
+- (IBAction)create:(id)sender;
+- (IBAction)listChutes:(id)sender;
+- (IBAction)listParcels:(id)sender;
+- (IBAction)showInbox:(id)sender;
+- (IBAction)logout:(id)sender;
 
 @end
