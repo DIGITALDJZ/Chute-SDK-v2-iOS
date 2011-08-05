@@ -114,6 +114,13 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self hideHUD];
+    [self quickAlertViewWithTitle:@"Error" message:[error localizedDescription] button:@"Reload" completionBlock:^(void) {
+        [authWebView reload]; 
+    } cancelBlock:^(void) {
+        [self hideAuthViewCompletion:^(void) {
+            
+        }];
+    }];
 }
 
 - (void)dealloc

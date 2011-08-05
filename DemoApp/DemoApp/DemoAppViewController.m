@@ -37,9 +37,9 @@
         NSArray *arr = [array retain];
         DLog(@"%@", arr);
         [arr release];
-        [self quickAlertWithTitle:@"hello" message:@"world" button:@"okay"];
+        [self quickAlertWithTitle:@"Success" message:@"Chutes Listed on Console" button:@"okay"];
     } andError:^(NSError *error) {
-        [self quickAlertWithTitle:@"error" message:@"error" button:@"okay"];
+        [self quickAlertWithTitle:@"error" message:[error localizedDescription] button:@"okay"];
     }];
 }
 
@@ -52,6 +52,18 @@
 - (IBAction)logout:(id)sender {
     [[ChuteAPI shared] reset];
     [ChuteLoginViewController presentInController:self];
+}
+
+- (IBAction)listPublicChutes:(id)sender {
+    [[ChuteAPI shared] getPublicChutesWithResponse:^(NSArray *array) {
+        NSArray *arr = [array retain];
+        DLog(@"%@", arr);
+        [arr release];
+        [self quickAlertWithTitle:@"Success" message:@"Chutes Listed on Console" button:@"okay"];
+
+    } andError:^(NSError *error) {
+        [self quickAlertWithTitle:@"error" message:[error localizedDescription] button:@"okay"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

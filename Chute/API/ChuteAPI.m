@@ -95,8 +95,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void)postRequestWithPath:(NSString *)path
                   andParams:(NSDictionary *)params
-                andResponse:(void (^)(id))aResponseBlock
-                   andError:(void (^)(NSError *))anErrorBlock{
+                andResponse:(ResponseBlock)aResponseBlock
+                   andError:(ErrorBlock)anErrorBlock{
     ASIFormDataRequest *_request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:path]];
     
     [_request setRequestHeaders:[self headers]];
@@ -124,8 +124,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void)getRequestWithPath:(NSString *)path
                  andParams:(NSMutableDictionary *)params
-               andResponse:(void (^)(id))aResponseBlock
-                  andError:(void (^)(NSError *))anErrorBlock{
+               andResponse:(ResponseBlock)aResponseBlock
+                  andError:(ErrorBlock)anErrorBlock{
     ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:path]];
     
     [_request setRequestHeaders:[self headers]];
@@ -152,7 +152,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
                                    success:(void (^)(void))successBlock 
-                                  andError:(void (^)(NSError *))errorBlock {
+                                  andError:(ErrorBlock)errorBlock {
     if ([self accessToken]) {
         [self setAccountStatus:ChuteAccountStatusLoggedIn];
         successBlock();
@@ -222,7 +222,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 #pragma mark -
 #pragma mark Sync with 3rd party services
 
-- (void) syncDidComplete:(void (^)(void))successBlock andError:(void (^)(NSError *))errorBlock {
+- (void) syncDidComplete:(void (^)(void))successBlock andError:(ErrorBlock)errorBlock {
     ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me/chutes/evernote/sync", API_URL]]];
     [_request setTimeOutSeconds:300];
     [_request startAsynchronous];
@@ -298,8 +298,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void)createChute:(NSString *)name 
          withParent:(int)parentId
-        andResponse:(void (^)(id))responseBlock 
-           andError:(void (^)(NSError *))errorBlock {
+        andResponse:(ResponseBlock)responseBlock 
+           andError:(ErrorBlock)errorBlock {
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:name forKey:@"chute[name]"];
@@ -314,8 +314,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [params release];
 }
 
-- (void)getProfileInfoWithResponse:(void (^)(id))aResponseBlock
-                          andError:(void (^)(NSError *))anErrorBlock{
+- (void)getProfileInfoWithResponse:(ResponseBlock)aResponseBlock
+                          andError:(ErrorBlock)anErrorBlock{
     
     [self getRequestWithPath:[NSString stringWithFormat:@"%@/me", API_URL] andParams: nil andResponse:^(id response) {
         aResponseBlock(response);
@@ -325,14 +325,30 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void)getMyChutesWithResponse:(void (^)(NSArray *))aResponseBlock
-                       andError:(void (^)(NSError *))anErrorBlock{
+                       andError:(ErrorBlock)anErrorBlock{
     [self getChutesForId:@"me" response:aResponseBlock andError:anErrorBlock];
 }
 
-- (void)getChutesForId:(NSString *)chuteId 
+- (void)getPublicChutesWithResponse:(void (^)(NSArray *))aResponseBlock
+                       andError:(ErrorBlock)anErrorBlock{
+    [self getChutesForId:@"public" response:aResponseBlock andError:anErrorBlock];
+}
+
+- (void)getChutesForId:(NSString *)Id 
               response:(void (^)(NSArray *))aResponseBlock 
-              andError:(void (^)(NSError *))anErrorBlock {
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@%@/chutes", API_URL, chuteId] andParams: nil andResponse:^(id response) {
+              andError:(ErrorBlock)anErrorBlock {
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@%@/chutes", API_URL, Id] andParams: nil andResponse:^(id response) {
+        NSArray *_arr = [[[NSArray alloc] initWithArray:[response objectForKey:@"data"]] autorelease];
+        aResponseBlock(_arr);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+}
+
+- (void)getAssetsForChuteId:(NSUInteger)chuteId
+                   response:(void (^)(NSArray *))aResponseBlock 
+                   andError:(ErrorBlock)anErrorBlock {
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes/%d/assets", API_URL, chuteId] andParams: nil andResponse:^(id response) {
         NSArray *_arr = [[[NSArray alloc] initWithArray:[response objectForKey:@"data"]] autorelease];
         aResponseBlock(_arr);
     } andError:^(NSError *error) {
@@ -345,7 +361,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 - (void)initThumbnail:(UIImage *)thumbnail
            forAssetId:(NSString *)assetId
-          andResponse:(void (^)(id))aResponseBlock
+          andResponse:(ResponseBlock)aResponseBlock
              andError:(void (^)(NSError *))anErrorBlock{
     
     NSData *imageData           = UIImageJPEGRepresentation(thumbnail, 0.5);
@@ -359,8 +375,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void)getTokenForAssetId:(NSString *)assetId
-               andResponse:(void (^)(id))aResponseBlock
-                  andError:(void (^)(NSError *))anErrorBlock{
+               andResponse:(ResponseBlock)aResponseBlock
+                  andError:(ErrorBlock)anErrorBlock{
     
     [self getRequestWithPath:[NSString stringWithFormat:@"%@/uploads/%@/token", API_URL, assetId] andParams: nil andResponse:^(id response) {
         aResponseBlock(response);
@@ -370,8 +386,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void)completeForAssetId:(NSString *)assetId
-               andResponse:(void (^)(id))aResponseBlock
-                  andError:(void (^)(NSError *))anErrorBlock{
+               andResponse:(ResponseBlock)aResponseBlock
+                  andError:(ErrorBlock)anErrorBlock{
     [self getRequestWithPath:[NSString stringWithFormat:@"%@/uploads/%@/complete", API_URL, assetId] andParams: nil andResponse:^(id response) {
         aResponseBlock(response);
     } andError:^(NSError *error) {
@@ -412,12 +428,12 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     
 //    Inbox
 
-//    [self getRequestWithPath:[NSString stringWithFormat:@"%@inbox", API_URL] andParams: nil andResponse:^(id response) {
-//        DLog(@"%@", response);
-//        //aResponseBlock(response);
-//    } andError:^(NSError *error) {
-//        DLog(@"%@", [error localizedDescription]);
-//    }];
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@inbox", API_URL] andParams: nil andResponse:^(id response) {
+        DLog(@"%@", response);
+        //aResponseBlock(response);
+    } andError:^(NSError *error) {
+        DLog(@"%@", [error localizedDescription]);
+    }];
 
 /////////////////////////////////////////////////////////////////////////////////
 

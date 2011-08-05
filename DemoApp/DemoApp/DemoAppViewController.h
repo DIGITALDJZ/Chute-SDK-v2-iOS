@@ -23,5 +23,6 @@
 - (IBAction)listParcels:(id)sender;
 - (IBAction)showInbox:(id)sender;
 - (IBAction)logout:(id)sender;
+- (IBAction)listPublicChutes:(id)sender;
 
 @end

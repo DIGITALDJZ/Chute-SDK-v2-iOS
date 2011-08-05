@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^ErrorBlock)(NSError *);
+typedef void (^ResponseBlock)(id);
+
 extern NSString * const ChuteLoginStatusChanged;
 
 typedef enum {
@@ -30,25 +33,31 @@ typedef enum {
 //Authorization Methods
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
                                    success:(void (^)(void))successBlock 
-                                  andError:(void (^)(NSError *))errorBlock;
+                                  andError:(ErrorBlock)errorBlock;
 
 - (void)reset;
 
 - (void)syncDidComplete:(void (^)(void))successBlock 
-                andError:(void (^)(NSError *))errorBlock;
+                andError:(ErrorBlock)errorBlock;
 
 //Data Wrappers
 //Get Data
-- (void)getProfileInfoWithResponse:(void (^)(id))aResponseBlock
-                          andError:(void (^)(NSError *))anErrorBlock;
+- (void)getProfileInfoWithResponse:(ResponseBlock)aResponseBlock
+                          andError:(ErrorBlock)anErrorBlock;
 
 - (void)getMyChutesWithResponse:(void (^)(NSArray *))aResponseBlock
-                       andError:(void (^)(NSError *))anErrorBlock;
+                       andError:(ErrorBlock)anErrorBlock;
 
-- (void)getChutesForId:(NSString *)chuteId 
+- (void)getPublicChutesWithResponse:(void (^)(NSArray *))aResponseBlock
+                           andError:(ErrorBlock)anErrorBlock;
+
+- (void)getChutesForId:(NSString *)Id 
               response:(void (^)(NSArray *))aResponseBlock 
-              andError:(void (^)(NSError *))anErrorBlock;
+              andError:(ErrorBlock)anErrorBlock;
 
+- (void)getAssetsForChuteId:(NSUInteger)chuteId
+                   response:(void (^)(NSArray *))aResponseBlock 
+                   andError:(ErrorBlock)anErrorBlock;
 /*
  - (void)getChutesForResponse:(void (^)(id))aResponseBlock
  andError:(void (^)(NSError *))anErrorBlock;
@@ -58,22 +67,22 @@ typedef enum {
 //Post Data
 - (void)createChute:(NSString *)name 
             withParent:(int)parentId
-           andResponse:(void (^)(id))responseBlock 
-              andError:(void (^)(NSError *))errorBlock;
+           andResponse:(ResponseBlock)responseBlock 
+              andError:(ErrorBlock)errorBlock;
 
 //Helper methods for Asset Uploader
 - (void)initThumbnail:(UIImage *)thumbnail
            forAssetId:(NSString *)assetId
-          andResponse:(void (^)(id))aResponseBlock
-             andError:(void (^)(NSError *))anErrorBlock;
+          andResponse:(ResponseBlock)aResponseBlock
+             andError:(ErrorBlock)anErrorBlock;
 
 - (void)getTokenForAssetId:(NSString *)assetId
-               andResponse:(void (^)(id))aResponseBlock
-                  andError:(void (^)(NSError *))anErrorBlock;
+               andResponse:(ResponseBlock)aResponseBlock
+                  andError:(ErrorBlock)anErrorBlock;
 
 - (void)completeForAssetId:(NSString *)assetId
-               andResponse:(void (^)(id))aResponseBlock
-                  andError:(void (^)(NSError *))anErrorBlock;
+               andResponse:(ResponseBlock)aResponseBlock
+                  andError:(ErrorBlock)anErrorBlock;
 
 
 - (void) test;
