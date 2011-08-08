@@ -28,13 +28,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef DEBUG
-#define LOCAL_SERVER
+//#define LOCAL_SERVER
 #ifdef LOCAL_SERVER
 #define API_URL @"http://api.getchute.local:8080/v1/"
 #define SERVER_URL @"http://getchute.local:8080"
 #else
-#define API_URL @"http://api.staging.getchute.com/v1/"
-#define SERVER_URL @"http://staging.getchute.com"
+#define API_URL @"http://api.p.getchute.com/v1/"
+#define SERVER_URL @"http://p.getchute.com"
 #endif
 #else
 //Please change to Production URL before submitting
@@ -52,8 +52,8 @@
 #define kDEVICE_OS          [[UIDevice currentDevice] systemName]
 #define kDEVICE_VERSION     [[UIDevice currentDevice] systemVersion]
 
-#define kOAuthRedirectURL               @"http://getchute.local:8080/auth/chute/callback"
-#define kOAuthRedirectRelativeURL       @"/auth/chute/callback"
-#define kOAuthClientID                  @"4e366604ddccbf6a2a000001"
-#define kOAuthClientSecret              @"f51e056905ea6becb1c911b10fabaaeb650a680870a4da30126e8a586cf39f78"
-#define kOAuthTokenURL                  @"http://getchute.local:8080/oauth/access_token"
+#define kOAuthRedirectURL               @"http://getchute.com/oauth/callback"
+#define kOAuthRedirectRelativeURL       @"/oauth/callback"
+#define kOAuthClientID                  @"4e3ef1af38ecef0aaa000001"
+#define kOAuthClientSecret              @"dfa5876546b900562a87d7e58a753c27383ea142778b330286877fe399da4d4b"
+#define kOAuthTokenURL                  @"http://p.getchute.com/oauth/access_token"
