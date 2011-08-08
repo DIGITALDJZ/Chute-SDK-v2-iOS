@@ -66,9 +66,12 @@ typedef enum {
 
 //Post Data
 - (void)createChute:(NSString *)name 
-            withParent:(int)parentId
-           andResponse:(ResponseBlock)responseBlock 
-              andError:(ErrorBlock)errorBlock;
+         withParent:(NSUInteger)parentId
+ withPermissionView:(NSUInteger)permissionView
+      andAddMembers:(NSUInteger)addMembers
+       andAddPhotos:(NSUInteger)addPhotos
+        andResponse:(ResponseBlock)responseBlock 
+           andError:(ErrorBlock)errorBlock;
 
 //Helper methods for Asset Uploader
 - (void)initThumbnail:(UIImage *)thumbnail

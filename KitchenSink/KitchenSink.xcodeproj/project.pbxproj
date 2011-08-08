@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		EC4678FE13F009E400533435 /* ChuteUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */; };
+		EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790413F012A900533435 /* CreateChuteViewController.m */; };
+		EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46790813F012DC00533435 /* CreateChuteViewController.xib */; };
+		EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790C13F0132C00533435 /* ListChutesViewController.m */; };
+		EC46791113F0134000533435 /* ListChutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46791013F0134000533435 /* ListChutesViewController.xib */; };
 		EC5B647D13F0019100EBA5A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B647C13F0019100EBA5A1 /* main.m */; };
 		EC5B648113F0019100EBA5A1 /* KitchenSinkAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B648013F0019100EBA5A1 /* KitchenSinkAppDelegate.m */; };
 		EC5B64A713F0023A00EBA5A1 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5B649513F0022700EBA5A1 /* AssetsLibrary.framework */; };
@@ -68,6 +72,12 @@
 /* Begin PBXFileReference section */
 		EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteUIBaseViewController.h; sourceTree = "<group>"; };
 		EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteUIBaseViewController.m; sourceTree = "<group>"; };
+		EC46790313F012A900533435 /* CreateChuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChuteViewController.h; sourceTree = "<group>"; };
+		EC46790413F012A900533435 /* CreateChuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateChuteViewController.m; sourceTree = "<group>"; };
+		EC46790813F012DC00533435 /* CreateChuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateChuteViewController.xib; sourceTree = "<group>"; };
+		EC46790B13F0132C00533435 /* ListChutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListChutesViewController.h; sourceTree = "<group>"; };
+		EC46790C13F0132C00533435 /* ListChutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListChutesViewController.m; sourceTree = "<group>"; };
+		EC46791013F0134000533435 /* ListChutesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListChutesViewController.xib; sourceTree = "<group>"; };
 		EC5B646C13F0019100EBA5A1 /* KitchenSink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenSink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5B647813F0019100EBA5A1 /* KitchenSink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KitchenSink-Info.plist"; sourceTree = "<group>"; };
 		EC5B647C13F0019100EBA5A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -194,6 +204,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC46790A13F0130C00533435 /* Chutes */ = {
+			isa = PBXGroup;
+			children = (
+				EC46790313F012A900533435 /* CreateChuteViewController.h */,
+				EC46790413F012A900533435 /* CreateChuteViewController.m */,
+				EC5B653C13F006FC00EBA5A1 /* ChuteBaseViewController.h */,
+				EC5B653D13F006FC00EBA5A1 /* ChuteBaseViewController.m */,
+				EC46790B13F0132C00533435 /* ListChutesViewController.h */,
+				EC46790C13F0132C00533435 /* ListChutesViewController.m */,
+			);
+			name = Chutes;
+			sourceTree = "<group>";
+		};
 		EC5B646113F0019100EBA5A1 = {
 			isa = PBXGroup;
 			children = (
@@ -419,12 +442,14 @@
 		EC5B653213F0045A00EBA5A1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				EC46790813F012DC00533435 /* CreateChuteViewController.xib */,
 				EC5B654B13F0073A00EBA5A1 /* BundlesBaseViewController.xib */,
 				EC5B654C13F0073A00EBA5A1 /* PhotosBaseViewController.xib */,
 				EC5B654D13F0073A00EBA5A1 /* ChuteBaseViewController.xib */,
 				EC5B653313F0045A00EBA5A1 /* InfoPlist.strings */,
 				EC5B653513F0045A00EBA5A1 /* MainWindow.xib */,
 				EC5B653713F0045A00EBA5A1 /* RootViewController.xib */,
+				EC46791013F0134000533435 /* ListChutesViewController.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -432,8 +457,7 @@
 		EC5B653B13F006E100EBA5A1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EC5B653C13F006FC00EBA5A1 /* ChuteBaseViewController.h */,
-				EC5B653D13F006FC00EBA5A1 /* ChuteBaseViewController.m */,
+				EC46790A13F0130C00533435 /* Chutes */,
 				EC5B654113F0070C00EBA5A1 /* PhotosBaseViewController.h */,
 				EC5B654213F0070C00EBA5A1 /* PhotosBaseViewController.m */,
 				EC5B654613F0071E00EBA5A1 /* BundlesBaseViewController.h */,
@@ -499,6 +523,8 @@
 				EC5B654E13F0073A00EBA5A1 /* BundlesBaseViewController.xib in Resources */,
 				EC5B654F13F0073A00EBA5A1 /* PhotosBaseViewController.xib in Resources */,
 				EC5B655013F0073A00EBA5A1 /* ChuteBaseViewController.xib in Resources */,
+				EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */,
+				EC46791113F0134000533435 /* ListChutesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +574,8 @@
 				EC5B654413F0070C00EBA5A1 /* PhotosBaseViewController.m in Sources */,
 				EC5B654913F0071E00EBA5A1 /* BundlesBaseViewController.m in Sources */,
 				EC4678FE13F009E400533435 /* ChuteUIBaseViewController.m in Sources */,
+				EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */,
+				EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

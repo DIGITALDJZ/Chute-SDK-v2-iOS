@@ -7,6 +7,8 @@
 //
 
 #import "ChuteBaseViewController.h"
+#import "CreateChuteViewController.h"
+#import "ListChutesViewController.h"
 
 @implementation ChuteBaseViewController
 
@@ -48,4 +50,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)createChute:(id)sender {
+    CreateChuteViewController *createChuteViewController = [[CreateChuteViewController alloc] init];
+    [self.navigationController pushViewController:createChuteViewController animated:YES];
+    [createChuteViewController setTitle:@"Create Chute"];
+    [createChuteViewController release];
+}
+
+- (IBAction)browseChutes:(id)sender {
+    ListChutesViewController *listChutesViewController = [[ListChutesViewController alloc] init];
+    [self.navigationController pushViewController:listChutesViewController animated:YES];
+    [listChutesViewController setTitle:@"Chutes"];
+    [listChutesViewController release];
+}
 @end

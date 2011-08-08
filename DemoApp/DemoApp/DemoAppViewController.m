@@ -24,7 +24,7 @@
 
 - (IBAction)create:(id)sender {
     [chuteName resignFirstResponder];
-    [[ChuteAPI shared] createChute:chuteName.text withParent:0 andResponse:^(id response) {
+    [[ChuteAPI shared] createChute:chuteName.text withParent:0 withPermissionView:2 andAddMembers:2 andAddPhotos:2 andResponse:^(id response) {
         DLog(@"%@", response);
         [self quickAlertWithTitle:@"Chute Created" message:@"The Chute has been created" button:@"okay"];
     } andError:^(NSError *error) {

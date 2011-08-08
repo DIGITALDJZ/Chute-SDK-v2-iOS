@@ -297,13 +297,19 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
  */
 
 - (void)createChute:(NSString *)name 
-         withParent:(int)parentId
+         withParent:(NSUInteger)parentId
+ withPermissionView:(NSUInteger)permissionView
+      andAddMembers:(NSUInteger)addMembers
+       andAddPhotos:(NSUInteger)addPhotos
         andResponse:(ResponseBlock)responseBlock 
            andError:(ErrorBlock)errorBlock {
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:name forKey:@"chute[name]"];
     [params setValue:[NSString stringWithFormat:@"%d", parentId] forKey:@"chute[parent_id]"];
+    [params setValue:[NSString stringWithFormat:@"%d", permissionView] forKey:@"chute[permission_view]"];
+    [params setValue:[NSString stringWithFormat:@"%d", addMembers] forKey:@"chute[permission_add_members]"];
+    [params setValue:[NSString stringWithFormat:@"%d", addPhotos] forKey:@"chute[permission_add_photos]"];
     
     [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams:params andResponse:^(id response) {
         responseBlock(response);
