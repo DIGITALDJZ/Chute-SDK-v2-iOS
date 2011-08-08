@@ -7,6 +7,9 @@
 //
 
 #import "RootViewController.h"
+#import "ChuteBaseViewController.h"
+#import "PhotosBaseViewController.h"
+#import "BundlesBaseViewController.h"
 
 @implementation RootViewController
 
@@ -33,6 +36,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [ChuteLoginViewController presentInController:self];
 }
 
 - (void)viewDidUnload
@@ -48,4 +52,24 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)chute:(id)sender {
+    ChuteBaseViewController *chuteBaseViewController = [[ChuteBaseViewController alloc] init];
+    [chuteBaseViewController setTitle:@"Chutes"];
+    [self.navigationController pushViewController:chuteBaseViewController animated:YES];
+    [chuteBaseViewController release];
+}
+
+- (IBAction)photos:(id)sender {
+    PhotosBaseViewController *photosBaseViewController = [[PhotosBaseViewController alloc] init];
+    [self.navigationController pushViewController:photosBaseViewController animated:YES];
+    [photosBaseViewController setTitle:@"Photos"];
+    [photosBaseViewController release];
+}
+
+- (IBAction)bundles:(id)sender {
+    BundlesBaseViewController *bundlesBaseViewController = [[BundlesBaseViewController alloc] init];
+    [self.navigationController pushViewController:bundlesBaseViewController animated:YES];
+    [bundlesBaseViewController setTitle:@"Bundles"];
+    [bundlesBaseViewController release];
+}
 @end

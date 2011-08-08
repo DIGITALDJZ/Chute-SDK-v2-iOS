@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChuteBaseViewController.h"
+#import "ChuteUIBaseViewController.h"
 
 #define SERVICES_ARRAY [NSArray arrayWithObjects:@"facebook", @"evernote", @"chute", nil]
 
-@interface ChuteLoginViewController : ChuteBaseViewController <UIWebViewDelegate> {
+@interface ChuteLoginViewController : ChuteUIBaseViewController <UIWebViewDelegate> {
     IBOutlet UIButton *loginButton;
 }
 

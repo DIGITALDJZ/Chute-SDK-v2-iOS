@@ -26,7 +26,7 @@
 		ECAA8DE113E4822400D18422 /* ChuteAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D8F13E4822400D18422 /* ChuteAsset.m */; };
 		ECAA8DE213E4822400D18422 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9113E4822400D18422 /* ChuteAssetManager.m */; };
 		ECAA8DE313E4822400D18422 /* ChuteAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9313E4822400D18422 /* ChuteAssetUploader.m */; };
-		ECAA8DE413E4822400D18422 /* ChuteBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */; };
+		ECAA8DE413E4822400D18422 /* ChuteUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9513E4822400D18422 /* ChuteUIBaseViewController.m */; };
 		ECAA8DE613E4822400D18422 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8D9D13E4822400D18422 /* ASIAuthenticationDialog.m */; };
 		ECAA8DE713E4822400D18422 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DA013E4822400D18422 /* ASIDataCompressor.m */; };
 		ECAA8DE813E4822400D18422 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA8DA213E4822400D18422 /* ASIDataDecompressor.m */; };
@@ -87,11 +87,11 @@
 		ECAA8D9113E4822400D18422 /* ChuteAssetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAssetManager.m; sourceTree = "<group>"; };
 		ECAA8D9213E4822400D18422 /* ChuteAssetUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAssetUploader.h; sourceTree = "<group>"; };
 		ECAA8D9313E4822400D18422 /* ChuteAssetUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAssetUploader.m; sourceTree = "<group>"; };
-		ECAA8D9413E4822400D18422 /* ChuteBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteBaseViewController.h; sourceTree = "<group>"; };
-		ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteBaseViewController.m; sourceTree = "<group>"; };
+		ECAA8D9413E4822400D18422 /* ChuteUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ChuteUIBaseViewController.h; sourceTree = "<group>"; };
+		ECAA8D9513E4822400D18422 /* ChuteUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteUIBaseViewController.m; sourceTree = "<group>"; };
 		ECAA8D9613E4822400D18422 /* ChuteConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteConstants.h; sourceTree = "<group>"; };
 		ECAA8D9713E4822400D18422 /* ChuteLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteLoginViewController.h; sourceTree = "<group>"; };
-		ECAA8D9913E4822400D18422 /* ChuteSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ChuteSDK.h; sourceTree = "<group>"; };
+		ECAA8D9913E4822400D18422 /* ChuteSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteSDK.h; sourceTree = "<group>"; };
 		ECAA8D9C13E4822400D18422 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		ECAA8D9D13E4822400D18422 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		ECAA8D9E13E4822400D18422 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 				ECAA8D9113E4822400D18422 /* ChuteAssetManager.m */,
 				ECAA8D9213E4822400D18422 /* ChuteAssetUploader.h */,
 				ECAA8D9313E4822400D18422 /* ChuteAssetUploader.m */,
-				ECAA8D9413E4822400D18422 /* ChuteBaseViewController.h */,
-				ECAA8D9513E4822400D18422 /* ChuteBaseViewController.m */,
+				ECAA8D9413E4822400D18422 /* ChuteUIBaseViewController.h */,
+				ECAA8D9513E4822400D18422 /* ChuteUIBaseViewController.m */,
 				ECAA8D9613E4822400D18422 /* ChuteConstants.h */,
 				ECAA8D9713E4822400D18422 /* ChuteLoginViewController.h */,
 				ECAA8E0613E4AC8100D18422 /* ChuteLoginViewController.m */,
@@ -469,7 +469,7 @@
 				ECAA8DE113E4822400D18422 /* ChuteAsset.m in Sources */,
 				ECAA8DE213E4822400D18422 /* ChuteAssetManager.m in Sources */,
 				ECAA8DE313E4822400D18422 /* ChuteAssetUploader.m in Sources */,
-				ECAA8DE413E4822400D18422 /* ChuteBaseViewController.m in Sources */,
+				ECAA8DE413E4822400D18422 /* ChuteUIBaseViewController.m in Sources */,
 				ECAA8DE613E4822400D18422 /* ASIAuthenticationDialog.m in Sources */,
 				ECAA8DE713E4822400D18422 /* ASIDataCompressor.m in Sources */,
 				ECAA8DE813E4822400D18422 /* ASIDataDecompressor.m in Sources */,

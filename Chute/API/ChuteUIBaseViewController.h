@@ -12,9 +12,9 @@
 #import "ASIHTTPRequest.h"
 #import "ChuteAPI.h"
 #import "NSDictionary+QueryString.h"
-#import "ChuteBaseViewController.h"
+#import "ChuteUIBaseViewController.h"
 
-@interface ChuteBaseViewController : UIViewController <UIAlertViewDelegate> {
+@interface ChuteUIBaseViewController : UIViewController <UIAlertViewDelegate> {
     MBProgressHUD *HUD;
     NSUInteger HUDCount;
     

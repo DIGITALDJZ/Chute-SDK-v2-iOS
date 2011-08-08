@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UIViewController
-
+- (IBAction)chute:(id)sender;
+- (IBAction)photos:(id)sender;
+- (IBAction)bundles:(id)sender;
 @end
