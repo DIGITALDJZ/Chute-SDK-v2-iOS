@@ -6,10 +6,11 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChutePhotosGridViewController.h"
+#import "AssetsGridViewController.h"
 
-@implementation ChutePhotosGridViewController
+@implementation AssetsGridViewController
 @synthesize photos;
+@synthesize chuteId;
 
 - (void) gridView:(AQGridView *)gridView didDeselectItemAtIndex:(NSUInteger)index {
     [self gridView:gridView didSelectItemAtIndex:index];
@@ -32,7 +33,8 @@
 }
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) gridView {
-    return [photos count];
+    return 10;
+    //return [photos count];
 }
 
 - (AQGridViewCell *) gridView: (AQGridView *) gridView cellForItemAtIndex: (NSUInteger) index {
@@ -55,8 +57,10 @@
         _imageView.center = cell.contentView.center;
     }
     
- 	id photo = [photos objectAtIndex:index];
-    NSString *_photoURL = [photo objectForKey:@"thumb_url"] ? [photo objectForKey:@"thumb_url"] : [photo objectForKey:@"url"];
+ 	//id photo = [photos objectAtIndex:index];
+    //NSString *_photoURL = [photo objectForKey:@"thumb_url"] ? [photo objectForKey:@"thumb_url"] : [photo objectForKey:@"url"];
+    
+    NSString *_photoURL = @"http://www.bouboules.com/public/user/13/0013_1f79.jpg?c=fa5c";
     [_imageView setImageWithURL:[NSURL URLWithString:_photoURL] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     return cell;
 }
@@ -92,8 +96,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"flip" style:UIBarButtonItemStyleBordered target:self action:@selector(showPhotoViewer:)] autorelease];
-    [_gridView reloadData];
+    
+    __block typeof(self) bself = self;
+    
+    [[ChuteAPI shared] getAssetsForChuteId:chuteId response:^(NSArray *arr) {
+        if (bself.photos) {
+            [bself.photos release], bself.photos = nil;
+        }
+        [bself setPhotos:arr];
+        DLog(@"%@", arr);
+        DLog(@"%d", chuteId);
+        [_gridView reloadData];
+    } andError:^(NSError *error) {
+        [self quickAlertWithTitle:@"Error!" message:[error localizedDescription] button:@"Okay"];
+    }];
 }
 
 @end

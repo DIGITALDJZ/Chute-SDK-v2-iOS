@@ -9,11 +9,12 @@
 #import "UIBaseViewController.h"
 #import "AQGridView.h"
 
-@interface ChutePhotosGridViewController : UIBaseViewController <AQGridViewDataSource, AQGridViewDelegate> {
+@interface AssetsGridViewController : UIBaseViewController <AQGridViewDataSource, AQGridViewDelegate> {
     IBOutlet AQGridView *_gridView;
 }
 
 @property (nonatomic, retain) NSArray *photos;
+@property (nonatomic, assign) NSUInteger chuteId;
 
 - (void)showPhotoViewer:(id) sender;
 
