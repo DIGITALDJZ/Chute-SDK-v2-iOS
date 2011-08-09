@@ -10,6 +10,15 @@
 
 @implementation UIBaseViewController
 
+- (void)showConsole:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowConsole" object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Console" style:UIBarButtonItemStyleBordered target:self action:@selector(showConsole:)] autorelease];
+}
+
 - (void) showHUD {
     [self showHUDWithTitle:@"Loading..." andOpacity:0.5f];
 }

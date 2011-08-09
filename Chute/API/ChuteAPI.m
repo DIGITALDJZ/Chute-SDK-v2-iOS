@@ -120,6 +120,10 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [_request setRequestMethod:@"POST"];
     
     [_request startAsynchronous];
+  
+    NSString *console = [[NSString alloc] initWithFormat:@"POST %@ \n\n %@",path, params];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    [console release];
 }
 
 - (void)getRequestWithPath:(NSString *)path
@@ -140,6 +144,10 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
     
     [_request startAsynchronous];
+    
+    NSString *console = [[NSString alloc] initWithFormat:@"GET %@ \n\n %@",path, params];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    [console release];
 }
 
 #pragma mark -

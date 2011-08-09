@@ -13,13 +13,43 @@
 @synthesize window = _window;
 @synthesize navigationController = _navigationController;
 
+@synthesize consoleView;
+@synthesize consoleTextView;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    
+    //Add Console and Transform
+    [self.window addSubview:consoleView];
+    [consoleTextView setText:@"Chute Console\n------------------------"];
+    [consoleView setTransform:CGAffineTransformMakeTranslation(0, -460)];
+    
+    //Show Console
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"ShowConsole" object:nil queue:nil usingBlock:^(NSNotification *notification) {
+        [UIView animateWithDuration:0.5f animations:^(void) {
+            [consoleView setTransform:CGAffineTransformIdentity];
+        }];
+    }];
+    
+    //Update Console
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"UpdateConsole" object:nil queue:nil usingBlock:^(NSNotification *notification) {
+        NSString *data = (NSString *)[notification object];
+        [consoleTextView setText:[consoleTextView.text stringByAppendingFormat:@"\n\n %@> %@", [[NSDate date] description], data]];  
+        //scroll to bottom
+        [consoleTextView scrollRangeToVisible:NSMakeRange([consoleTextView.text length], 0)];
+    }];
+    
     return YES;
+}
+
+- (IBAction)hideConsole:(id)sender {
+    [UIView animateWithDuration:0.5f animations:^(void) {
+        [consoleView setTransform:CGAffineTransformMakeTranslation(0, -460)];
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -63,6 +93,8 @@
 
 - (void)dealloc
 {
+    [consoleView release];
+    [consoleTextView release];
     [_window release];
     [_navigationController release];
     [super dealloc];
