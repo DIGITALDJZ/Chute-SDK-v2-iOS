@@ -6,9 +6,9 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIBaseViewController.h"
 
-@interface ChuteBaseViewController : UIViewController
+@interface ChuteBaseViewController : UIBaseViewController
 - (IBAction)createChute:(id)sender;
 - (IBAction)browseChutes:(id)sender;
 

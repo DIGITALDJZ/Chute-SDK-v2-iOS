@@ -11,6 +11,10 @@
 @implementation ListChutesViewController
 @synthesize chuteList;
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DLog(@"%@", [data objectAtIndex:indexPath.row]);
+}
+
 #pragma mark TableView Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [data count];

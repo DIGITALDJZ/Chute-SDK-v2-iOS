@@ -6,9 +6,9 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIBaseViewController.h"
 
-@interface ListChutesViewController : UIViewController <UITableViewDataSource> {
+@interface ListChutesViewController : UIBaseViewController <UITableViewDataSource, UITableViewDelegate> {
     UITableView *chuteList;
     NSArray *data;
 }

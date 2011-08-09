@@ -14,3 +14,4 @@
 #endif
 
 #import "ChuteSDK.h"
+#import "UIImageView+WebCache.h"

@@ -6,9 +6,9 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIBaseViewController.h"
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIBaseViewController
 - (IBAction)chute:(id)sender;
 - (IBAction)photos:(id)sender;
 - (IBAction)bundles:(id)sender;
