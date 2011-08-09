@@ -162,7 +162,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [self setAccountStatus:ChuteAccountStatusLoggingIn];
     
     NSDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:@"read write" forKey:@"scope"];
     [params setValue:@"profile" forKey:@"scope"];
     [params setValue:kOAuthClientID forKey:@"client_id"];
     [params setValue:kOAuthClientSecret forKey:@"client_secret"];
