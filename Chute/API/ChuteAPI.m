@@ -108,6 +108,12 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }
     
     [_request setCompletionBlock:^{
+        
+        //Update Console
+        NSString *console = [[NSString alloc] initWithFormat:@"RESPONSE %d \n\n %@",[_request responseStatusCode], [_request responseString]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+        [console release];
+        
         if ([_request responseStatusCode] == 200 || [_request responseStatusCode] == 201) {
             aResponseBlock([[_request responseString] JSONValue]);
         } else {
@@ -116,12 +122,21 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
     
     [_request setFailedBlock:^{
+        //Update Console
+        NSString *console = [[NSString alloc] initWithFormat:@"ERROR %d \n\n %@",[_request responseStatusCode], [[_request error] localizedDescription]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+        [console release];
+        
         anErrorBlock([_request error]);
     }];
     
     [_request setRequestMethod:@"POST"];
     
     [_request startAsynchronous];
+  
+    NSString *console = [[NSString alloc] initWithFormat:@"POST %@ \n\n %@",path, params];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    [console release];
 }
 
 - (void)getRequestWithPath:(NSString *)path
@@ -134,14 +149,28 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     
     [_request setTimeOutSeconds:300.0];
     [_request setCompletionBlock:^{
+        //Update Console
+        NSString *console = [[NSString alloc] initWithFormat:@"RESPONSE %d \n\n %@",[_request responseStatusCode], [_request responseString]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+        [console release];
+        
         aResponseBlock([[_request responseString] JSONValue]);
     }];
     
     [_request setFailedBlock:^{
+        //Update Console
+        NSString *console = [[NSString alloc] initWithFormat:@"ERROR %d \n\n %@",[_request responseStatusCode], [[_request error] localizedDescription]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+        [console release];
+        
         anErrorBlock([_request error]);
     }];
     
     [_request startAsynchronous];
+    
+    NSString *console = [[NSString alloc] initWithFormat:@"GET %@ \n\n %@",path, params];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    [console release];
 }
 
 #pragma mark -
@@ -164,7 +193,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [self setAccountStatus:ChuteAccountStatusLoggingIn];
     
     NSDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:@"read write" forKey:@"scope"];
     [params setValue:@"profile" forKey:@"scope"];
     [params setValue:kOAuthClientID forKey:@"client_id"];
     [params setValue:kOAuthClientSecret forKey:@"client_secret"];

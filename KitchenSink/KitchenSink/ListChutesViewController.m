@@ -7,9 +7,19 @@
 //
 
 #import "ListChutesViewController.h"
+#import "AssetsGridViewController.h"
 
 @implementation ListChutesViewController
 @synthesize chuteList;
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AssetsGridViewController *assetsGridViewController = [[AssetsGridViewController alloc] init];
+    [self.navigationController pushViewController:assetsGridViewController animated:YES];
+    [assetsGridViewController setTitle:[[data objectAtIndex:indexPath.row] objectForKey:@"name"]];
+    [assetsGridViewController setChuteId:[[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue]];
+    [assetsGridViewController release];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 #pragma mark TableView Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

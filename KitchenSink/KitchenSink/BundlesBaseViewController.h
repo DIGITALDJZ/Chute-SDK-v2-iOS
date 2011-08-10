@@ -6,8 +6,8 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIBaseViewController.h"
 
-@interface BundlesBaseViewController : UIViewController
+@interface BundlesBaseViewController : UIBaseViewController
 
 @end

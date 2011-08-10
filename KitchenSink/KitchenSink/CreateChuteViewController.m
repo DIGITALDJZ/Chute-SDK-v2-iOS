@@ -68,6 +68,7 @@
 }
 
 - (IBAction)save:(id)sender {
+    [chuteName resignFirstResponder];
     __block typeof(self) bself = self;
     [[ChuteAPI shared] createChute:chuteName.text withParent:0 withPermissionView:permission.selectedSegmentIndex andAddMembers:membersButton.selected?1:0 andAddPhotos:photosButton.selected?1:0 andResponse:^(id response) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chute Create" message:@"New chute has been created!" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
