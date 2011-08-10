@@ -17,5 +17,6 @@
 @property (nonatomic, retain) IBOutlet UITextView *consoleTextView;
 
 - (IBAction)hideConsole:(id)sender;
+- (IBAction)clearConsole:(id)sender;
 
 @end

@@ -28,22 +28,29 @@
     [consoleTextView setText:@"Chute Console\n------------------------"];
     [consoleView setTransform:CGAffineTransformMakeTranslation(0, -460)];
     
+    __block UIView *bConsoleView            = consoleView;
+    __block UITextView *bConsoleTextView    = consoleTextView;
+    
     //Show Console
     [[NSNotificationCenter defaultCenter] addObserverForName:@"ShowConsole" object:nil queue:nil usingBlock:^(NSNotification *notification) {
         [UIView animateWithDuration:0.5f animations:^(void) {
-            [consoleView setTransform:CGAffineTransformIdentity];
+            [bConsoleView setTransform:CGAffineTransformIdentity];
         }];
     }];
     
     //Update Console
     [[NSNotificationCenter defaultCenter] addObserverForName:@"UpdateConsole" object:nil queue:nil usingBlock:^(NSNotification *notification) {
         NSString *data = (NSString *)[notification object];
-        [consoleTextView setText:[consoleTextView.text stringByAppendingFormat:@"\n\n %@> %@", [[NSDate date] description], data]];  
+        [bConsoleTextView setText:[bConsoleTextView.text stringByAppendingFormat:@"\n\n %@> %@", [[NSDate date] description], data]];  
         //scroll to bottom
-        [consoleTextView scrollRangeToVisible:NSMakeRange([consoleTextView.text length], 0)];
+        [bConsoleTextView scrollRangeToVisible:NSMakeRange([bConsoleTextView.text length], 0)];
     }];
     
     return YES;
+}
+
+- (IBAction)clearConsole:(id)sender {
+    [consoleTextView setText:@"Chute Console\n------------------------"];
 }
 
 - (IBAction)hideConsole:(id)sender {
