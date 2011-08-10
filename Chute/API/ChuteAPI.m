@@ -74,7 +74,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         _accessToken = [[prefs objectForKey:@"access_token"] retain];
     }
-    NSLog(@"Token: %@", _accessToken);
     return _accessToken;
 }
 

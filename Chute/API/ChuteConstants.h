@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef DEBUG
-#define LOCAL_SERVER
+//#define LOCAL_SERVER
 #ifdef LOCAL_SERVER
 #define API_URL @"http://api.getchute.local:8080/v1/"
 #define SERVER_URL @"http://getchute.local:8080"
