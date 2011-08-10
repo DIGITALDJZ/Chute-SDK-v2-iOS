@@ -24,5 +24,6 @@
 - (IBAction)showInbox:(id)sender;
 - (IBAction)logout:(id)sender;
 - (IBAction)listPublicChutes:(id)sender;
+- (IBAction)sync:(id)sender;
 
 @end

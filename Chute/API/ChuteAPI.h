@@ -90,4 +90,12 @@ typedef enum {
 
 - (void) test;
 
+- (void)syncWithResponse:(void (^)(void))aResponseBlock
+                andError:(void (^)(id))anErrorBlock;
+
+- (void)createParcelWithFiles:(NSArray *)filesArray
+                    andChutes:(NSArray *)chutesArray
+                  andResponse:(ResponseBlock)aResponseBlock
+                     andError:(ErrorBlock)anErrorBlock;
+
 @end

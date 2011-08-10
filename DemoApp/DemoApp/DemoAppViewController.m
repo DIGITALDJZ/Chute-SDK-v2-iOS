@@ -66,6 +66,14 @@
     }];
 }
 
+- (IBAction)sync:(id)sender {
+    [[ChuteAPI shared] syncWithResponse:^(void) {
+        
+    } andError:^(id error) {
+        
+    }];
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.

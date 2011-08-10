@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "ChuteAsset.h"
 #import "ChuteAssetUploader.h"
+#import "ChuteAPI.h"
 
 static ChuteAssetManager *shared=nil;
 NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
@@ -26,6 +27,9 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
 @implementation ChuteAssetManager
 @synthesize assetsArray;
 @synthesize uploadingAssets = uploads;
+@synthesize responseBlock = b_ResponseBlock;
+@synthesize errorBlock = b_ErrorBlock;
+
 
 + (ChuteAssetManager*)shared{
 	@synchronized(shared){
@@ -67,6 +71,8 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
     ChuteAsset *_asset = [[ChuteAsset alloc] initWithAsset:anAlAsset andURL:_url];
     
     [self.assetsArray addObject:_asset];
+
+    [_asset release];
 }
 
 - (void)loadAssets {
@@ -99,6 +105,7 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
 
 - (void)assetEnumerationDidComplete {
     [[NSNotificationCenter defaultCenter] postNotificationName:ChuteAssetManagerAssetsAdded object:self];
+    [self startUploadingAssets:self.assetsArray forChutes:[NSArray array]];
 }
 
 - (ChuteAsset *)assetForURL:(NSString *)url {
@@ -125,18 +132,23 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
         [_filesToVerify addObject:_file];
     }
     
-    NSString *_fileAsString = [_filesToVerify JSONRepresentation];
+    [[ChuteAPI shared] createParcelWithFiles:_filesToVerify andChutes:chutes andResponse:^(id response) {
+        [ChuteAssetUploader uploadAssets:[response objectForKey:@"uploads"]];
+        NSLog(@"%@", @"SUCCESS");
+    } andError:^(NSError *error) {
+        NSLog(@"%@", @"ERROR");
+    }];
+    
     [_filesToVerify release];
-    
-    ASIFormDataRequest *postRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", API_URL, kChuteParcels]]];
-    
-    [postRequest setPostValue:_fileAsString forKey:@"files"];
-    
-    
-    [postRequest setPostValue:[chutes JSONRepresentation] forKey:@"chutes"];
-    [postRequest startSynchronous];
-    
-    [ChuteAssetUploader uploadAssets:[[[postRequest responseString] JSONValue] objectForKey:@"uploads"]];
 }
 
+
+- (void)syncWithResponse:(void (^)(void))aResponseBlock
+                andError:(void (^)(id))anErrorBlock{
+    // make sure only one sync process happens at once
+    self.responseBlock = aResponseBlock;
+    self.errorBlock    = anErrorBlock;
+    
+    [self loadAssets];
+}
 @end

@@ -12,6 +12,7 @@
 #import "ChuteConstants.h"
 #import "NSData+Base64.h"
 #import "NSDictionary+QueryString.h"
+#import "ChuteAssetManager.h"
 
 static ChuteAPI *shared=nil;
 NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
@@ -73,6 +74,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         _accessToken = [[prefs objectForKey:@"access_token"] retain];
     }
+    NSLog(@"Token: %@", _accessToken);
     return _accessToken;
 }
 
@@ -401,6 +403,22 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
 }
 
+- (void)createParcelWithFiles:(NSArray *)filesArray
+                    andChutes:(NSArray *)chutesArray
+                  andResponse:(ResponseBlock)aResponseBlock
+                     andError:(ErrorBlock)anErrorBlock{
+    NSDictionary *postParams    = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [filesArray JSONRepresentation], @"files", 
+                                   [chutesArray JSONRepresentation], @"chutes", 
+                                   nil];
+    
+    [self postRequestWithPath:[NSString stringWithFormat:@"%@/%@", API_URL, kChuteParcels] andParams:postParams andResponse:^(id response) {
+        aResponseBlock(response);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+}
+
 - (void) test {
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -443,6 +461,15 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 /////////////////////////////////////////////////////////////////////////////////
 
+}
+
+- (void)syncWithResponse:(void (^)(void))aResponseBlock
+                andError:(void (^)(id))anErrorBlock{
+    [[ChuteAssetManager shared] syncWithResponse:^(void) {
+        
+    } andError:^(id error) {
+        
+    }];
 }
 
 @end
