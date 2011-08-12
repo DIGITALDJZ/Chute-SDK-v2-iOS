@@ -37,9 +37,6 @@ typedef enum {
 
 - (void)reset;
 
-- (void)syncDidComplete:(void (^)(void))successBlock 
-                andError:(ErrorBlock)errorBlock;
-
 //Data Wrappers
 //Get Data
 - (void)getProfileInfoWithResponse:(ResponseBlock)aResponseBlock
@@ -91,7 +88,7 @@ typedef enum {
 - (void) test;
 
 - (void)syncWithResponse:(void (^)(void))aResponseBlock
-                andError:(void (^)(id))anErrorBlock;
+                andError:(ErrorBlock)anErrorBlock;
 
 - (void)createParcelWithFiles:(NSArray *)filesArray
                     andChutes:(NSArray *)chutesArray

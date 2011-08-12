@@ -75,7 +75,8 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
     [_asset release];
 }
 
-- (void)loadAssets {
+- (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock {
+    
     void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop)
     {
         if(result != nil)
@@ -88,6 +89,9 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
     {
         if (group == nil) {
             [self assetEnumerationDidComplete];
+            if (aCompletionBlock) {
+                aCompletionBlock();
+            }
             return;
         }
         
@@ -103,9 +107,12 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
     [assetsLibrary release];
 }
 
+- (void)loadAssets {
+    [self loadAssetsCompletionBlock:nil];
+}
+
 - (void)assetEnumerationDidComplete {
     [[NSNotificationCenter defaultCenter] postNotificationName:ChuteAssetManagerAssetsAdded object:self];
-    [self startUploadingAssets:self.assetsArray forChutes:[NSArray array]];
 }
 
 - (ChuteAsset *)assetForURL:(NSString *)url {
@@ -144,11 +151,16 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
 
 
 - (void)syncWithResponse:(void (^)(void))aResponseBlock
-                andError:(void (^)(id))anErrorBlock{
+                andError:(void (^)(NSError *))anErrorBlock{
     // make sure only one sync process happens at once
     self.responseBlock = aResponseBlock;
     self.errorBlock    = anErrorBlock;
     
-    [self loadAssets];
+    
+    __block typeof(self) bself = self;
+    
+    [self loadAssetsCompletionBlock:^(void) {
+        [bself startUploadingAssets:bself.assetsArray forChutes:[NSArray array]];
+    }];
 }
 @end

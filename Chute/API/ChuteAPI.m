@@ -134,7 +134,9 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [_request startAsynchronous];
   
     NSString *console = [[NSString alloc] initWithFormat:@"POST %@ \n\n %@",path, params];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    });
     [console release];
 }
 
@@ -168,7 +170,9 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     [_request startAsynchronous];
     
     NSString *console = [[NSString alloc] initWithFormat:@"GET %@ \n\n %@",path, params];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
+    });
     [console release];
 }
 
@@ -246,30 +250,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     if (_accessToken) {
         [_accessToken release], _accessToken = nil;
     }
-}
-
-#pragma mark -
-#pragma mark Sync with 3rd party services
-
-- (void) syncDidComplete:(void (^)(void))successBlock andError:(ErrorBlock)errorBlock {
-    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@me/chutes/evernote/sync", API_URL]]];
-    [_request setTimeOutSeconds:300];
-    [_request startAsynchronous];
-    
-    [_request setCompletionBlock:^{
-        if ([_request responseStatusCode] == 200) {
-            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-            [prefs setObject:[[[[_request responseString] JSONValue] objectAtIndex:0] objectForKey:@"id"] forKey:@"id"];
-            [prefs synchronize];
-            successBlock();
-        } else {
-            errorBlock([NSError errorWithDomain:@"Unidentified Error for Sync" code:[_request responseStatusCode] userInfo:nil]);
-        }
-    }];
-    
-    [_request setFailedBlock:^{
-        errorBlock([_request error]);
-    }];
 }
 
 #pragma mark -
@@ -491,11 +471,11 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void)syncWithResponse:(void (^)(void))aResponseBlock
-                andError:(void (^)(id))anErrorBlock{
+                andError:(ErrorBlock)anErrorBlock{
     [[ChuteAssetManager shared] syncWithResponse:^(void) {
         
-    } andError:^(id error) {
-        
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
     }];
 }
 

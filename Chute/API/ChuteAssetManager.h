@@ -20,17 +20,19 @@ extern NSString * const ChuteAssetManagerAssetsAdded;
 
 @property (nonatomic, retain) NSMutableArray *assetsArray;
 @property (nonatomic, readonly) NSMutableArray *uploadingAssets;
+
 @property(copy) void (^responseBlock)(void);
-@property(copy) void (^errorBlock)(id);
+@property(copy) void (^errorBlock)(NSError *);
 
 
 
 + (ChuteAssetManager*)shared;
 - (void)loadAssets;
+- (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock;
 
 - (void)startUploadingAssets:(NSArray *) assets forChutes:(NSArray *) chutes;
 - (ChuteAsset *)assetForURL:(NSString *)url;
 
 - (void)syncWithResponse:(void (^)(void))aResponseBlock
-                andError:(void (^)(id))anErrorBlock;
+                andError:(void (^)(NSError *))anErrorBlock;
 @end
