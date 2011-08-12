@@ -2,12 +2,12 @@
 //  ChuteAsset.h
 //  ChuteSDK
 //
-//  Created by Gaurav Sharma on 6/29/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <UIKit/UIKit.h>
 
 @interface ChuteAsset : NSObject {
     ALAsset *alAsset;

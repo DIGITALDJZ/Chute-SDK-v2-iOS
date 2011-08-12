@@ -1,11 +1,12 @@
 //
 //  ChuteAPI.h
 //
-//  Created by Gaurav Sharma on 7/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <UIKit/UIKit.h>
 
 typedef void (^ErrorBlock)(NSError *);
 typedef void (^ResponseBlock)(id);

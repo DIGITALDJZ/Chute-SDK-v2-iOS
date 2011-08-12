@@ -1,7 +1,6 @@
 //
-//  Chute.h
+//  ChuteSDK.h
 //
-//  Created by Achal Aggarwal on 30/07/11.
 //  Copyright 2011 NA. All rights reserved.
 //
 

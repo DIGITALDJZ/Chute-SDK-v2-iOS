@@ -1,7 +1,6 @@
 //
 //  UIBaseViewController.m
 //
-//  Created by Achal Aggarwal on 31/03/11.
 //  Copyright 2011 NA. All rights reserved.
 //
 

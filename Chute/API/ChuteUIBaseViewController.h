@@ -1,10 +1,11 @@
 //
 //  UIBaseViewController.h
 //
-//  Created by Achal Aggarwal on 31/03/11.
 //  Copyright 2011 NA. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "SBJson.h"

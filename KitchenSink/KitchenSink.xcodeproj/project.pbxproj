@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC4678FE13F009E400533435 /* ChuteUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */; };
 		EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790413F012A900533435 /* CreateChuteViewController.m */; };
 		EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46790813F012DC00533435 /* CreateChuteViewController.xib */; };
 		EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790C13F0132C00533435 /* ListChutesViewController.m */; };
@@ -23,11 +22,6 @@
 		EC5B64AD13F0023A00EBA5A1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5B649B13F0022800EBA5A1 /* Security.framework */; };
 		EC5B64AE13F0023A00EBA5A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5B649C13F0022800EBA5A1 /* SystemConfiguration.framework */; };
 		EC5B64AF13F0023A00EBA5A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5B649D13F0022800EBA5A1 /* UIKit.framework */; };
-		EC5B650813F0028600EBA5A1 /* ChuteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B513F0028600EBA5A1 /* ChuteAPI.m */; };
-		EC5B650913F0028600EBA5A1 /* ChuteAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B713F0028600EBA5A1 /* ChuteAsset.m */; };
-		EC5B650A13F0028600EBA5A1 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */; };
-		EC5B650B13F0028600EBA5A1 /* ChuteAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64BB13F0028600EBA5A1 /* ChuteAssetUploader.m */; };
-		EC5B650D13F0028600EBA5A1 /* ChuteLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */; };
 		EC5B650E13F0028600EBA5A1 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C513F0028600EBA5A1 /* ASIAuthenticationDialog.m */; };
 		EC5B650F13F0028600EBA5A1 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C813F0028600EBA5A1 /* ASIDataCompressor.m */; };
 		EC5B651013F0028600EBA5A1 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64CA13F0028600EBA5A1 /* ASIDataDecompressor.m */; };
@@ -55,7 +49,6 @@
 		EC5B652613F0028600EBA5A1 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B650113F0028600EBA5A1 /* SBJsonTokeniser.m */; };
 		EC5B652713F0028600EBA5A1 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B650313F0028600EBA5A1 /* SBJsonUTF8Stream.m */; };
 		EC5B652813F0028600EBA5A1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B650513F0028600EBA5A1 /* SBJsonWriter.m */; };
-		EC5B652913F0028600EBA5A1 /* ChuteLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; };
 		EC5B652C13F002AD00EBA5A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5B652A13F002A600EBA5A1 /* CoreGraphics.framework */; };
 		EC5B653013F0043300EBA5A1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B652E13F0043300EBA5A1 /* RootViewController.m */; };
 		EC5B653813F0045A00EBA5A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC5B653313F0045A00EBA5A1 /* InfoPlist.strings */; };
@@ -85,6 +78,22 @@
 		EC762E1813F185460081E77E /* AssetsGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762E1613F185460081E77E /* AssetsGridViewController.m */; };
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
+		ECD8EAB713F57DC000958968 /* ChuteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B513F0028600EBA5A1 /* ChuteAPI.m */; };
+		ECD8EAB813F57DC000958968 /* ChuteAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B713F0028600EBA5A1 /* ChuteAsset.m */; };
+		ECD8EAB913F57DC000958968 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */; };
+		ECD8EABA13F57DC000958968 /* ChuteAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64BB13F0028600EBA5A1 /* ChuteAssetUploader.m */; };
+		ECD8EABB13F57DC000958968 /* ChuteLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */; };
+		ECD8EABC13F57DC000958968 /* ChuteUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */; };
+		ECD8EABD13F57DC900958968 /* ChuteAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64B413F0028600EBA5A1 /* ChuteAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EABE13F57DC900958968 /* ChuteAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64B613F0028600EBA5A1 /* ChuteAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EABF13F57DC900958968 /* ChuteAssetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64B813F0028600EBA5A1 /* ChuteAssetManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC013F57DC900958968 /* ChuteAssetUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BA13F0028600EBA5A1 /* ChuteAssetUploader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC113F57DC900958968 /* ChuteConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BE13F0028600EBA5A1 /* ChuteConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC213F57DC900958968 /* ChuteLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BF13F0028600EBA5A1 /* ChuteLoginViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC313F57DC900958968 /* ChuteUIBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC413F57DC900958968 /* ChuteSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64C113F0028600EBA5A1 /* ChuteSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC513F57E0500958968 /* libChute.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD8EAAB13F57DAA00958968 /* libChute.a */; };
+		ECD8EAC613F57F2100958968 /* ChuteLoginViewController.xib in Headers */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,10 +245,11 @@
 		EC762E0013F184760081E77E /* SDWebImageManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManagerDelegate.h; sourceTree = "<group>"; };
 		EC762E0113F184760081E77E /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		EC762E0213F184760081E77E /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		EC762E1513F185460081E77E /* AssetsGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AssetsGridViewController.h; sourceTree = "<group>"; };
+		EC762E1513F185460081E77E /* AssetsGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsGridViewController.h; sourceTree = "<group>"; };
 		EC762E1613F185460081E77E /* AssetsGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsGridViewController.m; sourceTree = "<group>"; };
 		EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsGridViewController.xib; sourceTree = "<group>"; };
 		EC762E1C13F186700081E77E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ECD8EAAB13F57DAA00958968 /* libChute.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libChute.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD8EAC513F57E0500958968 /* libChute.a in Frameworks */,
 				EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */,
 				EC5B64A713F0023A00EBA5A1 /* AssetsLibrary.framework in Frameworks */,
 				EC5B64A813F0023A00EBA5A1 /* CFNetwork.framework in Frameworks */,
@@ -258,6 +269,13 @@
 				EC5B64AD13F0023A00EBA5A1 /* Security.framework in Frameworks */,
 				EC5B64AE13F0023A00EBA5A1 /* SystemConfiguration.framework in Frameworks */,
 				EC5B64AF13F0023A00EBA5A1 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECD8EAA813F57DAA00958968 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				EC5B646C13F0019100EBA5A1 /* KitchenSink.app */,
+				ECD8EAAB13F57DAA00958968 /* libChute.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,8 +364,8 @@
 		EC5B64B213F0028600EBA5A1 /* Chute */ = {
 			isa = PBXGroup;
 			children = (
-				EC5B64B313F0028600EBA5A1 /* API */,
 				EC5B64C113F0028600EBA5A1 /* ChuteSDK.h */,
+				EC5B64B313F0028600EBA5A1 /* API */,
 				EC5B64C213F0028600EBA5A1 /* Vendor */,
 				EC5B650613F0028600EBA5A1 /* XIB */,
 			);
@@ -593,6 +612,25 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		ECD8EAA913F57DAA00958968 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD8EABD13F57DC900958968 /* ChuteAPI.h in Headers */,
+				ECD8EABE13F57DC900958968 /* ChuteAsset.h in Headers */,
+				ECD8EABF13F57DC900958968 /* ChuteAssetManager.h in Headers */,
+				ECD8EAC013F57DC900958968 /* ChuteAssetUploader.h in Headers */,
+				ECD8EAC113F57DC900958968 /* ChuteConstants.h in Headers */,
+				ECD8EAC213F57DC900958968 /* ChuteLoginViewController.h in Headers */,
+				ECD8EAC313F57DC900958968 /* ChuteUIBaseViewController.h in Headers */,
+				ECD8EAC413F57DC900958968 /* ChuteSDK.h in Headers */,
+				ECD8EAC613F57F2100958968 /* ChuteLoginViewController.xib in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		EC5B646B13F0019100EBA5A1 /* KitchenSink */ = {
 			isa = PBXNativeTarget;
@@ -610,6 +648,23 @@
 			productName = KitchenSink;
 			productReference = EC5B646C13F0019100EBA5A1 /* KitchenSink.app */;
 			productType = "com.apple.product-type.application";
+		};
+		ECD8EAAA13F57DAA00958968 /* Chute */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECD8EAB513F57DAA00958968 /* Build configuration list for PBXNativeTarget "Chute" */;
+			buildPhases = (
+				ECD8EAA713F57DAA00958968 /* Sources */,
+				ECD8EAA813F57DAA00958968 /* Frameworks */,
+				ECD8EAA913F57DAA00958968 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chute;
+			productName = Chute;
+			productReference = ECD8EAAB13F57DAA00958968 /* libChute.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -632,6 +687,7 @@
 			projectRoot = "";
 			targets = (
 				EC5B646B13F0019100EBA5A1 /* KitchenSink */,
+				ECD8EAAA13F57DAA00958968 /* Chute */,
 			);
 		};
 /* End PBXProject section */
@@ -641,7 +697,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC5B652913F0028600EBA5A1 /* ChuteLoginViewController.xib in Resources */,
 				EC5B653813F0045A00EBA5A1 /* InfoPlist.strings in Resources */,
 				EC5B653913F0045A00EBA5A1 /* MainWindow.xib in Resources */,
 				EC5B653A13F0045A00EBA5A1 /* RootViewController.xib in Resources */,
@@ -663,11 +718,6 @@
 			files = (
 				EC5B647D13F0019100EBA5A1 /* main.m in Sources */,
 				EC5B648113F0019100EBA5A1 /* KitchenSinkAppDelegate.m in Sources */,
-				EC5B650813F0028600EBA5A1 /* ChuteAPI.m in Sources */,
-				EC5B650913F0028600EBA5A1 /* ChuteAsset.m in Sources */,
-				EC5B650A13F0028600EBA5A1 /* ChuteAssetManager.m in Sources */,
-				EC5B650B13F0028600EBA5A1 /* ChuteAssetUploader.m in Sources */,
-				EC5B650D13F0028600EBA5A1 /* ChuteLoginViewController.m in Sources */,
 				EC5B650E13F0028600EBA5A1 /* ASIAuthenticationDialog.m in Sources */,
 				EC5B650F13F0028600EBA5A1 /* ASIDataCompressor.m in Sources */,
 				EC5B651013F0028600EBA5A1 /* ASIDataDecompressor.m in Sources */,
@@ -699,7 +749,6 @@
 				EC5B653F13F006FC00EBA5A1 /* ChuteBaseViewController.m in Sources */,
 				EC5B654413F0070C00EBA5A1 /* PhotosBaseViewController.m in Sources */,
 				EC5B654913F0071E00EBA5A1 /* BundlesBaseViewController.m in Sources */,
-				EC4678FE13F009E400533435 /* ChuteUIBaseViewController.m in Sources */,
 				EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */,
 				EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */,
 				EC762DDC13F182390081E77E /* UIBaseViewController.m in Sources */,
@@ -718,6 +767,19 @@
 				EC762E0F13F184760081E77E /* SDWebImageManager.m in Sources */,
 				EC762E1013F184760081E77E /* UIImageView+WebCache.m in Sources */,
 				EC762E1813F185460081E77E /* AssetsGridViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECD8EAA713F57DAA00958968 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD8EAB713F57DC000958968 /* ChuteAPI.m in Sources */,
+				ECD8EAB813F57DC000958968 /* ChuteAsset.m in Sources */,
+				ECD8EAB913F57DC000958968 /* ChuteAssetManager.m in Sources */,
+				ECD8EABA13F57DC000958968 /* ChuteAssetUploader.m in Sources */,
+				ECD8EABB13F57DC000958968 /* ChuteLoginViewController.m in Sources */,
+				ECD8EABC13F57DC000958968 /* ChuteUIBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +854,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KitchenSink/KitchenSink-Prefix.pch";
 				INFOPLIST_FILE = "KitchenSink/KitchenSink-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -803,8 +866,33 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KitchenSink/KitchenSink-Prefix.pch";
 				INFOPLIST_FILE = "KitchenSink/KitchenSink-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		ECD8EAB313F57DAA00958968 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Chute.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		ECD8EAB413F57DAA00958968 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Chute.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -828,6 +916,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		ECD8EAB513F57DAA00958968 /* Build configuration list for PBXNativeTarget "Chute" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECD8EAB313F57DAA00958968 /* Debug */,
+				ECD8EAB413F57DAA00958968 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

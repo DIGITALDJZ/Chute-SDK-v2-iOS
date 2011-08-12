@@ -1,11 +1,9 @@
 //
 //  LoginViewController.h
 //
-//  Created by Achal Aggarwal on 09/07/11.
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "ChuteUIBaseViewController.h"
 
 #define SERVICES_ARRAY [NSArray arrayWithObjects:@"facebook", @"evernote", @"chute", nil]
