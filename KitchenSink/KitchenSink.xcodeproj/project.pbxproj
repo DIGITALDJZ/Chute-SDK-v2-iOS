@@ -94,6 +94,11 @@
 		ECD8EAC413F57DC900958968 /* ChuteSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64C113F0028600EBA5A1 /* ChuteSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECD8EAC513F57E0500958968 /* libChute.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD8EAAB13F57DAA00958968 /* libChute.a */; };
 		ECD8EAC613F57F2100958968 /* ChuteLoginViewController.xib in Headers */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECE1C60B13F6671500173383 /* PhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE1C60913F6671500173383 /* PhotosGridViewController.m */; };
+		ECE1C60E13F6672D00173383 /* PhotosGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE1C60D13F6672D00173383 /* PhotosGridViewController.xib */; };
+		ECE1C61113F667FB00173383 /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE1C61013F667FB00173383 /* ImageGridViewCell.m */; };
+		ECE1C61513F66CE100173383 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE1C61313F66CE100173383 /* checkmark.png */; };
+		ECE1C61613F66CE100173383 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE1C61413F66CE100173383 /* checkmark@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +255,13 @@
 		EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsGridViewController.xib; sourceTree = "<group>"; };
 		EC762E1C13F186700081E77E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ECD8EAAB13F57DAA00958968 /* libChute.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libChute.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE1C60813F6671500173383 /* PhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGridViewController.h; sourceTree = "<group>"; };
+		ECE1C60913F6671500173383 /* PhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGridViewController.m; sourceTree = "<group>"; };
+		ECE1C60D13F6672D00173383 /* PhotosGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosGridViewController.xib; sourceTree = "<group>"; };
+		ECE1C60F13F667FB00173383 /* ImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGridViewCell.h; sourceTree = "<group>"; };
+		ECE1C61013F667FB00173383 /* ImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGridViewCell.m; sourceTree = "<group>"; };
+		ECE1C61313F66CE100173383 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		ECE1C61413F66CE100173383 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +349,7 @@
 		EC5B647613F0019100EBA5A1 /* KitchenSink */ = {
 			isa = PBXGroup;
 			children = (
+				ECE1C61213F66CE100173383 /* Resources */,
 				EC762DDD13F184760081E77E /* Vendor */,
 				EC5B653213F0045A00EBA5A1 /* XIB */,
 				EC5B653B13F006E100EBA5A1 /* Controllers */,
@@ -530,6 +543,7 @@
 				EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */,
 				EC46790813F012DC00533435 /* CreateChuteViewController.xib */,
 				EC5B654B13F0073A00EBA5A1 /* BundlesBaseViewController.xib */,
+				ECE1C60D13F6672D00173383 /* PhotosGridViewController.xib */,
 				EC5B654C13F0073A00EBA5A1 /* PhotosBaseViewController.xib */,
 				EC5B654D13F0073A00EBA5A1 /* ChuteBaseViewController.xib */,
 				EC5B653313F0045A00EBA5A1 /* InfoPlist.strings */,
@@ -543,11 +557,9 @@
 		EC5B653B13F006E100EBA5A1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ECE1C60713F6668900173383 /* Bundles */,
+				ECE1C60513F6667900173383 /* Photos */,
 				EC46790A13F0130C00533435 /* Chutes */,
-				EC5B654113F0070C00EBA5A1 /* PhotosBaseViewController.h */,
-				EC5B654213F0070C00EBA5A1 /* PhotosBaseViewController.m */,
-				EC5B654613F0071E00EBA5A1 /* BundlesBaseViewController.h */,
-				EC5B654713F0071E00EBA5A1 /* BundlesBaseViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -608,6 +620,37 @@
 				EC762E0213F184760081E77E /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		ECE1C60513F6667900173383 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B654113F0070C00EBA5A1 /* PhotosBaseViewController.h */,
+				EC5B654213F0070C00EBA5A1 /* PhotosBaseViewController.m */,
+				ECE1C60813F6671500173383 /* PhotosGridViewController.h */,
+				ECE1C60913F6671500173383 /* PhotosGridViewController.m */,
+				ECE1C60F13F667FB00173383 /* ImageGridViewCell.h */,
+				ECE1C61013F667FB00173383 /* ImageGridViewCell.m */,
+			);
+			name = Photos;
+			sourceTree = "<group>";
+		};
+		ECE1C60713F6668900173383 /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B654613F0071E00EBA5A1 /* BundlesBaseViewController.h */,
+				EC5B654713F0071E00EBA5A1 /* BundlesBaseViewController.m */,
+			);
+			name = Bundles;
+			sourceTree = "<group>";
+		};
+		ECE1C61213F66CE100173383 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ECE1C61313F66CE100173383 /* checkmark.png */,
+				ECE1C61413F66CE100173383 /* checkmark@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -706,6 +749,9 @@
 				EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */,
 				EC46791113F0134000533435 /* ListChutesViewController.xib in Resources */,
 				EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */,
+				ECE1C60E13F6672D00173383 /* PhotosGridViewController.xib in Resources */,
+				ECE1C61513F66CE100173383 /* checkmark.png in Resources */,
+				ECE1C61613F66CE100173383 /* checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +813,8 @@
 				EC762E0F13F184760081E77E /* SDWebImageManager.m in Sources */,
 				EC762E1013F184760081E77E /* UIImageView+WebCache.m in Sources */,
 				EC762E1813F185460081E77E /* AssetsGridViewController.m in Sources */,
+				ECE1C60B13F6671500173383 /* PhotosGridViewController.m in Sources */,
+				ECE1C61113F667FB00173383 /* ImageGridViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +972,7 @@
 				ECD8EAB413F57DAA00958968 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

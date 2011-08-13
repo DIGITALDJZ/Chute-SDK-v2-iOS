@@ -76,6 +76,12 @@ NSString * const ChuteAssetManagerAssetsAdded = @"ChuteAssetManagerAssetsAdded";
 
 - (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock {
     
+    if (assetsArray) {
+        [assetsArray release], assetsArray = nil;
+    }
+    
+    assetsArray = [[NSMutableArray alloc] init];
+    
     void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop)
     {
         if(result != nil)
