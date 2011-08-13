@@ -7,6 +7,7 @@
 //
 
 #import "PhotosGridViewController.h"
+#import "SelectChuteViewController.h"
 
 @implementation PhotosGridViewController
 @synthesize _gridView;
@@ -72,6 +73,16 @@
 }
 
 - (void)next {
+    
+    SelectChuteViewController *selectChute = [[SelectChuteViewController alloc] init];
+    [selectChute setTitle:@"Select Chute(s)"];
+    self.navigationItem.backBarButtonItem =[[[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                             style: UIBarButtonItemStyleBordered
+                                                                            target:nil
+                                                                            action:nil] autorelease];
+    [self.navigationController pushViewController:selectChute animated:YES];
+    [selectChute release];
+    
     /*
     NSMutableArray *_selectedAssets = [[NSMutableArray alloc] init];
     for (ChuteAsset *asset in assets) {
