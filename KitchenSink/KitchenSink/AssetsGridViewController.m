@@ -33,8 +33,7 @@
 }
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) gridView {
-    return 10;
-    //return [photos count];
+    return [photos count];
 }
 
 - (AQGridViewCell *) gridView: (AQGridView *) gridView cellForItemAtIndex: (NSUInteger) index {
@@ -57,11 +56,13 @@
         _imageView.center = cell.contentView.center;
     }
     
- 	//id photo = [photos objectAtIndex:index];
-    //NSString *_photoURL = [photo objectForKey:@"thumb_url"] ? [photo objectForKey:@"thumb_url"] : [photo objectForKey:@"url"];
+ 	id photo = [photos objectAtIndex:index];
+    NSString *_photoURL = [[NSString alloc] initWithFormat:@"%@/75x75", [photo objectForKey:@"url"]];
     
-    NSString *_photoURL = @"http://www.bouboules.com/public/user/13/0013_1f79.jpg?c=fa5c";
+    //960x540
+    
     [_imageView setImageWithURL:[NSURL URLWithString:_photoURL] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    
     return cell;
 }
 

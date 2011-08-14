@@ -31,13 +31,13 @@
 #define API_URL @"http://api.getchute.local:8080/v1/"
 #define SERVER_URL @"http://getchute.local:8080"
 #else
-#define API_URL @"http://api.p.getchute.com/v1/"
-#define SERVER_URL @"http://p.getchute.com"
+#define API_URL @"http://api.edge.getchute.com/v1/"
+#define SERVER_URL @"http://edge.getchute.com"
 #endif
 #else
 //Please change to Production URL before submitting
-#define API_URL @"http://api.p.getchute.com/v1/"
-#define SERVER_URL @"http://p.getchute.com"
+#define API_URL @"http://api.edge.getchute.com/v1/"
+#define SERVER_URL @"http://edge.getchute.com"
 #endif
 
 #define kChutePathVerifyAssets          @"assets/verify"
@@ -52,6 +52,6 @@
 
 #define kOAuthRedirectURL               @"http://getchute.com/oauth/callback"
 #define kOAuthRedirectRelativeURL       @"/oauth/callback"
-#define kOAuthClientID                  @"4e3ef1af38ecef0aaa000001"
-#define kOAuthClientSecret              @"dfa5876546b900562a87d7e58a753c27383ea142778b330286877fe399da4d4b"
-#define kOAuthTokenURL                  @"http://p.getchute.com/oauth/access_token"
+#define kOAuthClientID                  @"4e44f307f3e3bd09ac000001"
+#define kOAuthClientSecret              @"d6a9f6b219291ded44e763c22599e0d9f8daeef668898d088ab870d60911f642"
+#define kOAuthTokenURL                  @"http://edge.getchute.com/oauth/access_token"

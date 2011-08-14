@@ -78,6 +78,7 @@
 		EC762E1813F185460081E77E /* AssetsGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762E1613F185460081E77E /* AssetsGridViewController.m */; };
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
+		ECBDAAA613F7F47D003153F1 /* ChuteLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; };
 		ECD8EAB713F57DC000958968 /* ChuteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B513F0028600EBA5A1 /* ChuteAPI.m */; };
 		ECD8EAB813F57DC000958968 /* ChuteAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B713F0028600EBA5A1 /* ChuteAsset.m */; };
 		ECD8EAB913F57DC000958968 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */; };
@@ -761,6 +762,7 @@
 				ECE1C61513F66CE100173383 /* checkmark.png in Resources */,
 				ECE1C61613F66CE100173383 /* checkmark@2x.png in Resources */,
 				ECE1C61D13F6EC8900173383 /* SelectChuteViewController.xib in Resources */,
+				ECBDAAA613F7F47D003153F1 /* ChuteLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

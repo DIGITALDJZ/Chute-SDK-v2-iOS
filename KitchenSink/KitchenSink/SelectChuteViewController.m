@@ -74,6 +74,8 @@
 
 - (void) next {
     [[ChuteAPI shared] startUploadingAssets:selectedAssets forChutes:selectedChutesIndex];
+    [self quickAlertWithTitle:@"Uploading" message:@"The file(s) are being uploaded to our servers." button:@"Okay"];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle

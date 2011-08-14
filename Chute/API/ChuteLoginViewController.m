@@ -79,7 +79,7 @@
     } completion:^(BOOL finished){
         [authWebView stopLoading];
         [authWebView setDelegate:nil];
-        [authView removeFromSuperview];
+        [authView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.1];
         completion();
     }];
 }

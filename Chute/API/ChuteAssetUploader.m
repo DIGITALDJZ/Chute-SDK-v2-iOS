@@ -109,6 +109,7 @@ static dispatch_semaphore_t _semaphore;
 	[request addRequestHeader:@"Date" value:[uploadDetails objectForKey:@"date"]];
 	[request addRequestHeader:@"Authorization" value:[uploadDetails objectForKey:@"signature"]];
 	[request addRequestHeader:@"Content-Type" value:[uploadDetails objectForKey:@"content_type"]];
+    //Only for EDGE
     [request addRequestHeader:@"x-amz-acl" value:@"public-read"];
 
 	[request setDidFinishSelector:@selector(fileUploadDone:)];
