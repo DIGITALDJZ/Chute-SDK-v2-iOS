@@ -7,6 +7,7 @@
 //
 
 #import "AssetsGridViewController.h"
+#import "PhotoViewer.h"
 
 @implementation AssetsGridViewController
 @synthesize photos;
@@ -17,19 +18,16 @@
 }
 
 - (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index {
-    /*
-    NotePhotoViewer *notePhotoView = [[NotePhotoViewer alloc] init];
+    PhotoViewer *photoViewer = [[PhotoViewer alloc] init];
     self.navigationItem.backBarButtonItem =[[[UIBarButtonItem alloc] initWithTitle:@"Back"
                                                                              style: UIBarButtonItemStyleBordered
                                                                             target:nil
                                                                             action:nil] autorelease];
-    [notePhotoView setTitle:[self title]];
-    [notePhotoView setPhotos:photos];
-    [notePhotoView selectedPage:index];
-    [self.navigationController pushViewController:notePhotoView animated:YES];
-    
-    [notePhotoView release];
-     */
+    [photoViewer setTitle:[self title]];
+    [photoViewer setPhotos:photos];
+    [photoViewer selectedPage:index];
+    [self.navigationController pushViewController:photoViewer animated:YES];
+    [photoViewer release];
 }
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) gridView {

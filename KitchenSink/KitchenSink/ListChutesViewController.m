@@ -13,12 +13,18 @@
 @synthesize chuteList;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ([[[data objectAtIndex:indexPath.row] objectForKey:@"assets_count"] intValue] == 0) {
+        [self quickAlertWithTitle:@"No photos" message:@"No photos are present in this Chute." button:@"Okay"];
+        return;
+    }
+    
     AssetsGridViewController *assetsGridViewController = [[AssetsGridViewController alloc] init];
     [assetsGridViewController setTitle:[[data objectAtIndex:indexPath.row] objectForKey:@"name"]];
     [assetsGridViewController setChuteId:[[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue]];
     [self.navigationController pushViewController:assetsGridViewController animated:YES];
     [assetsGridViewController release];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark TableView Methods
@@ -30,10 +36,11 @@
     static NSString *identifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
     }
     
-    cell.textLabel.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
+    cell.textLabel.text         = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
+    cell.detailTextLabel.text   = [NSString stringWithFormat:@"%d", [[[data objectAtIndex:indexPath.row] objectForKey:@"assets_count"] intValue]];
     return cell;
 }
 

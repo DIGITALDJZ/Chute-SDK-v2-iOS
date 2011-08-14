@@ -79,6 +79,10 @@
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
 		ECBDAAA613F7F47D003153F1 /* ChuteLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; };
+		ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAAD13F7F777003153F1 /* ImageScroller.m */; };
+		ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAB013F7F7C9003153F1 /* PhotoViewer.m */; };
+		ECBDAAB513F7F7DC003153F1 /* PhotoViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECBDAAB413F7F7DC003153F1 /* PhotoViewer.xib */; };
+		ECBDAABF13F7FB7D003153F1 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = ECBDAABE13F7FB7D003153F1 /* placeholder.png */; };
 		ECD8EAB713F57DC000958968 /* ChuteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B513F0028600EBA5A1 /* ChuteAPI.m */; };
 		ECD8EAB813F57DC000958968 /* ChuteAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B713F0028600EBA5A1 /* ChuteAsset.m */; };
 		ECD8EAB913F57DC000958968 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */; };
@@ -257,6 +261,12 @@
 		EC762E1613F185460081E77E /* AssetsGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsGridViewController.m; sourceTree = "<group>"; };
 		EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsGridViewController.xib; sourceTree = "<group>"; };
 		EC762E1C13F186700081E77E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ECBDAAAC13F7F777003153F1 /* ImageScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScroller.h; sourceTree = "<group>"; };
+		ECBDAAAD13F7F777003153F1 /* ImageScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScroller.m; sourceTree = "<group>"; };
+		ECBDAAAF13F7F7C9003153F1 /* PhotoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewer.h; sourceTree = "<group>"; };
+		ECBDAAB013F7F7C9003153F1 /* PhotoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewer.m; sourceTree = "<group>"; };
+		ECBDAAB413F7F7DC003153F1 /* PhotoViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewer.xib; sourceTree = "<group>"; };
+		ECBDAABE13F7FB7D003153F1 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		ECD8EAAB13F57DAA00958968 /* libChute.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libChute.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE1C60813F6671500173383 /* PhotosGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGridViewController.h; sourceTree = "<group>"; };
 		ECE1C60913F6671500173383 /* PhotosGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGridViewController.m; sourceTree = "<group>"; };
@@ -303,6 +313,10 @@
 		EC46790A13F0130C00533435 /* Chutes */ = {
 			isa = PBXGroup;
 			children = (
+				ECBDAAAC13F7F777003153F1 /* ImageScroller.h */,
+				ECBDAAAD13F7F777003153F1 /* ImageScroller.m */,
+				ECBDAAAF13F7F7C9003153F1 /* PhotoViewer.h */,
+				ECBDAAB013F7F7C9003153F1 /* PhotoViewer.m */,
 				EC46790313F012A900533435 /* CreateChuteViewController.h */,
 				EC46790413F012A900533435 /* CreateChuteViewController.m */,
 				EC5B653C13F006FC00EBA5A1 /* ChuteBaseViewController.h */,
@@ -557,6 +571,7 @@
 				EC5B653713F0045A00EBA5A1 /* RootViewController.xib */,
 				EC46791013F0134000533435 /* ListChutesViewController.xib */,
 				ECE1C61C13F6EC8900173383 /* SelectChuteViewController.xib */,
+				ECBDAAB413F7F7DC003153F1 /* PhotoViewer.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -656,6 +671,7 @@
 		ECE1C61213F66CE100173383 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ECBDAABE13F7FB7D003153F1 /* placeholder.png */,
 				ECE1C61313F66CE100173383 /* checkmark.png */,
 				ECE1C61413F66CE100173383 /* checkmark@2x.png */,
 			);
@@ -763,6 +779,8 @@
 				ECE1C61613F66CE100173383 /* checkmark@2x.png in Resources */,
 				ECE1C61D13F6EC8900173383 /* SelectChuteViewController.xib in Resources */,
 				ECBDAAA613F7F47D003153F1 /* ChuteLoginViewController.xib in Resources */,
+				ECBDAAB513F7F7DC003153F1 /* PhotoViewer.xib in Resources */,
+				ECBDAABF13F7FB7D003153F1 /* placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +845,8 @@
 				ECE1C60B13F6671500173383 /* PhotosGridViewController.m in Sources */,
 				ECE1C61113F667FB00173383 /* ImageGridViewCell.m in Sources */,
 				ECE1C61A13F6EC7200173383 /* SelectChuteViewController.m in Sources */,
+				ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */,
+				ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
