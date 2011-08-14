@@ -74,16 +74,6 @@
 
 - (void)next {
     
-    SelectChuteViewController *selectChute = [[SelectChuteViewController alloc] init];
-    [selectChute setTitle:@"Select Chute(s)"];
-    self.navigationItem.backBarButtonItem =[[[UIBarButtonItem alloc] initWithTitle:@"Back"
-                                                                             style: UIBarButtonItemStyleBordered
-                                                                            target:nil
-                                                                            action:nil] autorelease];
-    [self.navigationController pushViewController:selectChute animated:YES];
-    [selectChute release];
-    
-    /*
     NSMutableArray *_selectedAssets = [[NSMutableArray alloc] init];
     for (ChuteAsset *asset in assets) {
         if ([asset selected]) {
@@ -91,41 +81,23 @@
         }
     }
     
-    
     if ([_selectedAssets count] == 0) {
         [self quickAlertWithTitle:@"" message:@"Please select the photos to sync" button:@"okay"];
         [_selectedAssets release];
         return;
     }
     
-    SelectNotebookViewController *selectNotebook = [[SelectNotebookViewController alloc] init];
-    [selectNotebook setSelectedAssets:_selectedAssets];
-    [selectNotebook setTitle:@"Select Notebook"];
     
+    SelectChuteViewController *selectChute = [[SelectChuteViewController alloc] init];
+    [selectChute setTitle:@"Select Chute(s)"];
+    [selectChute setSelectedAssets:_selectedAssets];
     self.navigationItem.backBarButtonItem =[[[UIBarButtonItem alloc] initWithTitle:@"Back"
                                                                              style: UIBarButtonItemStyleBordered
                                                                             target:nil
                                                                             action:nil] autorelease];
-    
-    [self.navigationController pushViewController:selectNotebook animated:YES];
-    [selectNotebook release];
-    
+    [self.navigationController pushViewController:selectChute animated:YES];
+    [selectChute release];
     [_selectedAssets release];
-     */
-    
-    //    SelectChuteViewController *selectChutes = [[SelectChuteViewController alloc] init];
-    //    [selectChutes setSelectedAssets:_selectedAssets];
-    //    [selectChutes setTitle:@"Select Notes"];
-    //    
-    //    self.navigationItem.backBarButtonItem =[[[UIBarButtonItem alloc] initWithTitle:@"Back"
-    //                                                                             style: UIBarButtonItemStyleBordered
-    //                                                                            target:nil
-    //                                                                            action:nil] autorelease];
-    //    
-    //    [self.navigationController pushViewController:selectChutes animated:YES];
-    //    [selectChutes release];
-    //
-    //    [_selectedAssets release];
 }
 
 

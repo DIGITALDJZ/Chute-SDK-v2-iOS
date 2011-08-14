@@ -42,10 +42,10 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"UpdateConsole" object:nil queue:nil usingBlock:^(NSNotification *notification) {
         NSString *data = (NSString *)[notification object];
         [bConsoleTextView setText:[bConsoleTextView.text stringByAppendingFormat:@"\n\n %@> %@", [[NSDate date] description], data]];  
+        DLog(@"%@", data);
         //scroll to bottom
         [bConsoleTextView scrollRangeToVisible:NSMakeRange([bConsoleTextView.text length], 0)];
     }];
-    
     return YES;
 }
 

@@ -88,6 +88,8 @@ typedef enum {
 
 - (void) test;
 
+- (void)startUploadingAssets:(NSArray *) assets forChutes:(NSArray *) chutes;
+
 - (void)syncWithResponse:(void (^)(void))aResponseBlock
                 andError:(ErrorBlock)anErrorBlock;
 

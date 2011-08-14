@@ -11,6 +11,7 @@
 @implementation SelectChuteViewController
 @synthesize chuteList;
 @synthesize selectedChutesIndex;
+@synthesize selectedAssets;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -71,7 +72,16 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void) next {
+    [[ChuteAPI shared] startUploadingAssets:selectedAssets forChutes:selectedChutesIndex];
+}
+
 #pragma mark - View lifecycle
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(next)];
+}
 
 - (void)viewDidLoad
 {
@@ -109,6 +119,7 @@
 }
 
 - (void)dealloc {
+    [selectedAssets release];
     [chuteList release];
     [super dealloc];
 }

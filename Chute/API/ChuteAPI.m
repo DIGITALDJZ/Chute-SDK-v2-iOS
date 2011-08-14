@@ -470,6 +470,10 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 }
 
+- (void)startUploadingAssets:(NSArray *) assets forChutes:(NSArray *) chutes {
+    [[ChuteAssetManager shared] startUploadingAssets:assets forChutes:chutes];
+}
+
 - (void)syncWithResponse:(void (^)(void))aResponseBlock
                 andError:(ErrorBlock)anErrorBlock{
     [[ChuteAssetManager shared] syncWithResponse:^(void) {

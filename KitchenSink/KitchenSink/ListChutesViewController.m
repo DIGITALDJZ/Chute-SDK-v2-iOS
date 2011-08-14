@@ -14,9 +14,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     AssetsGridViewController *assetsGridViewController = [[AssetsGridViewController alloc] init];
-    [self.navigationController pushViewController:assetsGridViewController animated:YES];
     [assetsGridViewController setTitle:[[data objectAtIndex:indexPath.row] objectForKey:@"name"]];
     [assetsGridViewController setChuteId:[[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue]];
+    [self.navigationController pushViewController:assetsGridViewController animated:YES];
     [assetsGridViewController release];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
