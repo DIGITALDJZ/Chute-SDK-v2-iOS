@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ECD8EAAA13F57DAA00958968"
-               BuildableName = "libChute.a"
-               BlueprintName = "Chute"
+               BlueprintIdentifier = "EC3DF5B413FD847C00433131"
+               BuildableName = "ChuteiOS"
+               BlueprintName = "ChuteiOS"
                ReferencedContainer = "container:KitchenSink.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		EC3DF5B413FD847C00433131 /* ChuteiOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EC3DF5B513FD847C00433131 /* Build configuration list for PBXAggregateTarget "ChuteiOS" */;
+			buildPhases = (
+				EC3DF5B813FD849400433131 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = ChuteiOS;
+			productName = ChuteiOS;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790413F012A900533435 /* CreateChuteViewController.m */; };
 		EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46790813F012DC00533435 /* CreateChuteViewController.xib */; };
@@ -756,6 +770,7 @@
 			targets = (
 				EC5B646B13F0019100EBA5A1 /* KitchenSink */,
 				ECD8EAAA13F57DAA00958968 /* Chute */,
+				EC3DF5B413FD847C00433131 /* ChuteiOS */,
 			);
 		};
 /* End PBXProject section */
@@ -785,6 +800,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EC3DF5B813FD849400433131 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf ${BUILT_PRODUCTS_DIR}/libChuteiOS.a\n\nlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphonesimulator/libChute.a\" \\\n\"${BUILT_PRODUCTS_DIR}/libChute.a\" -output \\\n\"${BUILT_PRODUCTS_DIR}/libChuteiOS.a\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EC5B646813F0019100EBA5A1 /* Sources */ = {
@@ -885,6 +916,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EC3DF5B613FD847C00433131 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC3DF5B713FD847C00433131 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EC5B648B13F0019100EBA5A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -979,6 +1024,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC3DF5B513FD847C00433131 /* Build configuration list for PBXAggregateTarget "ChuteiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC3DF5B613FD847C00433131 /* Debug */,
+				EC3DF5B713FD847C00433131 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		EC5B646613F0019100EBA5A1 /* Build configuration list for PBXProject "KitchenSink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
