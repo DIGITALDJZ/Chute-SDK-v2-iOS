@@ -1031,6 +1031,7 @@
 				EC3DF5B713FD847C00433131 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC5B646613F0019100EBA5A1 /* Build configuration list for PBXProject "KitchenSink" */ = {
 			isa = XCConfigurationList;

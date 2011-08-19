@@ -18,6 +18,11 @@
 @synthesize authWebView;
 
 +(void)presentInController:(UIViewController *)controller {
+    NSString *clientID      = kOAuthClientID;
+    NSString *clientSecret  = kOAuthClientSecret;
+    NSAssert([clientID length], @"Please update the ChuteConstants.h file with your oAuth Client ID");
+    NSAssert([clientSecret length], @"Please update the ChuteConstants.h file with your oAuth Secret Key");
+    
     [[ChuteAPI shared] verifyAuthorizationWithAccessCode:nil success:^(void) {
     } andError:^(NSError *error) {
         ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
