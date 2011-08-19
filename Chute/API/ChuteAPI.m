@@ -23,6 +23,12 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 @synthesize accessToken;
 
 + (ChuteAPI *)shared{
+    
+    NSString *clientID      = kOAuthClientID;
+    NSString *clientSecret  = kOAuthClientSecret;
+    NSAssert([clientID length], @"Please update the ChuteConstants.h file with your oAuth Client ID");
+    NSAssert([clientSecret length], @"Please update the ChuteConstants.h file with your oAuth Secret Key");
+    
     @synchronized(shared){
 		if (!shared) {
 			shared = [[ChuteAPI alloc] init];
@@ -105,6 +111,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     for (id key in [params allKeys]) {
         [_request setPostValue:[params objectForKey:key] forKey:key];
     }
+    
+    [_request setPostBody:nil];
     
     [_request setCompletionBlock:^{
         
@@ -254,56 +262,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 #pragma mark -
 #pragma mark Data Wrappers
-/*
-- (void)getChutesForResponse:(void (^)(id))aResponseBlock
-                    andError:(void (^)(NSError *))anErrorBlock {
-    
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/chutes/deep", API_URL] andParams: nil andResponse:^(id response) {
-        if (_data) {
-            [_data release], _data = nil;
-        }
-        
-        DLog(@"%@", response);
-        
-        _data = [[NSMutableArray alloc] init];
-        
-        NSMutableSet *_sections = [[NSMutableSet alloc] init];
-        
-        for (NSDictionary *dic in [response objectForKey:@"data"]) {
-            NSDictionary *_details = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                     [dic valueForKey:@"parent_id"], @"id",
-                                     [dic valueForKey:@"parent_name"], @"name",
-                                     nil];
-            [_sections addObject:_details];
-            [_details release];
-        }
-        
-        for (NSDictionary *_section in _sections) {
-            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];    
-            NSMutableArray *arr             = [[NSMutableArray alloc] init];
-            
-            for (NSDictionary *dic in [response objectForKey:@"data"]) {
-                if ([[_section objectForKey:@"name"] isEqualToString:[dic objectForKey:@"parent_name"]]) {
-                    [arr addObject:dic];
-                }
-            }
-            
-            [dictionary setObject:arr forKey:_section];
-            [_data addObject:dictionary];
-            
-            [arr release];
-            [dictionary release];
-        }
-        
-        [_sections release];
-        
-        aResponseBlock(response);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadTableView" object:nil];
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
- */
 
 - (void)createChute:(NSString *)name 
          withParent:(NSUInteger)parentId
@@ -427,46 +385,22 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void) test {
-
-/////////////////////////////////////////////////////////////////////////////////
     
-//    create chute
-    
+//    Metadata
+//    NSDictionary *meta = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
+//    
+//    
 //    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-//    [params setValue:@"test" forKey:@"chute[name]"];
-//    [params setValue:[NSString stringWithFormat:@"%d", parentId] forKey:@"chute[parent_id]"];
-//    
-//    [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams:params andResponse:^(id response) {
+//    [params setValue:[meta JSONRepresentation] forKey:@"body"];
+//
+//    [meta release];
+//    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
 //        DLog(@"%@", response);
 //    } andError:^(NSError *error) {
 //        DLog(@"%@", [error localizedDescription]);
 //    }];
-//    
+//
 //    [params release];
-    
-/////////////////////////////////////////////////////////////////////////////////
-    
-//    assets
-    
-//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/assets", API_URL] andParams: nil andResponse:^(id response) {
-//        DLog(@"%@", response);
-//        //aResponseBlock(response);
-//    } andError:^(NSError *error) {
-//        DLog(@"%@", [error localizedDescription]);
-//    }];
-    
-/////////////////////////////////////////////////////////////////////////////////
-    
-//    Inbox
-
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@inbox", API_URL] andParams: nil andResponse:^(id response) {
-        DLog(@"%@", response);
-        //aResponseBlock(response);
-    } andError:^(NSError *error) {
-        DLog(@"%@", [error localizedDescription]);
-    }];
-
-/////////////////////////////////////////////////////////////////////////////////
 
 }
 

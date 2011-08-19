@@ -74,10 +74,11 @@
 }
 
 - (IBAction)sync:(id)sender {
-    [[ChuteAPI shared] syncWithResponse:^(void) {
-        DLog(@"synced");
-    } andError:^(NSError *error) {
-        DLog(@"%@", [error localizedDescription]);
-    }];
+    [[ChuteAPI shared] test];
+//    [[ChuteAPI shared] syncWithResponse:^(void) {
+//        DLog(@"synced");
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
 }
 @end
