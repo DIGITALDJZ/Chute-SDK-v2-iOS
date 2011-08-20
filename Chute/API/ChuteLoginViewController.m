@@ -18,11 +18,6 @@
 @synthesize authWebView;
 
 +(void)presentInController:(UIViewController *)controller {
-    NSString *clientID      = kOAuthClientID;
-    NSString *clientSecret  = kOAuthClientSecret;
-    NSAssert([clientID length], @"Please update the ChuteConstants.h file with your oAuth Client ID");
-    NSAssert([clientSecret length], @"Please update the ChuteConstants.h file with your oAuth Secret Key");
-    
     [[ChuteAPI shared] verifyAuthorizationWithAccessCode:nil success:^(void) {
     } andError:^(NSError *error) {
         ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
@@ -118,13 +113,15 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self hideHUD];
-    [self quickAlertViewWithTitle:@"Error" message:[error localizedDescription] button:@"Reload" completionBlock:^(void) {
-        [authWebView reload]; 
-    } cancelBlock:^(void) {
-        [self hideAuthViewCompletion:^(void) {
-            
+    if (![[error localizedDescription] isEqualToString:@"Frame load interrupted"]) {
+        [self quickAlertViewWithTitle:@"Error" message:[error localizedDescription] button:@"Reload" completionBlock:^(void) {
+            [authWebView reload]; 
+        } cancelBlock:^(void) {
+            [self hideAuthViewCompletion:^(void) {
+                
+            }];
         }];
-    }];
+    }
 }
 
 - (void)dealloc

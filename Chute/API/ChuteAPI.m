@@ -23,12 +23,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 @synthesize accessToken;
 
 + (ChuteAPI *)shared{
-    
-    NSString *clientID      = kOAuthClientID;
-    NSString *clientSecret  = kOAuthClientSecret;
-    NSAssert([clientID length], @"Please update the ChuteConstants.h file with your oAuth Client ID");
-    NSAssert([clientSecret length], @"Please update the ChuteConstants.h file with your oAuth Secret Key");
-    
     @synchronized(shared){
 		if (!shared) {
 			shared = [[ChuteAPI alloc] init];
@@ -107,12 +101,16 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     ASIFormDataRequest *_request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:path]];
     
     [_request setRequestHeaders:[self headers]];
-    
-    for (id key in [params allKeys]) {
-        [_request setPostValue:[params objectForKey:key] forKey:key];
+
+    if ([params objectForKey:@"raw"]) {
+        [_request setPostBody:[params objectForKey:@"raw"]];
     }
-    
-    [_request setPostBody:nil];
+    else {
+        [_request setPostBody:nil];
+        for (id key in [params allKeys]) {
+            [_request setPostValue:[params objectForKey:key] forKey:key];
+        }
+    }
     
     [_request setCompletionBlock:^{
         
@@ -391,7 +389,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 //    
 //    
 //    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-//    [params setValue:[meta JSONRepresentation] forKey:@"body"];
+//    [params setValue:[[meta JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
 //
 //    [meta release];
 //    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
@@ -402,6 +400,13 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 //
 //    [params release];
 
+    
+//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
+//        DLog(@"%@", response);
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+    
 }
 
 - (void)startUploadingAssets:(NSArray *) assets forChutes:(NSArray *) chutes {
