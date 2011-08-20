@@ -461,20 +461,20 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 - (void) test {
     
 //    Metadata
-    NSDictionary *meta = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
-    
-    
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:[[meta JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
-
-    [meta release];
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
-        DLog(@"%@", response);
-    } andError:^(NSError *error) {
-        DLog(@"%@", [error localizedDescription]);
-    }];
-
-    [params release];
+//    NSDictionary *meta = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
+//    
+//    
+//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//    [params setValue:[[meta JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+//
+//    [meta release];
+//    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
+//        DLog(@"%@", response);
+//    } andError:^(NSError *error) {
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+//
+//    [params release];
 
     
 //    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
