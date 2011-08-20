@@ -120,7 +120,12 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
         [console release];
         
         if ([_request responseStatusCode] == 200 || [_request responseStatusCode] == 201) {
-            aResponseBlock([[_request responseString] JSONValue]);
+            if ([[_request responseString] length] > 2) {
+                aResponseBlock([[_request responseString] JSONValue]);
+            }
+            else {
+                aResponseBlock(nil);
+            }
         } else {
             anErrorBlock([NSError errorWithDomain:@"Unidentified Error" code:[_request responseStatusCode] userInfo:nil]);
         }
@@ -327,8 +332,79 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
 }
 
-#pragma mark -
-#pragma mark Helper methods for Asset Uploader
+#pragma mark - Get Meta Data methods
+- (void)getMetaDataforChuteId:(NSString *)Id 
+                     response:(ResponseBlock)aResponseBlock 
+                     andError:(ErrorBlock)anErrorBlock {
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes/%@/meta", API_URL, Id] andParams:nil andResponse:^(id response) {
+        aResponseBlock([response objectForKey:@"data"]);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+}
+
+- (void)getMetaDataforAssetId:(NSString *)Id 
+                     response:(ResponseBlock)aResponseBlock 
+                     andError:(ErrorBlock)anErrorBlock {
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@assets/%@/meta", API_URL, Id] andParams:nil andResponse:^(id response) {
+        aResponseBlock([response objectForKey:@"data"]);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+}
+
+- (void)getMyMetaDataWithResponse:(ResponseBlock)aResponseBlock
+                         andError:(ErrorBlock)anErrorBlock{
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
+        aResponseBlock([response objectForKey:@"data"]);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+}
+
+#pragma mark - Set Meta Data Methods
+- (void)setMetaData:(NSDictionary *)dictionary
+         forChuteId:(NSString *)Id 
+           response:(ResponseBlock)aResponseBlock 
+           andError:(ErrorBlock)anErrorBlock{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:[[dictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes/%@/meta", API_URL, Id] andParams:params andResponse:^(id response) {
+        aResponseBlock([response objectForKey:@"data"]);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+    [params release];
+}
+
+- (void)setMetaData:(NSDictionary *)dictionary
+         forAssetId:(NSString *)Id 
+           response:(ResponseBlock)aResponseBlock 
+           andError:(ErrorBlock)anErrorBlock {
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:[[dictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    [self postRequestWithPath:[NSString stringWithFormat:@"%@assets/%@/meta", API_URL, Id] andParams:params andResponse:^(id response) {
+        aResponseBlock([response objectForKey:@"data"]);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+    [params release];
+}
+
+- (void)setMyMetaData:(NSDictionary *)dictionary
+         WithResponse:(ResponseBlock)aResponseBlock
+             andError:(ErrorBlock)anErrorBlock {
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:[[dictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
+        aResponseBlock([response objectForKey:@"data"]);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+    [params release];
+}
+
+#pragma mark - Helper methods for Asset Uploader
 
 - (void)initThumbnail:(UIImage *)thumbnail
            forAssetId:(NSString *)assetId
@@ -385,20 +461,20 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 - (void) test {
     
 //    Metadata
-//    NSDictionary *meta = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
-//    
-//    
-//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-//    [params setValue:[[meta JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
-//
-//    [meta release];
-//    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
-//        DLog(@"%@", response);
-//    } andError:^(NSError *error) {
-//        DLog(@"%@", [error localizedDescription]);
-//    }];
-//
-//    [params release];
+    NSDictionary *meta = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
+    
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:[[meta JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+
+    [meta release];
+    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
+        DLog(@"%@", response);
+    } andError:^(NSError *error) {
+        DLog(@"%@", [error localizedDescription]);
+    }];
+
+    [params release];
 
     
 //    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
