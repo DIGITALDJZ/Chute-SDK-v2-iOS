@@ -332,6 +332,51 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
     }];
 }
 
+- (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
+                           andError:(ErrorBlock)anErrorBlock{
+    [self
+     getRequestWithPath:[NSString stringWithFormat:@"%@inbox/parcels", API_URL]
+     andParams: nil
+     andResponse:^(id response) {
+         NSArray *_arr = [[[NSArray alloc] initWithArray:[response objectForKey:@"data"]] autorelease];
+         aResponseBlock(_arr);
+     }
+     andError:^(NSError *error) {
+         anErrorBlock(error);
+     }];
+}
+
+- (void)getCommentsForChuteId:(NSString *)chuteId
+                      assetId:(NSString *)assetId
+                     response:(void (^)(NSArray *))aResponseBlock 
+                     andError:(ErrorBlock)anErrorBlock{
+    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes/%@/assets/%@/comments", API_URL, chuteId,assetId] andParams: nil andResponse:^(id response) {
+        NSArray *_arr = [[[NSArray alloc] initWithArray:response] autorelease];
+        aResponseBlock(_arr);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+}
+
+- (void)postComment:(NSString *)comment
+         ForChuteId:(NSString *)chuteId
+         andAssetId:(NSString *)assetId
+           response:(void (^)(id))aResponseBlock 
+           andError:(ErrorBlock)anErrorBlock{
+    NSDictionary *postParams = [NSDictionary dictionaryWithObject:comment forKey:@"comment"];
+    [self 
+     postRequestWithPath:[NSString stringWithFormat:@"%@chutes/%@/assets/%@/comments", API_URL, chuteId,assetId] 
+     andParams:postParams
+     andResponse:^(id response){
+         NSLog(@"comment Posted");
+         aResponseBlock(response);
+     }
+     andError:^(NSError *error) {
+         anErrorBlock(error);
+     }
+     ];
+}
+
 #pragma mark - Get Meta Data methods
 - (void)getMetaDataforChuteId:(NSString *)Id 
                      response:(ResponseBlock)aResponseBlock 
