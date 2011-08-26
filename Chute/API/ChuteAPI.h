@@ -56,6 +56,14 @@ typedef enum {
                    response:(void (^)(NSArray *))aResponseBlock 
                    andError:(ErrorBlock)anErrorBlock;
 
+- (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
+                           andError:(ErrorBlock)anErrorBlock;
+
+- (void)getCommentsForChuteId:(NSString *)chuteId
+                      assetId:(NSString *)assetId
+                     response:(void (^)(NSArray *))aResponseBlock 
+                     andError:(ErrorBlock)anErrorBlock;
+
 - (void)getMetaDataforChuteId:(NSString *)Id 
                      response:(ResponseBlock)aResponseBlock 
                      andError:(ErrorBlock)anErrorBlock;
@@ -75,6 +83,12 @@ typedef enum {
        andAddPhotos:(NSUInteger)addPhotos
         andResponse:(ResponseBlock)responseBlock 
            andError:(ErrorBlock)errorBlock;
+
+- (void)postComment:(NSString *)comment
+         ForChuteId:(NSString *)chuteId
+         andAssetId:(NSString *)assetId
+           response:(void (^)(id))aResponseBlock 
+           andError:(ErrorBlock)anErrorBlock;
 
 - (void)setMetaData:(NSDictionary *)dictionary
          forChuteId:(NSString *)Id 
