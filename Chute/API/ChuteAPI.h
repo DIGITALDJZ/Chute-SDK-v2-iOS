@@ -21,7 +21,6 @@ typedef enum {
 } ChuteAccountStatus;
 
 @interface ChuteAPI : NSObject {
-    BOOL loggedIn;
     ChuteAccountStatus accountStatus;
     NSString *_accessToken;
 }

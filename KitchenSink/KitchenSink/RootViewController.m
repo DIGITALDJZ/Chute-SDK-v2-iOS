@@ -11,6 +11,8 @@
 #import "PhotosBaseViewController.h"
 #import "BundlesBaseViewController.h"
 
+#import "ChuteNetwork.h"
+
 @implementation RootViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -74,7 +76,8 @@
 }
 
 - (IBAction)sync:(id)sender {
-    [[ChuteAPI shared] test];
+    [[ChuteNetwork new] getRequestInBackgroundWithPath:@"http://google.com" andParams:nil withResponse:nil andError:nil];
+//    [[ChuteAPI shared] test];
 //    [[ChuteAPI shared] syncWithResponse:^(void) {
 //        DLog(@"synced");
 //    } andError:^(NSError *error) {

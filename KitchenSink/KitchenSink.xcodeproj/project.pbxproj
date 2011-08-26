@@ -120,6 +120,8 @@
 		ECE1C61613F66CE100173383 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECE1C61413F66CE100173383 /* checkmark@2x.png */; };
 		ECE1C61A13F6EC7200173383 /* SelectChuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE1C61813F6EC7100173383 /* SelectChuteViewController.m */; };
 		ECE1C61D13F6EC8900173383 /* SelectChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE1C61C13F6EC8900173383 /* SelectChuteViewController.xib */; };
+		ECF3647C1407C728006B0747 /* ChuteNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3647B1407C728006B0747 /* ChuteNetwork.m */; };
+		ECF364811407DFD8006B0747 /* ChuteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF364801407DFD8006B0747 /* ChuteResource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -292,6 +294,11 @@
 		ECE1C61713F6EC7100173383 /* SelectChuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectChuteViewController.h; sourceTree = "<group>"; };
 		ECE1C61813F6EC7100173383 /* SelectChuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectChuteViewController.m; sourceTree = "<group>"; };
 		ECE1C61C13F6EC8900173383 /* SelectChuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChuteViewController.xib; sourceTree = "<group>"; };
+		ECF3647A1407C728006B0747 /* ChuteNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteNetwork.h; sourceTree = "<group>"; };
+		ECF3647B1407C728006B0747 /* ChuteNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteNetwork.m; sourceTree = "<group>"; };
+		ECF3647E1407DF81006B0747 /* ChuteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteMacros.h; sourceTree = "<group>"; };
+		ECF3647F1407DFD8006B0747 /* ChuteResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteResource.h; sourceTree = "<group>"; };
+		ECF364801407DFD8006B0747 /* ChuteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteResource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +443,11 @@
 				EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */,
 				EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */,
 				EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */,
+				ECF3647A1407C728006B0747 /* ChuteNetwork.h */,
+				ECF3647B1407C728006B0747 /* ChuteNetwork.m */,
+				ECF3647E1407DF81006B0747 /* ChuteMacros.h */,
+				ECF3647F1407DFD8006B0747 /* ChuteResource.h */,
+				ECF364801407DFD8006B0747 /* ChuteResource.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -878,6 +890,8 @@
 				ECE1C61A13F6EC7200173383 /* SelectChuteViewController.m in Sources */,
 				ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */,
 				ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */,
+				ECF3647C1407C728006B0747 /* ChuteNetwork.m in Sources */,
+				ECF364811407DFD8006B0747 /* ChuteResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
