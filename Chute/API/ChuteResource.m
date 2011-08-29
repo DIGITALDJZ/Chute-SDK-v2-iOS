@@ -19,7 +19,10 @@
     [[self class] all_Path:&_path AndConfiguringParams:&_params];
     
     NSError *_error = nil;
-    //[super getRequestWithPath:_path andParams:_params andError:&_error];
+    ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
+    id _response = [chuteNetwork getRequestWithPath:_path andParams:_params andError:&_error];
+    DLog(@"%@", _response);
+    [chuteNetwork release];
     return nil;
 }
 
@@ -32,6 +35,33 @@
     
 }
 
-#pragma mark -
+#pragma mark - Instance Methods
+#pragma mark - Init
+
+- (id) init {
+    self = [super init];
+    if (self) {
+        content = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
+- (void) dealloc {
+    [content release];
+    [super dealloc];
+}
+
+- (void)setObject:(id) aObject forKey:(id)aKey {
+    [content setObject:aObject forKey:aKey];
+}
+
+- (id)objectForKey:(id)aKey {
+    return [content objectForKey:aKey];
+}
+
+//Proxy for JSONRepresentation
+- (id)proxyForJson {
+    return content;
+}
 
 @end

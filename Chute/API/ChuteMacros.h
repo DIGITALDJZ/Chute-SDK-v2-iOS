@@ -26,4 +26,4 @@ if(errorBlock)\
 errorBlock(_error);\
 }\
 });\
-});\
+});
