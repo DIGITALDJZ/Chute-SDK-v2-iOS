@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChuteNetwork.h"
+#import "ChuteREST.h"
 #import "ChuteConstants.h"
 #import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"

@@ -16,7 +16,7 @@
     NSString *_path                 = [[self pathForAllRequest] retain];
     
     NSError *_error = nil;
-    ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
+    ChuteREST *chuteNetwork = [[ChuteREST alloc] init];
     id _response = [chuteNetwork getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
     [chuteNetwork release];
@@ -78,7 +78,7 @@
     NSString *_path                 = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
     NSError *_error = nil;
-    ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
+    ChuteREST *chuteNetwork = [[ChuteREST alloc] init];
     id _response = [chuteNetwork getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
     [chuteNetwork release];

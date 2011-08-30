@@ -116,7 +116,7 @@ static ChuteAccount *sharedAccountManager = nil;
 - (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
                           andError:(ChuteErrorBlock)anErrorBlock{
     NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
-    ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
+    ChuteREST *chuteNetwork = [[ChuteREST alloc] init];
     [chuteNetwork getRequestInBackgroundWithPath:_path withResponse:^(id response) {
         aResponseBlock(response);
     } andError:^(NSError *error) {

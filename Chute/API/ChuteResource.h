@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChuteNetwork.h"
+#import "ChuteREST.h"
 
 @interface ChuteResource : NSObject {
     NSMutableDictionary *_content;

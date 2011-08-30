@@ -11,7 +11,7 @@
 #import "ChuteConstants.h"
 #import "ASIHTTPRequest.h"
 
-@interface ChuteNetwork : NSObject
+@interface ChuteREST : NSObject
 
 - (NSMutableDictionary *)headers;
 

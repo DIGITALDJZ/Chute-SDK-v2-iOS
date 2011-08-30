@@ -119,11 +119,11 @@
 		ECE8D18E140D1199000CC697 /* ChuteLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BF13F0028600EBA5A1 /* ChuteLoginViewController.h */; };
 		ECE8D18F140D1199000CC697 /* ChuteLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */; };
 		ECE8D191140D1199000CC697 /* ChuteUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */; };
-		ECE8D193140D1199000CC697 /* ChuteNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3647B1407C728006B0747 /* ChuteNetwork.m */; };
+		ECE8D193140D1199000CC697 /* ChuteREST.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3647B1407C728006B0747 /* ChuteREST.m */; };
 		ECE8D196140D1199000CC697 /* ChuteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF364801407DFD8006B0747 /* ChuteResource.m */; };
 		ECE8D198140D1199000CC697 /* ChuteAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE8D17B140CFA66000CC697 /* ChuteAccount.m */; };
 		ECE8D199140D11B5000CC697 /* ChuteUIBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */; };
-		ECE8D19A140D11B5000CC697 /* ChuteNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647A1407C728006B0747 /* ChuteNetwork.h */; };
+		ECE8D19A140D11B5000CC697 /* ChuteREST.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647A1407C728006B0747 /* ChuteREST.h */; };
 		ECE8D19B140D11B5000CC697 /* ChuteMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647E1407DF81006B0747 /* ChuteMacros.h */; };
 		ECE8D19C140D11B5000CC697 /* ChuteResource.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647F1407DFD8006B0747 /* ChuteResource.h */; };
 		ECE8D19D140D11B5000CC697 /* ChuteAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE8D17A140CFA66000CC697 /* ChuteAccount.h */; };
@@ -301,8 +301,8 @@
 		ECE1C61C13F6EC8900173383 /* SelectChuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChuteViewController.xib; sourceTree = "<group>"; };
 		ECE8D17A140CFA66000CC697 /* ChuteAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAccount.h; sourceTree = "<group>"; };
 		ECE8D17B140CFA66000CC697 /* ChuteAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAccount.m; sourceTree = "<group>"; };
-		ECF3647A1407C728006B0747 /* ChuteNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteNetwork.h; sourceTree = "<group>"; };
-		ECF3647B1407C728006B0747 /* ChuteNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteNetwork.m; sourceTree = "<group>"; };
+		ECF3647A1407C728006B0747 /* ChuteREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteREST.h; sourceTree = "<group>"; };
+		ECF3647B1407C728006B0747 /* ChuteREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteREST.m; sourceTree = "<group>"; };
 		ECF3647E1407DF81006B0747 /* ChuteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteMacros.h; sourceTree = "<group>"; };
 		ECF3647F1407DFD8006B0747 /* ChuteResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteResource.h; sourceTree = "<group>"; };
 		ECF364801407DFD8006B0747 /* ChuteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteResource.m; sourceTree = "<group>"; };
@@ -450,8 +450,8 @@
 				EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */,
 				EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */,
 				EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */,
-				ECF3647A1407C728006B0747 /* ChuteNetwork.h */,
-				ECF3647B1407C728006B0747 /* ChuteNetwork.m */,
+				ECF3647A1407C728006B0747 /* ChuteREST.h */,
+				ECF3647B1407C728006B0747 /* ChuteREST.m */,
 				ECF3647E1407DF81006B0747 /* ChuteMacros.h */,
 				ECF3647F1407DFD8006B0747 /* ChuteResource.h */,
 				ECF364801407DFD8006B0747 /* ChuteResource.m */,
@@ -729,7 +729,7 @@
 				ECE8D18D140D1199000CC697 /* ChuteConstants.h in Headers */,
 				ECE8D18E140D1199000CC697 /* ChuteLoginViewController.h in Headers */,
 				ECE8D199140D11B5000CC697 /* ChuteUIBaseViewController.h in Headers */,
-				ECE8D19A140D11B5000CC697 /* ChuteNetwork.h in Headers */,
+				ECE8D19A140D11B5000CC697 /* ChuteREST.h in Headers */,
 				ECE8D19B140D11B5000CC697 /* ChuteMacros.h in Headers */,
 				ECE8D19C140D11B5000CC697 /* ChuteResource.h in Headers */,
 				ECE8D19D140D11B5000CC697 /* ChuteAccount.h in Headers */,
@@ -916,7 +916,7 @@
 				ECE8D18C140D1199000CC697 /* ChuteAssetUploader.m in Sources */,
 				ECE8D18F140D1199000CC697 /* ChuteLoginViewController.m in Sources */,
 				ECE8D191140D1199000CC697 /* ChuteUIBaseViewController.m in Sources */,
-				ECE8D193140D1199000CC697 /* ChuteNetwork.m in Sources */,
+				ECE8D193140D1199000CC697 /* ChuteREST.m in Sources */,
 				ECE8D196140D1199000CC697 /* ChuteResource.m in Sources */,
 				ECE8D198140D1199000CC697 /* ChuteAccount.m in Sources */,
 			);

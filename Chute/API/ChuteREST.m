@@ -6,13 +6,13 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChuteNetwork.h"
+#import "ChuteREST.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "ChuteAccount.h"
 
-@implementation ChuteNetwork
+@implementation ChuteREST
 
 - (NSMutableDictionary *)headers{
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
