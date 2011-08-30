@@ -11,9 +11,8 @@
 #import "SBJson.h"
 #import "ChuteConstants.h"
 #import "ASIHTTPRequest.h"
-#import "ChuteAPI.h"
 #import "NSDictionary+QueryString.h"
-#import "ChuteUIBaseViewController.h"
+#import "ChuteAccount.h"
 
 @interface ChuteUIBaseViewController : UIViewController <UIAlertViewDelegate> {
     MBProgressHUD *HUD;

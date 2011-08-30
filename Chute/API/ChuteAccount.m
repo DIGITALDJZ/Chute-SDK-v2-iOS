@@ -56,8 +56,8 @@ static ChuteAccount *sharedAccountManager = nil;
 }
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
-                                   success:(void (^)(void))successBlock 
-                                  andError:(ErrorBlock)errorBlock {
+                                   success:(ChuteBasicBlock)successBlock 
+                                  andError:(ChuteErrorBlock)errorBlock {
     if ([self accessToken]) {
         [self setAccountStatus:ChuteAccountLoggedIn];
         successBlock();
@@ -94,7 +94,7 @@ static ChuteAccount *sharedAccountManager = nil;
         [[ChuteAPI shared] setAccessToken:[_response objectForKey:@"access_token"]];
         
         //send request to save userid
-        [[ChuteAPI shared] getProfileInfoWithResponse:^(id response) {
+        [self getProfileInfoWithResponse:^(id response) {
             [self setUserId:[[response valueForKey:@"id"] intValue]];
             [self setAccountStatus:ChuteAccountLoggedIn];
             successBlock();
@@ -109,6 +109,20 @@ static ChuteAccount *sharedAccountManager = nil;
         errorBlock([request error]);
     }];
     [request startAsynchronous];
+}
+
+#pragma mark - Get Profile Info
+- (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
+                          andError:(ChuteErrorBlock)anErrorBlock{
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
+    ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
+    [chuteNetwork getRequestInBackgroundWithPath:_path withResponse:^(id response) {
+        aResponseBlock(response);
+    } andError:^(NSError *error) {
+        anErrorBlock(error);
+    }];
+    [chuteNetwork release];
+    [_path release];
 }
 
 - (void)reset {

@@ -18,7 +18,7 @@
 @synthesize authWebView;
 
 +(void)presentInController:(UIViewController *)controller {
-    [[ChuteAPI shared] verifyAuthorizationWithAccessCode:nil success:^(void) {
+    [[ChuteAccount sharedManager] verifyAuthorizationWithAccessCode:nil success:^(void) {
     } andError:^(NSError *error) {
         ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
         [controller presentModalViewController:loginController animated:YES];
@@ -90,7 +90,7 @@
     if ([[[request URL] path] isEqualToString:kOAuthRedirectRelativeURL]) {
         NSString *_code = [[NSDictionary dictionaryWithFormEncodedString:[[request URL] query]] objectForKey:@"code"];
         
-        [[ChuteAPI shared] verifyAuthorizationWithAccessCode:_code success:^(void) {
+        [[ChuteAccount sharedManager] verifyAuthorizationWithAccessCode:_code success:^(void) {
             [self hideAuthViewCompletion:^{
                 [super dismissModalViewControllerAnimated:YES];
             }];

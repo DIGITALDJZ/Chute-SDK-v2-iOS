@@ -29,4 +29,12 @@ typedef enum {
 
 + (ChuteAccount *)sharedManager;
 
+- (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
+                                   success:(ChuteBasicBlock)successBlock 
+                                  andError:(ChuteErrorBlock)errorBlock;
+- (void)reset;
+
+- (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
+                          andError:(ChuteErrorBlock)anErrorBlock;
+
 @end
