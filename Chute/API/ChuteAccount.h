@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "ChuteNetwork.h"
+#import "ChuteConstants.h"
+#import "ASIHTTPRequest.h"
+#import "NSDictionary+QueryString.h"
 
 //Notification which is fired whenever the Account Status is changed
-NSString * const ChuteAccountStatusChanged = @"ChuteAccountStatusChanged";
+NSString * const ChuteAccountStatusChanged;
 
 typedef enum {
     ChuteAccountLoggedOut,

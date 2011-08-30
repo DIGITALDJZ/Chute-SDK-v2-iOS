@@ -13,14 +13,12 @@
 #import "NSData+Base64.h"
 #import "NSDictionary+QueryString.h"
 #import "ChuteAssetManager.h"
+#import "ChuteAccount.h"
 
 static ChuteAPI *shared=nil;
-NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 
 @implementation ChuteAPI
 
-@synthesize accountStatus;
-@synthesize accessToken;
 
 + (ChuteAPI *)shared{
     @synchronized(shared){
@@ -39,7 +37,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 }
 
 - (void)dealloc{
-    [accessToken release];
     [super dealloc];
 }
 
@@ -52,43 +49,8 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
             kUDID, @"x-device-identifier",
             kDEVICE_OS, @"x-device-os",
             kDEVICE_VERSION, @"x-device-version",
-            [NSString stringWithFormat:@"OAuth %@", [self accessToken]], @"Authorization",
+            [NSString stringWithFormat:@"OAuth %@", [[ChuteAccount sharedManager] accessToken]], @"Authorization",
             nil];
-}
-
-#pragma mark -
-#pragma mark Access Token
-
-- (void) setAccessToken:(NSString *)accessTkn {
-    if (_accessToken) {
-        [_accessToken release], _accessToken = nil;
-    }
-    _accessToken = [accessTkn retain];
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:_accessToken forKey:@"access_token"];
-    [prefs synchronize];
-}
-
-- (NSString *) accessToken {
-    if (_accessToken == nil) {
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        _accessToken = [[prefs objectForKey:@"access_token"] retain];
-    }
-    return _accessToken;
-}
-
-#pragma mark -
-#pragma mark User id
-
-- (void) setUserId:(NSUInteger) userId {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:[NSNumber numberWithInt:userId] forKey:@"user_id"];
-    [prefs synchronize];
-}
-
-- (NSUInteger) userId {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    return [[prefs objectForKey:@"user_id"] intValue];
 }
 
 #pragma mark -
@@ -185,82 +147,6 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateConsole" object:console];
     });
     [console release];
-}
-
-#pragma mark -
-#pragma mark Authorization Methods
-
-- (void) setAccountStatus:(ChuteAccountStatuss)_accountStatus {
-    accountStatus = _accountStatus;
-    [[NSNotificationCenter defaultCenter] postNotificationName:ChuteLoginStatusChanged object:self];
-}
-
-- (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
-                                   success:(void (^)(void))successBlock 
-                                  andError:(ErrorBlock)errorBlock {
-    if ([self accessToken]) {
-        [self setAccountStatus:ChuteAccountStatusLoggedIn];
-        successBlock();
-        return;
-    }
-    
-    [self setAccountStatus:ChuteAccountStatusLoggingIn];
-    
-    NSDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:@"profile" forKey:@"scope"];
-    [params setValue:kOAuthClientID forKey:@"client_id"];
-    [params setValue:kOAuthClientSecret forKey:@"client_secret"];
-    [params setValue:@"authorization_code" forKey:@"grant_type"];
-    [params setValue:kOAuthRedirectURL forKey:@"redirect_uri"];
-    
-    if (accessCode == nil) {
-        errorBlock(nil);
-        return;
-    }
-    else {
-        [params setValue:accessCode forKey:@"code"];
-    }
-
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:kOAuthTokenURL]];
-    [request setRequestMethod:@"POST"];
-    [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
-    [request appendPostData:[[params stringWithFormEncodedComponents] dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setDelegate:self];
-    
-    [request setTimeOutSeconds:300.0];
-    [request setCompletionBlock:^{
-        //save access code
-        NSDictionary *_response = [[request responseString] JSONValue];
-        [[ChuteAPI shared] setAccessToken:[_response objectForKey:@"access_token"]];
-        
-        //send request to save userid
-        [[ChuteAPI shared] getProfileInfoWithResponse:^(id response) {
-            [self setUserId:[[response valueForKey:@"id"] intValue]];
-            [self setAccountStatus:ChuteAccountStatusLoggedIn];
-            successBlock();
-        } andError:^(NSError *error) {
-            [self setAccountStatus:ChuteAccountStatusLoginFailed];
-            errorBlock([request error]);
-        }];
-    }];
-    
-    [request setFailedBlock:^{
-        [self setAccountStatus:ChuteAccountStatusLoginFailed];
-        errorBlock([request error]);
-    }];
-    [request startAsynchronous];
-}
-
-- (void)reset {
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:nil forKey:@"access_token"];
-    [prefs setObject:nil forKey:@"id"];
-    [prefs synchronize];
-    [ASIHTTPRequest setSessionCookies:nil];
-    if (_accessToken) {
-        [_accessToken release], _accessToken = nil;
-    }
 }
 
 #pragma mark -

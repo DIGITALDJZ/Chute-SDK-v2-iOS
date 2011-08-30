@@ -5,6 +5,8 @@
 //  Created by Achal Aggarwal on 26/08/11.
 //  Copyright 2011 NA. All rights reserved.
 //
+#ifndef ChuteMacros_h
+#define ChuteMacros_h
 
 typedef void(^ChuteBasicBlock)(void);
 typedef void(^ChuteErrorBlock)(NSError *error);
@@ -27,3 +29,8 @@ errorBlock(_error);\
 }\
 });\
 });
+
+
+#endif
+
+

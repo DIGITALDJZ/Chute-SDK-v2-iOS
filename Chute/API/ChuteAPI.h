@@ -11,31 +11,10 @@
 typedef void (^ErrorBlock)(NSError *);
 typedef void (^ResponseBlock)(id);
 
-extern NSString * const ChuteLoginStatusChanged;
-
-typedef enum {
-    ChuteAccountStatusLoggedOut,
-    ChuteAccountStatusLoggingIn,
-    ChuteAccountStatusLoggedIn,
-    ChuteAccountStatusLoginFailed
-} ChuteAccountStatuss;
-
 @interface ChuteAPI : NSObject {
-    ChuteAccountStatuss accountStatus;
-    NSString *_accessToken;
 }
 
-@property (nonatomic) ChuteAccountStatuss accountStatus;
-@property (nonatomic, retain) NSString *accessToken;
-
 + (ChuteAPI *)shared;
-
-//Authorization Methods
-- (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
-                                   success:(void (^)(void))successBlock 
-                                  andError:(ErrorBlock)errorBlock;
-
-- (void)reset;
 
 //Data Wrappers
 //Get Data

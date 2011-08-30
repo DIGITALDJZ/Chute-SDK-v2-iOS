@@ -76,7 +76,7 @@
 }
 
 - (IBAction)sync:(id)sender {
-    [[ChuteNetwork new] getRequestInBackgroundWithPath:@"http://google.com" andParams:nil withResponse:nil andError:nil];
+    //[[ChuteNetwork new] getRequestInBackgroundWithPath:@"http://google.com" andParams:nil withResponse:nil andError:nil];
 //    [[ChuteAPI shared] test];
 //    [[ChuteAPI shared] syncWithResponse:^(void) {
 //        DLog(@"synced");

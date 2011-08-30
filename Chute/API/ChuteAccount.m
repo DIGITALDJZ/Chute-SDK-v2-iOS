@@ -8,6 +8,7 @@
 
 #import "ChuteAccount.h"
 
+NSString * const ChuteAccountStatusChanged = @"ChuteAccountStatusChanged";
 static ChuteAccount *sharedAccountManager = nil;
 
 @implementation ChuteAccount
@@ -91,7 +92,7 @@ static ChuteAccount *sharedAccountManager = nil;
     [request setCompletionBlock:^{
         //save access code
         NSDictionary *_response = [[request responseString] JSONValue];
-        [[ChuteAPI shared] setAccessToken:[_response objectForKey:@"access_token"]];
+        [self setAccessToken:[_response objectForKey:@"access_token"]];
         
         //send request to save userid
         [self getProfileInfoWithResponse:^(id response) {

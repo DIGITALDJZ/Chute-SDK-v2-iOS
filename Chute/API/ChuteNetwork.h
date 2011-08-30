@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ChuteMacros.h"
+#import "ChuteConstants.h"
+#import "ASIHTTPRequest.h"
 
 @interface ChuteNetwork : NSObject
 
