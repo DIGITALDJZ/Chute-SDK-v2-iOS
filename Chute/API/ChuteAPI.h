@@ -18,14 +18,14 @@ typedef enum {
     ChuteAccountStatusLoggingIn,
     ChuteAccountStatusLoggedIn,
     ChuteAccountStatusLoginFailed
-} ChuteAccountStatus;
+} ChuteAccountStatuss;
 
 @interface ChuteAPI : NSObject {
-    ChuteAccountStatus accountStatus;
+    ChuteAccountStatuss accountStatus;
     NSString *_accessToken;
 }
 
-@property (nonatomic) ChuteAccountStatus accountStatus;
+@property (nonatomic) ChuteAccountStatuss accountStatus;
 @property (nonatomic, retain) NSString *accessToken;
 
 + (ChuteAPI *)shared;

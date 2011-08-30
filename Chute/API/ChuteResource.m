@@ -13,16 +13,14 @@
 #pragma mark - All 
 /* Get all Objects of this class */
 + (NSArray *)all {
-    NSString *_path                 = [[NSString alloc] init];
-    NSMutableDictionary *_params    = [[NSMutableDictionary alloc] init];
-    //To configure the all request this needs to be called
-    [[self class] all_Path:&_path AndConfiguringParams:&_params];
+    NSString *_path                 = [[self pathForAllRequest] retain];
     
     NSError *_error = nil;
     ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
-    id _response = [chuteNetwork getRequestWithPath:_path andParams:_params andError:&_error];
+    id _response = [chuteNetwork getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
     [chuteNetwork release];
+    [_path release];
     return nil;
 }
 
@@ -30,9 +28,19 @@
     DO_IN_BACKGROUND([self all], aResponseBlock, anErrorBlock);
 }
 
-/* Override this method in the subclass to configure the request */
-+ (void)all_Path:(NSString **)path AndConfiguringParams:(NSMutableDictionary **)params {
-    
+#pragma mark - Override these methods in every Subclass
++ (NSString *)pathForAllRequest {
+    //return an autoreleased NSString which is the path to get all
+    return nil;
+}
+
++ (NSString *)elementName {
+    //for example, this should return the string "chutes", "assets"
+    return nil;
+}
+
++ (BOOL)supportsMetaData {
+    return YES;
 }
 
 #pragma mark - Instance Methods
@@ -41,27 +49,45 @@
 - (id) init {
     self = [super init];
     if (self) {
-        content = [[NSMutableDictionary alloc] init];
+        _content = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
 - (void) dealloc {
-    [content release];
+    [_content release];
     [super dealloc];
 }
 
 - (void)setObject:(id) aObject forKey:(id)aKey {
-    [content setObject:aObject forKey:aKey];
+    [_content setObject:aObject forKey:aKey];
 }
 
 - (id)objectForKey:(id)aKey {
-    return [content objectForKey:aKey];
+    return [_content objectForKey:aKey];
 }
 
-//Proxy for JSONRepresentation
+#pragma mark - Proxy for JSONRepresentation
 - (id)proxyForJson {
-    return content;
+    return _content;
+}
+
+#pragma mark - Common Get Data Methods
+
+- (NSDictionary *) getMetaData {
+    NSString *_path                 = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    
+    NSError *_error = nil;
+    ChuteNetwork *chuteNetwork = [[ChuteNetwork alloc] init];
+    id _response = [chuteNetwork getRequestWithPath:_path andError:&_error];
+    DLog(@"%@", _response);
+    [chuteNetwork release];
+    [_path release];
+    return nil;
+}
+
+- (NSUInteger) objectID {
+    return [[_content objectForKey:@"id"] intValue];
 }
 
 @end

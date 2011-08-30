@@ -10,15 +10,25 @@
 #import "ChuteNetwork.h"
 
 @interface ChuteResource : NSObject {
-    NSMutableDictionary *content;
+    NSMutableDictionary *_content;
 }
 
 /* Get all Objects of this class */
 + (NSArray *)all;
 + (void)allInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock andError:(ChuteErrorBlock) anErrorBlock;
-+ (void)all_Path:(NSString **)path AndConfiguringParams:(NSMutableDictionary **)params;
+
+//Methods to Override in SubClass
++ (NSString *)pathForAllRequest;
++ (BOOL)supportsMetaData;
++ (NSString *)elementName;
+
 
 - (void) setObject:(id) aObject forKey:(id)aKey;
 - (id) objectForKey:(id)aKey;
+
+//Common Get Data Methods
+- (NSDictionary *) getMetaData;
+- (NSUInteger) objectID;
+
 
 @end

@@ -190,7 +190,7 @@ NSString * const ChuteLoginStatusChanged = @"ChuteLoginStatusChanged";
 #pragma mark -
 #pragma mark Authorization Methods
 
-- (void) setAccountStatus:(ChuteAccountStatus)_accountStatus {
+- (void) setAccountStatus:(ChuteAccountStatuss)_accountStatus {
     accountStatus = _accountStatus;
     [[NSNotificationCenter defaultCenter] postNotificationName:ChuteLoginStatusChanged object:self];
 }

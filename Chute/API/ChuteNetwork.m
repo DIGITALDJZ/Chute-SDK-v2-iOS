@@ -10,15 +10,21 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "ChuteAccount.h"
 
 @implementation ChuteNetwork
 
-- (NSMutableDictionary *)headers {
-    return nil;
+- (NSMutableDictionary *)headers{
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            kDEVICE_NAME, @"x-device-name",
+            kUDID, @"x-device-identifier",
+            kDEVICE_OS, @"x-device-os",
+            kDEVICE_VERSION, @"x-device-version",
+            [NSString stringWithFormat:@"OAuth %@", [[ChuteAccount sharedManager] accessToken]], @"Authorization",
+            nil];
 }
 
 - (id)getRequestWithPath:(NSString *)path
-               andParams:(NSDictionary *)params
                 andError:(NSError **)error{
     
     ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:path]];    
@@ -71,10 +77,9 @@
 }
 
 - (void)getRequestInBackgroundWithPath:(NSString *)path 
-                             andParams:(NSMutableDictionary *)params 
                           withResponse:(ChuteResponseBlock)aResponseBlock 
                               andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self getRequestWithPath:path andParams:params andError:&_error], aResponseBlock, anErrorBlock);
+    DO_IN_BACKGROUND([self getRequestWithPath:path andError:&_error], aResponseBlock, anErrorBlock);
 }
 
 - (void)postRequestInBackgroundWithPath:(NSString *)path 

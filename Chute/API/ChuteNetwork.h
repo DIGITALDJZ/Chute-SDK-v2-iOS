@@ -14,7 +14,6 @@
 - (NSMutableDictionary *)headers;
 
 - (id)getRequestWithPath:(NSString *)path
-               andParams:(NSDictionary *)params
                 andError:(NSError **)error;
 
 - (id)postRequestWithPath:(NSString *)path
@@ -22,7 +21,6 @@
                 andError:(NSError **)error;
 
 - (void)getRequestInBackgroundWithPath:(NSString *)path 
-                             andParams:(NSMutableDictionary *)params 
                           withResponse:(ChuteResponseBlock)aResponseBlock 
                               andError:(ChuteErrorBlock)anErrorBlock;
 
