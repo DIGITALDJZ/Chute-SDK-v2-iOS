@@ -92,14 +92,14 @@
 		EC762E1813F185460081E77E /* AssetsGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762E1613F185460081E77E /* AssetsGridViewController.m */; };
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
-		ECBDAAA613F7F47D003153F1 /* ChuteLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; };
+		ECBDAAA613F7F47D003153F1 /* GCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* GCLoginViewController.xib */; };
 		ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAAD13F7F777003153F1 /* ImageScroller.m */; };
 		ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAB013F7F7C9003153F1 /* PhotoViewer.m */; };
 		ECBDAAB513F7F7DC003153F1 /* PhotoViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECBDAAB413F7F7DC003153F1 /* PhotoViewer.xib */; };
 		ECBDAABF13F7FB7D003153F1 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = ECBDAABE13F7FB7D003153F1 /* placeholder.png */; };
 		ECD8EAC413F57DC900958968 /* ChuteSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64C113F0028600EBA5A1 /* ChuteSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECD8EAC513F57E0500958968 /* libChute.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD8EAAB13F57DAA00958968 /* libChute.a */; };
-		ECD8EAC613F57F2100958968 /* ChuteLoginViewController.xib in Headers */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD8EAC613F57F2100958968 /* GCLoginViewController.xib in Headers */ = {isa = PBXBuildFile; fileRef = EC5B650713F0028600EBA5A1 /* GCLoginViewController.xib */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECE1C60B13F6671500173383 /* PhotosGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE1C60913F6671500173383 /* PhotosGridViewController.m */; };
 		ECE1C60E13F6672D00173383 /* PhotosGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE1C60D13F6672D00173383 /* PhotosGridViewController.xib */; };
 		ECE1C61113F667FB00173383 /* ImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE1C61013F667FB00173383 /* ImageGridViewCell.m */; };
@@ -115,23 +115,23 @@
 		ECE8D18A140D1199000CC697 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */; };
 		ECE8D18B140D1199000CC697 /* ChuteAssetUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BA13F0028600EBA5A1 /* ChuteAssetUploader.h */; };
 		ECE8D18C140D1199000CC697 /* ChuteAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64BB13F0028600EBA5A1 /* ChuteAssetUploader.m */; };
-		ECE8D18D140D1199000CC697 /* ChuteConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BE13F0028600EBA5A1 /* ChuteConstants.h */; };
-		ECE8D18E140D1199000CC697 /* ChuteLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BF13F0028600EBA5A1 /* ChuteLoginViewController.h */; };
-		ECE8D18F140D1199000CC697 /* ChuteLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */; };
-		ECE8D191140D1199000CC697 /* ChuteUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */; };
-		ECE8D193140D1199000CC697 /* ChuteREST.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3647B1407C728006B0747 /* ChuteREST.m */; };
-		ECE8D196140D1199000CC697 /* ChuteResource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF364801407DFD8006B0747 /* ChuteResource.m */; };
-		ECE8D198140D1199000CC697 /* ChuteAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE8D17B140CFA66000CC697 /* ChuteAccount.m */; };
-		ECE8D199140D11B5000CC697 /* ChuteUIBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */; };
-		ECE8D19A140D11B5000CC697 /* ChuteREST.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647A1407C728006B0747 /* ChuteREST.h */; };
-		ECE8D19B140D11B5000CC697 /* ChuteMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647E1407DF81006B0747 /* ChuteMacros.h */; };
-		ECE8D19C140D11B5000CC697 /* ChuteResource.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647F1407DFD8006B0747 /* ChuteResource.h */; };
-		ECE8D19D140D11B5000CC697 /* ChuteAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE8D17A140CFA66000CC697 /* ChuteAccount.h */; };
+		ECE8D18D140D1199000CC697 /* GCConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BE13F0028600EBA5A1 /* GCConstants.h */; };
+		ECE8D18E140D1199000CC697 /* GCLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5B64BF13F0028600EBA5A1 /* GCLoginViewController.h */; };
+		ECE8D18F140D1199000CC697 /* GCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B64C013F0028600EBA5A1 /* GCLoginViewController.m */; };
+		ECE8D191140D1199000CC697 /* GCUIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4678FD13F009E400533435 /* GCUIBaseViewController.m */; };
+		ECE8D193140D1199000CC697 /* GCRest.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3647B1407C728006B0747 /* GCRest.m */; };
+		ECE8D196140D1199000CC697 /* GCResource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF364801407DFD8006B0747 /* GCResource.m */; };
+		ECE8D198140D1199000CC697 /* GCAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE8D17B140CFA66000CC697 /* GCAccount.m */; };
+		ECE8D199140D11B5000CC697 /* GCUIBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EC4678FC13F009E400533435 /* GCUIBaseViewController.h */; };
+		ECE8D19A140D11B5000CC697 /* GCRest.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647A1407C728006B0747 /* GCRest.h */; };
+		ECE8D19B140D11B5000CC697 /* GCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647E1407DF81006B0747 /* GCMacros.h */; };
+		ECE8D19C140D11B5000CC697 /* GCResource.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647F1407DFD8006B0747 /* GCResource.h */; };
+		ECE8D19D140D11B5000CC697 /* GCAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE8D17A140CFA66000CC697 /* GCAccount.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteUIBaseViewController.h; sourceTree = "<group>"; };
-		EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteUIBaseViewController.m; sourceTree = "<group>"; };
+		EC4678FC13F009E400533435 /* GCUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUIBaseViewController.h; sourceTree = "<group>"; };
+		EC4678FD13F009E400533435 /* GCUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUIBaseViewController.m; sourceTree = "<group>"; };
 		EC46790313F012A900533435 /* CreateChuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChuteViewController.h; sourceTree = "<group>"; };
 		EC46790413F012A900533435 /* CreateChuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateChuteViewController.m; sourceTree = "<group>"; };
 		EC46790813F012DC00533435 /* CreateChuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateChuteViewController.xib; sourceTree = "<group>"; };
@@ -161,9 +161,9 @@
 		EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAssetManager.m; sourceTree = "<group>"; };
 		EC5B64BA13F0028600EBA5A1 /* ChuteAssetUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAssetUploader.h; sourceTree = "<group>"; };
 		EC5B64BB13F0028600EBA5A1 /* ChuteAssetUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAssetUploader.m; sourceTree = "<group>"; };
-		EC5B64BE13F0028600EBA5A1 /* ChuteConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteConstants.h; sourceTree = "<group>"; };
-		EC5B64BF13F0028600EBA5A1 /* ChuteLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteLoginViewController.h; sourceTree = "<group>"; };
-		EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteLoginViewController.m; sourceTree = "<group>"; };
+		EC5B64BE13F0028600EBA5A1 /* GCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCConstants.h; sourceTree = "<group>"; };
+		EC5B64BF13F0028600EBA5A1 /* GCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLoginViewController.h; sourceTree = "<group>"; };
+		EC5B64C013F0028600EBA5A1 /* GCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLoginViewController.m; sourceTree = "<group>"; };
 		EC5B64C113F0028600EBA5A1 /* ChuteSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteSDK.h; sourceTree = "<group>"; };
 		EC5B64C413F0028600EBA5A1 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		EC5B64C513F0028600EBA5A1 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		EC5B650313F0028600EBA5A1 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		EC5B650413F0028600EBA5A1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		EC5B650513F0028600EBA5A1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChuteLoginViewController.xib; sourceTree = "<group>"; };
+		EC5B650713F0028600EBA5A1 /* GCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCLoginViewController.xib; sourceTree = "<group>"; };
 		EC5B652A13F002A600EBA5A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EC5B652D13F0043300EBA5A1 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		EC5B652E13F0043300EBA5A1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -299,13 +299,13 @@
 		ECE1C61713F6EC7100173383 /* SelectChuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectChuteViewController.h; sourceTree = "<group>"; };
 		ECE1C61813F6EC7100173383 /* SelectChuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectChuteViewController.m; sourceTree = "<group>"; };
 		ECE1C61C13F6EC8900173383 /* SelectChuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChuteViewController.xib; sourceTree = "<group>"; };
-		ECE8D17A140CFA66000CC697 /* ChuteAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAccount.h; sourceTree = "<group>"; };
-		ECE8D17B140CFA66000CC697 /* ChuteAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAccount.m; sourceTree = "<group>"; };
-		ECF3647A1407C728006B0747 /* ChuteREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteREST.h; sourceTree = "<group>"; };
-		ECF3647B1407C728006B0747 /* ChuteREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteREST.m; sourceTree = "<group>"; };
-		ECF3647E1407DF81006B0747 /* ChuteMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteMacros.h; sourceTree = "<group>"; };
-		ECF3647F1407DFD8006B0747 /* ChuteResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteResource.h; sourceTree = "<group>"; };
-		ECF364801407DFD8006B0747 /* ChuteResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteResource.m; sourceTree = "<group>"; };
+		ECE8D17A140CFA66000CC697 /* GCAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAccount.h; sourceTree = "<group>"; };
+		ECE8D17B140CFA66000CC697 /* GCAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAccount.m; sourceTree = "<group>"; };
+		ECF3647A1407C728006B0747 /* GCRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRest.h; sourceTree = "<group>"; };
+		ECF3647B1407C728006B0747 /* GCRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRest.m; sourceTree = "<group>"; };
+		ECF3647E1407DF81006B0747 /* GCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMacros.h; sourceTree = "<group>"; };
+		ECF3647F1407DFD8006B0747 /* GCResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResource.h; sourceTree = "<group>"; };
+		ECF364801407DFD8006B0747 /* GCResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,18 +445,18 @@
 				EC5B64B913F0028600EBA5A1 /* ChuteAssetManager.m */,
 				EC5B64BA13F0028600EBA5A1 /* ChuteAssetUploader.h */,
 				EC5B64BB13F0028600EBA5A1 /* ChuteAssetUploader.m */,
-				EC5B64BE13F0028600EBA5A1 /* ChuteConstants.h */,
-				EC5B64BF13F0028600EBA5A1 /* ChuteLoginViewController.h */,
-				EC5B64C013F0028600EBA5A1 /* ChuteLoginViewController.m */,
-				EC4678FC13F009E400533435 /* ChuteUIBaseViewController.h */,
-				EC4678FD13F009E400533435 /* ChuteUIBaseViewController.m */,
-				ECF3647A1407C728006B0747 /* ChuteREST.h */,
-				ECF3647B1407C728006B0747 /* ChuteREST.m */,
-				ECF3647E1407DF81006B0747 /* ChuteMacros.h */,
-				ECF3647F1407DFD8006B0747 /* ChuteResource.h */,
-				ECF364801407DFD8006B0747 /* ChuteResource.m */,
-				ECE8D17A140CFA66000CC697 /* ChuteAccount.h */,
-				ECE8D17B140CFA66000CC697 /* ChuteAccount.m */,
+				EC5B64BE13F0028600EBA5A1 /* GCConstants.h */,
+				EC5B64BF13F0028600EBA5A1 /* GCLoginViewController.h */,
+				EC5B64C013F0028600EBA5A1 /* GCLoginViewController.m */,
+				EC4678FC13F009E400533435 /* GCUIBaseViewController.h */,
+				EC4678FD13F009E400533435 /* GCUIBaseViewController.m */,
+				ECF3647A1407C728006B0747 /* GCRest.h */,
+				ECF3647B1407C728006B0747 /* GCRest.m */,
+				ECF3647E1407DF81006B0747 /* GCMacros.h */,
+				ECF3647F1407DFD8006B0747 /* GCResource.h */,
+				ECF364801407DFD8006B0747 /* GCResource.m */,
+				ECE8D17A140CFA66000CC697 /* GCAccount.h */,
+				ECE8D17B140CFA66000CC697 /* GCAccount.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -587,7 +587,7 @@
 		EC5B650613F0028600EBA5A1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				EC5B650713F0028600EBA5A1 /* ChuteLoginViewController.xib */,
+				EC5B650713F0028600EBA5A1 /* GCLoginViewController.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -721,18 +721,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECD8EAC413F57DC900958968 /* ChuteSDK.h in Headers */,
-				ECD8EAC613F57F2100958968 /* ChuteLoginViewController.xib in Headers */,
+				ECD8EAC613F57F2100958968 /* GCLoginViewController.xib in Headers */,
 				ECE8D185140D1199000CC697 /* ChuteAPI.h in Headers */,
 				ECE8D187140D1199000CC697 /* ChuteAsset.h in Headers */,
 				ECE8D189140D1199000CC697 /* ChuteAssetManager.h in Headers */,
 				ECE8D18B140D1199000CC697 /* ChuteAssetUploader.h in Headers */,
-				ECE8D18D140D1199000CC697 /* ChuteConstants.h in Headers */,
-				ECE8D18E140D1199000CC697 /* ChuteLoginViewController.h in Headers */,
-				ECE8D199140D11B5000CC697 /* ChuteUIBaseViewController.h in Headers */,
-				ECE8D19A140D11B5000CC697 /* ChuteREST.h in Headers */,
-				ECE8D19B140D11B5000CC697 /* ChuteMacros.h in Headers */,
-				ECE8D19C140D11B5000CC697 /* ChuteResource.h in Headers */,
-				ECE8D19D140D11B5000CC697 /* ChuteAccount.h in Headers */,
+				ECE8D18D140D1199000CC697 /* GCConstants.h in Headers */,
+				ECE8D18E140D1199000CC697 /* GCLoginViewController.h in Headers */,
+				ECE8D199140D11B5000CC697 /* GCUIBaseViewController.h in Headers */,
+				ECE8D19A140D11B5000CC697 /* GCRest.h in Headers */,
+				ECE8D19B140D11B5000CC697 /* GCMacros.h in Headers */,
+				ECE8D19C140D11B5000CC697 /* GCResource.h in Headers */,
+				ECE8D19D140D11B5000CC697 /* GCAccount.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,7 +818,7 @@
 				ECE1C61513F66CE100173383 /* checkmark.png in Resources */,
 				ECE1C61613F66CE100173383 /* checkmark@2x.png in Resources */,
 				ECE1C61D13F6EC8900173383 /* SelectChuteViewController.xib in Resources */,
-				ECBDAAA613F7F47D003153F1 /* ChuteLoginViewController.xib in Resources */,
+				ECBDAAA613F7F47D003153F1 /* GCLoginViewController.xib in Resources */,
 				ECBDAAB513F7F7DC003153F1 /* PhotoViewer.xib in Resources */,
 				ECBDAABF13F7FB7D003153F1 /* placeholder.png in Resources */,
 			);
@@ -914,11 +914,11 @@
 				ECE8D188140D1199000CC697 /* ChuteAsset.m in Sources */,
 				ECE8D18A140D1199000CC697 /* ChuteAssetManager.m in Sources */,
 				ECE8D18C140D1199000CC697 /* ChuteAssetUploader.m in Sources */,
-				ECE8D18F140D1199000CC697 /* ChuteLoginViewController.m in Sources */,
-				ECE8D191140D1199000CC697 /* ChuteUIBaseViewController.m in Sources */,
-				ECE8D193140D1199000CC697 /* ChuteREST.m in Sources */,
-				ECE8D196140D1199000CC697 /* ChuteResource.m in Sources */,
-				ECE8D198140D1199000CC697 /* ChuteAccount.m in Sources */,
+				ECE8D18F140D1199000CC697 /* GCLoginViewController.m in Sources */,
+				ECE8D191140D1199000CC697 /* GCUIBaseViewController.m in Sources */,
+				ECE8D193140D1199000CC697 /* GCRest.m in Sources */,
+				ECE8D196140D1199000CC697 /* GCResource.m in Sources */,
+				ECE8D198140D1199000CC697 /* GCAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

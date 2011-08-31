@@ -9,11 +9,11 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "ChuteConstants.h"
+#import "GCConstants.h"
 #import "NSData+Base64.h"
 #import "NSDictionary+QueryString.h"
 #import "ChuteAssetManager.h"
-#import "ChuteAccount.h"
+#import "GCAccount.h"
 
 static ChuteAPI *shared=nil;
 
@@ -49,7 +49,7 @@ static ChuteAPI *shared=nil;
             kUDID, @"x-device-identifier",
             kDEVICE_OS, @"x-device-os",
             kDEVICE_VERSION, @"x-device-version",
-            [NSString stringWithFormat:@"OAuth %@", [[ChuteAccount sharedManager] accessToken]], @"Authorization",
+            [NSString stringWithFormat:@"OAuth %@", [[GCAccount sharedManager] accessToken]], @"Authorization",
             nil];
 }
 

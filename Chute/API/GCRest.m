@@ -6,13 +6,13 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChuteREST.h"
+#import "GCRest.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
-#import "ChuteAccount.h"
+#import "GCAccount.h"
 
-@implementation ChuteREST
+@implementation GCRest
 
 - (NSMutableDictionary *)headers{
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -20,7 +20,7 @@
             kUDID, @"x-device-identifier",
             kDEVICE_OS, @"x-device-os",
             kDEVICE_VERSION, @"x-device-version",
-            [NSString stringWithFormat:@"OAuth %@", [[ChuteAccount sharedManager] accessToken]], @"Authorization",
+            [NSString stringWithFormat:@"OAuth %@", [[GCAccount sharedManager] accessToken]], @"Authorization",
             nil];
 }
 

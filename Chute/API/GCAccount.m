@@ -6,12 +6,12 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChuteAccount.h"
+#import "GCAccount.h"
 
-NSString * const ChuteAccountStatusChanged = @"ChuteAccountStatusChanged";
-static ChuteAccount *sharedAccountManager = nil;
+NSString * const GCAccountStatusChanged = @"GCAccountStatusChanged";
+static GCAccount *sharedAccountManager = nil;
 
-@implementation ChuteAccount
+@implementation GCAccount
 
 @synthesize accountStatus;
 @synthesize accessToken;
@@ -51,21 +51,21 @@ static ChuteAccount *sharedAccountManager = nil;
 
 #pragma mark - Authorization Methods
 
-- (void) setAccountStatus:(ChuteAccountStatus)_accountStatus {
+- (void) setAccountStatus:(GCAccountStatus)_accountStatus {
     accountStatus = _accountStatus;
-    [[NSNotificationCenter defaultCenter] postNotificationName:ChuteAccountStatusChanged object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GCAccountStatusChanged object:self];
 }
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
                                    success:(ChuteBasicBlock)successBlock 
                                   andError:(ChuteErrorBlock)errorBlock {
     if ([self accessToken]) {
-        [self setAccountStatus:ChuteAccountLoggedIn];
+        [self setAccountStatus:GCAccountLoggedIn];
         successBlock();
         return;
     }
     
-    [self setAccountStatus:ChuteAccountLoggingIn];
+    [self setAccountStatus:GCAccountLoggingIn];
     
     NSDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:@"profile" forKey:@"scope"];
@@ -97,16 +97,16 @@ static ChuteAccount *sharedAccountManager = nil;
         //send request to save userid
         [self getProfileInfoWithResponse:^(id response) {
             [self setUserId:[[response valueForKey:@"id"] intValue]];
-            [self setAccountStatus:ChuteAccountLoggedIn];
+            [self setAccountStatus:GCAccountLoggedIn];
             successBlock();
         } andError:^(NSError *error) {
-            [self setAccountStatus:ChuteAccountLoginFailed];
+            [self setAccountStatus:GCAccountLoginFailed];
             errorBlock([request error]);
         }];
     }];
     
     [request setFailedBlock:^{
-        [self setAccountStatus:ChuteAccountLoginFailed];
+        [self setAccountStatus:GCAccountLoginFailed];
         errorBlock([request error]);
     }];
     [request startAsynchronous];
@@ -116,7 +116,7 @@ static ChuteAccount *sharedAccountManager = nil;
 - (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
                           andError:(ChuteErrorBlock)anErrorBlock{
     NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
-    ChuteREST *chuteNetwork = [[ChuteREST alloc] init];
+    GCRest *chuteNetwork = [[GCRest alloc] init];
     [chuteNetwork getRequestInBackgroundWithPath:_path withResponse:^(id response) {
         aResponseBlock(response);
     } andError:^(NSError *error) {
@@ -138,7 +138,7 @@ static ChuteAccount *sharedAccountManager = nil;
 }
 
 #pragma mark - Methods for Singleton class
-+ (ChuteAccount *)sharedManager
++ (GCAccount *)sharedManager
 {
     if (sharedAccountManager == nil) {
         static dispatch_once_t onceToken;

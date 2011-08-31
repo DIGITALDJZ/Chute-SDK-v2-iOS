@@ -4,9 +4,9 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChuteUIBaseViewController.h"
+#import "GCUIBaseViewController.h"
 
-@implementation ChuteUIBaseViewController
+@implementation GCUIBaseViewController
 - (void) showHUD {
     [self showHUDWithTitle:@"Loading..." andOpacity:0.5f];
 }

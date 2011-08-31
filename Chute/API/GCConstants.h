@@ -1,5 +1,5 @@
 //
-//  ChuteConstants.h
+//  GCConstants.h
 //
 //  Copyright 2011 NA. All rights reserved.
 //

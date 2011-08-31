@@ -4,23 +4,23 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChuteLoginViewController.h"
+#import "GCLoginViewController.h"
 
-@interface ChuteLoginViewController()
+@interface GCLoginViewController()
 -(void) showAuthViewCompletion:(void (^)(void))completion;
 -(void) hideAuthViewCompletion:(void (^)(void))completion;
 @end
 
 
-@implementation ChuteLoginViewController
+@implementation GCLoginViewController
 
 @synthesize authView;
 @synthesize authWebView;
 
 +(void)presentInController:(UIViewController *)controller {
-    [[ChuteAccount sharedManager] verifyAuthorizationWithAccessCode:nil success:^(void) {
+    [[GCAccount sharedManager] verifyAuthorizationWithAccessCode:nil success:^(void) {
     } andError:^(NSError *error) {
-        ChuteLoginViewController *loginController = [[ChuteLoginViewController alloc] init];
+        GCLoginViewController *loginController = [[GCLoginViewController alloc] init];
         [controller presentModalViewController:loginController animated:YES];
         [loginController release];
     }];
@@ -90,7 +90,7 @@
     if ([[[request URL] path] isEqualToString:kOAuthRedirectRelativeURL]) {
         NSString *_code = [[NSDictionary dictionaryWithFormEncodedString:[[request URL] query]] objectForKey:@"code"];
         
-        [[ChuteAccount sharedManager] verifyAuthorizationWithAccessCode:_code success:^(void) {
+        [[GCAccount sharedManager] verifyAuthorizationWithAccessCode:_code success:^(void) {
             [self hideAuthViewCompletion:^{
                 [super dismissModalViewControllerAnimated:YES];
             }];

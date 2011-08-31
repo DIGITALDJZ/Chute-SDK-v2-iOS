@@ -11,7 +11,7 @@
 #import "PhotosBaseViewController.h"
 #import "BundlesBaseViewController.h"
 
-#import "ChuteNetwork.h"
+#import "GCRest.h"
 
 @implementation RootViewController
 
@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [ChuteLoginViewController presentInController:self];
+    [GCLoginViewController presentInController:self];
 }
 
 - (void)viewDidUnload

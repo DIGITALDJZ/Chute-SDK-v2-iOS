@@ -9,7 +9,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <UIKit/UIKit.h>
 
-#import "ChuteConstants.h"
+#import "GCConstants.h"
 
 extern NSString * const ChuteAssetManagerAssetsAdded;
 

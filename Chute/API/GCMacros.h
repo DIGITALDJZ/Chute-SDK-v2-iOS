@@ -1,5 +1,5 @@
 //
-//  ChuteMacros.h
+//  GCMacros.h
 //  KitchenSink
 //
 //  Created by Achal Aggarwal on 26/08/11.

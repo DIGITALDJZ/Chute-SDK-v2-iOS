@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChuteMacros.h"
-#import "ChuteConstants.h"
+#import "GCMacros.h"
+#import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 
-@interface ChuteREST : NSObject
+@interface GCRest : NSObject
 
 - (NSMutableDictionary *)headers;
 

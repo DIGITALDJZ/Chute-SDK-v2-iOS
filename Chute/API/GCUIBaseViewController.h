@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "SBJson.h"
-#import "ChuteConstants.h"
+#import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"
-#import "ChuteAccount.h"
+#import "GCAccount.h"
 
-@interface ChuteUIBaseViewController : UIViewController <UIAlertViewDelegate> {
+@interface GCUIBaseViewController : UIViewController <UIAlertViewDelegate> {
     MBProgressHUD *HUD;
     NSUInteger HUDCount;
     

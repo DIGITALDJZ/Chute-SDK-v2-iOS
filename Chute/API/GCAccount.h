@@ -7,30 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChuteREST.h"
-#import "ChuteConstants.h"
+#import "GCRest.h"
+#import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"
 
 //Notification which is fired whenever the Account Status is changed
-NSString * const ChuteAccountStatusChanged;
+NSString * const GCAccountStatusChanged;
 
 typedef enum {
-    ChuteAccountLoggedOut,
-    ChuteAccountLoggingIn,
-    ChuteAccountLoggedIn,
-    ChuteAccountLoginFailed
-} ChuteAccountStatus;
+    GCAccountLoggedOut,
+    GCAccountLoggingIn,
+    GCAccountLoggedIn,
+    GCAccountLoginFailed
+} GCAccountStatus;
 
-@interface ChuteAccount : NSObject {
-    ChuteAccountStatus accountStatus;
+@interface GCAccount : NSObject {
+    GCAccountStatus accountStatus;
     NSString *_accessToken;
 }
 
-@property (nonatomic) ChuteAccountStatus accountStatus;
+@property (nonatomic) GCAccountStatus accountStatus;
 @property (nonatomic, retain) NSString *accessToken;
 
-+ (ChuteAccount *)sharedManager;
++ (GCAccount *)sharedManager;
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
                                    success:(ChuteBasicBlock)successBlock 

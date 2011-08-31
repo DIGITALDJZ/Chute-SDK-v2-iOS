@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChuteREST.h"
+#import "GCRest.h"
 
-@interface ChuteResource : NSObject {
+@interface GCResource : NSObject {
     NSMutableDictionary *_content;
 }
 

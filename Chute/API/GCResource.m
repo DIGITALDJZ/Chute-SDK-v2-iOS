@@ -6,9 +6,9 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "ChuteResource.h"
+#import "GCResource.h"
 
-@implementation ChuteResource
+@implementation GCResource
 
 #pragma mark - All 
 /* Get all Objects of this class */
@@ -16,10 +16,10 @@
     NSString *_path                 = [[self pathForAllRequest] retain];
     
     NSError *_error = nil;
-    ChuteREST *chuteNetwork = [[ChuteREST alloc] init];
-    id _response = [chuteNetwork getRequestWithPath:_path andError:&_error];
+    GCRest *gcRest = [[GCRest alloc] init];
+    id _response = [gcRest getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
-    [chuteNetwork release];
+    [gcRest release];
     [_path release];
     return nil;
 }
@@ -78,10 +78,10 @@
     NSString *_path                 = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
     NSError *_error = nil;
-    ChuteREST *chuteNetwork = [[ChuteREST alloc] init];
-    id _response = [chuteNetwork getRequestWithPath:_path andError:&_error];
+    GCRest *gcRest = [[GCRest alloc] init];
+    id _response = [gcRest getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
-    [chuteNetwork release];
+    [gcRest release];
     [_path release];
     return nil;
 }
