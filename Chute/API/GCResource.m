@@ -13,11 +13,11 @@
 #pragma mark - All 
 /* Get all Objects of this class */
 + (NSArray *)all {
-    NSString *_path                 = [[self pathForAllRequest] retain];
+    NSString *_path     = [[self pathForAllRequest] retain];
     
-    NSError *_error = nil;
-    GCRest *gcRest = [[GCRest alloc] init];
-    id _response = [gcRest getRequestWithPath:_path andError:&_error];
+    NSError *_error     = nil;
+    GCRest *gcRest      = [[GCRest alloc] init];
+    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
     [gcRest release];
     [_path release];
@@ -35,7 +35,7 @@
 }
 
 + (NSString *)elementName {
-    //for example, this should return the string "chutes", "assets"
+    //for example, this should return the string "chutes", "assets", "bundles", "parcels"
     return nil;
 }
 
@@ -75,11 +75,11 @@
 #pragma mark - Common Get Data Methods
 
 - (NSDictionary *) getMetaData {
-    NSString *_path                 = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
-    NSError *_error = nil;
-    GCRest *gcRest = [[GCRest alloc] init];
-    id _response = [gcRest getRequestWithPath:_path andError:&_error];
+    NSError *_error     = nil;
+    GCRest *gcRest      = [[GCRest alloc] init];
+    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
     DLog(@"%@", _response);
     [gcRest release];
     [_path release];

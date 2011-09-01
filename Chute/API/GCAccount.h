@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GCRest.h"
+#import "SBJson.h"
 #import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"

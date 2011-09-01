@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		EC2AF78A140FBD1C00DD9A8B /* GCChute.h in Headers */ = {isa = PBXBuildFile; fileRef = EC2AF788140FBD1C00DD9A8B /* GCChute.h */; };
+		EC2AF78B140FBD1C00DD9A8B /* GCChute.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2AF789140FBD1C00DD9A8B /* GCChute.m */; };
 		EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790413F012A900533435 /* CreateChuteViewController.m */; };
 		EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46790813F012DC00533435 /* CreateChuteViewController.xib */; };
 		EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790C13F0132C00533435 /* ListChutesViewController.m */; };
@@ -130,6 +132,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC2AF788140FBD1C00DD9A8B /* GCChute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCChute.h; sourceTree = "<group>"; };
+		EC2AF789140FBD1C00DD9A8B /* GCChute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCChute.m; sourceTree = "<group>"; };
 		EC4678FC13F009E400533435 /* GCUIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUIBaseViewController.h; sourceTree = "<group>"; };
 		EC4678FD13F009E400533435 /* GCUIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUIBaseViewController.m; sourceTree = "<group>"; };
 		EC46790313F012A900533435 /* CreateChuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChuteViewController.h; sourceTree = "<group>"; };
@@ -457,6 +461,8 @@
 				ECF364801407DFD8006B0747 /* GCResource.m */,
 				ECE8D17A140CFA66000CC697 /* GCAccount.h */,
 				ECE8D17B140CFA66000CC697 /* GCAccount.m */,
+				EC2AF788140FBD1C00DD9A8B /* GCChute.h */,
+				EC2AF789140FBD1C00DD9A8B /* GCChute.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -733,6 +739,7 @@
 				ECE8D19B140D11B5000CC697 /* GCMacros.h in Headers */,
 				ECE8D19C140D11B5000CC697 /* GCResource.h in Headers */,
 				ECE8D19D140D11B5000CC697 /* GCAccount.h in Headers */,
+				EC2AF78A140FBD1C00DD9A8B /* GCChute.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +926,7 @@
 				ECE8D193140D1199000CC697 /* GCRest.m in Sources */,
 				ECE8D196140D1199000CC697 /* GCResource.m in Sources */,
 				ECE8D198140D1199000CC697 /* GCAccount.m in Sources */,
+				EC2AF78B140FBD1C00DD9A8B /* GCChute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
