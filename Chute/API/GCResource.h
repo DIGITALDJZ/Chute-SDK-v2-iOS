@@ -31,8 +31,11 @@
 - (void) setObject:(id) aObject forKey:(id)aKey;
 - (id) objectForKey:(id)aKey;
 
-//Common Get Data Methods
+//Common Meta Data Methods
 - (NSDictionary *) getMetaData;
+- (BOOL) setMetaData:(NSDictionary *) metaData;
+
+//Common Get Data Methods
 - (NSUInteger) objectID;
 
 @end

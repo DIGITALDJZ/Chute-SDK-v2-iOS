@@ -78,12 +78,17 @@
 - (IBAction)sync:(id)sender {
     
         
-    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
-        DLog(@"%@", [response class]);
-        [response getMetaData];
-    } andError:^(NSError *error) {
-        
-    }];
+//    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
+//        [response setMetaData:[NSDictionary dictionaryWithObjectsAndKeys:@"obj1", @"key1", @"obj2", @"key2", nil]];
+//    } andError:^(NSError *error) {
+//        
+//    }];
+//    
+//    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
+//        [response getMetaData];
+//    } andError:^(NSError *error) {
+//        
+//    }];
     
     //[[ChuteNetwork new] getRequestInBackgroundWithPath:@"http://google.com" andParams:nil withResponse:nil andError:nil];
 //    [[ChuteAPI shared] test];

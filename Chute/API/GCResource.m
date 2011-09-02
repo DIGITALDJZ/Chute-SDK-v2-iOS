@@ -95,7 +95,7 @@
     return _content;
 }
 
-#pragma mark - Common Get Data Methods
+#pragma mark - Common Meta Data Methods
 
 - (NSDictionary *) getMetaData {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
@@ -103,10 +103,27 @@
     NSError *_error     = nil;
     GCRest *gcRest      = [[GCRest alloc] init];
     id _response        = [gcRest getRequestWithPath:_path andError:&_error];
-    DLog(@"%@", _response);
     [gcRest release];
     [_path release];
-    return nil;
+    return [_response objectForKey:@"data"];
+}
+
+- (BOOL) setMetaData:(NSDictionary *) metaData {
+    NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
+    [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    NSError *_error             = nil;
+    
+    GCRest *gcRest              = [[GCRest alloc] init];
+    [gcRest postRequestWithPath:_path andParams:_params andError:&_error];
+    [_path release];
+    [_params release];
+    
+    if (_error == nil) {
+        return YES;
+    }
+    return NO;
 }
 
 - (NSUInteger) objectID {

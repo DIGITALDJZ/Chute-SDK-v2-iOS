@@ -10,6 +10,7 @@
 #import "GCMacros.h"
 #import "GCConstants.h"
 #import "ASIHTTPRequest.h"
+#import "SBJson.h"
 
 @interface GCRest : NSObject
 
