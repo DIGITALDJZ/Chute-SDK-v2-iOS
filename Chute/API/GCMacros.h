@@ -8,6 +8,9 @@
 #ifndef ChuteMacros_h
 #define ChuteMacros_h
 
+//Comment this line to stop debug log on the debugger console.
+#define DEBUG
+
 typedef void(^ChuteBasicBlock)(void);
 typedef void(^ChuteErrorBlock)(NSError *error);
 typedef void(^ChuteResponseBlock)(id response);
@@ -30,6 +33,19 @@ errorBlock(_error);\
 });\
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+#define IS_NULL(x)	((nil == x) || ([x isEqual: [NSNull null]]))
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #endif
 

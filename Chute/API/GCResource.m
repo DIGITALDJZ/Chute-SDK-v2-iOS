@@ -108,6 +108,17 @@
     return [_response objectForKey:@"data"];
 }
 
+- (id) getMetaDataForKey:(NSString *) key {
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
+    
+    NSError *_error     = nil;
+    GCRest *gcRest      = [[GCRest alloc] init];
+    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
+    [gcRest release];
+    [_path release];
+    return [_response objectForKey:@"data"];
+}
+
 - (BOOL) setMetaData:(NSDictionary *) metaData {
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
@@ -119,6 +130,40 @@
     [gcRest postRequestWithPath:_path andParams:_params andError:&_error];
     [_path release];
     [_params release];
+    
+    if (_error == nil) {
+        return YES;
+    }
+    DLog(@"%@", [_error localizedDescription]);
+    return NO;
+}
+
+- (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key {
+    NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
+    [_params setValue:[data dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
+    NSError *_error             = nil;
+    
+    GCRest *gcRest              = [[GCRest alloc] init];
+    [gcRest putRequestWithPath:_path andParams:_params andError:&_error];
+    [_path release];
+    [_params release];
+    
+    if (_error == nil) {
+        return YES;
+    }
+    DLog(@"%@", [_error localizedDescription]);
+    return NO;
+}
+
+- (BOOL) deleteMetaData {
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    NSError *_error             = nil;
+    
+    GCRest *gcRest              = [[GCRest alloc] init];
+    [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    [_path release];
     
     if (_error == nil) {
         return YES;

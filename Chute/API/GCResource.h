@@ -33,7 +33,10 @@
 
 //Common Meta Data Methods
 - (NSDictionary *) getMetaData;
+- (id) getMetaDataForKey:(NSString *) key;
 - (BOOL) setMetaData:(NSDictionary *) metaData;
+- (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key;
+- (BOOL) deleteMetaData;
 
 //Common Get Data Methods
 - (NSUInteger) objectID;

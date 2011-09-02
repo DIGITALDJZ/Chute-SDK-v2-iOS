@@ -16,31 +16,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef DEBUG
-#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#else
-#define DLog(...)
-#endif
-
-#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-
-#define IS_NULL(x)	((nil == x) || ([x isEqual: [NSNull null]]))
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#ifdef DEBUG
-#ifdef LOCAL_SERVER
-#define API_URL @"http://api.getchute.local:8080/v1/"
-#define SERVER_URL @"http://getchute.local:8080"
-#else
 #define API_URL @"http://api.developer.getchute.com/v1/"
 #define SERVER_URL @"http://developer.getchute.com"
-#endif
-#else
-//Please change to Production URL before submitting
-#define API_URL @"http://api.developer.getchute.com/v1/"
-#define SERVER_URL @"http://developer.getchute.com"
-#endif
 
 #define kChutePathVerifyAssets          @"assets/verify"
 #define kChuteParcels                   @"parcels"
