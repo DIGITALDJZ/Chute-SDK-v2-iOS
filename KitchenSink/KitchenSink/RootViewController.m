@@ -76,16 +76,35 @@
 }
 
 - (IBAction)sync:(id)sender {
+
     
-        
+    
+//    [GCChute allInBackgroundWithCompletion:^(id response) {
+//        DLog(@"%@", response); 
+//    } andError:^(NSError *error) {
+//        
+//    }];
+
     [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
+        [response destroy];
+    } andError:^(NSError *error) {        
+        DLog(@"%@", [error localizedDescription]);
+    }];
+    
+//    [GCChute allInBackgroundWithCompletion:^(id response) {
+//        DLog(@"%@", response); 
+//    } andError:^(NSError *error) {
+//        
+//    }];
+        
+//    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
 //        [response setMetaData:[NSDictionary dictionaryWithObjectsAndKeys:@"obj1", @"key1", @"obj2", @"key2", nil]];
 //        DLog(@"%@", [response getMetaDataForKey:@"key1"]);
 //        [response deleteMetaDataForKey:@"key1"];
 //        DLog(@"%@", [response getMetaDataForKey:@"key1"]);
-    } andError:^(NSError *error) {
-        
-    }];
+//    } andError:^(NSError *error) {
+//        
+//    }];
 //    
 //    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
 //        [response getMetaData];

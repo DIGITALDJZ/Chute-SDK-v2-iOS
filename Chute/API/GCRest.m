@@ -31,6 +31,14 @@
     [_request setTimeOutSeconds:300.0];
     [_request startSynchronous];
 
+    if ([_request responseStatusCode] != 200) {
+        NSMutableDictionary *_errorDetail = [[NSMutableDictionary alloc] init];
+        [_errorDetail setValue:[[[_request responseString] JSONValue] objectForKey:@"error"] forKey:NSLocalizedDescriptionKey];
+        *error = [NSError errorWithDomain:@"myDomain" code:100 userInfo:_errorDetail];
+        [_errorDetail release];
+        return nil;
+    }
+    
     *error = [_request error];
 
     NSString *_responseString = [_request responseString];

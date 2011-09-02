@@ -42,4 +42,14 @@
 //Common Get Data Methods
 - (NSUInteger) objectID;
 
+//Instance Method Calls
+- (BOOL) save;
+- (void) saveInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+                               andError:(ChuteErrorBlock) anErrorBlock;
+
+- (BOOL) destroy;
+- (void) destroyInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+                                  andError:(ChuteErrorBlock) anErrorBlock;
+
+
 @end

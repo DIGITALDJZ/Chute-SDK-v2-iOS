@@ -34,7 +34,8 @@
     GCRest *gcRest      = [[GCRest alloc] init];
     id _response        = [gcRest getRequestWithPath:_path andError:&_error];
     //Parse the Response to make proper objects of this class.
-
+    DLog(@"%@", _response);
+    DLog(@"%@", [_error localizedDescription]);
     id _obj = nil;
     _obj = [[self alloc] initWithDictionary:_response];
     
@@ -128,6 +129,7 @@
     
     GCRest *gcRest              = [[GCRest alloc] init];
     [gcRest postRequestWithPath:_path andParams:_params andError:&_error];
+    [gcRest release];
     [_path release];
     [_params release];
     
@@ -147,6 +149,7 @@
     
     GCRest *gcRest              = [[GCRest alloc] init];
     [gcRest putRequestWithPath:_path andParams:_params andError:&_error];
+    [gcRest release];
     [_path release];
     [_params release];
     
@@ -163,6 +166,7 @@
     
     GCRest *gcRest              = [[GCRest alloc] init];
     [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    [gcRest release];
     [_path release];
     
     if (_error == nil) {
@@ -177,6 +181,7 @@
     
     GCRest *gcRest              = [[GCRest alloc] init];
     [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    [gcRest release];
     [_path release];
     
     if (_error == nil) {
@@ -187,6 +192,37 @@
 
 - (NSUInteger) objectID {
     return [[_content objectForKey:@"id"] intValue];
+}
+
+#pragma mark - Instance Method Calls
+
+- (BOOL) save {
+    return NO;
+}
+
+- (void) saveInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+                               andError:(ChuteErrorBlock) anErrorBlock {
+    
+}
+
+- (BOOL) destroy {
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
+    NSError *_error     = nil;
+    
+    GCRest *gcRest      = [[GCRest alloc] init];
+    [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    [gcRest release];
+    [_path release];
+    
+    if (_error == nil) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void) destroyInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+                                  andError:(ChuteErrorBlock) anErrorBlock {
+    DO_IN_BACKGROUND([self destroy], aResponseBlock, anErrorBlock);
 }
 
 @end
