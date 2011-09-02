@@ -129,6 +129,8 @@
 		ECE8D19B140D11B5000CC697 /* GCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647E1407DF81006B0747 /* GCMacros.h */; };
 		ECE8D19C140D11B5000CC697 /* GCResource.h in Headers */ = {isa = PBXBuildFile; fileRef = ECF3647F1407DFD8006B0747 /* GCResource.h */; };
 		ECE8D19D140D11B5000CC697 /* GCAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE8D17A140CFA66000CC697 /* GCAccount.h */; };
+		ECFE6EE2141116C00073219C /* GCError.h in Headers */ = {isa = PBXBuildFile; fileRef = ECFE6EE0141116BF0073219C /* GCError.h */; };
+		ECFE6EE3141116C00073219C /* GCError.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE6EE1141116BF0073219C /* GCError.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -310,6 +312,8 @@
 		ECF3647E1407DF81006B0747 /* GCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMacros.h; sourceTree = "<group>"; };
 		ECF3647F1407DFD8006B0747 /* GCResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResource.h; sourceTree = "<group>"; };
 		ECF364801407DFD8006B0747 /* GCResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResource.m; sourceTree = "<group>"; };
+		ECFE6EE0141116BF0073219C /* GCError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCError.h; sourceTree = "<group>"; };
+		ECFE6EE1141116BF0073219C /* GCError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCError.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +467,8 @@
 				ECE8D17B140CFA66000CC697 /* GCAccount.m */,
 				EC2AF788140FBD1C00DD9A8B /* GCChute.h */,
 				EC2AF789140FBD1C00DD9A8B /* GCChute.m */,
+				ECFE6EE0141116BF0073219C /* GCError.h */,
+				ECFE6EE1141116BF0073219C /* GCError.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -740,6 +746,7 @@
 				ECE8D19C140D11B5000CC697 /* GCResource.h in Headers */,
 				ECE8D19D140D11B5000CC697 /* GCAccount.h in Headers */,
 				EC2AF78A140FBD1C00DD9A8B /* GCChute.h in Headers */,
+				ECFE6EE2141116C00073219C /* GCError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +934,7 @@
 				ECE8D196140D1199000CC697 /* GCResource.m in Sources */,
 				ECE8D198140D1199000CC697 /* GCAccount.m in Sources */,
 				EC2AF78B140FBD1C00DD9A8B /* GCChute.m in Sources */,
+				ECFE6EE3141116C00073219C /* GCError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

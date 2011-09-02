@@ -46,7 +46,12 @@
 
 + (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
         andError:(ChuteErrorBlock) anErrorBlock {
-    DO_IN_BACKGROUND([self findById:objectID], aResponseBlock, anErrorBlock);
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
+    GCRest *gcRest      = [[GCRest alloc] init];
+    [gcRest getRequestInBackgroundWithPath:_path withResponse:aResponseBlock andError:anErrorBlock];
+    [gcRest release];
+    [_path release];
+    //DO_IN_BACKGROUND([self findById:objectID], aResponseBlock, anErrorBlock);
 }
 
 #pragma mark - Override these methods in every Subclass
@@ -222,7 +227,11 @@
 
 - (void) destroyInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
                                   andError:(ChuteErrorBlock) anErrorBlock {
-    DO_IN_BACKGROUND([self destroy], aResponseBlock, anErrorBlock);
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
+    GCRest *gcRest      = [[GCRest alloc] init];
+    [gcRest deleteRequestInBackgroundWithPath:_path andParams:nil withResponse:aResponseBlock andError:anErrorBlock];
+    [gcRest release];
+    [_path release];
 }
 
 @end

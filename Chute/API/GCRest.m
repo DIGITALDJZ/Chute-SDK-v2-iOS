@@ -117,4 +117,18 @@
     DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error], aResponseBlock, anErrorBlock);
 }
 
+- (void)putRequestInBackgroundWithPath:(NSString *)path
+                             andParams:(NSMutableDictionary *)params
+                          withResponse:(ChuteResponseBlock)aResponseBlock
+                              andError:(ChuteErrorBlock)anErrorBlock {
+    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error andMethod:@"PUT"], aResponseBlock, anErrorBlock);
+}
+
+- (void)deleteRequestInBackgroundWithPath:(NSString *)path
+                                andParams:(NSMutableDictionary *)params
+                             withResponse:(ChuteResponseBlock)aResponseBlock
+                                 andError:(ChuteErrorBlock)anErrorBlock {
+    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error andMethod:@"PUT"], aResponseBlock, anErrorBlock);
+}
+
 @end

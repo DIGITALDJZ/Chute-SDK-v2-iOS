@@ -45,4 +45,14 @@
                               andParams:(NSMutableDictionary *)params
                            withResponse:(ChuteResponseBlock)aResponseBlock
                                andError:(ChuteErrorBlock)anErrorBlock;
+
+- (void)putRequestInBackgroundWithPath:(NSString *)path
+                              andParams:(NSMutableDictionary *)params
+                           withResponse:(ChuteResponseBlock)aResponseBlock
+                               andError:(ChuteErrorBlock)anErrorBlock;
+
+- (void)deleteRequestInBackgroundWithPath:(NSString *)path
+                              andParams:(NSMutableDictionary *)params
+                           withResponse:(ChuteResponseBlock)aResponseBlock
+                               andError:(ChuteErrorBlock)anErrorBlock;
 @end
