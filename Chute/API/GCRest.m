@@ -48,6 +48,13 @@
 - (id)postRequestWithPath:(NSString *)path
                 andParams:(NSMutableDictionary *)params
                  andError:(NSError **)error {
+    return [self postRequestWithPath:path andParams:params andError:error andMethod:@"POST"];
+}
+
+- (id)postRequestWithPath:(NSString *)path
+                andParams:(NSMutableDictionary *)params
+                 andError:(NSError **)error 
+                andMethod:(NSString *)method {
     ASIFormDataRequest *_request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:path]];
     [_request setRequestHeaders:[self headers]];
     
@@ -60,7 +67,7 @@
             [_request setPostValue:[params objectForKey:key] forKey:key];
         }
     }
-    [_request setRequestMethod:@"POST"];
+    [_request setRequestMethod:method];
     [_request startSynchronous];
     
     *error = [_request error];
@@ -76,17 +83,16 @@
     return nil;
 }
 
-- (void)getRequestInBackgroundWithPath:(NSString *)path 
-                          withResponse:(ChuteResponseBlock)aResponseBlock 
-                              andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self getRequestWithPath:path andError:&_error], aResponseBlock, anErrorBlock);
+- (id)putRequestWithPath:(NSString *)path
+               andParams:(NSMutableDictionary *)params
+                andError:(NSError **)error {
+    return [self postRequestWithPath:path andParams:params andError:error andMethod:@"PUT"];
 }
 
-- (void)postRequestInBackgroundWithPath:(NSString *)path 
-                              andParams:(NSMutableDictionary *)params 
-                           withResponse:(ChuteResponseBlock)aResponseBlock 
-                               andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error], aResponseBlock, anErrorBlock);
+- (id)deleteRequestWithPath:(NSString *)path
+                  andParams:(NSMutableDictionary *)params
+                   andError:(NSError **)error {
+    return [self postRequestWithPath:path andParams:params andError:error andMethod:@"DELETE"];
 }
 
 @end

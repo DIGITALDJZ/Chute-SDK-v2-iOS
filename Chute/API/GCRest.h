@@ -22,12 +22,17 @@
                 andParams:(NSMutableDictionary *)params
                 andError:(NSError **)error;
 
-- (void)getRequestInBackgroundWithPath:(NSString *)path 
-                          withResponse:(ChuteResponseBlock)aResponseBlock 
-                              andError:(ChuteErrorBlock)anErrorBlock;
+- (id)postRequestWithPath:(NSString *)path
+                andParams:(NSMutableDictionary *)params
+                 andError:(NSError **)error 
+                andMethod:(NSString *)method;
 
-- (void)postRequestInBackgroundWithPath:(NSString *)path 
-                              andParams:(NSMutableDictionary *)params 
-                           withResponse:(ChuteResponseBlock)aResponseBlock 
-                               andError:(ChuteErrorBlock)anErrorBlock;
+- (id)putRequestWithPath:(NSString *)path
+                andParams:(NSMutableDictionary *)params
+                 andError:(NSError **)error;
+
+- (id)deleteRequestWithPath:(NSString *)path
+                andParams:(NSMutableDictionary *)params
+                 andError:(NSError **)error;
+
 @end

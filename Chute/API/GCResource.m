@@ -34,10 +34,13 @@
     GCRest *gcRest      = [[GCRest alloc] init];
     id _response        = [gcRest getRequestWithPath:_path andError:&_error];
     //Parse the Response to make proper objects of this class.
-    DLog(@"%@", _response);
+
+    id _obj = nil;
+    _obj = [[self alloc] initWithDictionary:_response];
+    
     [gcRest release];
     [_path release];
-    return nil;
+    return [_obj autorelease];
 }
 
 + (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
@@ -62,6 +65,14 @@
     self = [super init];
     if (self) {
         _content = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
+- (id) initWithDictionary:(NSDictionary *) dictionary {
+    [self init];
+    for (NSString *key in [dictionary allKeys]) {
+        [self setObject:[dictionary objectForKey:key] forKey:key];
     }
     return self;
 }

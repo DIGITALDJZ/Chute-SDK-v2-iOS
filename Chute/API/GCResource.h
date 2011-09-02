@@ -35,5 +35,4 @@
 - (NSDictionary *) getMetaData;
 - (NSUInteger) objectID;
 
-
 @end
