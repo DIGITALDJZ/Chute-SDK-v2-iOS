@@ -116,13 +116,14 @@ static GCAccount *sharedAccountManager = nil;
 - (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
                           andError:(ChuteErrorBlock)anErrorBlock{
     NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
-    GCRest *chuteNetwork = [[GCRest alloc] init];
-    [chuteNetwork getRequestInBackgroundWithPath:_path withResponse:^(id response) {
+    GCRest *gcRest = [[GCRest alloc] init];
+    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {
         aResponseBlock(response);
     } andError:^(NSError *error) {
         anErrorBlock(error);
     }];
-    [chuteNetwork release];
+    
+    [gcRest release];
     [_path release];
 }
 

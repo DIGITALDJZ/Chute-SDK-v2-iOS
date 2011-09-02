@@ -77,13 +77,13 @@
 
 - (IBAction)sync:(id)sender {
     
-    [GCChute allInBackgroundWithCompletion:^(id response) {
-
+        
+    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
+        DLog(@"%@", [response class]);
+        [response getMetaData];
     } andError:^(NSError *error) {
         
     }];
-    
-    [GCChute findById:32];
     
     //[[ChuteNetwork new] getRequestInBackgroundWithPath:@"http://google.com" andParams:nil withResponse:nil andError:nil];
 //    [[ChuteAPI shared] test];

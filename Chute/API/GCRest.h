@@ -35,4 +35,13 @@
                 andParams:(NSMutableDictionary *)params
                  andError:(NSError **)error;
 
+//Background Calls
+- (void)getRequestInBackgroundWithPath:(NSString *)path
+                          withResponse:(ChuteResponseBlock)aResponseBlock 
+                              andError:(ChuteErrorBlock)anErrorBlock;
+
+- (void)postRequestInBackgroundWithPath:(NSString *)path
+                              andParams:(NSMutableDictionary *)params
+                           withResponse:(ChuteResponseBlock)aResponseBlock
+                               andError:(ChuteErrorBlock)anErrorBlock;
 @end

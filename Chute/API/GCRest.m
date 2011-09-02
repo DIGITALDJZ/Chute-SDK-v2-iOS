@@ -95,4 +95,19 @@
     return [self postRequestWithPath:path andParams:params andError:error andMethod:@"DELETE"];
 }
 
+#pragma mark - Background Method Calls
+
+- (void)getRequestInBackgroundWithPath:(NSString *)path
+                          withResponse:(ChuteResponseBlock)aResponseBlock 
+                              andError:(ChuteErrorBlock)anErrorBlock {
+    DO_IN_BACKGROUND([self getRequestWithPath:path andError:&_error], aResponseBlock, anErrorBlock);
+}
+
+- (void)postRequestInBackgroundWithPath:(NSString *)path
+                              andParams:(NSMutableDictionary *)params
+                           withResponse:(ChuteResponseBlock)aResponseBlock
+                               andError:(ChuteErrorBlock)anErrorBlock {
+    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error], aResponseBlock, anErrorBlock);
+}
+
 @end
