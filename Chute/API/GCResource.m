@@ -171,6 +171,20 @@
     return NO;
 }
 
+- (BOOL) deleteMetaDataForKey:(NSString *) key {
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
+    NSError *_error             = nil;
+    
+    GCRest *gcRest              = [[GCRest alloc] init];
+    [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    [_path release];
+    
+    if (_error == nil) {
+        return YES;
+    }
+    return NO;
+}
+
 - (NSUInteger) objectID {
     return [[_content objectForKey:@"id"] intValue];
 }

@@ -37,6 +37,7 @@
 - (BOOL) setMetaData:(NSDictionary *) metaData;
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key;
 - (BOOL) deleteMetaData;
+- (BOOL) deleteMetaDataForKey:(NSString *) key;
 
 //Common Get Data Methods
 - (NSUInteger) objectID;
