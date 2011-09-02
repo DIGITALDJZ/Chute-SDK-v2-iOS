@@ -6,7 +6,7 @@
 
 #import "GCUIBaseViewController.h"
 
-#define SERVICES_ARRAY [NSArray arrayWithObjects:@"facebook", @"evernote", @"chute", nil]
+#define SERVICES_ARRAY [NSArray arrayWithObjects:@"facebook", @"evernote", @"chute", @"twitter", @"foursquare", nil]
 
 @interface GCLoginViewController : GCUIBaseViewController <UIWebViewDelegate> {
     IBOutlet UIButton *loginButton;

@@ -15,10 +15,15 @@
 
 /* Get all Objects of this class */
 + (NSArray *)all;
-+ (void)allInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock andError:(ChuteErrorBlock) anErrorBlock;
++ (void)allInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+                             andError:(ChuteErrorBlock) anErrorBlock;
+
+//Find Specific object data with Id
++ (id)findById:(NSUInteger) objectID;
++ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+        andError:(ChuteErrorBlock) anErrorBlock;
 
 //Methods to Override in SubClass
-+ (NSString *)pathForAllRequest;
 + (BOOL)supportsMetaData;
 + (NSString *)elementName;
 

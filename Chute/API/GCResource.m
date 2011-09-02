@@ -13,11 +13,11 @@
 #pragma mark - All 
 /* Get all Objects of this class */
 + (NSArray *)all {
-    NSString *_path     = [[self pathForAllRequest] retain];
-    
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
     NSError *_error     = nil;
     GCRest *gcRest      = [[GCRest alloc] init];
     id _response        = [gcRest getRequestWithPath:_path andError:&_error];
+    //Parse the Response to make proper objects of this class.
     DLog(@"%@", _response);
     [gcRest release];
     [_path release];
@@ -28,12 +28,24 @@
     DO_IN_BACKGROUND([self all], aResponseBlock, anErrorBlock);
 }
 
-#pragma mark - Override these methods in every Subclass
-+ (NSString *)pathForAllRequest {
-    //return an autoreleased NSString which is the path to get all
++ (id)findById:(NSUInteger) objectID {
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
+    NSError *_error     = nil;
+    GCRest *gcRest      = [[GCRest alloc] init];
+    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
+    //Parse the Response to make proper objects of this class.
+    DLog(@"%@", _response);
+    [gcRest release];
+    [_path release];
     return nil;
 }
 
++ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
+        andError:(ChuteErrorBlock) anErrorBlock {
+    DO_IN_BACKGROUND([self findById:objectID], aResponseBlock, anErrorBlock);
+}
+
+#pragma mark - Override these methods in every Subclass
 + (NSString *)elementName {
     //for example, this should return the string "chutes", "assets", "bundles", "parcels"
     return nil;
