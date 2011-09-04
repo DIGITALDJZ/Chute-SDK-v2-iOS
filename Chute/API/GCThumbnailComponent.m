@@ -45,7 +45,8 @@
     NSLog(@"object tapped at index: %i",index);
     UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.frame];
     [image setImage:[[objects objectAtIndex:index] imageForWidth:self.view.frame.size.width andHeight:self.view.frame.size.height]];
-    [image setBackgroundColor:[UIColor yellowColor]];
+    [image setContentMode:UIViewContentModeScaleAspectFit];
+    [image setBackgroundColor:[UIColor blackColor]];
     [image setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeImageView:)];
     [image addGestureRecognizer:tap];
@@ -182,7 +183,6 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(objectTappedWithGesture:)];
         [image addGestureRecognizer:tap];
         [tap release];
-        [image setBackgroundColor:[UIColor blueColor]];
         [image setUserInteractionEnabled:YES];
         [view addSubview:image];
         rect = CGRectMake((rect.origin.x+[self thumbSize]+[self spacingSize]), rect.origin.y, rect.size.width, rect.size.height);

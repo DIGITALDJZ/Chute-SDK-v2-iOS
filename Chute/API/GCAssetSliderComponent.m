@@ -1,16 +1,18 @@
 //
-//  genericSliderController.m
+//  GCAssetSliderComponent.m
 //  realtyChute
 //
-//  Created by Brandon Coston on 7/25/11.
+//  Created by Brandon Coston on 9/03/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "GCAssetSliderComponent.h"
+#import "GCAsset.h"
+#import "TouchImageView.h"
 
 
 @implementation GCAssetSliderComponent
-@synthesize objectDictionaries, sliderObjects;
+@synthesize objects, sliderObjects;
 
 - (CGRect)rectForPage:(NSInteger)page{
     CGRect imageRect = CGRectMake((objectSlider.frame.size.width*(page-1)), 0, objectSlider.frame.size.width, objectSlider.frame.size.height);
@@ -19,20 +21,21 @@
 
 - (void) resizeScrollView
 {
-    NSUInteger size = [[self objectDictionaries] count];
+    NSUInteger size = [[self objects] count];
     [objectSlider setContentSize:CGSizeMake(objectSlider.frame.size.width * size, objectSlider.frame.size.height)];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sv
 { 
+    if(sv == objectSlider)
     [self loadObjectsForCurrentPosition];
 }
 
 - (void)loadObjectsForCurrentPosition
 {
-    if(![self objectDictionaries])
+    if(![self objects])
         return;
-    if([[self objectDictionaries] count] == 0)
+    if([[self objects] count] == 0)
         return;
     currentPage = ((objectSlider.contentOffset.x - objectSlider.frame.size.width / 2) / objectSlider.frame.size.width) + 2; 
     BOOL foundCurrent = NO;
@@ -68,6 +71,13 @@
         }
     }
     
+    NSMutableArray *array = [NSMutableArray array];
+    for(UIScrollView *image in [self sliderObjects]){
+        if(image.superview)
+            [array addObject:image];
+    }
+    [self setSliderObjects:array];
+    
     // Load Images    
     if (foundCurrent == NO)
     {
@@ -86,16 +96,39 @@
 }
 
 -(UIView*) viewForPage:(NSInteger)page{
-    //TODO Override in subclass
-    [NSException raise:NSInternalInconsistencyException 
-                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+    GCAsset *asset = [objects objectAtIndex:page];
+    UIScrollView *view = [[[UIScrollView alloc] initWithFrame:objectSlider.frame] autorelease];
+    UIImageView *image = [[[UIImageView alloc] initWithFrame:objectSlider.frame] autorelease];
+    [image setContentMode:UIViewContentModeScaleAspectFit];
+    [image setImage:[asset imageForWidth:view.frame.size.width andHeight:view.frame.size.height]];
+    image.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    [view setMinimumZoomScale:1];
+    [view setMaximumZoomScale:2.5];
+    [view setClipsToBounds:YES];
+    [view setBackgroundColor:[UIColor blackColor]];
+    [view setShowsVerticalScrollIndicator:NO];
+    [view setShowsHorizontalScrollIndicator:NO];
+    [image setClipsToBounds:YES];
+    [view setContentSize: CGSizeMake(image.bounds.size.width, image.bounds.size.height)];
+    [view addSubview:image];
+    [view setDelegate:self];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[self sliderObjects]];
+    [array addObject:view];
+    [self setSliderObjects:array];
+    return view;
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    if(scrollView != objectSlider){
+        return [scrollView.subviews objectAtIndex:0];
+    }
     return NULL;
 }
 
 //varies depending on objects.  Implement in child class
 - (void) queueObjectRetrievalForPage:(NSInteger)page
 {
-    if (page < 1 || page > ([[self objectDictionaries] count]))
+    if (page < 1 || page > ([[self objects] count]))
     {
         return;
     }
@@ -105,25 +138,19 @@
     [objectSlider addSubview:v];
 }
 
-//fill objectDictionaries in child's implementaion then call [super prepareSliderObjects]
--(void)prepareSliderObjects{
-    [self resizeScrollView];
-    [self loadObjectsForCurrentPosition];
-}
-
 - (void)switchToObjectAtIndex:(NSNumber*)index{
     [self switchToObjectAtIndex:[index unsignedIntValue] animated:NO];
 }
 - (void)switchToObjectAtIndex:(NSUInteger)index animated:(BOOL)_animated{
-    if(index > [[self objectDictionaries] count])
-        index = [[self objectDictionaries] count];
+    if(index > [[self objects] count])
+        index = [[self objects] count];
     [objectSlider scrollRectToVisible:[self rectForPage:index] animated:_animated];
     [self performSelector:@selector(loadObjectsForCurrentPosition) withObject:nil afterDelay:.4];
 }
 
 
 - (void)nextObject{
-    if(currentPage >= ([[self objectDictionaries] count]))
+    if(currentPage >= ([[self objects] count]))
         return;
     [self switchToObjectAtIndex:(currentPage+1) animated:YES];
 }
@@ -162,8 +189,12 @@
 
 - (void)viewDidLoad
 {
-    [self prepareSliderObjects];
     [super viewDidLoad];
+    [self resizeScrollView];
+    [self loadObjectsForCurrentPosition];
+    [objectSlider setPagingEnabled:YES];
+    [objectSlider setClipsToBounds:YES];
+    [objectSlider setDelegate:self];
     // Do any additional setup after loading the view from its nib.
     //[table setAllowsSelection:NO];
 }
