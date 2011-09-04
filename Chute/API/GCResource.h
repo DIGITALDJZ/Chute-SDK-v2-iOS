@@ -27,6 +27,7 @@
 + (BOOL)supportsMetaData;
 + (NSString *)elementName;
 
+- (id) initWithDictionary:(NSDictionary *) dictionary;
 
 - (void) setObject:(id) aObject forKey:(id)aKey;
 - (id) objectForKey:(id)aKey;
