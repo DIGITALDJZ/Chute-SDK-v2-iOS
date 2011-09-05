@@ -184,6 +184,7 @@
 #pragma mark - Instance Method Calls
 
 - (BOOL) save {
+    DLog(@"%@", [self JSONRepresentation]);
     return NO;
 }
 

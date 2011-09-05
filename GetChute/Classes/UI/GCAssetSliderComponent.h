@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChuteSDK.h"
+#import "GCUIBaseViewController.h"
 
-@interface GCAssetSliderComponent : GCUIBaseViewController <UIScrollViewDelegate>{
+@interface GCAssetSliderComponent : GCUIBaseViewController <UIScrollViewDelegate> {
     NSMutableArray *sliderObjects;
     NSArray *objects;
     IBOutlet UIScrollView *objectSlider;

@@ -21,7 +21,7 @@ typedef void(^GCResponseBlock)(GCResponseObject *response);
 
 #define DO_IN_BACKGROUND(action, responseBlock) \
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
-        GCResponseObject *_response = action;\
+        id _response = action;\
         dispatch_async(dispatch_get_main_queue(), ^(void) {\
             if (aResponseBlock) {\
                 aResponseBlock(_response);\

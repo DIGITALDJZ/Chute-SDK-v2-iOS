@@ -12,7 +12,7 @@
 //  If you subclass the view you can either create the view programatically or use interface builder.  If you use interface builder remember to connect your table to objectTable.  The default viewDidLoad method will automatically set the background to clear, remove seperator lines, set the delegate and data source, and disallow selection of rows on the table.
 
 #import <UIKit/UIKit.h>
-#import "ChuteSDK.h"
+#import "GetChute.h"
 
 @interface GCThumbnailComponent : GCUIBaseViewController <UITableViewDelegate, UITableViewDataSource>{
     NSArray *objects;

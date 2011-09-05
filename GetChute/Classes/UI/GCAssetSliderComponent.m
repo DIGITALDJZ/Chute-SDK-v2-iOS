@@ -8,8 +8,6 @@
 
 #import "GCAssetSliderComponent.h"
 #import "GCAsset.h"
-#import "TouchImageView.h"
-
 
 @implementation GCAssetSliderComponent
 @synthesize objects, sliderObjects;

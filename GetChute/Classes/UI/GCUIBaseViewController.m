@@ -1,5 +1,5 @@
 //
-//  UIBaseViewController.m
+//  GCUIBaseViewController.m
 //
 //  Copyright 2011 NA. All rights reserved.
 //
