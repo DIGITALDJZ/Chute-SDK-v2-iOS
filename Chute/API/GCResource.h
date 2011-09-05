@@ -46,7 +46,7 @@
 - (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 - (BOOL) destroy;
-- (void) destroyInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aResponseBlock;
 
 
 @end

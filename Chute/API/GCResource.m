@@ -46,8 +46,7 @@
     GCRest *gcRest      = [[GCRest alloc] init];
 
     GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
-    
-    [_response setData:[[self alloc] initWithDictionary:[_response rawResponse]]];
+    [_response setData:[[self alloc] initWithDictionary:[_response object]]];
     
     [gcRest release];
     [_path release];
@@ -113,22 +112,21 @@
     GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
     [gcRest release];
     [_path release];
-    return _response;
+    return [_response autorelease];
 }
 
 - (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
     DO_IN_BACKGROUND([self getMetaData], aResponseBlock);
 }
 
-- (id) getMetaDataForKey:(NSString *) key {
+- (GCResponseObject *) getMetaDataForKey:(NSString *) key {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    NSError *_error     = nil;
-    GCRest *gcRest      = [[GCRest alloc] init];
-    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
+    GCRest *gcRest                      = [[GCRest alloc] init];
+    GCResponseObject *_response         = [[gcRest getRequestWithPath:_path] retain];
     [gcRest release];
     [_path release];
-    return [_response objectForKey:@"data"];
+    return [_response autorelease];
 }
 
 - (BOOL) setMetaData:(NSDictionary *) metaData {
@@ -136,19 +134,13 @@
     [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
 
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
-    NSError *_error             = nil;
     
     GCRest *gcRest              = [[GCRest alloc] init];
-    [gcRest postRequestWithPath:_path andParams:_params andError:&_error];
+    BOOL _response              = [[gcRest postRequestWithPath:_path andParams:_params] isSuccessful];
     [gcRest release];
     [_path release];
     [_params release];
-    
-    if (_error == nil) {
-        return YES;
-    }
-    DLog(@"%@", [_error localizedDescription]);
-    return NO;
+    return _response;
 }
 
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key {
@@ -156,49 +148,33 @@
     [_params setValue:[data dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
-    NSError *_error             = nil;
     
     GCRest *gcRest              = [[GCRest alloc] init];
-    [gcRest putRequestWithPath:_path andParams:_params andError:&_error];
+    BOOL _response              = [[gcRest postRequestWithPath:_path andParams:_params] isSuccessful];
     [gcRest release];
     [_path release];
     [_params release];
-    
-    if (_error == nil) {
-        return YES;
-    }
-    DLog(@"%@", [_error localizedDescription]);
-    return NO;
+    return _response;
 }
 
 - (BOOL) deleteMetaData {
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
-    NSError *_error             = nil;
     
     GCRest *gcRest              = [[GCRest alloc] init];
-    [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    BOOL _response              = [[gcRest deleteRequestWithPath:_path andParams:nil] isSuccessful];
     [gcRest release];
     [_path release];
-    
-    if (_error == nil) {
-        return YES;
-    }
-    return NO;
+    return _response;
 }
 
 - (BOOL) deleteMetaDataForKey:(NSString *) key {
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
-    NSError *_error             = nil;
     
     GCRest *gcRest              = [[GCRest alloc] init];
-    [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    BOOL _response              = [[gcRest deleteRequestWithPath:_path andParams:nil] isSuccessful];
     [gcRest release];
     [_path release];
-    
-    if (_error == nil) {
-        return YES;
-    }
-    return NO;
+    return _response;
 }
 
 - (NSUInteger) objectID {
@@ -217,27 +193,16 @@
 
 - (BOOL) destroy {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
-    NSError *_error     = nil;
     
     GCRest *gcRest      = [[GCRest alloc] init];
-    [gcRest deleteRequestWithPath:_path andParams:nil andError:&_error];
+    BOOL _response      = [[gcRest deleteRequestWithPath:_path andParams:nil] isSuccessful];
     [gcRest release];
     [_path release];
-    
-    if (_error == nil) {
-        return YES;
-    }
-    return NO;
+    return _response;
 }
 
-- (void) destroyInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                                  andError:(GCErrorBlock) anErrorBlock {
-    
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
-    GCRest *gcRest      = [[GCRest alloc] init];
-    [gcRest deleteRequestInBackgroundWithPath:_path andParams:nil withResponse:aResponseBlock andError:anErrorBlock];
-    [gcRest release];
-    [_path release];
+- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aResponseBlock {
+    DO_IN_BACKGROUND_BOOL([self destroy], aResponseBlock);
 }
 
 @end

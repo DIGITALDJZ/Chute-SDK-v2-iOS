@@ -13,6 +13,7 @@
 @class GCResponseObject;
 
 typedef void(^GCBasicBlock)(void);
+typedef void(^GCBoolBlock)(BOOL value);
 typedef void(^GCErrorBlock)(NSError *error);
 typedef void(^GCResponseBlock)(GCResponseObject *response);
 
@@ -21,6 +22,16 @@ typedef void(^GCResponseBlock)(GCResponseObject *response);
 #define DO_IN_BACKGROUND(action, responseBlock) \
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
         GCResponseObject *_response = action;\
+        dispatch_async(dispatch_get_main_queue(), ^(void) {\
+            if (aResponseBlock) {\
+                aResponseBlock(_response);\
+            }\
+        });\
+    });
+
+#define DO_IN_BACKGROUND_BOOL(action, responseBlock) \
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
+        BOOL _response = action;\
         dispatch_async(dispatch_get_main_queue(), ^(void) {\
             if (aResponseBlock) {\
                 aResponseBlock(_response);\

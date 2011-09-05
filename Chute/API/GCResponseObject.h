@@ -18,5 +18,6 @@
 @property (nonatomic, retain) id data;
 
 - (id) initWithRequest:(ASIHTTPRequest *) request;
+- (BOOL) isSuccessful;
 
 @end

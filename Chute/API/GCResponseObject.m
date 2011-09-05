@@ -9,6 +9,7 @@
 #import "GCError.h"
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
+#import "GCMacros.h"
 
 @implementation GCResponseObject
 
@@ -16,6 +17,14 @@
 @synthesize error;
 @synthesize rawResponse;
 @synthesize data;
+
+- (BOOL) isSuccessful {
+    if (IS_NULL([self error])) {
+        return YES;
+    }
+    DLog(@"%@", [[self error] localizedDescription]);
+    return NO;
+}
 
 - (id) object {
     return [object objectForKey:@"data"];
@@ -33,6 +42,13 @@
         return [[self object] valueForKey:key];
     }
     return nil;
+}
+
+- (id) data {
+    if (data) {
+        return data;
+    }
+    return [self object];
 }
 
 - (id) initWithRequest:(ASIHTTPRequest *) request {
