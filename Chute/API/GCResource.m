@@ -8,6 +8,14 @@
 
 #import "GCResource.h"
 
+@interface GCResource()
+
++ (NSString *)elementName;
+
+- (id) initWithDictionary:(NSDictionary *) dictionary;
+
+@end
+
 @implementation GCResource
 
 #pragma mark - All 
@@ -17,15 +25,35 @@
     NSError *_error     = nil;
     GCRest *gcRest      = [[GCRest alloc] init];
     id _response        = [gcRest getRequestWithPath:_path andError:&_error];
-    //Parse the Response to make proper objects of this class.
-    DLog(@"%@", _response);
+
+    NSMutableArray *_result = [[[NSMutableArray alloc] init] autorelease];
+    for (NSDictionary *_dic in [_response objectForKey:@"data"]) {
+        id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
+        [_result addObject:_obj];
+    }
+    
     [gcRest release];
     [_path release];
-    return nil;
+    return _result;
 }
 
 + (void)allInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock andError:(ChuteErrorBlock) anErrorBlock {    
-    DO_IN_BACKGROUND([self all], aResponseBlock, anErrorBlock);
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
+    
+    GCRest *gcRest      = [[GCRest alloc] init];
+    
+    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {
+        
+        NSMutableArray *_result = [[[NSMutableArray alloc] init] autorelease];
+        for (NSDictionary *_dic in [response objectForKey:@"data"]) {
+            id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
+            [_result addObject:_obj];
+        }
+        aResponseBlock(_result);
+    } andError:anErrorBlock];
+        
+    [gcRest release];
+    [_path release];
 }
 
 + (id)findById:(NSUInteger) objectID {
@@ -33,9 +61,8 @@
     NSError *_error     = nil;
     GCRest *gcRest      = [[GCRest alloc] init];
     id _response        = [gcRest getRequestWithPath:_path andError:&_error];
+    
     //Parse the Response to make proper objects of this class.
-    DLog(@"%@", _response);
-    DLog(@"%@", [_error localizedDescription]);
     id _obj = nil;
     _obj = [[self alloc] initWithDictionary:_response];
     
@@ -44,14 +71,19 @@
     return [_obj autorelease];
 }
 
-+ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
++ (void)findById:(NSUInteger) objectID 
+inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
         andError:(ChuteErrorBlock) anErrorBlock {
+    
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
     GCRest *gcRest      = [[GCRest alloc] init];
-    [gcRest getRequestInBackgroundWithPath:_path withResponse:aResponseBlock andError:anErrorBlock];
+    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {
+        id _obj = [[[self alloc] initWithDictionary:response] autorelease];
+        aResponseBlock(_obj);
+    } andError:anErrorBlock];
+    
     [gcRest release];
     [_path release];
-    //DO_IN_BACKGROUND([self findById:objectID], aResponseBlock, anErrorBlock);
 }
 
 #pragma mark - Override these methods in every Subclass
@@ -227,6 +259,7 @@
 
 - (void) destroyInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
                                   andError:(ChuteErrorBlock) anErrorBlock {
+    
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     GCRest *gcRest      = [[GCRest alloc] init];
     [gcRest deleteRequestInBackgroundWithPath:_path andParams:nil withResponse:aResponseBlock andError:anErrorBlock];

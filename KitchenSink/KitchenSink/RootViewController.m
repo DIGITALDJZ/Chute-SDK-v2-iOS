@@ -77,7 +77,11 @@
 
 - (IBAction)sync:(id)sender {
 
-    
+    [GCChute allInBackgroundWithCompletion:^(id response) {
+        DLog(@"%@", response);
+    } andError:^(NSError *error) {
+        DLog(@"%@", error);    
+    }];
     
 //    [GCChute allInBackgroundWithCompletion:^(id response) {
 //        DLog(@"%@", response); 
@@ -85,12 +89,12 @@
 //        
 //    }];
 
-    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
-        [response destroy];
-    } andError:^(NSError *error) {        
-        DLog(@"%@", [error localizedDescription]);
-    }];
-    
+//    [GCChute findById:32 inBackgroundWithCompletion:^(id response) {
+//        [response destroy];
+//    } andError:^(NSError *error) {        
+//        DLog(@"%@", [error localizedDescription]);
+//    }];
+//    
 //    [GCChute allInBackgroundWithCompletion:^(id response) {
 //        DLog(@"%@", response); 
 //    } andError:^(NSError *error) {
