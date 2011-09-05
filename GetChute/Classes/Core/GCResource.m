@@ -129,6 +129,10 @@
     return [_response autorelease];
 }
 
+- (void) getMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self getMetaDataForKey:key], aResponseBlock);
+}
+
 - (BOOL) setMetaData:(NSDictionary *) metaData {
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
@@ -141,6 +145,10 @@
     [_path release];
     [_params release];
     return _response;
+}
+
+- (void) setMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self setMetaData:metaData], aBoolBlock);
 }
 
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key {
@@ -157,6 +165,10 @@
     return _response;
 }
 
+- (void) setMetaData:(NSString *) data forKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self setMetaData:data forKey:key], aBoolBlock);
+}
+
 - (BOOL) deleteMetaData {
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
@@ -167,6 +179,10 @@
     return _response;
 }
 
+- (void) deleteMetaDataInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self deleteMetaData], aBoolBlock);
+}
+
 - (BOOL) deleteMetaDataForKey:(NSString *) key {
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
@@ -175,6 +191,10 @@
     [gcRest release];
     [_path release];
     return _response;
+}
+
+- (void) deleteMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self deleteMetaDataForKey:key], aBoolBlock);
 }
 
 - (NSUInteger) objectID {

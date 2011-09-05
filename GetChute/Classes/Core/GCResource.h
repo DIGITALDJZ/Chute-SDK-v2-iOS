@@ -32,11 +32,21 @@
 //Common Meta Data Methods
 - (GCResponseObject *) getMetaData;
 - (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 - (id) getMetaDataForKey:(NSString *) key;
+- (void) getMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 - (BOOL) setMetaData:(NSDictionary *) metaData;
+- (void) setMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key;
+- (void) setMetaData:(NSString *) data forKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+
 - (BOOL) deleteMetaData;
+- (void) deleteMetaDataInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+
 - (BOOL) deleteMetaDataForKey:(NSString *) key;
+- (void) deleteMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
 //Common Get Data Methods
 - (NSUInteger) objectID;
