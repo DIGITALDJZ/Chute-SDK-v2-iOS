@@ -57,8 +57,8 @@ static GCAccount *sharedAccountManager = nil;
 }
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
-                                   success:(ChuteBasicBlock)successBlock 
-                                  andError:(ChuteErrorBlock)errorBlock {
+                                   success:(GCBasicBlock)successBlock 
+                                  andError:(GCErrorBlock)errorBlock {
     if ([self accessToken]) {
         [self setAccountStatus:GCAccountLoggedIn];
         successBlock();
@@ -113,8 +113,8 @@ static GCAccount *sharedAccountManager = nil;
 }
 
 #pragma mark - Get Profile Info
-- (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
-                          andError:(ChuteErrorBlock)anErrorBlock{
+- (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock
+                          andError:(GCErrorBlock)anErrorBlock{
     NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
     GCRest *gcRest = [[GCRest alloc] init];
     [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {

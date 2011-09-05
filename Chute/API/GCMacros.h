@@ -11,27 +11,21 @@
 //Comment this line to stop debug log on the debugger console.
 #define DEBUG
 
-typedef void(^ChuteBasicBlock)(void);
-typedef void(^ChuteErrorBlock)(NSError *error);
-typedef void(^ChuteResponseBlock)(id response);
+typedef void(^GCBasicBlock)(void);
+typedef void(^GCErrorBlock)(NSError *error);
+typedef void(^GCResponseBlock)(id response);
 
 #define kJSONResponse 1
 
-#define DO_IN_BACKGROUND(action, responseBlock, errorBlock) \
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
-NSError *_error = nil;\
-id _response = action;\
-dispatch_async(dispatch_get_main_queue(), ^(void) {\
-if (_error == nil) {\
-if(responseBlock)\
-responseBlock(_response);\
-}\
-else {\
-if(errorBlock)\
-errorBlock(_error);\
-}\
-});\
-});
+#define DO_IN_BACKGROUND(action, responseBlock) \
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
+        GCResponseObject *_response = action;\
+        dispatch_async(dispatch_get_main_queue(), ^(void) {\
+            if (aResponseBlock) {\
+                aResponseBlock(_response);\
+            }\
+        });\
+    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 

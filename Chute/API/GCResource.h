@@ -15,13 +15,13 @@
 
 /* Get all Objects of this class */
 + (NSArray *)all;
-+ (void)allInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-                             andError:(ChuteErrorBlock) anErrorBlock;
++ (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                             andError:(GCErrorBlock) anErrorBlock;
 
 //Find Specific object data with Id
 + (id)findById:(NSUInteger) objectID;
-+ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-        andError:(ChuteErrorBlock) anErrorBlock;
++ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+        andError:(GCErrorBlock) anErrorBlock;
 
 //Methods to Override in SubClass
 + (BOOL)supportsMetaData;
@@ -32,6 +32,8 @@
 
 //Common Meta Data Methods
 - (NSDictionary *) getMetaData;
+- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                                      andError:(GCErrorBlock) anErrorBlock;
 - (id) getMetaDataForKey:(NSString *) key;
 - (BOOL) setMetaData:(NSDictionary *) metaData;
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key;
@@ -43,12 +45,12 @@
 
 //Instance Method Calls
 - (BOOL) save;
-- (void) saveInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-                               andError:(ChuteErrorBlock) anErrorBlock;
+- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                               andError:(GCErrorBlock) anErrorBlock;
 
 - (BOOL) destroy;
-- (void) destroyInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-                                  andError:(ChuteErrorBlock) anErrorBlock;
+- (void) destroyInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                                  andError:(GCErrorBlock) anErrorBlock;
 
 
 @end

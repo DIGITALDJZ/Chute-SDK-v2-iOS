@@ -34,11 +34,11 @@ typedef enum {
 + (GCAccount *)sharedManager;
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
-                                   success:(ChuteBasicBlock)successBlock 
-                                  andError:(ChuteErrorBlock)errorBlock;
+                                   success:(GCBasicBlock)successBlock 
+                                  andError:(GCErrorBlock)errorBlock;
 - (void)reset;
 
-- (void)getProfileInfoWithResponse:(ChuteResponseBlock)aResponseBlock
-                          andError:(ChuteErrorBlock)anErrorBlock;
+- (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock
+                          andError:(GCErrorBlock)anErrorBlock;
 
 @end

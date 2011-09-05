@@ -76,6 +76,8 @@
 		EC5B654E13F0073A00EBA5A1 /* BundlesBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B654B13F0073A00EBA5A1 /* BundlesBaseViewController.xib */; };
 		EC5B654F13F0073A00EBA5A1 /* PhotosBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B654C13F0073A00EBA5A1 /* PhotosBaseViewController.xib */; };
 		EC5B655013F0073A00EBA5A1 /* ChuteBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5B654D13F0073A00EBA5A1 /* ChuteBaseViewController.xib */; };
+		EC6BD8171414C706008A8C72 /* GCResponseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = EC6BD8151414C705008A8C72 /* GCResponseObject.h */; };
+		EC6BD8181414C706008A8C72 /* GCResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6BD8161414C705008A8C72 /* GCResponseObject.m */; };
 		EC762DDC13F182390081E77E /* UIBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762DDB13F182390081E77E /* UIBaseViewController.m */; };
 		EC762E0313F184760081E77E /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762DE213F184760081E77E /* AQGridView.m */; };
 		EC762E0413F184760081E77E /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762DE413F184760081E77E /* AQGridViewAnimatorItem.m */; };
@@ -247,6 +249,8 @@
 		EC5B654B13F0073A00EBA5A1 /* BundlesBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BundlesBaseViewController.xib; sourceTree = "<group>"; };
 		EC5B654C13F0073A00EBA5A1 /* PhotosBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosBaseViewController.xib; sourceTree = "<group>"; };
 		EC5B654D13F0073A00EBA5A1 /* ChuteBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChuteBaseViewController.xib; sourceTree = "<group>"; };
+		EC6BD8151414C705008A8C72 /* GCResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResponseObject.h; sourceTree = "<group>"; };
+		EC6BD8161414C705008A8C72 /* GCResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResponseObject.m; sourceTree = "<group>"; };
 		EC762DDA13F182390081E77E /* UIBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBaseViewController.h; sourceTree = "<group>"; };
 		EC762DDB13F182390081E77E /* UIBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBaseViewController.m; sourceTree = "<group>"; };
 		EC762DDF13F184760081E77E /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
@@ -469,6 +473,8 @@
 				EC2AF789140FBD1C00DD9A8B /* GCChute.m */,
 				ECFE6EE0141116BF0073219C /* GCError.h */,
 				ECFE6EE1141116BF0073219C /* GCError.m */,
+				EC6BD8151414C705008A8C72 /* GCResponseObject.h */,
+				EC6BD8161414C705008A8C72 /* GCResponseObject.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -747,6 +753,7 @@
 				ECE8D19D140D11B5000CC697 /* GCAccount.h in Headers */,
 				EC2AF78A140FBD1C00DD9A8B /* GCChute.h in Headers */,
 				ECFE6EE2141116C00073219C /* GCError.h in Headers */,
+				EC6BD8171414C706008A8C72 /* GCResponseObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +942,7 @@
 				ECE8D198140D1199000CC697 /* GCAccount.m in Sources */,
 				EC2AF78B140FBD1C00DD9A8B /* GCChute.m in Sources */,
 				ECFE6EE3141116C00073219C /* GCError.m in Sources */,
+				EC6BD8181414C706008A8C72 /* GCResponseObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

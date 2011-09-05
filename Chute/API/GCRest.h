@@ -11,48 +11,41 @@
 #import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
+#import "GCResponseObject.h"
+#import "GCError.h"
 
 @interface GCRest : NSObject
 
 - (NSMutableDictionary *)headers;
 
-- (id)getRequestWithPath:(NSString *)path
-                andError:(NSError **)error;
+- (GCResponseObject *)getRequestWithPath:(NSString *)path;
 
-- (id)postRequestWithPath:(NSString *)path
-                andParams:(NSMutableDictionary *)params
-                andError:(NSError **)error;
+- (GCResponseObject *)postRequestWithPath:(NSString *)path
+                andParams:(NSMutableDictionary *)params;
 
-- (id)postRequestWithPath:(NSString *)path
+- (GCResponseObject *)postRequestWithPath:(NSString *)path
                 andParams:(NSMutableDictionary *)params
-                 andError:(NSError **)error 
                 andMethod:(NSString *)method;
 
-- (id)putRequestWithPath:(NSString *)path
-                andParams:(NSMutableDictionary *)params
-                 andError:(NSError **)error;
+- (GCResponseObject *)putRequestWithPath:(NSString *)path
+                       andParams:(NSMutableDictionary *)params;
 
-- (id)deleteRequestWithPath:(NSString *)path
-                andParams:(NSMutableDictionary *)params
-                 andError:(NSError **)error;
+- (GCResponseObject *)deleteRequestWithPath:(NSString *)path
+                          andParams:(NSMutableDictionary *)params;
 
 //Background Calls
 - (void)getRequestInBackgroundWithPath:(NSString *)path
-                          withResponse:(ChuteResponseBlock)aResponseBlock 
-                              andError:(ChuteErrorBlock)anErrorBlock;
+                          withResponse:(GCResponseBlock)aResponseBlock;
 
 - (void)postRequestInBackgroundWithPath:(NSString *)path
                               andParams:(NSMutableDictionary *)params
-                           withResponse:(ChuteResponseBlock)aResponseBlock
-                               andError:(ChuteErrorBlock)anErrorBlock;
+                           withResponse:(GCResponseBlock)aResponseBlock;
 
 - (void)putRequestInBackgroundWithPath:(NSString *)path
-                              andParams:(NSMutableDictionary *)params
-                           withResponse:(ChuteResponseBlock)aResponseBlock
-                               andError:(ChuteErrorBlock)anErrorBlock;
+                             andParams:(NSMutableDictionary *)params
+                          withResponse:(GCResponseBlock)aResponseBlock;
 
 - (void)deleteRequestInBackgroundWithPath:(NSString *)path
-                              andParams:(NSMutableDictionary *)params
-                           withResponse:(ChuteResponseBlock)aResponseBlock
-                               andError:(ChuteErrorBlock)anErrorBlock;
+                                andParams:(NSMutableDictionary *)params
+                             withResponse:(GCResponseBlock)aResponseBlock;
 @end

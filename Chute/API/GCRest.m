@@ -23,45 +23,19 @@
             nil];
 }
 
-- (id)getRequestWithPath:(NSString *)path
-                andError:(NSError **)error{
-    
+- (GCResponseObject *)getRequestWithPath:(NSString *)path {
     ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:path]];    
     [_request setRequestHeaders:[self headers]];
     [_request setTimeOutSeconds:300.0];
     [_request startSynchronous];
+    GCResponseObject *_result = [[[GCResponseObject alloc] initWithRequest:_request] autorelease];
+    return _result;
+}
 
-    if ([_request responseStatusCode] != 200) {
-        NSMutableDictionary *_errorDetail = [[NSMutableDictionary alloc] init];
-        [_errorDetail setValue:[[[_request responseString] JSONValue] objectForKey:@"error"] forKey:NSLocalizedDescriptionKey];
-        *error = [NSError errorWithDomain:@"myDomain" code:100 userInfo:_errorDetail];
-        [_errorDetail release];
-        return nil;
-    }
+- (GCResponseObject *)postRequestWithPath:(NSString *)path
+                        andParams:(NSMutableDictionary *)params
+                        andMethod:(NSString *)method {
     
-    *error = [_request error];
-
-    NSString *_responseString = [_request responseString];
-    if (kJSONResponse) {
-        if ([_responseString length] > 1)
-            return [_responseString JSONValue];
-    }
-    else {
-        return _responseString;
-    }
-    return nil;
-}
-
-- (id)postRequestWithPath:(NSString *)path
-                andParams:(NSMutableDictionary *)params
-                 andError:(NSError **)error {
-    return [self postRequestWithPath:path andParams:params andError:error andMethod:@"POST"];
-}
-
-- (id)postRequestWithPath:(NSString *)path
-                andParams:(NSMutableDictionary *)params
-                 andError:(NSError **)error 
-                andMethod:(NSString *)method {
     ASIFormDataRequest *_request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:path]];
     [_request setRequestHeaders:[self headers]];
     
@@ -77,58 +51,48 @@
     [_request setRequestMethod:method];
     [_request startSynchronous];
     
-    *error = [_request error];
-    NSString *_responseString = [_request responseString];
-    
-    if (kJSONResponse) {
-        if ([_responseString length] > 1)
-            return [_responseString JSONValue];
-    }
-    else {
-        return _responseString;
-    }
-    return nil;
+    GCResponseObject *_result = [[[GCResponseObject alloc] initWithRequest:_request] autorelease];
+    return _result;
 }
 
-- (id)putRequestWithPath:(NSString *)path
-               andParams:(NSMutableDictionary *)params
-                andError:(NSError **)error {
-    return [self postRequestWithPath:path andParams:params andError:error andMethod:@"PUT"];
+- (GCResponseObject *)postRequestWithPath:(NSString *)path
+                        andParams:(NSMutableDictionary *)params {
+    return [self postRequestWithPath:path andParams:params andMethod:@"POST"];
 }
 
-- (id)deleteRequestWithPath:(NSString *)path
-                  andParams:(NSMutableDictionary *)params
-                   andError:(NSError **)error {
-    return [self postRequestWithPath:path andParams:params andError:error andMethod:@"DELETE"];
+- (GCResponseObject *)putRequestWithPath:(NSString *)path
+               andParams:(NSMutableDictionary *)params {
+    return [self postRequestWithPath:path andParams:params andMethod:@"PUT"];
+}
+
+- (GCResponseObject *)deleteRequestWithPath:(NSString *)path
+                  andParams:(NSMutableDictionary *)params {
+    return [self postRequestWithPath:path andParams:params andMethod:@"DELETE"];
 }
 
 #pragma mark - Background Method Calls
 
 - (void)getRequestInBackgroundWithPath:(NSString *)path
-                          withResponse:(ChuteResponseBlock)aResponseBlock 
-                              andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self getRequestWithPath:path andError:&_error], aResponseBlock, anErrorBlock);
+                          withResponse:(GCResponseBlock)aResponseBlock {
+    DO_IN_BACKGROUND([self getRequestWithPath:path], aResponseBlock);
 }
 
 - (void)postRequestInBackgroundWithPath:(NSString *)path
                               andParams:(NSMutableDictionary *)params
-                           withResponse:(ChuteResponseBlock)aResponseBlock
-                               andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error], aResponseBlock, anErrorBlock);
+                           withResponse:(GCResponseBlock)aResponseBlock {
+    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params], aResponseBlock);
 }
 
 - (void)putRequestInBackgroundWithPath:(NSString *)path
                              andParams:(NSMutableDictionary *)params
-                          withResponse:(ChuteResponseBlock)aResponseBlock
-                              andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error andMethod:@"PUT"], aResponseBlock, anErrorBlock);
+                          withResponse:(GCResponseBlock)aResponseBlock {
+    DO_IN_BACKGROUND([self putRequestWithPath:path andParams:params], aResponseBlock);
 }
 
 - (void)deleteRequestInBackgroundWithPath:(NSString *)path
                                 andParams:(NSMutableDictionary *)params
-                             withResponse:(ChuteResponseBlock)aResponseBlock
-                                 andError:(ChuteErrorBlock)anErrorBlock {
-    DO_IN_BACKGROUND([self postRequestWithPath:path andParams:params andError:&_error andMethod:@"PUT"], aResponseBlock, anErrorBlock);
+                             withResponse:(GCResponseBlock)aResponseBlock {
+    DO_IN_BACKGROUND([self deleteRequestWithPath:path andParams:params], aResponseBlock);
 }
 
 @end

@@ -37,7 +37,7 @@
     return _result;
 }
 
-+ (void)allInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock andError:(ChuteErrorBlock) anErrorBlock {    
++ (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock andError:(GCErrorBlock) anErrorBlock {    
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
     
     GCRest *gcRest      = [[GCRest alloc] init];
@@ -72,8 +72,8 @@
 }
 
 + (void)findById:(NSUInteger) objectID 
-inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-        andError:(ChuteErrorBlock) anErrorBlock {
+inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+        andError:(GCErrorBlock) anErrorBlock {
     
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
     GCRest *gcRest      = [[GCRest alloc] init];
@@ -144,6 +144,26 @@ inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock
     [gcRest release];
     [_path release];
     return [_response objectForKey:@"data"];
+}
+
+- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                                      andError:(GCErrorBlock) anErrorBlock {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+        NSError *_error = nil;
+//        id _response = action;
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            if (_error == nil) {
+//                if(responseBlock)
+//                    responseBlock(_response);
+            }
+            else {
+//                if(errorBlock)
+//                    errorBlock(_error);
+            }
+        });
+    });
+
 }
 
 - (id) getMetaDataForKey:(NSString *) key {
@@ -237,8 +257,8 @@ inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock
     return NO;
 }
 
-- (void) saveInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-                               andError:(ChuteErrorBlock) anErrorBlock {
+- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                               andError:(GCErrorBlock) anErrorBlock {
     
 }
 
@@ -257,8 +277,8 @@ inBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock
     return NO;
 }
 
-- (void) destroyInBackgroundWithCompletion:(ChuteResponseBlock) aResponseBlock 
-                                  andError:(ChuteErrorBlock) anErrorBlock {
+- (void) destroyInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
+                                  andError:(GCErrorBlock) anErrorBlock {
     
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     GCRest *gcRest      = [[GCRest alloc] init];
