@@ -6,9 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class GCError;
-@class ASIHTTPRequest;
+#import "GCError.h"
+#import "ASIHTTPRequest.h"
+#import "SBJson.h"
+#import "GCMacros.h"
 
 @interface GCResponseObject : NSObject
 

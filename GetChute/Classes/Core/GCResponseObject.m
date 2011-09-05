@@ -6,10 +6,6 @@
 //
 
 #import "GCResponseObject.h"
-#import "GCError.h"
-#import "ASIHTTPRequest.h"
-#import "SBJson.h"
-#import "GCMacros.h"
 
 @implementation GCResponseObject
 

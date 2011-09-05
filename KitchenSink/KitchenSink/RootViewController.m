@@ -11,8 +11,6 @@
 #import "PhotosBaseViewController.h"
 #import "BundlesBaseViewController.h"
 
-#import "GCChute.h"
-
 @implementation RootViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
