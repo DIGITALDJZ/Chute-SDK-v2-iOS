@@ -1,6 +1,5 @@
 //
 //  GCObject.h
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 05/09/11.
 //  Copyright 2011 NA. All rights reserved.
@@ -16,6 +15,7 @@
 @property (nonatomic, retain) GCError *error;
 @property (nonatomic, retain) id object;
 @property (nonatomic, retain) id rawResponse;
+@property (nonatomic, retain) id data;
 
 - (id) initWithRequest:(ASIHTTPRequest *) request;
 

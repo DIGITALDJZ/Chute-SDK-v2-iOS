@@ -1,6 +1,5 @@
 //
 //  GCObject.m
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 05/09/11.
 //  Copyright 2011 NA. All rights reserved.
@@ -16,6 +15,25 @@
 @synthesize object;
 @synthesize error;
 @synthesize rawResponse;
+@synthesize data;
+
+- (id) object {
+    return [object objectForKey:@"data"];
+}
+
+- (id) objectForKey:(id)key {
+    if ([[self object] class] == [NSDictionary class]) {
+        return [[self object] objectForKey:key];
+    }
+    return nil;
+}
+
+- (id) valueForKey:(NSString *)key {
+    if ([[self object] class] == [NSDictionary class]) {
+        return [[self object] valueForKey:key];
+    }
+    return nil;
+}
 
 - (id) initWithRequest:(ASIHTTPRequest *) request {
     self = [super init];
@@ -39,6 +57,7 @@
 }
 
 - (void) dealloc {
+    [data release];
     [rawResponse release];
     [object release];
     [error release];

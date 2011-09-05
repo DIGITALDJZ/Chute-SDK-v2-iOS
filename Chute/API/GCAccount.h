@@ -1,6 +1,5 @@
 //
 //  ChuteAccount.h
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 30/08/11.
 //  Copyright 2011 NA. All rights reserved.
@@ -38,7 +37,6 @@ typedef enum {
                                   andError:(GCErrorBlock)errorBlock;
 - (void)reset;
 
-- (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock
-                          andError:(GCErrorBlock)anErrorBlock;
+- (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock;
 
 @end

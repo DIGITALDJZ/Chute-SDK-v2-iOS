@@ -1,6 +1,5 @@
 //
 //  ChuteResource.h
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 26/08/11.
 //  Copyright 2011 NA. All rights reserved.
@@ -9,19 +8,19 @@
 #import <Foundation/Foundation.h>
 #import "GCRest.h"
 
+@class GCResponseObject;
+
 @interface GCResource : NSObject {
     NSMutableDictionary *_content;
 }
 
 /* Get all Objects of this class */
-+ (NSArray *)all;
-+ (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                             andError:(GCErrorBlock) anErrorBlock;
++ (GCResponseObject *)all;
++ (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 //Find Specific object data with Id
-+ (id)findById:(NSUInteger) objectID;
-+ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-        andError:(GCErrorBlock) anErrorBlock;
++ (GCResponseObject *)findById:(NSUInteger) objectID;
++ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 //Methods to Override in SubClass
 + (BOOL)supportsMetaData;
@@ -31,9 +30,8 @@
 - (id) objectForKey:(id)aKey;
 
 //Common Meta Data Methods
-- (NSDictionary *) getMetaData;
-- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                                      andError:(GCErrorBlock) anErrorBlock;
+- (GCResponseObject *) getMetaData;
+- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 - (id) getMetaDataForKey:(NSString *) key;
 - (BOOL) setMetaData:(NSDictionary *) metaData;
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key;
@@ -45,12 +43,10 @@
 
 //Instance Method Calls
 - (BOOL) save;
-- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                               andError:(GCErrorBlock) anErrorBlock;
+- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 - (BOOL) destroy;
-- (void) destroyInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                                  andError:(GCErrorBlock) anErrorBlock;
+- (void) destroyInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 
 @end

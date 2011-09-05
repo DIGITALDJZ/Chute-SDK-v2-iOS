@@ -1,6 +1,5 @@
 //
 //  ChuteAccount.m
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 30/08/11.
 //  Copyright 2011 NA. All rights reserved.
@@ -95,13 +94,16 @@ static GCAccount *sharedAccountManager = nil;
         [self setAccessToken:[_response objectForKey:@"access_token"]];
         
         //send request to save userid
-        [self getProfileInfoWithResponse:^(id response) {
-            [self setUserId:[[response valueForKey:@"id"] intValue]];
-            [self setAccountStatus:GCAccountLoggedIn];
-            successBlock();
-        } andError:^(NSError *error) {
-            [self setAccountStatus:GCAccountLoginFailed];
-            errorBlock([request error]);
+        [self getProfileInfoWithResponse:^(GCResponseObject *response) {
+            if ([response error]) {
+                [self setAccountStatus:GCAccountLoginFailed];
+                errorBlock([response error]);
+            }
+            else {
+                [self setUserId:[[[response object] valueForKey:@"id"] intValue]];
+                [self setAccountStatus:GCAccountLoggedIn];
+                successBlock();
+            }
         }];
     }];
     
@@ -113,14 +115,14 @@ static GCAccount *sharedAccountManager = nil;
 }
 
 #pragma mark - Get Profile Info
-- (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock
-                          andError:(GCErrorBlock)anErrorBlock{
+- (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock {
     NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
     GCRest *gcRest = [[GCRest alloc] init];
-    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
+    
+    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(GCResponseObject *response) {
+        if (aResponseBlock) {
+            aResponseBlock(response);
+        }
     }];
     
     [gcRest release];

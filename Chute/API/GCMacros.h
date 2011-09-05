@@ -1,6 +1,5 @@
 //
 //  GCMacros.h
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 26/08/11.
 //  Copyright 2011 NA. All rights reserved.
@@ -11,9 +10,11 @@
 //Comment this line to stop debug log on the debugger console.
 #define DEBUG
 
+@class GCResponseObject;
+
 typedef void(^GCBasicBlock)(void);
 typedef void(^GCErrorBlock)(NSError *error);
-typedef void(^GCResponseBlock)(id response);
+typedef void(^GCResponseBlock)(GCResponseObject *response);
 
 #define kJSONResponse 1
 

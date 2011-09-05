@@ -77,12 +77,9 @@
 
 - (IBAction)sync:(id)sender {
 
-    [GCChute allInBackgroundWithCompletion:^(id response) {
-        DLog(@"%@", response);
-    } andError:^(NSError *error) {
-        DLog(@"%@", error);    
+    [GCChute allInBackgroundWithCompletion:^(GCResponseObject *response) {
+        DLog(@"%@", [response data]); 
     }];
-    
 //    [GCChute allInBackgroundWithCompletion:^(id response) {
 //        DLog(@"%@", response); 
 //    } andError:^(NSError *error) {

@@ -1,12 +1,12 @@
 //
 //  ChuteResource.m
-//  KitchenSink
 //
 //  Created by Achal Aggarwal on 26/08/11.
 //  Copyright 2011 NA. All rights reserved.
 //
 
 #import "GCResource.h"
+#import "GCResponseObject.h"
 
 @interface GCResource()
 
@@ -20,70 +20,42 @@
 
 #pragma mark - All 
 /* Get all Objects of this class */
-+ (NSArray *)all {
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
-    NSError *_error     = nil;
-    GCRest *gcRest      = [[GCRest alloc] init];
-    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
-
-    NSMutableArray *_result = [[[NSMutableArray alloc] init] autorelease];
-    for (NSDictionary *_dic in [_response objectForKey:@"data"]) {
++ (GCResponseObject *)all {
+    NSString *_path                 = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
+    GCRest *gcRest                  = [[GCRest alloc] init];
+    GCResponseObject *_response     = [[gcRest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_result = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response object]) {
         id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
         [_result addObject:_obj];
     }
-    
+    [_response setData:_result];
+    [_result release];
     [gcRest release];
     [_path release];
-    return _result;
+    return [_response autorelease]; 
 }
 
-+ (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock andError:(GCErrorBlock) anErrorBlock {    
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
-    
-    GCRest *gcRest      = [[GCRest alloc] init];
-    
-    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {
-        
-        NSMutableArray *_result = [[[NSMutableArray alloc] init] autorelease];
-        for (NSDictionary *_dic in [response objectForKey:@"data"]) {
-            id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
-            [_result addObject:_obj];
-        }
-        aResponseBlock(_result);
-    } andError:anErrorBlock];
-        
-    [gcRest release];
-    [_path release];
++ (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {      
+    DO_IN_BACKGROUND([self all], aResponseBlock);
 }
 
-+ (id)findById:(NSUInteger) objectID {
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
-    NSError *_error     = nil;
-    GCRest *gcRest      = [[GCRest alloc] init];
-    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
-    
-    //Parse the Response to make proper objects of this class.
-    id _obj = nil;
-    _obj = [[self alloc] initWithDictionary:_response];
-    
-    [gcRest release];
-    [_path release];
-    return [_obj autorelease];
-}
-
-+ (void)findById:(NSUInteger) objectID 
-inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-        andError:(GCErrorBlock) anErrorBlock {
-    
++ (GCResponseObject *)findById:(NSUInteger) objectID {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
     GCRest *gcRest      = [[GCRest alloc] init];
-    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(id response) {
-        id _obj = [[[self alloc] initWithDictionary:response] autorelease];
-        aResponseBlock(_obj);
-    } andError:anErrorBlock];
+
+    GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
+    
+    [_response setData:[[self alloc] initWithDictionary:[_response rawResponse]]];
     
     [gcRest release];
     [_path release];
+    return [_response autorelease];
+}
+
++ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self findById:objectID], aResponseBlock);
 }
 
 #pragma mark - Override these methods in every Subclass
@@ -135,35 +107,17 @@ inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock
 
 #pragma mark - Common Meta Data Methods
 
-- (NSDictionary *) getMetaData {
+- (GCResponseObject *) getMetaData {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
-    
-    NSError *_error     = nil;
-    GCRest *gcRest      = [[GCRest alloc] init];
-    id _response        = [gcRest getRequestWithPath:_path andError:&_error];
+    GCRest *gcRest                     = [[GCRest alloc] init];
+    GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
     [gcRest release];
     [_path release];
-    return [_response objectForKey:@"data"];
+    return _response;
 }
 
-- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                                      andError:(GCErrorBlock) anErrorBlock {
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
-        NSError *_error = nil;
-//        id _response = action;
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            if (_error == nil) {
-//                if(responseBlock)
-//                    responseBlock(_response);
-            }
-            else {
-//                if(errorBlock)
-//                    errorBlock(_error);
-            }
-        });
-    });
-
+- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self getMetaData], aResponseBlock);
 }
 
 - (id) getMetaDataForKey:(NSString *) key {
@@ -257,8 +211,7 @@ inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock
     return NO;
 }
 
-- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock 
-                               andError:(GCErrorBlock) anErrorBlock {
+- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
     
 }
 
