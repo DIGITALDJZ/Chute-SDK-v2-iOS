@@ -94,7 +94,7 @@ static GCAccount *sharedAccountManager = nil;
         [self setAccessToken:[_response objectForKey:@"access_token"]];
         
         //send request to save userid
-        [self getProfileInfoWithResponse:^(GCResponseObject *response) {
+        [self getProfileInfoWithResponse:^(GCResponse *response) {
             if ([response error]) {
                 [self setAccountStatus:GCAccountLoginFailed];
                 errorBlock([response error]);
@@ -117,15 +117,15 @@ static GCAccount *sharedAccountManager = nil;
 #pragma mark - Get Profile Info
 - (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock {
     NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
-    GCRest *gcRest = [[GCRest alloc] init];
+    GCRequest *gcRequest = [[GCRequest alloc] init];
     
-    [gcRest getRequestInBackgroundWithPath:_path withResponse:^(GCResponseObject *response) {
+    [gcRequest getRequestInBackgroundWithPath:_path withResponse:^(GCResponse *response) {
         if (aResponseBlock) {
             aResponseBlock(response);
         }
     }];
     
-    [gcRest release];
+    [gcRequest release];
     [_path release];
 }
 

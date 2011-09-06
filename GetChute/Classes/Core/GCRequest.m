@@ -6,12 +6,12 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "GCRest.h"
+#import "GCRequest.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "GCAccount.h"
 
-@implementation GCRest
+@implementation GCRequest
 
 - (NSMutableDictionary *)headers{
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -23,16 +23,16 @@
             nil];
 }
 
-- (GCResponseObject *)getRequestWithPath:(NSString *)path {
+- (GCResponse *)getRequestWithPath:(NSString *)path {
     ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:path]];    
     [_request setRequestHeaders:[self headers]];
     [_request setTimeOutSeconds:300.0];
     [_request startSynchronous];
-    GCResponseObject *_result = [[[GCResponseObject alloc] initWithRequest:_request] autorelease];
+    GCResponse *_result = [[[GCResponse alloc] initWithRequest:_request] autorelease];
     return _result;
 }
 
-- (GCResponseObject *)postRequestWithPath:(NSString *)path
+- (GCResponse *)postRequestWithPath:(NSString *)path
                         andParams:(NSMutableDictionary *)params
                         andMethod:(NSString *)method {
     
@@ -51,21 +51,21 @@
     [_request setRequestMethod:method];
     [_request startSynchronous];
     
-    GCResponseObject *_result = [[[GCResponseObject alloc] initWithRequest:_request] autorelease];
+    GCResponse *_result = [[[GCResponse alloc] initWithRequest:_request] autorelease];
     return _result;
 }
 
-- (GCResponseObject *)postRequestWithPath:(NSString *)path
+- (GCResponse *)postRequestWithPath:(NSString *)path
                         andParams:(NSMutableDictionary *)params {
     return [self postRequestWithPath:path andParams:params andMethod:@"POST"];
 }
 
-- (GCResponseObject *)putRequestWithPath:(NSString *)path
+- (GCResponse *)putRequestWithPath:(NSString *)path
                andParams:(NSMutableDictionary *)params {
     return [self postRequestWithPath:path andParams:params andMethod:@"PUT"];
 }
 
-- (GCResponseObject *)deleteRequestWithPath:(NSString *)path
+- (GCResponse *)deleteRequestWithPath:(NSString *)path
                   andParams:(NSMutableDictionary *)params {
     return [self postRequestWithPath:path andParams:params andMethod:@"DELETE"];
 }

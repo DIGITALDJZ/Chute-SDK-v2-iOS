@@ -11,26 +11,26 @@
 #import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
-#import "GCResponseObject.h"
+#import "GCResponse.h"
 #import "GCError.h"
 
-@interface GCRest : NSObject
+@interface GCRequest : NSObject
 
 - (NSMutableDictionary *)headers;
 
-- (GCResponseObject *)getRequestWithPath:(NSString *)path;
+- (GCResponse *)getRequestWithPath:(NSString *)path;
 
-- (GCResponseObject *)postRequestWithPath:(NSString *)path
+- (GCResponse *)postRequestWithPath:(NSString *)path
                 andParams:(NSMutableDictionary *)params;
 
-- (GCResponseObject *)postRequestWithPath:(NSString *)path
+- (GCResponse *)postRequestWithPath:(NSString *)path
                 andParams:(NSMutableDictionary *)params
                 andMethod:(NSString *)method;
 
-- (GCResponseObject *)putRequestWithPath:(NSString *)path
+- (GCResponse *)putRequestWithPath:(NSString *)path
                        andParams:(NSMutableDictionary *)params;
 
-- (GCResponseObject *)deleteRequestWithPath:(NSString *)path
+- (GCResponse *)deleteRequestWithPath:(NSString *)path
                           andParams:(NSMutableDictionary *)params;
 
 //Background Calls

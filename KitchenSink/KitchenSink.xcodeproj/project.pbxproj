@@ -35,10 +35,10 @@
 		EC0CBB6B14150ECA0092DF00 /* GCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBAFE14150ECA0092DF00 /* GCMacros.h */; };
 		EC0CBB6C14150ECA0092DF00 /* GCResource.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBAFF14150ECA0092DF00 /* GCResource.h */; };
 		EC0CBB6D14150ECA0092DF00 /* GCResource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBB0014150ECA0092DF00 /* GCResource.m */; };
-		EC0CBB6E14150ECA0092DF00 /* GCResponseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBB0114150ECA0092DF00 /* GCResponseObject.h */; };
-		EC0CBB6F14150ECA0092DF00 /* GCResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBB0214150ECA0092DF00 /* GCResponseObject.m */; };
-		EC0CBB7014150ECA0092DF00 /* GCRest.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBB0314150ECA0092DF00 /* GCRest.h */; };
-		EC0CBB7114150ECA0092DF00 /* GCRest.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBB0414150ECA0092DF00 /* GCRest.m */; };
+		EC0CBB6E14150ECA0092DF00 /* GCResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBB0114150ECA0092DF00 /* GCResponse.h */; };
+		EC0CBB6F14150ECA0092DF00 /* GCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBB0214150ECA0092DF00 /* GCResponse.m */; };
+		EC0CBB7014150ECA0092DF00 /* GCRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBB0314150ECA0092DF00 /* GCRequest.h */; };
+		EC0CBB7114150ECA0092DF00 /* GCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBB0414150ECA0092DF00 /* GCRequest.m */; };
 		EC0CBB7214150ECA0092DF00 /* GCAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBB0614150ECA0092DF00 /* GCAccount.h */; };
 		EC0CBB7314150ECA0092DF00 /* GCAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBB0714150ECA0092DF00 /* GCAccount.m */; };
 		EC0CBB7414150ECA0092DF00 /* GCAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0CBB0814150ECA0092DF00 /* GCAsset.h */; };
@@ -157,10 +157,10 @@
 		EC0CBAFE14150ECA0092DF00 /* GCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMacros.h; sourceTree = "<group>"; };
 		EC0CBAFF14150ECA0092DF00 /* GCResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResource.h; sourceTree = "<group>"; };
 		EC0CBB0014150ECA0092DF00 /* GCResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResource.m; sourceTree = "<group>"; };
-		EC0CBB0114150ECA0092DF00 /* GCResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResponseObject.h; sourceTree = "<group>"; };
-		EC0CBB0214150ECA0092DF00 /* GCResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResponseObject.m; sourceTree = "<group>"; };
-		EC0CBB0314150ECA0092DF00 /* GCRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRest.h; sourceTree = "<group>"; };
-		EC0CBB0414150ECA0092DF00 /* GCRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRest.m; sourceTree = "<group>"; };
+		EC0CBB0114150ECA0092DF00 /* GCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResponse.h; sourceTree = "<group>"; };
+		EC0CBB0214150ECA0092DF00 /* GCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResponse.m; sourceTree = "<group>"; };
+		EC0CBB0314150ECA0092DF00 /* GCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCRequest.h; sourceTree = "<group>"; };
+		EC0CBB0414150ECA0092DF00 /* GCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCRequest.m; sourceTree = "<group>"; };
 		EC0CBB0614150ECA0092DF00 /* GCAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAccount.h; sourceTree = "<group>"; };
 		EC0CBB0714150ECA0092DF00 /* GCAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAccount.m; sourceTree = "<group>"; };
 		EC0CBB0814150ECA0092DF00 /* GCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAsset.h; sourceTree = "<group>"; };
@@ -406,16 +406,13 @@
 		EC0CBAFA14150ECA0092DF00 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EC6AD7081416732200E2AB0D /* GCRest */,
 				EC0CBAFB14150ECA0092DF00 /* GCConstants.h */,
 				EC0CBAFC14150ECA0092DF00 /* GCError.h */,
 				EC0CBAFD14150ECA0092DF00 /* GCError.m */,
 				EC0CBAFE14150ECA0092DF00 /* GCMacros.h */,
 				EC0CBAFF14150ECA0092DF00 /* GCResource.h */,
 				EC0CBB0014150ECA0092DF00 /* GCResource.m */,
-				EC0CBB0114150ECA0092DF00 /* GCResponseObject.h */,
-				EC0CBB0214150ECA0092DF00 /* GCResponseObject.m */,
-				EC0CBB0314150ECA0092DF00 /* GCRest.h */,
-				EC0CBB0414150ECA0092DF00 /* GCRest.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -710,6 +707,17 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		EC6AD7081416732200E2AB0D /* GCRest */ = {
+			isa = PBXGroup;
+			children = (
+				EC0CBB0114150ECA0092DF00 /* GCResponse.h */,
+				EC0CBB0214150ECA0092DF00 /* GCResponse.m */,
+				EC0CBB0314150ECA0092DF00 /* GCRequest.h */,
+				EC0CBB0414150ECA0092DF00 /* GCRequest.m */,
+			);
+			name = GCRest;
+			sourceTree = "<group>";
+		};
 		EC762DDD13F184760081E77E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,8 +825,8 @@
 				EC0CBB6914150ECA0092DF00 /* GCError.h in Headers */,
 				EC0CBB6B14150ECA0092DF00 /* GCMacros.h in Headers */,
 				EC0CBB6C14150ECA0092DF00 /* GCResource.h in Headers */,
-				EC0CBB6E14150ECA0092DF00 /* GCResponseObject.h in Headers */,
-				EC0CBB7014150ECA0092DF00 /* GCRest.h in Headers */,
+				EC0CBB6E14150ECA0092DF00 /* GCResponse.h in Headers */,
+				EC0CBB7014150ECA0092DF00 /* GCRequest.h in Headers */,
 				EC0CBB7214150ECA0092DF00 /* GCAccount.h in Headers */,
 				EC0CBB7414150ECA0092DF00 /* GCAsset.h in Headers */,
 				EC0CBB7614150ECA0092DF00 /* GCChute.h in Headers */,
@@ -1012,8 +1020,8 @@
 				EC0CBB6714150ECA0092DF00 /* ChuteAssetUploader.m in Sources */,
 				EC0CBB6A14150ECA0092DF00 /* GCError.m in Sources */,
 				EC0CBB6D14150ECA0092DF00 /* GCResource.m in Sources */,
-				EC0CBB6F14150ECA0092DF00 /* GCResponseObject.m in Sources */,
-				EC0CBB7114150ECA0092DF00 /* GCRest.m in Sources */,
+				EC0CBB6F14150ECA0092DF00 /* GCResponse.m in Sources */,
+				EC0CBB7114150ECA0092DF00 /* GCRequest.m in Sources */,
 				EC0CBB7314150ECA0092DF00 /* GCAccount.m in Sources */,
 				EC0CBB7514150ECA0092DF00 /* GCAsset.m in Sources */,
 				EC0CBB7714150ECA0092DF00 /* GCChute.m in Sources */,

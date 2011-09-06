@@ -6,7 +6,7 @@
 //
 
 #import "GCResource.h"
-#import "GCResponseObject.h"
+#import "GCResponse.h"
 
 @interface GCResource()
 
@@ -19,10 +19,10 @@
 
 #pragma mark - All 
 /* Get all Objects of this class */
-+ (GCResponseObject *)all {
++ (GCResponse *)all {
     NSString *_path                 = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
-    GCRest *gcRest                  = [[GCRest alloc] init];
-    GCResponseObject *_response     = [[gcRest getRequestWithPath:_path] retain];
+    GCRequest *gcRequest                  = [[GCRequest alloc] init];
+    GCResponse *_response     = [[gcRequest getRequestWithPath:_path] retain];
     
     NSMutableArray *_result = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [_response object]) {
@@ -31,7 +31,7 @@
     }
     [_response setData:_result];
     [_result release];
-    [gcRest release];
+    [gcRequest release];
     [_path release];
     return [_response autorelease]; 
 }
@@ -40,14 +40,14 @@
     DO_IN_BACKGROUND([self all], aResponseBlock);
 }
 
-+ (GCResponseObject *)findById:(NSUInteger) objectID {
++ (GCResponse *)findById:(NSUInteger) objectID {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
-    GCRest *gcRest      = [[GCRest alloc] init];
+    GCRequest *gcRequest      = [[GCRequest alloc] init];
 
-    GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     [_response setData:[self objectWithDictionary:[_response object]]];
     
-    [gcRest release];
+    [gcRequest release];
     [_path release];
     return [_response autorelease];
 }
@@ -110,10 +110,10 @@
 
 #pragma mark - Common Meta Data Methods
 
-+ (GCResponseObject *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value {
++ (GCResponse *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/meta/%@/%@", API_URL, [[self class] elementName], IS_NULL(key)?@"":key, IS_NULL(value)?@"":value];
-    GCRest *gcRest                     = [[GCRest alloc] init];
-    GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
+    GCRequest *gcRequest                     = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     
     NSMutableArray *_result = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [[_response object] objectForKey:[self elementName]]) {
@@ -122,7 +122,7 @@
     }
     [_response setData:_result];
     [_result release];
-    [gcRest release];
+    [gcRequest release];
     [_path release];
     return [_response autorelease];
 }
@@ -131,11 +131,11 @@
     DO_IN_BACKGROUND([self searchMetaDataForKey:key andValue:value], aResponseBlock);
 }
 
-- (GCResponseObject *) getMetaData {
+- (GCResponse *) getMetaData {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
-    GCRest *gcRest                     = [[GCRest alloc] init];
-    GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
-    [gcRest release];
+    GCRequest *gcRequest                     = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
+    [gcRequest release];
     [_path release];
     return [_response autorelease];
 }
@@ -144,12 +144,12 @@
     DO_IN_BACKGROUND([self getMetaData], aResponseBlock);
 }
 
-- (GCResponseObject *) getMetaDataForKey:(NSString *) key {
+- (GCResponse *) getMetaDataForKey:(NSString *) key {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    GCRest *gcRest                      = [[GCRest alloc] init];
-    GCResponseObject *_response         = [[gcRest getRequestWithPath:_path] retain];
-    [gcRest release];
+    GCRequest *gcRequest                      = [[GCRequest alloc] init];
+    GCResponse *_response         = [[gcRequest getRequestWithPath:_path] retain];
+    [gcRequest release];
     [_path release];
     return [_response autorelease];
 }
@@ -164,9 +164,9 @@
 
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRest *gcRest              = [[GCRest alloc] init];
-    BOOL _response              = [[gcRest postRequestWithPath:_path andParams:_params] isSuccessful];
-    [gcRest release];
+    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
+    [gcRequest release];
     [_path release];
     [_params release];
     return _response;
@@ -182,9 +182,9 @@
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    GCRest *gcRest              = [[GCRest alloc] init];
-    BOOL _response              = [[gcRest postRequestWithPath:_path andParams:_params] isSuccessful];
-    [gcRest release];
+    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
+    [gcRequest release];
     [_path release];
     [_params release];
     return _response;
@@ -197,9 +197,9 @@
 - (BOOL) deleteMetaData {
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRest *gcRest              = [[GCRest alloc] init];
-    BOOL _response              = [[gcRest deleteRequestWithPath:_path andParams:nil] isSuccessful];
-    [gcRest release];
+    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    BOOL _response              = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
+    [gcRequest release];
     [_path release];
     return _response;
 }
@@ -211,9 +211,9 @@
 - (BOOL) deleteMetaDataForKey:(NSString *) key {
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    GCRest *gcRest              = [[GCRest alloc] init];
-    BOOL _response              = [[gcRest deleteRequestWithPath:_path andParams:nil] isSuccessful];
-    [gcRest release];
+    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    BOOL _response              = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
+    [gcRequest release];
     [_path release];
     return _response;
 }
@@ -260,8 +260,8 @@
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@", API_URL, [[self class] elementName]];
     
-    GCRest *gcRest              = [[GCRest alloc] init];
-    GCResponseObject *_response = [[gcRest postRequestWithPath:_path andParams:_params] retain];
+    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    GCResponse *_response = [[gcRequest postRequestWithPath:_path andParams:_params] retain];
     BOOL _result                = [_response isSuccessful];
     
     //Update the current object with the new values
@@ -270,7 +270,7 @@
     }
     
     [_response release];
-    [gcRest release];
+    [gcRequest release];
     [_path release];
     [_params release];
     
@@ -291,8 +291,8 @@
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRest *gcRest              = [[GCRest alloc] init];
-    GCResponseObject *_response = [[gcRest putRequestWithPath:_path andParams:_params] retain];
+    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    GCResponse *_response = [[gcRequest putRequestWithPath:_path andParams:_params] retain];
     BOOL _result                = [_response isSuccessful];
     
     //Update the current object with the new values
@@ -301,7 +301,7 @@
     }
     
     [_response release];
-    [gcRest release];
+    [gcRequest release];
     [_path release];
     [_params release];
     
@@ -315,9 +315,9 @@
 - (BOOL) destroy {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRest *gcRest      = [[GCRest alloc] init];
-    BOOL _response      = [[gcRest deleteRequestWithPath:_path andParams:nil] isSuccessful];
-    [gcRest release];
+    GCRequest *gcRequest      = [[GCRequest alloc] init];
+    BOOL _response      = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
+    [gcRequest release];
     [_path release];
     return _response;
 }

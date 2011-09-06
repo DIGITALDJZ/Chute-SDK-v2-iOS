@@ -10,12 +10,12 @@
 //Comment this line to stop debug log on the debugger console.
 #define DEBUG
 
-@class GCResponseObject;
+@class GCResponse;
 
 typedef void(^GCBasicBlock)(void);
 typedef void(^GCBoolBlock)(BOOL value);
 typedef void(^GCErrorBlock)(NSError *error);
-typedef void(^GCResponseBlock)(GCResponseObject *response);
+typedef void(^GCResponseBlock)(GCResponse *response);
 
 #define kJSONResponse 1
 

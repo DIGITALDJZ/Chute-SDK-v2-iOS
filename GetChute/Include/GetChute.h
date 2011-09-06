@@ -12,7 +12,7 @@
 #import "GCMacros.h"
 #import "GCResource.h"
 #import "GCResponseObject.h"
-#import "GCRest.h"
+#import "GCRequest.h"
 
 #pragma mark - Model
 

@@ -11,7 +11,7 @@
 #import "SBJson.h"
 #import "GCMacros.h"
 
-@interface GCResponseObject : NSObject
+@interface GCResponse : NSObject
 
 @property (nonatomic, retain) GCError *error;
 @property (nonatomic, retain) id object;

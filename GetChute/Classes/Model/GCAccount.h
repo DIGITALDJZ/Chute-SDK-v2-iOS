@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCRest.h"
+#import "GCRequest.h"
 #import "SBJson.h"
 #import "GCConstants.h"
 #import "ASIHTTPRequest.h"

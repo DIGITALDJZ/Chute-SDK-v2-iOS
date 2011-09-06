@@ -5,9 +5,9 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "GCResponseObject.h"
+#import "GCResponse.h"
 
-@implementation GCResponseObject
+@implementation GCResponse
 
 @synthesize object;
 @synthesize error;

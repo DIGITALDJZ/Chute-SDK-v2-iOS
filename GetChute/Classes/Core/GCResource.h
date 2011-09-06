@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCRest.h"
+#import "GCRequest.h"
 
-@class GCResponseObject;
+@class GCResponse;
 
 @interface GCResource : NSObject {
     NSMutableDictionary *_content;
@@ -17,11 +17,11 @@
 + (id) objectWithDictionary:(NSDictionary *) dictionary;
 
 /* Get all Objects of this class */
-+ (GCResponseObject *)all;
++ (GCResponse *)all;
 + (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 //Find Specific object data with Id
-+ (GCResponseObject *)findById:(NSUInteger) objectID;
++ (GCResponse *)findById:(NSUInteger) objectID;
 + (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 //Methods to Override in SubClass
@@ -32,10 +32,10 @@
 - (id) objectForKey:(id)aKey;
 
 //Common Meta Data Methods
-+ (GCResponseObject *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value;
++ (GCResponse *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value;
 + (void) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
-- (GCResponseObject *) getMetaData;
+- (GCResponse *) getMetaData;
 - (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 - (id) getMetaDataForKey:(NSString *) key;
