@@ -53,6 +53,8 @@
 
 //Common Get Data Methods
 - (NSUInteger) objectID;
+- (NSDate *) updatedAt;
+- (NSDate *) createdAt;
 
 //Instance Method Calls
 - (BOOL) save;

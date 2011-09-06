@@ -9,6 +9,13 @@
 
 @implementation GCChute
 
++ (id) new {
+    id _obj = [self alloc];
+    
+    return _obj;
+}
+
+#pragma mark - Super Class Methods
 + (NSString *)elementName {
     return @"chutes";
 }

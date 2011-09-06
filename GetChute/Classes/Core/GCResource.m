@@ -11,7 +11,7 @@
 @interface GCResource()
 
 + (NSString *)elementName;
-
++ (id) objectWithDictionary:(NSDictionary *) dictionary;
 - (id) initWithDictionary:(NSDictionary *) dictionary;
 
 @end
@@ -27,7 +27,7 @@
     
     NSMutableArray *_result = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [_response object]) {
-        id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
+        id _obj = [self objectWithDictionary:_dic];
         [_result addObject:_obj];
     }
     [_response setData:_result];
@@ -46,7 +46,7 @@
     GCRest *gcRest      = [[GCRest alloc] init];
 
     GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
-    [_response setData:[[self alloc] initWithDictionary:[_response object]]];
+    [_response setData:[self objectWithDictionary:[_response object]]];
     
     [gcRest release];
     [_path release];
@@ -60,6 +60,7 @@
 #pragma mark - Override these methods in every Subclass
 + (NSString *)elementName {
     //for example, this should return the string "chutes", "assets", "bundles", "parcels"
+    NSAssert(0, @"Please override the elementName class method in your subclass");
     return nil;
 }
 
@@ -76,6 +77,10 @@
         _content = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
++ (id) objectWithDictionary:(NSDictionary *) dictionary {
+    return [[[self alloc] initWithDictionary:dictionary] autorelease];
 }
 
 - (id) initWithDictionary:(NSDictionary *) dictionary {
@@ -113,7 +118,7 @@
     
     NSMutableArray *_result = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [[_response object] objectForKey:[self elementName]]) {
-        id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
+        id _obj = [self objectWithDictionary:_dic];
         [_result addObject:_obj];
     }
     [_response setData:_result];
@@ -218,8 +223,31 @@
     DO_IN_BACKGROUND_BOOL([self deleteMetaDataForKey:key], aBoolBlock);
 }
 
+#pragma mark - Common Data Getters
 - (NSUInteger) objectID {
     return [[_content objectForKey:@"id"] intValue];
+}
+
+- (NSDate *) updatedAt {
+    if (IS_NULL([self objectForKey:@"updated_at"])) {
+        return nil;
+    }
+    NSDateFormatter *_formatter = [[NSDateFormatter alloc] init];
+    [_formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    NSDate *_date = [_formatter dateFromString:[self objectForKey:@"updated_at"]];
+    [_formatter release];
+    return _date;
+}
+
+- (NSDate *) createdAt {
+    if (IS_NULL([self objectForKey:@"created_at"])) {
+        return nil;
+    }
+    NSDateFormatter *_formatter = [[NSDateFormatter alloc] init];
+    [_formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    NSDate *_date = [_formatter dateFromString:[self objectForKey:@"created_at"]];
+    [_formatter release];
+    return _date;
 }
 
 #pragma mark - Instance Method Calls

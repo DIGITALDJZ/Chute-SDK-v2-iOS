@@ -32,7 +32,7 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
     DO_IN_BACKGROUND([self imageForWidth:width andHeight:height], aResponseBlock);
 }
 
-//superclass methods
+#pragma mark - Super Class Methods
 + (NSString *)elementName {
     return @"assets";
 }
