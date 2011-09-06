@@ -11,6 +11,16 @@
 
 @synthesize name;
 
+- (id)proxyForJson {
+    NSMutableDictionary *_temp = [[[NSMutableDictionary alloc] init] autorelease];
+    for (NSString *key in [_content allKeys]) {
+        if ([key isEqualToString:@"user"])
+            continue;
+        [_temp setObject:[_content objectForKey:key] forKey:key];
+    }
+    return _temp;
+}
+
 - (NSString *) name {
     return [self objectForKey:@"name"];
 }

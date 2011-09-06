@@ -89,10 +89,10 @@
 //    }];
 
     GCChute *_new = [GCChute new];
-    [_new setName:@"name331"];
+    [_new setName:@"test name 1"];
     [_new save];
     
-    [_new setName:@"nae-332"];
+    [_new setName:@"test name 2"];
     [_new update];
     
     
