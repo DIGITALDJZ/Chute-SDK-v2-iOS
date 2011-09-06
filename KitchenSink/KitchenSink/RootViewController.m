@@ -84,9 +84,18 @@
 //        DLog(@"%@", response);
 //    }];
 //    
-    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponseObject *response) {
-        DLog(@"%@", response);
-    }];
+//    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponseObject *response) {
+//        DLog(@"%@", response);
+//    }];
+
+    GCChute *_new = [GCChute new];
+    [_new setName:@"name331"];
+    [_new save];
+    
+    [_new setName:@"nae-332"];
+    [_new update];
+    
+    
     
 //    [GCChute allInBackgroundWithCompletion:^(GCResponseObject *response) {
 //        DLog(@"%@", response);  

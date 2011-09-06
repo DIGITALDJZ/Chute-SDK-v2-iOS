@@ -11,7 +11,6 @@
 @interface GCResource()
 
 + (NSString *)elementName;
-+ (id) objectWithDictionary:(NSDictionary *) dictionary;
 - (id) initWithDictionary:(NSDictionary *) dictionary;
 
 @end
@@ -251,14 +250,66 @@
 }
 
 #pragma mark - Instance Method Calls
-
 - (BOOL) save {
-    DLog(@"%@", [self JSONRepresentation]);
-    return NO;
+    NSString *_data = [[NSString alloc] initWithFormat:@"{ \"data\":%@ }", [self JSONRepresentation]];
+    
+    NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
+    [_params setValue:[_data dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    
+    [_data release];
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@", API_URL, [[self class] elementName]];
+    
+    GCRest *gcRest              = [[GCRest alloc] init];
+    GCResponseObject *_response = [[gcRest postRequestWithPath:_path andParams:_params] retain];
+    BOOL _result                = [_response isSuccessful];
+    
+    //Update the current object with the new values
+    for (NSString *key in [[_response object] allKeys]) {
+        [self setObject:[[_response object] objectForKey:key] forKey:key];
+    }
+    
+    [_response release];
+    [gcRest release];
+    [_path release];
+    [_params release];
+    
+    return _result;
 }
 
-- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+- (void) saveInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self save], aBoolBlock);
+}
+
+- (BOOL) update {
+    NSString *_data = [[NSString alloc] initWithFormat:@"{ \"data\":%@ }", [self JSONRepresentation]];
     
+    NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
+    [_params setValue:[_data dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    
+    [_data release];
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
+    
+    GCRest *gcRest              = [[GCRest alloc] init];
+    GCResponseObject *_response = [[gcRest putRequestWithPath:_path andParams:_params] retain];
+    BOOL _result                = [_response isSuccessful];
+    
+    //Update the current object with the new values
+    for (NSString *key in [[_response object] allKeys]) {
+        [self setObject:[[_response object] objectForKey:key] forKey:key];
+    }
+    
+    [_response release];
+    [gcRest release];
+    [_path release];
+    [_params release];
+    
+    return _result;
+}
+
+- (void) updateInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self update], aBoolBlock);
 }
 
 - (BOOL) destroy {
@@ -271,8 +322,8 @@
     return _response;
 }
 
-- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aResponseBlock {
-    DO_IN_BACKGROUND_BOOL([self destroy], aResponseBlock);
+- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self destroy], aBoolBlock);
 }
 
 @end

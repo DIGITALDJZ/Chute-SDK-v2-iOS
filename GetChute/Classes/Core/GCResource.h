@@ -14,6 +14,8 @@
     NSMutableDictionary *_content;
 }
 
++ (id) objectWithDictionary:(NSDictionary *) dictionary;
+
 /* Get all Objects of this class */
 + (GCResponseObject *)all;
 + (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
@@ -58,10 +60,13 @@
 
 //Instance Method Calls
 - (BOOL) save;
-- (void) saveInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+- (void) saveInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+
+- (BOOL) update;
+- (void) updateInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
 - (BOOL) destroy;
-- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aResponseBlock;
+- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
 
 @end
