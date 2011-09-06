@@ -23,8 +23,8 @@ typedef void(^GCResponseBlock)(GCResponseObject *response);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
         id _response = action;\
         dispatch_async(dispatch_get_main_queue(), ^(void) {\
-            if (aResponseBlock) {\
-                aResponseBlock(_response);\
+            if (responseBlock) {\
+                responseBlock(_response);\
             }\
         });\
     });
@@ -33,8 +33,8 @@ typedef void(^GCResponseBlock)(GCResponseObject *response);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {\
         BOOL _response = action;\
         dispatch_async(dispatch_get_main_queue(), ^(void) {\
-            if (aResponseBlock) {\
-                aResponseBlock(_response);\
+            if (responseBlock) {\
+                responseBlock(_response);\
             }\
         });\
     });

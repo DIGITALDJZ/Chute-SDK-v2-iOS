@@ -74,10 +74,30 @@
 }
 
 - (IBAction)sync:(id)sender {
-
-    [GCChute allInBackgroundWithCompletion:^(GCResponseObject *response) {
-        DLog(@"%@", [response data]); 
+    
+    //[GCChute searchMetaDataForKey:@"world" andValue:nil];
+    [GCChute searchMetaDataForKey:@"world" andValue:nil inBackgroundWithCompletion:^(GCResponseObject *response) {
+        DLog(@"%@", response);  
     }];
+    
+    /*[GCChute findById:29 inBackgroundWithCompletion:^(GCResponseObject *response) {
+        DLog(@"%@", response);
+       [[response data] getMetaDataInBackgroundWithCompletion:^(GCResponseObject *response) {
+           DLog(@"%@", [response rawResponse]); 
+       }];
+    }];*/
+    
+//    [GCChute allInBackgroundWithCompletion:^(GCResponseObject *response) {
+//        DLog(@"%@", response);  
+//        [[[response data] objectAtIndex:0] setMetaData:@"hello" forKey:@"world"];
+//    }];
+//    
+//    
+//    
+//    
+//    [GCChute searchMetaDataForKey:@"world" andValue:nil];
+//    
+    //[GCChute searchMetaDataForKey:@"key1" andValue:nil];
 //    [GCChute allInBackgroundWithCompletion:^(id response) {
 //        DLog(@"%@", response); 
 //    } andError:^(NSError *error) {

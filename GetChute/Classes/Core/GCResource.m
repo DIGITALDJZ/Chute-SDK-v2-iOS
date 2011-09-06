@@ -106,6 +106,27 @@
 
 #pragma mark - Common Meta Data Methods
 
++ (GCResponseObject *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value {
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/meta/%@/%@", API_URL, [[self class] elementName], IS_NULL(key)?@"":key, IS_NULL(value)?@"":value];
+    GCRest *gcRest                     = [[GCRest alloc] init];
+    GCResponseObject *_response        = [[gcRest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_result = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [[_response object] objectForKey:[self elementName]]) {
+        id _obj = [[[self alloc] initWithDictionary:_dic] autorelease];
+        [_result addObject:_obj];
+    }
+    [_response setData:_result];
+    [_result release];
+    [gcRest release];
+    [_path release];
+    return [_response autorelease];
+}
+
++ (void) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self searchMetaDataForKey:key andValue:value], aResponseBlock);
+}
+
 - (GCResponseObject *) getMetaData {
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     GCRest *gcRest                     = [[GCRest alloc] init];

@@ -30,6 +30,9 @@
 - (id) objectForKey:(id)aKey;
 
 //Common Meta Data Methods
++ (GCResponseObject *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value;
++ (void) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 - (GCResponseObject *) getMetaData;
 - (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
