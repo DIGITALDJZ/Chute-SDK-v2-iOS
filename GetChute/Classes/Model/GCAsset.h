@@ -9,7 +9,9 @@
 #import "GCResource.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface GCAsset : GCResource
+@interface GCAsset : GCResource {
+    
+}
 
 - (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height;
 

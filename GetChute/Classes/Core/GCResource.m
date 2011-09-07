@@ -29,7 +29,7 @@
         id _obj = [self objectWithDictionary:_dic];
         [_result addObject:_obj];
     }
-    [_response setData:_result];
+    [_response setObject:_result];
     [_result release];
     [gcRequest release];
     [_path release];
@@ -45,7 +45,7 @@
     GCRequest *gcRequest      = [[GCRequest alloc] init];
 
     GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
-    [_response setData:[self objectWithDictionary:[_response object]]];
+    [_response setObject:[self objectWithDictionary:[_response object]]];
     
     [gcRequest release];
     [_path release];
@@ -120,7 +120,7 @@
         id _obj = [self objectWithDictionary:_dic];
         [_result addObject:_obj];
     }
-    [_response setData:_result];
+    [_response setObject:_result];
     [_result release];
     [gcRequest release];
     [_path release];
@@ -351,6 +351,10 @@
 
 - (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
     DO_IN_BACKGROUND_BOOL([self destroy], aBoolBlock);
+}
+
+- (NSString *) description {
+    return [NSString stringWithFormat:@"%@:\n%@", NSStringFromClass([self class]), _content];
 }
 
 @end

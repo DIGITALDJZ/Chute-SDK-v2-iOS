@@ -16,6 +16,7 @@ typedef enum {
 
 @interface GCChute : GCResource
 
+
 @property (nonatomic, readonly) NSUInteger assetsCount;
 @property (nonatomic, readonly) NSUInteger contributersCount;
 @property (nonatomic, readonly) NSUInteger membersCount;
@@ -32,10 +33,10 @@ typedef enum {
 @property (nonatomic, assign) GCPermissionType permissionView;
 
 @property (nonatomic, readonly) NSUInteger recentCount;
+@property (nonatomic, readonly) NSUInteger recentParcelId;
 
 @property (nonatomic, readonly) NSString *recentThumbnailUrl;
 
-@property (nonatomic, readonly) NSUInteger recentParcelId;
 @property (nonatomic, readonly) NSUInteger recentUserId;
 
 @property (nonatomic, readonly) NSString *shortcut;

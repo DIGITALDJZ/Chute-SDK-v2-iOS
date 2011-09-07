@@ -23,28 +23,27 @@
 }
 
 - (id) object {
-    return [object objectForKey:@"data"];
+    if (object)
+        return object;
+    return [self data];
 }
 
 - (id) objectForKey:(id)key {
-    if ([[self object] class] == [NSDictionary class]) {
-        return [[self object] objectForKey:key];
+    if ([[self data] class] == [NSDictionary class]) {
+        return [[self data] objectForKey:key];
     }
     return nil;
 }
 
 - (id) valueForKey:(NSString *)key {
-    if ([[self object] class] == [NSDictionary class]) {
-        return [[self object] valueForKey:key];
+    if ([[self data] class] == [NSDictionary class]) {
+        return [[self data] valueForKey:key];
     }
     return nil;
 }
 
 - (id) data {
-    if (data) {
-        return data;
-    }
-    return [self object];
+    return [data objectForKey:@"data"];
 }
 
 - (id) initWithRequest:(ASIHTTPRequest *) request {
@@ -62,7 +61,7 @@
         
         [self setRawResponse:[request responseString]];
         if ([[self rawResponse] length] > 1) {
-            [self setObject:[[self rawResponse] JSONValue]];
+            [self setData:[[self rawResponse] JSONValue]];
         }
     }
     return self;

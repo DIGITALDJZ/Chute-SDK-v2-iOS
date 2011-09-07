@@ -75,26 +75,39 @@
 
 - (IBAction)sync:(id)sender {
     
+    
+    
     //[GCChute searchMetaDataForKey:@"world" andValue:nil];
 //   [GCChute searchMetaDataForKey:@"world" andValue:nil inBackgroundWithCompletion:^(GCResponseObject *response) {
 //        DLog(@"%@", response);  
 //    }];
 
-//    [GCAsset allInBackgroundWithCompletion:^(GCResponseObject *response) {
+//    [GCAsset findById:55 inBackgroundWithCompletion:^(GCResponse *response) {
 //        DLog(@"%@", response);
 //    }];
-//    
+    
+//    [GCAsset allInBackgroundWithCompletion:^(GCResponse *response) {
+//        DLog(@"%@", response);
+//    }];
+    
 //    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponseObject *response) {
 //        DLog(@"%@", response);
 //    }];
 
     GCChute *_new = [GCChute new];
-    [_new setName:@"test name 1"];
+    [_new setName:@"new chute"];
     [_new save];
+    DLog(@"%@", _new);
+    [_new destroy];
     
-    [_new setName:@"test name 2"];
-    [_new update];
-    
+//    GCChute *_new = [GCChute new];
+//    [_new setName:@"test name 1"];
+//    [_new save];
+//    
+//    [_new setName:@"test name 2"];
+//    [_new update];
+
+//    
     
     
 //    [GCChute allInBackgroundWithCompletion:^(GCResponseObject *response) {
