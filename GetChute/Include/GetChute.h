@@ -11,7 +11,7 @@
 #import "GCError.h"
 #import "GCMacros.h"
 #import "GCResource.h"
-#import "GCResponseObject.h"
+#import "GCResponse.h"
 #import "GCRequest.h"
 
 #pragma mark - Model

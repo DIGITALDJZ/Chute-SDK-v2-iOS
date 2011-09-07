@@ -145,6 +145,9 @@
 }
 
 - (GCResponse *) getMetaDataForKey:(NSString *) key {
+    if ([self objectID] == 0) {
+        return nil;
+    }
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
     GCRequest *gcRequest                      = [[GCRequest alloc] init];
@@ -159,6 +162,9 @@
 }
 
 - (BOOL) setMetaData:(NSDictionary *) metaData {
+    if ([self objectID] == 0) {
+        return NO;
+    }
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
 
@@ -177,6 +183,9 @@
 }
 
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key {
+    if ([self objectID] == 0) {
+        return NO;
+    }
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:[data dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
     
@@ -195,6 +204,9 @@
 }
 
 - (BOOL) deleteMetaData {
+    if ([self objectID] == 0) {
+        return NO;
+    }
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest              = [[GCRequest alloc] init];
@@ -209,6 +221,9 @@
 }
 
 - (BOOL) deleteMetaDataForKey:(NSString *) key {
+    if ([self objectID] == 0) {
+        return NO;
+    }
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
     GCRequest *gcRequest              = [[GCRequest alloc] init];
@@ -282,6 +297,9 @@
 }
 
 - (BOOL) update {
+    if ([self objectID] == 0) {
+        return NO;
+    }
     NSString *_data = [[NSString alloc] initWithFormat:@"{ \"data\":%@ }", [self JSONRepresentation]];
     
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
@@ -313,10 +331,19 @@
 }
 
 - (BOOL) destroy {
+    if ([self objectID] == 0) {
+        return NO;
+    }
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest      = [[GCRequest alloc] init];
     BOOL _response      = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
+    
+    if (_response) {
+        [_content release], _content = nil;
+        _content = [[NSMutableDictionary alloc] init];
+    }
+    
     [gcRequest release];
     [_path release];
     return _response;
