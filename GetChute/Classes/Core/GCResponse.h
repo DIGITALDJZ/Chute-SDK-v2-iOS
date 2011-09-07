@@ -13,6 +13,7 @@
 
 @interface GCResponse : NSObject
 
+@property (nonatomic, assign) NSUInteger statusCode;
 @property (nonatomic, retain) GCError *error;
 @property (nonatomic, retain) id object;
 @property (nonatomic, retain) id rawResponse;

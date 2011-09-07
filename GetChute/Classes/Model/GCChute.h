@@ -41,6 +41,7 @@ typedef enum {
 
 @property (nonatomic, readonly) NSString *shortcut;
 
+- (GCResponse *) assets;
 
 /*
 "assets_count" = 4;

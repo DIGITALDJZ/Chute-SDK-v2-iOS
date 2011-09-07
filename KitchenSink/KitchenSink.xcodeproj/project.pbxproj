@@ -128,6 +128,7 @@
 		EC762E1813F185460081E77E /* AssetsGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC762E1613F185460081E77E /* AssetsGridViewController.m */; };
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
+		EC8B7DFF1417A0E900655561 /* GCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B7DFE1417A0E900655561 /* GCUser.m */; };
 		ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAAD13F7F777003153F1 /* ImageScroller.m */; };
 		ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAB013F7F7C9003153F1 /* PhotoViewer.m */; };
 		ECBDAAB513F7F7DC003153F1 /* PhotoViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECBDAAB413F7F7DC003153F1 /* PhotoViewer.xib */; };
@@ -316,6 +317,8 @@
 		EC762E1613F185460081E77E /* AssetsGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsGridViewController.m; sourceTree = "<group>"; };
 		EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsGridViewController.xib; sourceTree = "<group>"; };
 		EC762E1C13F186700081E77E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EC8B7DFD1417A0E900655561 /* GCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUser.h; sourceTree = "<group>"; };
+		EC8B7DFE1417A0E900655561 /* GCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUser.m; sourceTree = "<group>"; };
 		ECBDAAAC13F7F777003153F1 /* ImageScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScroller.h; sourceTree = "<group>"; };
 		ECBDAAAD13F7F777003153F1 /* ImageScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScroller.m; sourceTree = "<group>"; };
 		ECBDAAAF13F7F7C9003153F1 /* PhotoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewer.h; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				EC0CBB0914150ECA0092DF00 /* GCAsset.m */,
 				EC0CBB0A14150ECA0092DF00 /* GCChute.h */,
 				EC0CBB0B14150ECA0092DF00 /* GCChute.m */,
+				EC8B7DFD1417A0E900655561 /* GCUser.h */,
+				EC8B7DFE1417A0E900655561 /* GCUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1007,6 +1012,7 @@
 				EC0CBC2114150ED90092DF00 /* SBJsonTokeniser.m in Sources */,
 				EC0CBC2214150ED90092DF00 /* SBJsonUTF8Stream.m in Sources */,
 				EC0CBC2314150ED90092DF00 /* SBJsonWriter.m in Sources */,
+				EC8B7DFF1417A0E900655561 /* GCUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 
 #import "GCResource.h"
 #import "GCResponse.h"
+#import "GCUser.h"
 
 @interface GCResource()
 
@@ -20,9 +21,9 @@
 #pragma mark - All 
 /* Get all Objects of this class */
 + (GCResponse *)all {
-    NSString *_path                 = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
-    GCRequest *gcRequest                  = [[GCRequest alloc] init];
-    GCResponse *_response     = [[gcRequest getRequestWithPath:_path] retain];
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
+    GCRequest *gcRequest    = [[GCRequest alloc] init];
+    GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
     
     NSMutableArray *_result = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [_response object]) {
@@ -44,6 +45,8 @@
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
     GCRequest *gcRequest      = [[GCRequest alloc] init];
 
+    
+    
     GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     [_response setObject:[self objectWithDictionary:[_response object]]];
     
@@ -85,7 +88,14 @@
 - (id) initWithDictionary:(NSDictionary *) dictionary {
     [self init];
     for (NSString *key in [dictionary allKeys]) {
-        [self setObject:[dictionary objectForKey:key] forKey:key];
+        id _obj;
+        if ([key isEqualToString:@"user"]) {
+            _obj = [GCUser objectWithDictionary:[dictionary objectForKey:key]];
+        }
+        else {
+            _obj = IS_NULL([dictionary objectForKey:key])? @"": [dictionary objectForKey:key];
+        }
+        [self setObject:_obj forKey:key];
     }
     return self;
 }
@@ -111,11 +121,11 @@
 #pragma mark - Common Meta Data Methods
 
 + (GCResponse *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value {
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/meta/%@/%@", API_URL, [[self class] elementName], IS_NULL(key)?@"":key, IS_NULL(value)?@"":value];
-    GCRequest *gcRequest                     = [[GCRequest alloc] init];
-    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/meta/%@/%@", API_URL, [[self class] elementName], IS_NULL(key)?@"":key, IS_NULL(value)?@"":value];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    GCResponse *_response       = [[gcRequest getRequestWithPath:_path] retain];
     
-    NSMutableArray *_result = [[NSMutableArray alloc] init];
+    NSMutableArray *_result     = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [[_response object] objectForKey:[self elementName]]) {
         id _obj = [self objectWithDictionary:_dic];
         [_result addObject:_obj];
@@ -132,8 +142,8 @@
 }
 
 - (GCResponse *) getMetaData {
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
-    GCRequest *gcRequest                     = [[GCRequest alloc] init];
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    GCRequest *gcRequest         = [[GCRequest alloc] init];
     GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     [gcRequest release];
     [_path release];
@@ -150,7 +160,7 @@
     }
     NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    GCRequest *gcRequest                      = [[GCRequest alloc] init];
+    GCRequest *gcRequest          = [[GCRequest alloc] init];
     GCResponse *_response         = [[gcRequest getRequestWithPath:_path] retain];
     [gcRequest release];
     [_path release];
@@ -170,7 +180,7 @@
 
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
     [gcRequest release];
     [_path release];
@@ -191,7 +201,7 @@
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
     [gcRequest release];
     [_path release];
@@ -209,7 +219,7 @@
     }
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
     [gcRequest release];
     [_path release];
@@ -226,7 +236,7 @@
     }
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
-    GCRequest *gcRequest              = [[GCRequest alloc] init];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
     [gcRequest release];
     [_path release];
@@ -238,6 +248,10 @@
 }
 
 #pragma mark - Common Data Getters
+- (GCUser *) user {
+    return [_content objectForKey:@"user"];
+}
+
 - (NSUInteger) objectID {
     return [[_content objectForKey:@"id"] intValue];
 }
@@ -275,8 +289,8 @@
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@", API_URL, [[self class] elementName]];
     
-    GCRequest *gcRequest              = [[GCRequest alloc] init];
-    GCResponse *_response = [[gcRequest postRequestWithPath:_path andParams:_params] retain];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    GCResponse *_response       = [[gcRequest postRequestWithPath:_path andParams:_params] retain];
     BOOL _result                = [_response isSuccessful];
     
     //Update the current object with the new values
@@ -309,8 +323,8 @@
     
     NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRequest *gcRequest              = [[GCRequest alloc] init];
-    GCResponse *_response = [[gcRequest putRequestWithPath:_path andParams:_params] retain];
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    GCResponse *_response       = [[gcRequest putRequestWithPath:_path andParams:_params] retain];
     BOOL _result                = [_response isSuccessful];
     
     //Update the current object with the new values
@@ -334,10 +348,10 @@
     if ([self objectID] == 0) {
         return NO;
     }
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path        = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     
-    GCRequest *gcRequest      = [[GCRequest alloc] init];
-    BOOL _response      = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
+    GCRequest *gcRequest   = [[GCRequest alloc] init];
+    BOOL _response         = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
     
     if (_response) {
         [_content release], _content = nil;
@@ -354,7 +368,7 @@
 }
 
 - (NSString *) description {
-    return [NSString stringWithFormat:@"%@:\n%@", NSStringFromClass([self class]), _content];
+    return [NSString stringWithFormat:@"%@:\n%@", [super description], _content];
 }
 
 @end

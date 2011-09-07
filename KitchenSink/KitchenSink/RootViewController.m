@@ -90,15 +90,15 @@
 //        DLog(@"%@", response);
 //    }];
     
-//    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponseObject *response) {
-//        DLog(@"%@", response);
-//    }];
+    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponse *response) {
+        [[response object] assets];
+    }];
 
-    GCChute *_new = [GCChute new];
-    [_new setName:@"new chute"];
-    [_new save];
-    DLog(@"%@", _new);
-    [_new destroy];
+//    GCChute *_new = [GCChute new];
+//    [_new setName:@"new chute"];
+//    [_new save];
+//    DLog(@"%@", _new);
+//    [_new destroy];
     
 //    GCChute *_new = [GCChute new];
 //    [_new setName:@"test name 1"];

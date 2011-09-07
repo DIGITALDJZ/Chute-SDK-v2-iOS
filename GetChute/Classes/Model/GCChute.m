@@ -6,6 +6,7 @@
 //
 
 #import "GCChute.h"
+#import "GCAsset.h"
 
 @implementation GCChute
 
@@ -33,6 +34,26 @@
 @synthesize recentUserId;
 
 @synthesize shortcut;
+
+#pragma mark - Assets
+
+- (GCResponse *) assets {
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%d/assets", API_URL, [[self class] elementName], [self objectID]];
+    GCRequest *gcRequest    = [[GCRequest alloc] init];
+    GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_assetsArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response data]) {
+        [_assetsArray addObject:[GCAsset objectWithDictionary:_dic]];
+    }
+    
+    [_response setObject:_assetsArray];
+    [_assetsArray release];
+    
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
 
 #pragma mark - Accessors Override
 - (NSUInteger)assetsCount

@@ -13,6 +13,7 @@
 @synthesize error;
 @synthesize rawResponse;
 @synthesize data;
+@synthesize statusCode;
 
 - (BOOL) isSuccessful {
     if (IS_NULL([self error])) {
@@ -50,6 +51,7 @@
     self = [super init];
     
     if (self) {   
+        [self setStatusCode:[request responseStatusCode]];
         [self setError:(GCError *)[request error]];
         
         if ([request responseStatusCode] >= 300) {
@@ -65,6 +67,10 @@
         }
     }
     return self;
+}
+
+- (NSString *) description {
+    return [NSString stringWithFormat:@"%@\n Status Code: %d \n Data: %@", [super description], statusCode, data];
 }
 
 - (void) dealloc {

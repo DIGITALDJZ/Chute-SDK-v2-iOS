@@ -9,6 +9,7 @@
 #import "GCRequest.h"
 
 @class GCResponse;
+@class GCUser;
 
 @interface GCResource : NSObject {
     NSMutableDictionary *_content;
@@ -54,6 +55,7 @@
 - (void) deleteMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
 //Common Get Data Methods
+- (GCUser *) user;
 - (NSUInteger) objectID;
 - (NSDate *) updatedAt;
 - (NSDate *) createdAt;
