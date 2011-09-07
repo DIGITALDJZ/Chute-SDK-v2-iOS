@@ -10,12 +10,17 @@
 
 @implementation GCAsset
 
-- (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height{
-    
+- (NSString*)urlStringForImageWithWidth:(NSUInteger)width andHeight:(NSUInteger)height{
     NSString *urlString = [self objectForKey:@"url"];
     
     if(urlString)
         urlString   = [urlString stringByAppendingFormat:@"/%dx%d",width,height];
+    return urlString;
+}
+
+- (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height{
+    
+    NSString *urlString = [self urlStringForImageWithWidth:width andHeight:height];
     
     NSURL *url      = [NSURL URLWithString:urlString];
     NSData *data    = [NSData dataWithContentsOfURL:url];
