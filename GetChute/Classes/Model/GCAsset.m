@@ -19,6 +19,14 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 @synthesize progress;
 @synthesize status;
 
+- (NSDictionary *) uniqueRepresentation {
+    ALAssetRepresentation *_representation = [alAsset defaultRepresentation];
+    return [NSDictionary dictionaryWithObjectsAndKeys:[[_representation url] absoluteString], @"filename", 
+     [NSString stringWithFormat:@"%d", [_representation size]], @"size", 
+     [NSString stringWithFormat:@"%d", [_representation size]], @"md5", 
+     nil];
+}
+
 #pragma mark - Upload
 
 - (void) upload {

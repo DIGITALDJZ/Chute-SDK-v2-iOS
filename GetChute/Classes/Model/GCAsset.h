@@ -32,6 +32,8 @@ typedef enum {
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, assign) GCAssetStatus status;
 
+- (NSDictionary *) uniqueRepresentation;
+
 - (NSString*)urlStringForImageWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
 
 - (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height;
