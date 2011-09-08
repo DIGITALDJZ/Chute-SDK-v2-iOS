@@ -1,5 +1,5 @@
 //
-//  ChuteResource.h
+//  GCResource.h
 //
 //  Created by Achal Aggarwal on 26/08/11.
 //  Copyright 2011 NA. All rights reserved.

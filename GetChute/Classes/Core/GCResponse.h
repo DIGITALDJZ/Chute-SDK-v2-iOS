@@ -1,5 +1,5 @@
 //
-//  GCObject.h
+//  GCResponse.h
 //
 //  Created by Achal Aggarwal on 05/09/11.
 //  Copyright 2011 NA. All rights reserved.

@@ -1,5 +1,5 @@
 //
-//  ChuteAccount.m
+//  GCAccount.m
 //
 //  Created by Achal Aggarwal on 30/08/11.
 //  Copyright 2011 NA. All rights reserved.

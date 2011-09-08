@@ -1,6 +1,5 @@
 //
 //  GCAsset.m
-//  ChuteSDKDevProject
 //
 //  Created by Brandon Coston on 8/31/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
