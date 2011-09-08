@@ -10,4 +10,11 @@
 
 @interface GCAssetUploader : NSObject
 
+@property (nonatomic, retain) NSMutableSet *queue;
+
++ (GCAssetUploader *)sharedUploader;
+
+- (void) addAsset:(GCAsset *) anAsset;
+- (void) removeAsset:(GCAsset *) anAsset;
+
 @end

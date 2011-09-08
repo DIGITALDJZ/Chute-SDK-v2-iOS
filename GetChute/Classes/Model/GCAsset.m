@@ -6,6 +6,7 @@
 //
 
 #import "GCAsset.h"
+#import "GCAssetUploader.h"
 
 NSString * const GCAssetStatusChanged   = @"GCAssetStatusChanged";
 NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
@@ -17,6 +18,12 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 @synthesize selected;
 @synthesize progress;
 @synthesize status;
+
+#pragma mark - Upload
+
+- (void) upload {
+    [[GCAssetUploader sharedUploader] addAsset:self];
+}
 
 #pragma mark - Accessors Override
 - (UIImage *) thumbnail {

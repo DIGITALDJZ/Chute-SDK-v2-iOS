@@ -11,8 +11,35 @@ static GCAssetUploader *sharedAssetUploader = nil;
 
 @implementation GCAssetUploader
 
+@synthesize queue;
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"queue"]) {
+        //Check for GCAssets with status new and start uploading them.
+        
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+#pragma mark - Instance Methods
+
+- (void) addAsset:(GCAsset *) anAsset {
+    [[self queue] addObject:anAsset];
+}
+
+- (void) removeAsset:(GCAsset *) anAsset {
+    [[self queue] removeObject:anAsset];
+}
+
+- (void) assetUpdated:(NSNotification *) notification {
+    if ([[notification object] status] == GCAssetStateFinished) {
+        [self removeAsset:[notification object]];
+    }
+}
+
 #pragma mark - Methods for Singleton class
-+ (GCAssetUploader *)sharedManager
++ (GCAssetUploader *)sharedUploader
 {
     if (sharedAssetUploader == nil) {
         static dispatch_once_t onceToken;
@@ -25,7 +52,16 @@ static GCAssetUploader *sharedAssetUploader = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedManager] retain];
+    return [[self sharedUploader] retain];
+}
+
+- (id) init {
+    self = [super init];
+    if (self) {
+        queue = [[NSMutableSet alloc] init];
+        [self addObserver:self forKeyPath:@"queue" options:0 context:nil];
+    }
+    return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -51,6 +87,11 @@ static GCAssetUploader *sharedAssetUploader = nil;
 - (id)autorelease
 {
     return self;
+}
+
+- (void) dealloc {
+    [queue release];
+    [super dealloc];
 }
 
 @end

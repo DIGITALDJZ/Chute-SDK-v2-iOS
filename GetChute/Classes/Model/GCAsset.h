@@ -40,4 +40,6 @@ typedef enum {
             andHeight:(NSUInteger)height 
 inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock;
 
+- (void) upload;
+
 @end
