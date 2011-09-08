@@ -13,6 +13,8 @@
     
 }
 
+- (NSString*)urlStringForImageWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
+
 - (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height;
 
 - (void)imageForWidth:(NSUInteger)width 

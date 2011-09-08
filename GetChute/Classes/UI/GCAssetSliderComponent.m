@@ -98,7 +98,10 @@
     UIScrollView *view = [[[UIScrollView alloc] initWithFrame:objectSlider.frame] autorelease];
     UIImageView *image = [[[UIImageView alloc] initWithFrame:objectSlider.frame] autorelease];
     [image setContentMode:UIViewContentModeScaleAspectFit];
-    [image setImage:[asset imageForWidth:view.frame.size.width andHeight:view.frame.size.height]];
+    [asset imageForWidth:view.frame.size.width andHeight:view.frame.size.height inBackgroundWithCompletion:^(UIImage *tempImage){
+        [image setImage:tempImage];
+        [view addSubview:image];
+    }];
     image.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     [view setMinimumZoomScale:1];
     [view setMaximumZoomScale:2.5];
@@ -108,7 +111,6 @@
     [view setShowsHorizontalScrollIndicator:NO];
     [image setClipsToBounds:YES];
     [view setContentSize: CGSizeMake(image.bounds.size.width, image.bounds.size.height)];
-    [view addSubview:image];
     [view setDelegate:self];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[self sliderObjects]];
     [array addObject:view];
@@ -118,6 +120,7 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     if(scrollView != objectSlider){
+        if(scrollView.subviews.count > 0)
         return [scrollView.subviews objectAtIndex:0];
     }
     return NULL;
