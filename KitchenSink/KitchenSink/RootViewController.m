@@ -74,8 +74,58 @@
 }
 
 - (IBAction)sync:(id)sender {
+//
+//    GCResponse *response   = [GCChute searchMetaDataForKey:@"AnyKey" andValue:@"AnyValue"];
+//    for (GCChute *chute in [response object]) {
+//        //Individual Chutes
+//        NSLog(@"%@", chute);
+//    }
+//    
+//    [GCChute searchMetaDataForKey:@"AnyKey" andValue:@"AnyValue" inBackgroundWithCompletion:^(GCResponse *response) {
+//        for (GCChute *chute in [response object]) {
+//            //Individual Chutes
+//            NSLog(@"%@", chute);
+//        }
+//    }];
     
-    
+//    GCResponse *response = [GCChute findById:29];
+//    GCChute *chute       = [response object];
+//    if ([chute destroy]) {
+//        //Destroyed
+//    }
+//
+//    [chute destroyInBackgroundWithCompletion:^(BOOL value) {
+//        if (value) {
+//            //destroyed
+//        }
+//    }];
+//    
+//    [chute setName:@"NewName"];
+//    
+//    if ([chute update]) {
+//        //Updated
+//    }
+//    
+//    [chute updateInBackgroundWithCompletion:^(BOOL value) {
+//        if (value) {
+//            //Updated
+//        }
+//    }];
+//    
+//    
+//    GCResponse *_response = [GCChute all];
+//    for (GCChute *chute in [_response object]) {
+//        //Individual Chutes
+//        NSLog(@"%@", chute);
+//    }
+//    
+//    
+//    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+//        for (GCChute *chute in [response object]) {
+//            //Individual Chutes
+//            NSLog(@"%@", chute);
+//        }
+//    }];
     
     //[GCChute searchMetaDataForKey:@"world" andValue:nil];
 //   [GCChute searchMetaDataForKey:@"world" andValue:nil inBackgroundWithCompletion:^(GCResponseObject *response) {
@@ -90,13 +140,19 @@
 //        DLog(@"%@", response);
 //    }];
     
-    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponse *response) {
-        [[response object] assets];
-    }];
-
+//    [GCChute findById:29 inBackgroundWithCompletion:^(GCResponse *response) {
+//        [[response object] assets];
+//    }];
+//
 //    GCChute *_new = [GCChute new];
 //    [_new setName:@"new chute"];
 //    [_new save];
+//    
+//    [_new saveInBackgroundWithCompletion:^(BOOL value) {
+//        if (value) {
+//            //Saved
+//        }
+//    }];
 //    DLog(@"%@", _new);
 //    [_new destroy];
     

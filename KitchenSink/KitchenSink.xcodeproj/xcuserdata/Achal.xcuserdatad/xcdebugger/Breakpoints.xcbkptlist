@@ -9,16 +9,16 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "KitchenSink/RootViewController.m"
-         timestampString = "337087374.690236"
+         timestampString = "337102418.505654"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "164"
-         endingLineNumber = "164"
+         startingLineNumber = "175"
+         endingLineNumber = "175"
          landmarkName = "-sync:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
