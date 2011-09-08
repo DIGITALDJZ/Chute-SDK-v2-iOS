@@ -17,4 +17,6 @@
 - (void) addAsset:(GCAsset *) anAsset;
 - (void) removeAsset:(GCAsset *) anAsset;
 
+- (GCResponse *) createParcelWithAssets:(NSArray *) assets andChutes:(NSArray *) chutes;
+
 @end

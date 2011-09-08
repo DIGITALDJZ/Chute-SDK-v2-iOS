@@ -13,9 +13,43 @@ static GCAssetUploader *sharedAssetUploader = nil;
 
 @synthesize queue;
 
+#pragma mark - Step 1 - Make Parcel with Assets and Chutes
+- (GCResponse *) createParcelWithAssets:(NSArray *) assets andChutes:(NSArray *) chutes {
+    NSMutableArray *_assetsUniqueDescription = [[NSMutableArray alloc] init];
+    for (GCAsset *_asset in assets) {
+        [_assetsUniqueDescription addObject:[_asset uniqueRepresentation]];
+    }
+    
+    NSDictionary *params    = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [_assetsUniqueDescription JSONRepresentation], @"files", 
+                                   [chutes JSONRepresentation], @"chutes", 
+                                   nil];
+    
+    [_assetsUniqueDescription release];
+    
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@%@", API_URL, @"parcels"];
+    
+    GCRequest *gcRequest = [[GCRequest alloc] init];
+    GCResponse *response = [[gcRequest postRequestWithPath:_path andParams:(NSMutableDictionary *)params] retain];
+    
+    [gcRequest release];
+    [_path release];
+    return [response autorelease];
+}
+
+#pragma mark - Step 2 - Remove already uploaded assets from the queue
+
+#pragma mark - Step 3 - Generate token for Assets in the queue
+
+#pragma mark - Step 4 - Upload assets to Amazon S3 using the token from previous request
+
+#pragma mark - Step 5 - Send completion request for a particular asset
+
+
+#pragma mark -
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"queue"]) {
-        //Check for GCAssets with status new and start uploading them.
+        //Check for GCAssets with status new and start uploading them... or reset a timer... if a new asset is added to the queue.
         
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -24,6 +58,7 @@ static GCAssetUploader *sharedAssetUploader = nil;
 
 #pragma mark - Instance Methods
 
+//TODO: Reset timer to 0 everytime addAsset is called. This delay will allow us to add more assets together
 - (void) addAsset:(GCAsset *) anAsset {
     [[self queue] addObject:anAsset];
 }
