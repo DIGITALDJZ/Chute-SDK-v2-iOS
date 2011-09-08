@@ -94,8 +94,14 @@
 {
     [super viewDidLoad];
     if([self thumbCountPerRow] <= 0){
+        if([self spacingSize]+[self thumbSize] < self.view.frame.size.width){
         initialThumbOffset = (((int)self.view.frame.size.width+[self spacingSize])%([self thumbSize]+[self spacingSize]))/2;
-        [self setThumbCountPerRow:(((int)(self.view.frame.size.width-(2*initialThumbOffset)+[self spacingSize]))/([self thumbSize]+[self spacingSize]))];
+        [self setThumbCountPerRow:ceil((((self.view.frame.size.width-(2*initialThumbOffset)+[self spacingSize]))/([self thumbSize]+[self spacingSize])))];
+        }
+        else{
+            initialThumbOffset = (self.view.frame.size.width - self.thumbSize)/2;
+            [self setThumbCountPerRow:1];
+        }
     }
     else{
         initialThumbOffset = ((int)self.view.frame.size.width+[self spacingSize]-([self thumbCountPerRow]*([self thumbSize]+[self spacingSize])))/2;
@@ -156,6 +162,9 @@
 		
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    for(UIView *v in cell.contentView.subviews){
+        [v removeFromSuperview];
+    }
 	[cell.contentView addSubview:[self viewForIndexPath:indexPath]];
     return cell;
 }
@@ -178,13 +187,15 @@
     for (int i=0; i<x; i++) {
         GCAsset *asset = [[self objects] objectAtIndex:index+i];
         UIImageView *image = [[[UIImageView alloc] initWithFrame:rect] autorelease];
-        [image setImage:[asset imageForWidth:[self thumbSize] andHeight:[self thumbSize]]];
         [image setTag:index+i];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(objectTappedWithGesture:)];
         [image addGestureRecognizer:tap];
         [tap release];
         [image setUserInteractionEnabled:YES];
-        [view addSubview:image];
+        [asset imageForWidth:[self thumbSize] andHeight:[self thumbSize] inBackgroundWithCompletion:^(UIImage* _image){
+            [image setImage:_image];
+            [view addSubview:image];
+        }];
         rect = CGRectMake((rect.origin.x+[self thumbSize]+[self spacingSize]), rect.origin.y, rect.size.width, rect.size.height);
     }
     return view;
