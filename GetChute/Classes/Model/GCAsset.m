@@ -7,9 +7,42 @@
 
 #import "GCAsset.h"
 
+NSString * const GCAssetStatusChanged   = @"GCAssetStatusChanged";
+NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
+
 @implementation GCAsset
 
+@synthesize alAsset;
+@synthesize thumbnail;
+@synthesize selected;
+@synthesize progress;
+@synthesize status;
+
+#pragma mark - Accessors Override
+- (UIImage *) thumbnail {
+    if ([self status] == GCAssetStateNew && alAsset) {
+        return [UIImage imageWithCGImage:[alAsset thumbnail]];
+    }
+    else if([self status] == GCAssetStateFinished) {
+        return [self imageForWidth:75 andHeight:75];
+    }
+    return nil;
+}
+
+- (void) setProgress:(CGFloat)aProgress {
+    progress = aProgress;
+    [[NSNotificationCenter defaultCenter] postNotificationName:GCAssetProgressChanged object:self];
+}
+
+- (void) setStatus:(GCAssetStatus)aStatus {
+    status = aStatus;
+    [[NSNotificationCenter defaultCenter] postNotificationName:GCAssetStatusChanged object:self];
+}
+
 - (NSString*)urlStringForImageWithWidth:(NSUInteger)width andHeight:(NSUInteger)height{
+    if ([self status] == GCAssetStateNew)
+        return nil;
+    
     NSString *urlString = [self objectForKey:@"url"];
     
     if(urlString)
@@ -18,6 +51,8 @@
 }
 
 - (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height{
+    if ([self status] == GCAssetStateNew)
+        return nil;
     
     NSString *urlString = [self urlStringForImageWithWidth:width andHeight:height];
     
@@ -34,6 +69,29 @@
             andHeight:(NSUInteger)height 
 inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {    
     DO_IN_BACKGROUND([self imageForWidth:width andHeight:height], aResponseBlock);
+}
+
+
+#pragma mark - Memory Management
+- (id) init {
+    self = [super init];
+    if (self) {
+        [self setStatus:GCAssetStateNew];
+    }
+    return  self;
+}
+
+- (id) initWithDictionary:(NSDictionary *) dictionary {
+    self = [super initWithDictionary:dictionary];
+    if (self) {
+        [self setStatus:GCAssetStateFinished];
+    }
+    return self;
+}
+
+- (void) dealloc {
+    [alAsset release];
+    [super dealloc];
 }
 
 #pragma mark - Super Class Methods

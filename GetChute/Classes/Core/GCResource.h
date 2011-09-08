@@ -15,7 +15,9 @@
     NSMutableDictionary *_content;
 }
 
+//Initializing Methods
 + (id) objectWithDictionary:(NSDictionary *) dictionary;
+- (id) initWithDictionary:(NSDictionary *) dictionary;
 
 /* Get all Objects of this class */
 + (GCResponse *)all;

@@ -8,9 +8,29 @@
 #import "GCResource.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface GCAsset : GCResource {
-    
-}
+NSString * const GCAssetStatusChanged;
+NSString * const GCAssetProgressChanged;
+
+typedef enum {
+    GCAssetStateNew = 0,
+    GCAssetStateInitializingThumbnail,
+    GCAssetStateInitializingThumbnailFailed,
+    GCAssetStateGettingToken,
+    GCAssetStateGettingTokenFailed,
+    GCAssetStateUploadingToS3,
+    GCAssetStateUploadingToS3Failed,
+    GCAssetStateCompleting,
+    GCAssetStateCompletingFailed,
+    GCAssetStateFinished
+} GCAssetStatus;
+
+@interface GCAsset : GCResource
+
+@property (nonatomic, retain) ALAsset *alAsset;
+@property (nonatomic, retain) UIImage *thumbnail;
+@property (nonatomic, assign) BOOL selected;
+@property (nonatomic, assign) CGFloat progress;
+@property (nonatomic, assign) GCAssetStatus status;
 
 - (NSString*)urlStringForImageWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
 
