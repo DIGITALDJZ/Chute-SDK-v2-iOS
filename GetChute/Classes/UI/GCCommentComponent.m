@@ -25,11 +25,13 @@
 -(UIView*)viewForComment:(GCComment *)comment{
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(2, 2, commentTable.frame.size.width-4, [self tableView:commentTable heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]-4)];
     [v setClipsToBounds:YES];
+    [v setBackgroundColor:[UIColor whiteColor]];
     UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, v.frame.size.height-4, v.frame.size.height-4)];
     GCUser *u = [comment user];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(iv.frame.size.width+7, 0, v.frame.size.width-iv.frame.size.width-9, v.frame.size.height)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(iv.frame.size.width+7, 0, v.frame.size.width-iv.frame.size.width-11, v.frame.size.height)];
     [label setText:[NSString stringWithFormat:@"%@",[comment objectForKey:@"comment"]]];
     [label setNumberOfLines:3];
+    [label setFont:[UIFont systemFontOfSize:15]];
     [v addSubview:label];
     [label release];
     NSString *avatarURLString = [u avatarURL];
