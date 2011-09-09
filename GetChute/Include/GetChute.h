@@ -22,6 +22,7 @@
 #import "GCChute.h"
 #import "GCUser.h"
 #import "GCParcel.h"
+#import "GCComment.h"
 
 #pragma mark - UI
 
