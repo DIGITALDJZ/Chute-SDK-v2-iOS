@@ -16,7 +16,7 @@ typedef enum {
 @interface GCParcel : GCResource
 
 @property (nonatomic, assign) GCParcelStatus status;
-@property (nonatomic, readonly) NSMutableArray *assets;
+@property (nonatomic, retain) NSMutableArray *assets;
 @property (nonatomic, readonly) NSArray *chutes;
 
 @property (nonatomic, assign) id<NSObject> delegate;

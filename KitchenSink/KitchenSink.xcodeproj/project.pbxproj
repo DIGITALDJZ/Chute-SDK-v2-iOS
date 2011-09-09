@@ -134,6 +134,8 @@
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
 		EC8B7DFF1417A0E900655561 /* GCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8B7DFE1417A0E900655561 /* GCUser.m */; };
+		EC9B4348141A571A00280C69 /* GCComment.h in Headers */ = {isa = PBXBuildFile; fileRef = EC9B4346141A571A00280C69 /* GCComment.h */; };
+		EC9B4349141A571A00280C69 /* GCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B4347141A571A00280C69 /* GCComment.m */; };
 		ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAAD13F7F777003153F1 /* ImageScroller.m */; };
 		ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBDAAB013F7F7C9003153F1 /* PhotoViewer.m */; };
 		ECBDAAB513F7F7DC003153F1 /* PhotoViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECBDAAB413F7F7DC003153F1 /* PhotoViewer.xib */; };
@@ -330,6 +332,8 @@
 		EC762E1C13F186700081E77E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EC8B7DFD1417A0E900655561 /* GCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUser.h; sourceTree = "<group>"; };
 		EC8B7DFE1417A0E900655561 /* GCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUser.m; sourceTree = "<group>"; };
+		EC9B4346141A571A00280C69 /* GCComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCComment.h; sourceTree = "<group>"; };
+		EC9B4347141A571A00280C69 /* GCComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCComment.m; sourceTree = "<group>"; };
 		ECBDAAAC13F7F777003153F1 /* ImageScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScroller.h; sourceTree = "<group>"; };
 		ECBDAAAD13F7F777003153F1 /* ImageScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScroller.m; sourceTree = "<group>"; };
 		ECBDAAAF13F7F7C9003153F1 /* PhotoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewer.h; sourceTree = "<group>"; };
@@ -448,6 +452,8 @@
 				EC8B7DFE1417A0E900655561 /* GCUser.m */,
 				EC3EBE66141A08DA003A22B1 /* GCParcel.h */,
 				EC3EBE67141A08DA003A22B1 /* GCParcel.m */,
+				EC9B4346141A571A00280C69 /* GCComment.h */,
+				EC9B4347141A571A00280C69 /* GCComment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -859,6 +865,7 @@
 				EC0CBB8014150ECA0092DF00 /* GetChute.h in Headers */,
 				EC3EBE63141A0882003A22B1 /* GCUploader.h in Headers */,
 				EC3EBE68141A08DA003A22B1 /* GCParcel.h in Headers */,
+				EC9B4348141A571A00280C69 /* GCComment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,6 +1064,7 @@
 				EC0CBB7F14150ECA0092DF00 /* GCUIBaseViewController.m in Sources */,
 				EC3EBE64141A0882003A22B1 /* GCUploader.m in Sources */,
 				EC3EBE69141A08DA003A22B1 /* GCParcel.m in Sources */,
+				EC9B4349141A571A00280C69 /* GCComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

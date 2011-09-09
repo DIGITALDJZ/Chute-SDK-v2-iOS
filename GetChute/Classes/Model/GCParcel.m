@@ -18,6 +18,18 @@
 @synthesize delegate;
 @synthesize completionSelector;
 
+- (void) removeAsset:(GCAsset *)_asset {
+    if ([assets indexOfObject:_asset] != NSNotFound) {
+        [assets removeObject:_asset];
+    }
+    
+    if ([assets count] == 0) {
+        if (delegate && [delegate respondsToSelector:completionSelector]) {
+            [delegate performSelector:completionSelector];
+        }
+    }
+}
+
 - (GCResponse *) newParcel {
     
     //Unique Description of Assets
@@ -123,7 +135,7 @@
     }
     
     for (id obj in assetsToRemove) {
-        [assets removeObject:obj];
+        [self removeAsset:obj];
     }
     
     [assetsToRemove release];
@@ -170,13 +182,12 @@
             
         });
     }
-    
-    //Start dispatch_queue -------------
-    //Get token for asset
-    //Upload asset to S3
-    //Send completion for asset
-    
-    //End loop of assets
+}
+
+- (void) updateUploadQueue:(NSNotification *) notification {
+    if ([[notification object] status] == GCAssetStateFinished) {
+        [self removeAsset:[notification object]];
+    }
 }
 
 - (void) startUploadWithTarget:(id)_target andSelector:(SEL)_selector {
@@ -192,6 +203,8 @@
         assets = [[NSMutableArray arrayWithArray:_assets] retain];
         chutes = [[NSArray arrayWithArray:_chutes] retain];
         [self setStatus:GCParcelStatusNew];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUploadQueue:) name:GCAssetStatusChanged object:nil];
     }
     return self;
 }

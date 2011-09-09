@@ -94,8 +94,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(progress:) name:GCAssetProgressChanged object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(status:) name:GCAssetStatusChanged object:nil];
-    
     [parcel startUploadWithTarget:self andSelector:@selector(complete)];
 //
 //    GCResponse *response   = [GCChute searchMetaDataForKey:@"AnyKey" andValue:@"AnyValue"];
