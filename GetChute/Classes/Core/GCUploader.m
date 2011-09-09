@@ -26,15 +26,19 @@ static GCUploader *sharedUploader = nil;
 }
 
 - (void) processQueue {
-    if ([self.queue count] > 0) {
-        GCParcel *_parcel = [self.queue objectAtIndex:0];
-        [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if ([self.queue count] > 0) {
+            GCParcel *_parcel = [self.queue objectAtIndex:0];
+            [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
+        }
+    });
 }
 
 - (void) addParcel:(GCParcel *) _parcel {
     [self.queue addObject:_parcel];
-    [self processQueue];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+        [self processQueue];
+    });
 }
 
 - (void) removeParcel:(GCParcel *) _parcel {
