@@ -7,6 +7,8 @@
 
 #import "GCChute.h"
 #import "GCAsset.h"
+#import "GCUser.h"
+#import "GCParcel.h"
 
 @implementation GCChute
 
@@ -57,6 +59,50 @@
 
 - (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
     DO_IN_BACKGROUND([self assets], aResponseBlock);
+}
+
+- (GCResponse *) contributors {
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%d/contributors", API_URL, [[self class] elementName], [self objectID]];
+    GCRequest *gcRequest    = [[GCRequest alloc] init];
+    GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_contributorsArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response data]) {
+        [_contributorsArray addObject:[GCUser objectWithDictionary:_dic]];
+    }
+    
+    [_response setObject:_contributorsArray];
+    [_contributorsArray release];
+    
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) contributorsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self contributors], aResponseBlock);
+}
+
+- (GCResponse *) members {
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%d/members", API_URL, [[self class] elementName], [self objectID]];
+    GCRequest *gcRequest    = [[GCRequest alloc] init];
+    GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_membersArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response data]) {
+        [_membersArray addObject:[GCUser objectWithDictionary:_dic]];
+    }
+    
+    [_response setObject:_membersArray];
+    [_membersArray release];
+    
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) membersInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self members], aResponseBlock);
 }
 
 #pragma mark - Accessors Override

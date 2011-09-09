@@ -44,6 +44,11 @@ typedef enum {
 - (GCResponse *) assets;
 - (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
+- (GCResponse *) contributors;
+- (void) contributorsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
+- (GCResponse *) members;
+- (void) membersInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 /*
 "assets_count" = 4;
 "contributors_count" = 1;
