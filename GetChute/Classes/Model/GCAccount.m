@@ -114,7 +114,7 @@ static GCAccount *sharedAccountManager = nil;
     [self setAccountStatus:GCAccountLoggingIn];
     
     NSDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:@"profile" forKey:@"scope"];
+    [params setValue:kOAuthPermissions forKey:@"scope"];
     [params setValue:kOAuthClientID forKey:@"client_id"];
     [params setValue:kOAuthClientSecret forKey:@"client_secret"];
     [params setValue:@"authorization_code" forKey:@"grant_type"];
