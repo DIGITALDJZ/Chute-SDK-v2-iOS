@@ -19,6 +19,8 @@
 #import "GCAccount.h"
 #import "GCAsset.h"
 #import "GCChute.h"
+#import "GCUser.h"
+#import "GCComment.h"
 
 #pragma mark - UI
 
