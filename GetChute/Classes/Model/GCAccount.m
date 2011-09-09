@@ -14,6 +14,53 @@ static GCAccount *sharedAccountManager = nil;
 
 @synthesize accountStatus;
 @synthesize accessToken;
+@synthesize assetsArray;
+
+#pragma mark - Load Assets
+
+- (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock {
+    
+    if (assetsArray) {
+        [assetsArray release], assetsArray = nil;
+    }
+    
+    assetsArray = [[NSMutableArray alloc] init];
+    
+    void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop)
+    {
+        if(result != nil)
+        {
+            GCAsset *_asset = [[GCAsset alloc] init];
+            [_asset setAlAsset:result];
+            [assetsArray addObject:_asset];
+            [_asset release];
+        }
+    };
+    
+    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
+    {
+        if (group == nil) {
+            if (aCompletionBlock) {
+                aCompletionBlock();
+            }
+            return;
+        }
+        
+        [group enumerateAssetsUsingBlock:assetEnumerator];
+    };
+    
+    void (^assetFailureBlock)(NSError *) = ^(NSError *error)
+    {
+    };
+    
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:assetGroupEnumerator failureBlock:assetFailureBlock];
+    [assetsLibrary release];
+}
+
+- (void)loadAssets {
+    [self loadAssetsCompletionBlock:nil];
+}
 
 #pragma mark - Access Token
 

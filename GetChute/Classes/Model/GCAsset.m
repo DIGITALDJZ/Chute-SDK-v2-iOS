@@ -27,6 +27,10 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
      nil];
 }
 
+- (NSString *) uniqueURL {
+    return [[[alAsset defaultRepresentation] url] absoluteString];
+}
+
 #pragma mark - Upload
 
 - (void) upload {

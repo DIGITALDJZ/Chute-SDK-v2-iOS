@@ -70,7 +70,7 @@
 }
 
 - (NSString *) description {
-    return [NSString stringWithFormat:@"%@\n Status Code: %d \n Data: %@", [super description], statusCode, data];
+    return [NSString stringWithFormat:@"%@\n Error: %@\n Status Code: %d \n Data: %@", [super description], [error localizedDescription], statusCode, data];
 }
 
 - (void) dealloc {

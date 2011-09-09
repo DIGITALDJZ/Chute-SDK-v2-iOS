@@ -33,6 +33,7 @@ typedef enum {
 @property (nonatomic, assign) GCAssetStatus status;
 
 - (NSDictionary *) uniqueRepresentation;
+- (NSString *) uniqueURL;
 
 - (NSString*)urlStringForImageWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
 

@@ -11,6 +11,8 @@
 #import "GCConstants.h"
 #import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"
+#import "GCAsset.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 //Notification which is fired whenever the Account Status is changed
 NSString * const GCAccountStatusChanged;
@@ -25,12 +27,17 @@ typedef enum {
 @interface GCAccount : NSObject {
     GCAccountStatus accountStatus;
     NSString *_accessToken;
+    NSMutableArray *assetsArray;
 }
 
 @property (nonatomic) GCAccountStatus accountStatus;
 @property (nonatomic, retain) NSString *accessToken;
+@property (nonatomic, retain) NSMutableArray *assetsArray;
 
 + (GCAccount *)sharedManager;
+
+- (void)loadAssets;
+- (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock;
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
                                    success:(GCBasicBlock)successBlock 

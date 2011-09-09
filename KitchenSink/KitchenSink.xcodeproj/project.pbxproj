@@ -85,6 +85,10 @@
 		EC0CBC2214150ED90092DF00 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBC0314150ED90092DF00 /* SBJsonUTF8Stream.m */; };
 		EC0CBC2314150ED90092DF00 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0CBC0514150ED90092DF00 /* SBJsonWriter.m */; };
 		EC21A4421418B3A200F880DF /* GCAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC21A4411418B3A200F880DF /* GCAssetUploader.m */; };
+		EC3EBE63141A0882003A22B1 /* GCUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3EBE61141A0882003A22B1 /* GCUploader.h */; };
+		EC3EBE64141A0882003A22B1 /* GCUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3EBE62141A0882003A22B1 /* GCUploader.m */; };
+		EC3EBE68141A08DA003A22B1 /* GCParcel.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3EBE66141A08DA003A22B1 /* GCParcel.h */; };
+		EC3EBE69141A08DA003A22B1 /* GCParcel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3EBE67141A08DA003A22B1 /* GCParcel.m */; };
 		EC46790613F012A900533435 /* CreateChuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790413F012A900533435 /* CreateChuteViewController.m */; };
 		EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46790813F012DC00533435 /* CreateChuteViewController.xib */; };
 		EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790C13F0132C00533435 /* ListChutesViewController.m */; };
@@ -243,6 +247,10 @@
 		EC0CBC0514150ED90092DF00 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		EC21A4401418B3A200F880DF /* GCAssetUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAssetUploader.h; sourceTree = "<group>"; };
 		EC21A4411418B3A200F880DF /* GCAssetUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAssetUploader.m; sourceTree = "<group>"; };
+		EC3EBE61141A0882003A22B1 /* GCUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUploader.h; sourceTree = "<group>"; };
+		EC3EBE62141A0882003A22B1 /* GCUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploader.m; sourceTree = "<group>"; };
+		EC3EBE66141A08DA003A22B1 /* GCParcel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCParcel.h; sourceTree = "<group>"; };
+		EC3EBE67141A08DA003A22B1 /* GCParcel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCParcel.m; sourceTree = "<group>"; };
 		EC46790313F012A900533435 /* CreateChuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChuteViewController.h; sourceTree = "<group>"; };
 		EC46790413F012A900533435 /* CreateChuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateChuteViewController.m; sourceTree = "<group>"; };
 		EC46790813F012DC00533435 /* CreateChuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateChuteViewController.xib; sourceTree = "<group>"; };
@@ -421,6 +429,8 @@
 				EC0CBB0014150ECA0092DF00 /* GCResource.m */,
 				EC21A4401418B3A200F880DF /* GCAssetUploader.h */,
 				EC21A4411418B3A200F880DF /* GCAssetUploader.m */,
+				EC3EBE61141A0882003A22B1 /* GCUploader.h */,
+				EC3EBE62141A0882003A22B1 /* GCUploader.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -436,6 +446,8 @@
 				EC0CBB0B14150ECA0092DF00 /* GCChute.m */,
 				EC8B7DFD1417A0E900655561 /* GCUser.h */,
 				EC8B7DFE1417A0E900655561 /* GCUser.m */,
+				EC3EBE66141A08DA003A22B1 /* GCParcel.h */,
+				EC3EBE67141A08DA003A22B1 /* GCParcel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -845,6 +857,8 @@
 				EC0CBB7C14150ECA0092DF00 /* GCThumbnailComponent.h in Headers */,
 				EC0CBB7E14150ECA0092DF00 /* GCUIBaseViewController.h in Headers */,
 				EC0CBB8014150ECA0092DF00 /* GetChute.h in Headers */,
+				EC3EBE63141A0882003A22B1 /* GCUploader.h in Headers */,
+				EC3EBE68141A08DA003A22B1 /* GCParcel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,6 +1055,8 @@
 				EC0CBB7B14150ECA0092DF00 /* GCLoginViewController.m in Sources */,
 				EC0CBB7D14150ECA0092DF00 /* GCThumbnailComponent.m in Sources */,
 				EC0CBB7F14150ECA0092DF00 /* GCUIBaseViewController.m in Sources */,
+				EC3EBE64141A0882003A22B1 /* GCUploader.m in Sources */,
+				EC3EBE69141A08DA003A22B1 /* GCParcel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

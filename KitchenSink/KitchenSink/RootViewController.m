@@ -73,7 +73,30 @@
     [bundlesBaseViewController release];
 }
 
+- (void) progress:(NSNotification *) notification {
+    DLog(@"%f", [[notification object] progress]);
+}
+
+
+- (void) status:(NSNotification *) notification {
+    DLog(@"%d", [[notification object] status]);
+}
+
+
+- (void) complete {
+    DLog(@"=================================== parcel completed");
+}
+
 - (IBAction)sync:(id)sender {
+    
+    DLog(@"%@", [[GCAccount sharedManager] assetsArray]);
+    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(progress:) name:GCAssetProgressChanged object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(status:) name:GCAssetStatusChanged object:nil];
+    
+    [parcel startUploadWithTarget:self andSelector:@selector(complete)];
 //
 //    GCResponse *response   = [GCChute searchMetaDataForKey:@"AnyKey" andValue:@"AnyValue"];
 //    for (GCChute *chute in [response object]) {

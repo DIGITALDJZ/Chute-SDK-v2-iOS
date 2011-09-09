@@ -13,12 +13,15 @@
 #import "GCResource.h"
 #import "GCResponse.h"
 #import "GCRequest.h"
+#import "GCUploader.h"
 
 #pragma mark - Model
 
 #import "GCAccount.h"
 #import "GCAsset.h"
 #import "GCChute.h"
+#import "GCUser.h"
+#import "GCParcel.h"
 
 #pragma mark - UI
 
