@@ -12,7 +12,6 @@
 #import "GCConstants.h"
 #import "NSData+Base64.h"
 #import "NSDictionary+QueryString.h"
-#import "ChuteAssetManager.h"
 #import "GCAccount.h"
 
 static ChuteAPI *shared=nil;
@@ -152,70 +151,9 @@ static ChuteAPI *shared=nil;
 #pragma mark -
 #pragma mark Data Wrappers
 
-- (void)createChute:(NSString *)name 
-         withParent:(NSUInteger)parentId
- withPermissionView:(NSUInteger)permissionView
-      andAddMembers:(NSUInteger)addMembers
-       andAddPhotos:(NSUInteger)addPhotos
-        andResponse:(ResponseBlock)responseBlock 
-           andError:(ErrorBlock)errorBlock {
-    
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:name forKey:@"chute[name]"];
-    [params setValue:[NSString stringWithFormat:@"%d", parentId] forKey:@"chute[parent_id]"];
-    [params setValue:[NSString stringWithFormat:@"%d", permissionView] forKey:@"chute[permission_view]"];
-    [params setValue:[NSString stringWithFormat:@"%d", addMembers] forKey:@"chute[permission_add_members]"];
-    [params setValue:[NSString stringWithFormat:@"%d", addPhotos] forKey:@"chute[permission_add_photos]"];
-    
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes", API_URL] andParams:params andResponse:^(id response) {
-        responseBlock(response);
-    } andError:^(NSError *error) {
-        errorBlock(error);
-    }];
-    
-    [params release];
-}
-
-- (void)getProfileInfoWithResponse:(ResponseBlock)aResponseBlock
-                          andError:(ErrorBlock)anErrorBlock{
-    
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@/me", API_URL] andParams: nil andResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)getMyChutesWithResponse:(void (^)(NSArray *))aResponseBlock
-                       andError:(ErrorBlock)anErrorBlock{
-    [self getChutesForId:@"me" response:aResponseBlock andError:anErrorBlock];
-}
-
 - (void)getPublicChutesWithResponse:(void (^)(NSArray *))aResponseBlock
                        andError:(ErrorBlock)anErrorBlock{
-    [self getChutesForId:@"public" response:aResponseBlock andError:anErrorBlock];
-}
-
-- (void)getChutesForId:(NSString *)Id 
-              response:(void (^)(NSArray *))aResponseBlock 
-              andError:(ErrorBlock)anErrorBlock {
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@%@/chutes", API_URL, Id] andParams: nil andResponse:^(id response) {
-        NSArray *_arr = [[[NSArray alloc] initWithArray:[response objectForKey:@"data"]] autorelease];
-        aResponseBlock(_arr);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)getAssetsForChuteId:(NSUInteger)chuteId
-                   response:(void (^)(NSArray *))aResponseBlock 
-                   andError:(ErrorBlock)anErrorBlock {
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes/%d/assets", API_URL, chuteId] andParams: nil andResponse:^(id response) {
-        NSArray *_arr = [[[NSArray alloc] initWithArray:[response objectForKey:@"data"]] autorelease];
-        aResponseBlock(_arr);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
+    //[self getChutesForId:@"public" response:aResponseBlock andError:anErrorBlock];
 }
 
 - (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
@@ -263,27 +201,6 @@ static ChuteAPI *shared=nil;
      ];
 }
 
-#pragma mark - Get Meta Data methods
-- (void)getMetaDataforChuteId:(NSString *)Id 
-                     response:(ResponseBlock)aResponseBlock 
-                     andError:(ErrorBlock)anErrorBlock {
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@chutes/%@/meta", API_URL, Id] andParams:nil andResponse:^(id response) {
-        aResponseBlock([response objectForKey:@"data"]);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)getMetaDataforAssetId:(NSString *)Id 
-                     response:(ResponseBlock)aResponseBlock 
-                     andError:(ErrorBlock)anErrorBlock {
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@assets/%@/meta", API_URL, Id] andParams:nil andResponse:^(id response) {
-        aResponseBlock([response objectForKey:@"data"]);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
 - (void)getMyMetaDataWithResponse:(ResponseBlock)aResponseBlock
                          andError:(ErrorBlock)anErrorBlock{
     [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
@@ -294,33 +211,6 @@ static ChuteAPI *shared=nil;
 }
 
 #pragma mark - Set Meta Data Methods
-- (void)setMetaData:(NSDictionary *)dictionary
-         forChuteId:(NSString *)Id 
-           response:(ResponseBlock)aResponseBlock 
-           andError:(ErrorBlock)anErrorBlock{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:[[dictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@chutes/%@/meta", API_URL, Id] andParams:params andResponse:^(id response) {
-        aResponseBlock([response objectForKey:@"data"]);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-    [params release];
-}
-
-- (void)setMetaData:(NSDictionary *)dictionary
-         forAssetId:(NSString *)Id 
-           response:(ResponseBlock)aResponseBlock 
-           andError:(ErrorBlock)anErrorBlock {
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:[[dictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@assets/%@/meta", API_URL, Id] andParams:params andResponse:^(id response) {
-        aResponseBlock([response objectForKey:@"data"]);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-    [params release];
-}
 
 - (void)setMyMetaData:(NSDictionary *)dictionary
          WithResponse:(ResponseBlock)aResponseBlock
@@ -335,98 +225,5 @@ static ChuteAPI *shared=nil;
     [params release];
 }
 
-#pragma mark - Helper methods for Asset Uploader
-
-- (void)initThumbnail:(UIImage *)thumbnail
-           forAssetId:(NSString *)assetId
-          andResponse:(ResponseBlock)aResponseBlock
-             andError:(void (^)(NSError *))anErrorBlock{
-    
-    NSData *imageData           = UIImageJPEGRepresentation(thumbnail, 0.5);
-    NSDictionary *postParams    = [NSDictionary dictionaryWithObjectsAndKeys:[imageData base64EncodingWithLineLength:0], @"thumbnail", nil];
-    
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@/assets/%@/init", API_URL, assetId] andParams: postParams andResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)getTokenForAssetId:(NSString *)assetId
-               andResponse:(ResponseBlock)aResponseBlock
-                  andError:(ErrorBlock)anErrorBlock{
-    
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@/uploads/%@/token", API_URL, assetId] andParams: nil andResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)completeForAssetId:(NSString *)assetId
-               andResponse:(ResponseBlock)aResponseBlock
-                  andError:(ErrorBlock)anErrorBlock{
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@/uploads/%@/complete", API_URL, assetId] andParams: nil andResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void)createParcelWithFiles:(NSArray *)filesArray
-                    andChutes:(NSArray *)chutesArray
-                  andResponse:(ResponseBlock)aResponseBlock
-                     andError:(ErrorBlock)anErrorBlock{
-    NSDictionary *postParams    = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [filesArray JSONRepresentation], @"files", 
-                                   [chutesArray JSONRepresentation], @"chutes", 
-                                   nil];
-    
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@/%@", API_URL, kChuteParcels] andParams:postParams andResponse:^(id response) {
-        aResponseBlock(response);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-- (void) test {
-    
-//    Metadata
-//    NSDictionary *meta = [[NSDictionary alloc] initWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
-//    
-//    
-//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-//    [params setValue:[[meta JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
-//
-//    [meta release];
-//    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
-//        DLog(@"%@", response);
-//    } andError:^(NSError *error) {
-//        DLog(@"%@", [error localizedDescription]);
-//    }];
-//
-//    [params release];
-
-    
-//    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
-//        DLog(@"%@", response);
-//    } andError:^(NSError *error) {
-//        DLog(@"%@", [error localizedDescription]);
-//    }];
-    
-}
-
-- (void)startUploadingAssets:(NSArray *) assets forChutes:(NSArray *) chutes {
-    [[ChuteAssetManager shared] startUploadingAssets:assets forChutes:chutes];
-}
-
-- (void)syncWithResponse:(void (^)(void))aResponseBlock
-                andError:(ErrorBlock)anErrorBlock{
-    [[ChuteAssetManager shared] syncWithResponse:^(void) {
-        
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
 
 @end

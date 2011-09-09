@@ -66,9 +66,6 @@
 		EC762E1B13F1855C0081E77E /* AssetsGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC762E1A13F1855C0081E77E /* AssetsGridViewController.xib */; };
 		EC762E1E13F1867A0081E77E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC762E1C13F186700081E77E /* QuartzCore.framework */; };
 		EC9B43CC141A6E5E00280C69 /* ChuteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B434F141A6E5E00280C69 /* ChuteAPI.m */; };
-		EC9B43CD141A6E5E00280C69 /* ChuteAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B4351141A6E5E00280C69 /* ChuteAsset.m */; };
-		EC9B43CE141A6E5E00280C69 /* ChuteAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B4353141A6E5E00280C69 /* ChuteAssetManager.m */; };
-		EC9B43CF141A6E5E00280C69 /* ChuteAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B4355141A6E5E00280C69 /* ChuteAssetUploader.m */; };
 		EC9B43D0141A6E5E00280C69 /* GCAssetUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B4358141A6E5E00280C69 /* GCAssetUploader.m */; };
 		EC9B43D1141A6E5E00280C69 /* GCError.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B435B141A6E5E00280C69 /* GCError.m */; };
 		EC9B43D2141A6E5E00280C69 /* GCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9B435E141A6E5E00280C69 /* GCRequest.m */; };
@@ -212,12 +209,6 @@
 		EC762E1C13F186700081E77E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EC9B434E141A6E5E00280C69 /* ChuteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAPI.h; sourceTree = "<group>"; };
 		EC9B434F141A6E5E00280C69 /* ChuteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAPI.m; sourceTree = "<group>"; };
-		EC9B4350141A6E5E00280C69 /* ChuteAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAsset.h; sourceTree = "<group>"; };
-		EC9B4351141A6E5E00280C69 /* ChuteAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAsset.m; sourceTree = "<group>"; };
-		EC9B4352141A6E5E00280C69 /* ChuteAssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAssetManager.h; sourceTree = "<group>"; };
-		EC9B4353141A6E5E00280C69 /* ChuteAssetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAssetManager.m; sourceTree = "<group>"; };
-		EC9B4354141A6E5E00280C69 /* ChuteAssetUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChuteAssetUploader.h; sourceTree = "<group>"; };
-		EC9B4355141A6E5E00280C69 /* ChuteAssetUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChuteAssetUploader.m; sourceTree = "<group>"; };
 		EC9B4357141A6E5E00280C69 /* GCAssetUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAssetUploader.h; sourceTree = "<group>"; };
 		EC9B4358141A6E5E00280C69 /* GCAssetUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAssetUploader.m; sourceTree = "<group>"; };
 		EC9B4359141A6E5E00280C69 /* GCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCConstants.h; sourceTree = "<group>"; };
@@ -566,12 +557,6 @@
 			children = (
 				EC9B434E141A6E5E00280C69 /* ChuteAPI.h */,
 				EC9B434F141A6E5E00280C69 /* ChuteAPI.m */,
-				EC9B4350141A6E5E00280C69 /* ChuteAsset.h */,
-				EC9B4351141A6E5E00280C69 /* ChuteAsset.m */,
-				EC9B4352141A6E5E00280C69 /* ChuteAssetManager.h */,
-				EC9B4353141A6E5E00280C69 /* ChuteAssetManager.m */,
-				EC9B4354141A6E5E00280C69 /* ChuteAssetUploader.h */,
-				EC9B4355141A6E5E00280C69 /* ChuteAssetUploader.m */,
 				EC9B4356141A6E5E00280C69 /* Core */,
 				EC9B4365141A6E5E00280C69 /* Model */,
 				EC9B4372141A6E5E00280C69 /* UI */,
@@ -978,9 +963,6 @@
 				ECBDAAAE13F7F777003153F1 /* ImageScroller.m in Sources */,
 				ECBDAAB213F7F7C9003153F1 /* PhotoViewer.m in Sources */,
 				EC9B43CC141A6E5E00280C69 /* ChuteAPI.m in Sources */,
-				EC9B43CD141A6E5E00280C69 /* ChuteAsset.m in Sources */,
-				EC9B43CE141A6E5E00280C69 /* ChuteAssetManager.m in Sources */,
-				EC9B43CF141A6E5E00280C69 /* ChuteAssetUploader.m in Sources */,
 				EC9B43D0141A6E5E00280C69 /* GCAssetUploader.m in Sources */,
 				EC9B43D1141A6E5E00280C69 /* GCError.m in Sources */,
 				EC9B43D2141A6E5E00280C69 /* GCRequest.m in Sources */,
