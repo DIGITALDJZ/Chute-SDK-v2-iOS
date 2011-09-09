@@ -24,6 +24,7 @@
     }
     
     if ([assets count] == 0) {
+        [self setStatus:GCParcelStatusDone];
         if (delegate && [delegate respondsToSelector:completionSelector]) {
             [delegate performSelector:completionSelector];
         }
@@ -203,7 +204,6 @@
         assets = [[NSMutableArray arrayWithArray:_assets] retain];
         chutes = [[NSArray arrayWithArray:_chutes] retain];
         [self setStatus:GCParcelStatusNew];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUploadQueue:) name:GCAssetStatusChanged object:nil];
     }
     return self;

@@ -50,6 +50,7 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 
 - (void) setProgress:(CGFloat)aProgress {
     progress = aProgress;
+    DLog(@"%f", progress*100);
     [[NSNotificationCenter defaultCenter] postNotificationName:GCAssetProgressChanged object:self];
 }
 

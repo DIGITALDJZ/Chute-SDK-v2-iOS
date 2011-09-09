@@ -89,12 +89,11 @@
 
 - (IBAction)sync:(id)sender {
     
-    DLog(@"%@", [[GCAccount sharedManager] assetsArray]);
-    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:nil];
+    GCResponse *response = [GCChute all];
+    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:[response object]];
+    [[GCUploader sharedUploader] addParcel:parcel];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(progress:) name:GCAssetProgressChanged object:nil];
     
-    [parcel startUploadWithTarget:self andSelector:@selector(complete)];
 //
 //    GCResponse *response   = [GCChute searchMetaDataForKey:@"AnyKey" andValue:@"AnyValue"];
 //    for (GCChute *chute in [response object]) {

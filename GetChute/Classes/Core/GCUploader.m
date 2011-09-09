@@ -9,16 +9,37 @@
 
 static GCUploader *sharedUploader = nil;
 
+@interface GCUploader()
+- (void) processQueue;
+@end
+
 @implementation GCUploader
 
 @synthesize queue;
 
+- (void) parcelCompleted {
+    DLog(@"Parcel Completed");
+    if ([self.queue count] > 0) {
+        [self.queue removeObjectAtIndex:0];
+    }
+    [self processQueue];
+}
+
+- (void) processQueue {
+    if ([self.queue count] > 0) {
+        GCParcel *_parcel = [self.queue objectAtIndex:0];
+        [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
+    }
+}
+
 - (void) addParcel:(GCParcel *) _parcel {
-    [queue addObject:_parcel];
+    [self.queue addObject:_parcel];
+    [self processQueue];
 }
 
 - (void) removeParcel:(GCParcel *) _parcel {
-    [queue addObject:_parcel];
+    [self.queue removeObject:_parcel];
+    [self processQueue];
 }
 
 #pragma mark - Methods for Singleton class
@@ -41,6 +62,7 @@ static GCUploader *sharedUploader = nil;
 - (id) init {
     self = [super init];
     if (self) {
+        self.queue = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -71,6 +93,7 @@ static GCUploader *sharedUploader = nil;
 }
 
 - (void) dealloc {
+    [self.queue release];
     [super dealloc];
 }
 

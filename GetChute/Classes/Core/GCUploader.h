@@ -11,7 +11,7 @@
 
 @interface GCUploader : NSObject
 
-@property (nonatomic, retain) NSMutableSet *queue;
+@property (nonatomic, retain) NSMutableArray *queue;
 
 + (GCUploader *)sharedUploader;
 
