@@ -214,6 +214,7 @@
 }
 
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [assets release];
     [chutes release];
     [super dealloc];

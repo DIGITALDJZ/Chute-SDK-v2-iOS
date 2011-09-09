@@ -63,14 +63,14 @@
 - (NSDate *) createdAt;
 
 //Instance Method Calls
-- (BOOL) save;
-- (void) saveInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+- (GCResponse *) save;
+- (void) saveInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolBlock;
 
-- (BOOL) update;
-- (void) updateInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+- (GCResponse *) update;
+- (void) updateInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolBlock;
 
-- (BOOL) destroy;
-- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+- (GCResponse *) destroy;
+- (void) destroyInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolBlock;
 
 
 @end

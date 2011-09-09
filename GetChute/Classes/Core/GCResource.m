@@ -279,7 +279,7 @@
 }
 
 #pragma mark - Instance Method Calls
-- (BOOL) save {
+- (GCResponse *) save {
     NSString *_data = [[NSString alloc] initWithFormat:@"{ \"data\":%@ }", [self JSONRepresentation]];
     
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
@@ -291,26 +291,26 @@
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     GCResponse *_response       = [[gcRequest postRequestWithPath:_path andParams:_params] retain];
-    BOOL _result                = [_response isSuccessful];
     
-    //Update the current object with the new values
-    for (NSString *key in [[_response object] allKeys]) {
-        [self setObject:[[_response object] objectForKey:key] forKey:key];
+    if ([_response isSuccessful]) {
+        //Update the current object with the new values
+        for (NSString *key in [[_response object] allKeys]) {
+            [self setObject:[[_response object] objectForKey:key] forKey:key];
+        }
     }
-    
-    [_response release];
+
     [gcRequest release];
     [_path release];
     [_params release];
     
-    return _result;
+    return [_response autorelease];
 }
 
-- (void) saveInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
-    DO_IN_BACKGROUND_BOOL([self save], aBoolBlock);
+- (void) saveInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
+    DO_IN_BACKGROUND_BOOL_ERROR([self save], aBoolErrorBlock);
 }
 
-- (BOOL) update {
+- (GCResponse *) update {
     if ([self objectID] == 0) {
         return NO;
     }
@@ -325,35 +325,35 @@
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     GCResponse *_response       = [[gcRequest putRequestWithPath:_path andParams:_params] retain];
-    BOOL _result                = [_response isSuccessful];
     
-    //Update the current object with the new values
-    for (NSString *key in [[_response object] allKeys]) {
-        [self setObject:[[_response object] objectForKey:key] forKey:key];
+    if ([_response isSuccessful]) {
+        //Update the current object with the new values
+        for (NSString *key in [[_response object] allKeys]) {
+            [self setObject:[[_response object] objectForKey:key] forKey:key];
+        }
     }
-    
-    [_response release];
+
     [gcRequest release];
     [_path release];
     [_params release];
     
-    return _result;
+    return [_response autorelease];
 }
 
-- (void) updateInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
-    DO_IN_BACKGROUND_BOOL([self update], aBoolBlock);
+- (void) updateInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
+    DO_IN_BACKGROUND_BOOL_ERROR([self update], aBoolErrorBlock);
 }
 
-- (BOOL) destroy {
+- (GCResponse *) destroy {
     if ([self objectID] == 0) {
         return NO;
     }
     NSString *_path        = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest   = [[GCRequest alloc] init];
-    BOOL _response         = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
+    GCResponse *_response   = [[gcRequest deleteRequestWithPath:_path andParams:nil] retain];
     
-    if (_response) {
+    if ([_response isSuccessful]) {
         [_content release], _content = nil;
         _content = [[NSMutableDictionary alloc] init];
     }
@@ -363,8 +363,8 @@
     return _response;
 }
 
-- (void) destroyInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
-    DO_IN_BACKGROUND_BOOL([self destroy], aBoolBlock);
+- (void) destroyInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
+    DO_IN_BACKGROUND_BOOL_ERROR([self destroy], aBoolErrorBlock);
 }
 
 - (NSString *) description {

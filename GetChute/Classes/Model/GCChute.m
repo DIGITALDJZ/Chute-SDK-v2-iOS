@@ -55,6 +55,10 @@
     return [_response autorelease];
 }
 
+- (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self assets], aResponseBlock);
+}
+
 #pragma mark - Accessors Override
 - (NSUInteger)assetsCount
 {
