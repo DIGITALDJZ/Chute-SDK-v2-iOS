@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCUIBaseViewController.h"
 
-@interface GCImageSelectionComponent : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface GCImageSelectionComponent : GCUIBaseViewController <UITableViewDelegate, UITableViewDataSource>{
     NSArray *images;
     NSMutableSet *selected;
     IBOutlet UIImageView *selectedIndicator;

@@ -39,7 +39,7 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 
 #pragma mark - Accessors Override
 - (UIImage *) thumbnail {
-    if ([self status] == GCAssetStateNew && alAsset) {
+    if (alAsset) {
         return [UIImage imageWithCGImage:[alAsset thumbnail]];
     }
     else if([self status] == GCAssetStateFinished) {
