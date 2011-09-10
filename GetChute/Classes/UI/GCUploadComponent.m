@@ -95,6 +95,38 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)preparePhotos{
+    
+    NSMutableSet *set = [NSMutableSet set];
+    void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if(result != NULL){
+            GCAsset *asset = [[GCAsset alloc] init];
+            [asset setAlAsset:result];
+            [set addObject:asset];
+            [asset release];
+        }
+    };
+    
+    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) =  ^(ALAssetsGroup *group, BOOL *stop) {
+        if(group != nil) {
+            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:assetEnumerator];
+        }
+        else{
+            [self setImages:[set allObjects]];
+            [imageTable reloadData];
+            [self hideHUD];
+        }
+    };
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                           usingBlock:assetGroupEnumerator
+                         failureBlock: ^(NSError *error) {
+                         }];
+    [library release];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -119,6 +151,10 @@
         [temp setBackgroundColor:[UIColor whiteColor]];
         [self setSelectedIndicator:temp];
         [temp release];
+    }
+    if(!self.images){
+        [self showHUDWithTitle:@"loading photos" andOpacity:.5];
+        [self preparePhotos];
     }
 }
 
