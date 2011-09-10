@@ -35,6 +35,10 @@
             [v removeFromSuperview];
         }
         [selected removeObject:asset];
+        if(view.superview == selectedSlider){
+            int row = view.tag/4;
+            [imageTable reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        }
     }
     [self updateSelectedScroller];
 }
