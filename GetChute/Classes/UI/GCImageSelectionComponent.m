@@ -7,7 +7,7 @@
 //
 
 #import "GCImageSelectionComponent.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import "GCAsset.h"
 
 @interface GCImageSelectionComponent (Private)
 -(UIView*)viewForIndexPath:(NSIndexPath*)indexPath;
@@ -84,7 +84,7 @@
 
 -(void)objectTappedWithGesture:(UIGestureRecognizer*)gesture{
     UIImageView *view = (UIImageView*)[gesture view];
-    ALAsset *asset = [[self images] objectAtIndex:[view tag]];
+    GCAsset *asset = [[self images] objectAtIndex:[view tag]];
     if(![selected containsObject:asset]){
         UIImageView *v = [[UIImageView alloc] initWithImage:self.selectedIndicator.image];
         [v setBackgroundColor:[UIColor whiteColor]];
@@ -150,14 +150,14 @@
     }
     
     for (int i=0; i<x; i++) {
-        ALAsset *asset = [[self images] objectAtIndex:index+i];
+        GCAsset *asset = [[self images] objectAtIndex:index+i];
         UIImageView *image = [[[UIImageView alloc] initWithFrame:rect] autorelease];
         [image setTag:index+i];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(objectTappedWithGesture:)];
         [image addGestureRecognizer:tap];
         [tap release];
         [image setUserInteractionEnabled:YES];
-        [image setImage:[UIImage imageWithCGImage:[asset thumbnail]]];
+        [image setImage:[asset thumbnail]];
         if([selected containsObject:asset]){
             UIImageView *v = [[UIImageView alloc] initWithImage:self.selectedIndicator.image];
             [v setBackgroundColor:[UIColor whiteColor]];
