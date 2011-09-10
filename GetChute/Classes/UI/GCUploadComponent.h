@@ -14,7 +14,10 @@
     NSMutableSet *selected;
     IBOutlet UIImageView *selectedIndicator;
     IBOutlet UITableView *imageTable;
+    
+    //selectedSlider is an optional UI component.  In a subclass if you do not initialize the slider in code or hook it up in interface builder the class will still function the same.
     IBOutlet UIScrollView *selectedSlider;
+    
     NSArray *uploadChutes;
 }
 @property (nonatomic, retain) NSArray *images;

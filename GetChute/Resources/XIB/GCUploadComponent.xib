@@ -61,7 +61,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<double key="IBUIContentInset.top">0.0</double>
-						<double key="IBUIContentInset.bottom">40</double>
+						<double key="IBUIContentInset.bottom">69</double>
 						<double key="IBUIContentInset.left">0.0</double>
 						<double key="IBUIContentInset.right">0.0</double>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
@@ -75,14 +75,14 @@
 					<object class="IBUIScrollView" id="895308977">
 						<reference key="NSNextResponder" ref="1020059665"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 420}, {320, 40}}</string>
+						<string key="NSFrame">{{0, 391}, {320, 69}}</string>
 						<reference key="NSSuperview" ref="1020059665"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:174</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC42IDAuNiAwLjYgMC42AA</bytes>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwLjUAA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -141,14 +141,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">selectedSlider</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="895308977"/>
-					</object>
-					<int key="connectionID">8</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="1020059665"/>
@@ -162,6 +154,14 @@
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">selectedSlider</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="895308977"/>
+					</object>
+					<int key="connectionID">16</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -189,20 +189,15 @@
 						<reference key="object" ref="1020059665"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="895308977"/>
 							<reference ref="117187779"/>
 							<reference ref="172641206"/>
+							<reference ref="895308977"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="117187779"/>
-						<reference key="parent" ref="1020059665"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="895308977"/>
 						<reference key="parent" ref="1020059665"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -228,6 +223,11 @@
 						<int key="objectID">14</int>
 						<reference key="object" ref="67560295"/>
 						<reference key="parent" ref="943748853"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="895308977"/>
+						<reference key="parent" ref="1020059665"/>
 					</object>
 				</object>
 			</object>
@@ -272,7 +272,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
