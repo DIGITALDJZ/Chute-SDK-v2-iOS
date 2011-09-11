@@ -27,6 +27,10 @@
 + (GCResponse *)findById:(NSUInteger) objectID;
 + (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
+//Find Specific object data with Shortcut
++ (GCResponse *)findByShortcut:(NSString*) objectID;
++ (void)findByShortcut:(NSString*) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 //Methods to Override in SubClass
 + (BOOL)supportsMetaData;
 + (NSString *)elementName;

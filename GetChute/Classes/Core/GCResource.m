@@ -59,6 +59,22 @@
     DO_IN_BACKGROUND([self findById:objectID], aResponseBlock);
 }
 
++ (GCResponse *)findByShortcut:(NSString*) objectID {
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%@", API_URL, [self elementName], objectID];
+    GCRequest *gcRequest      = [[GCRequest alloc] init];
+    
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
+    [_response setObject:[self objectWithDictionary:[_response object]]];
+    
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
++ (void)findByShortcut:(NSString*) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self findByShortcut:objectID], aResponseBlock);
+}
+
 #pragma mark - Override these methods in every Subclass
 + (NSString *)elementName {
     //for example, this should return the string "chutes", "assets", "bundles", "parcels"

@@ -105,6 +105,23 @@
     DO_IN_BACKGROUND([self members], aResponseBlock);
 }
 
+- (BOOL) join{
+    if(!self.objectID)
+        return NO;
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/join", API_URL, [[self class] elementName], [self objectID]];
+    
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    GCResponse *response        = [gcRequest getRequestWithPath:_path];
+    BOOL _response              = [response isSuccessful];
+    [gcRequest release];
+    [_path release];
+    return _response;
+}
+
+- (void) joinInBackgroundWithBOOLCompletion:(GCBoolBlock) aResponseBlock{
+    DO_IN_BACKGROUND_BOOL([self join], aResponseBlock);
+}
+
 #pragma mark - Accessors Override
 - (NSUInteger)assetsCount
 {

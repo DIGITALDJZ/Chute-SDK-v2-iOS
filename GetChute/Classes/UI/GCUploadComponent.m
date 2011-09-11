@@ -10,6 +10,7 @@
 #import "GCAsset.h"
 #import "GCParcel.h"
 #import "GCUploader.h"
+#import "GCAccount.h"
 
 @interface GCUploadComponent (Private)
 -(UIView*)viewForIndexPath:(NSIndexPath*)indexPath;
@@ -48,20 +49,22 @@
 }
 
 -(void)updateSelectedScroller{
-    for(UIView *v in [selectedSlider subviews])
-        [v removeFromSuperview];
-    [selectedSlider setContentSize: CGSizeMake((selectedSlider.frame.size.height-2)*[selected count]+2, selectedSlider.frame.size.height)];
-    CGRect rect = CGRectMake(2, 2, selectedSlider.frame.size.height-4, selectedSlider.frame.size.height-4);
-    for(GCAsset *asset in selected){
-        UIImageView *iv = [[UIImageView alloc] initWithFrame:rect];
-        [iv setImage:[asset thumbnail]];
-        [iv setTag:[[self images] indexOfObject:asset]];
-        [iv setUserInteractionEnabled:YES];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(objectTappedWithGesture:)];
-        [iv addGestureRecognizer:tap];
-        [tap release];
-        [selectedSlider addSubview:iv];
-        rect = CGRectMake(rect.origin.x+rect.size.width+2, rect.origin.y, rect.size.width, rect.size.height);
+    if(selectedSlider){
+        for(UIView *v in [selectedSlider subviews])
+            [v removeFromSuperview];
+        [selectedSlider setContentSize: CGSizeMake((selectedSlider.frame.size.height-5)*[selected count]+5, selectedSlider.frame.size.height)];
+        CGRect rect = CGRectMake(5, 5, selectedSlider.frame.size.height-10, selectedSlider.frame.size.height-6);
+        for(GCAsset *asset in selected){
+            UIImageView *iv = [[UIImageView alloc] initWithFrame:rect];
+            [iv setImage:[asset thumbnail]];
+            [iv setTag:[[self images] indexOfObject:asset]];
+            [iv setUserInteractionEnabled:YES];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(objectTappedWithGesture:)];
+            [iv addGestureRecognizer:tap];
+            [tap release];
+            [selectedSlider addSubview:iv];
+            rect = CGRectMake(rect.origin.x+rect.size.width+5, rect.origin.y, rect.size.width, rect.size.height);
+        }
     }
 }
 
@@ -99,38 +102,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void)preparePhotos{
-    
-    NSMutableSet *set = [NSMutableSet set];
-    void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        if(result != NULL){
-            GCAsset *asset = [[GCAsset alloc] init];
-            [asset setAlAsset:result];
-            [set addObject:asset];
-            [asset release];
-        }
-    };
-    
-    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) =  ^(ALAssetsGroup *group, BOOL *stop) {
-        if(group != nil) {
-            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-            [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:assetEnumerator];
-        }
-        else{
-            [self setImages:[set allObjects]];
-            [imageTable reloadData];
-            [self hideHUD];
-        }
-    };
-    
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-                           usingBlock:assetGroupEnumerator
-                         failureBlock: ^(NSError *error) {
-                         }];
-    [library release];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -142,7 +113,6 @@
     [imageTable setBackgroundColor:[UIColor clearColor]];
     [imageTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     selected = [[NSMutableSet alloc] init];
-    [self.view setBackgroundColor:[UIColor blackColor]];
     if(!selectedIndicator){
         UIImageView *temp = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         UIGraphicsBeginImageContext(CGSizeMake(20, 20));
@@ -158,7 +128,11 @@
     }
     if(!self.images){
         [self showHUDWithTitle:@"loading photos" andOpacity:.5];
-        [self preparePhotos];
+        [[GCAccount sharedManager] loadAssetsCompletionBlock:^(void){
+            [self setImages:[[GCAccount sharedManager] assetsArray]];
+            [imageTable reloadData];
+            [self hideHUD];
+        }];
     }
 }
 

@@ -52,7 +52,7 @@
     
     [authWebView setDelegate:self];
     
-    [authView setCenter:CGPointMake(160, 230)];
+    [authView setCenter:self.view.center];
     [authView setTransform:t1];
     [authView setAlpha:0.0f];
     [self.view addSubview:authView];

@@ -44,7 +44,10 @@
 }
 
 - (id) data {
-    return [data objectForKey:@"data"];
+    if([data objectForKey:@"data"])
+        return [data objectForKey:@"data"];
+    else
+        return data;
 }
 
 - (id) initWithRequest:(ASIHTTPRequest *) request {
