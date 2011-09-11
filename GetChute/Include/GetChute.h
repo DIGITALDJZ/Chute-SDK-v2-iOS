@@ -30,7 +30,3 @@
 #import "GCLoginViewController.h"
 #import "GCThumbnailComponent.h"
 #import "GCUIBaseViewController.h"
-
-#pragma mark - Extras
-
-#import "ChuteAPI.h"

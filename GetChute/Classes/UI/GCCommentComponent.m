@@ -65,23 +65,18 @@
         return;
     if(![self chute])
         return;
-    NSString *chuteID = [NSString stringWithFormat:@"%@",[chute objectForKey:@"id"]];
-    NSString *assetID = [NSString stringWithFormat:@"%@",[asset objectForKey:@"id"]];
-    [[ChuteAPI shared]
-     getCommentsForChuteId:chuteID
-     assetId:assetID
-     response:^(NSArray* response){
-         NSMutableArray *array = [NSMutableArray array];
-         for(NSDictionary *dictionary in response){
-             GCComment *comment = [[GCComment alloc] initWithDictionary:dictionary];
-             [array addObject:comment];
-         }
-         [self setComments:array];
-         [commentTable reloadData];
-         
-     }andError:^(NSError *error){
-         NSLog(@"Error getting inbox: %@",[error localizedDescription]);
-     }];
+    
+    [asset setParentID:[chute objectID]];
+    
+    [asset commentsInBackgroundWithCompletion:^(GCResponse *response) {
+        if ([response isSuccessful]) {
+            [self setComments:[response object]];
+            [commentTable reloadData];
+        }
+        else {
+            NSLog(@"Error getting inbox: %@",[[response error] localizedDescription]); 
+        }
+    }];
 }
 
 -(IBAction)postComment{
@@ -93,14 +88,17 @@
     if(![self chute])
         return;
     [self showHUDWithTitle:@"Posting Comment" andOpacity:1];
-    NSString *chuteID = [NSString stringWithFormat:@"%@",[chute objectForKey:@"id"]];
-    NSString *assetID = [NSString stringWithFormat:@"%@",[asset objectForKey:@"id"]];
-    [[ChuteAPI shared] postComment:commentTV.text ForChuteId:chuteID andAssetId:assetID response:^(id response){
+    
+    [asset setParentID:[chute objectID]];
+    
+    [asset addComment:commentTV.text inBackgroundWithCompletion:^(GCResponse *response) {
         [self hideHUD];
-        [self prepareComments];
-    } andError:^(NSError *error){
-        NSLog(@"Error posting comment:%@",[error localizedDescription]);
-        [self hideHUD];
+        if ([response isSuccessful]) {
+            [self prepareComments];
+        }
+        else {
+            NSLog(@"Error posting comment:%@",[[response error] localizedDescription]);
+        }
     }];
 }
 -(IBAction)hideKeyboard:(id)sender{
