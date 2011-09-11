@@ -100,8 +100,10 @@
     [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
         GCChute *first = [[response object] objectAtIndex:0];
         [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
+            DLog(@"%@", response);
             GCAsset *_asset = [[response object] objectAtIndex:0];
-            [_asset comments];
+            [_asset heart];
+            //[_asset comments];
         }];
     }];
     

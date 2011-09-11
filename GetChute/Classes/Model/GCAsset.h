@@ -53,5 +53,11 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock;
 - (GCResponse *) addComment:(NSString *) _comment;
 - (void) addComment:(NSString *) _comment inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
+- (GCResponse *) heart;
+- (void) heartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock;
+
+- (GCResponse *) unheart;
+- (void) unheartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock;
+
 
 @end

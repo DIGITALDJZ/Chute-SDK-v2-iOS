@@ -20,6 +20,33 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 @synthesize status;
 @synthesize parentID;
 
+#pragma mark - Heart Method
+- (GCResponse *) heart {
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%@/heart", API_URL, [[self class] elementName], [self objectID]];
+    GCRequest *gcRequest         = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest postRequestWithPath:_path andParams:nil] retain];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) heartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
+    DO_IN_BACKGROUND_BOOL_ERROR([self heart], aBoolErrorBlock);
+}
+
+- (GCResponse *) unheart {
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%@/unheart", API_URL, [[self class] elementName], [self objectID]];
+    GCRequest *gcRequest         = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest postRequestWithPath:_path andParams:nil] retain];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) unheartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
+    DO_IN_BACKGROUND_BOOL_ERROR([self unheart], aBoolErrorBlock);
+}
+
 #pragma mark - Comment Methods
 
 - (GCResponse *) comments {
