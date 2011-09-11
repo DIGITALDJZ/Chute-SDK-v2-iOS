@@ -97,16 +97,20 @@
 //        }];
 //    }];
     
-    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
-        GCChute *first = [[response object] objectAtIndex:0];
-        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
-            DLog(@"%@", response);
-            GCAsset *_asset = [[response object] objectAtIndex:0];
-            [_asset heart];
-            //[_asset comments];
-        }];
-    }];
+//    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+//        GCChute *first = [[response object] objectAtIndex:0];
+//        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
+//            DLog(@"%@", response);
+//            GCAsset *_asset = [[response object] objectAtIndex:0];
+//            [_asset heart];
+//            //[_asset comments];
+//        }];
+//    }];
     
+
+//    [GCChute allPublicInBackgroundWithCompletion:^(GCResponse *response) {
+//        DLog(@"%@", response);
+//    }];
     
     
 //    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:[response object]];

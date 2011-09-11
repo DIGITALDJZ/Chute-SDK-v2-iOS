@@ -52,4 +52,7 @@ typedef enum {
 - (BOOL) join;
 - (void) joinInBackgroundWithBOOLCompletion:(GCBoolBlock) aResponseBlock;
 
++ (GCResponse *)allPublic;
++ (void)allPublicInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 @end

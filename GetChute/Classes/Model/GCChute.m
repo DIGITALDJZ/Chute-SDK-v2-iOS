@@ -263,4 +263,27 @@
     return @"chutes";
 }
 
+#pragma mark - Public Chutes
++ (GCResponse *)allPublic {
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@/public/%@", API_URL, [self elementName]];
+    GCRequest *gcRequest    = [[GCRequest alloc] init];
+    GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_result = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response object]) {
+        id _obj = [self objectWithDictionary:_dic];
+        [_result addObject:_obj];
+    }
+    [_response setObject:_result];
+    [_result release];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
++ (void)allPublicInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {      
+    DO_IN_BACKGROUND([self allPublic], aResponseBlock);
+}
+
+
 @end

@@ -150,12 +150,6 @@ static ChuteAPI *shared=nil;
 
 #pragma mark -
 #pragma mark Data Wrappers
-
-- (void)getPublicChutesWithResponse:(void (^)(NSArray *))aResponseBlock
-                       andError:(ErrorBlock)anErrorBlock{
-    //[self getChutesForId:@"public" response:aResponseBlock andError:anErrorBlock];
-}
-
 - (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
                            andError:(ErrorBlock)anErrorBlock{
     [self

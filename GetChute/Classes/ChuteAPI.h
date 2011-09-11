@@ -18,10 +18,6 @@ typedef void (^ResponseBlock)(id);
 + (ChuteAPI *)shared;
 
 //Data Wrappers
-//Get Data
-- (void)getPublicChutesWithResponse:(void (^)(NSArray *))aResponseBlock
-                           andError:(ErrorBlock)anErrorBlock;
-
 - (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
                            andError:(ErrorBlock)anErrorBlock;
 
