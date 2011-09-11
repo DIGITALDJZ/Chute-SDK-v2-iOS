@@ -170,29 +170,4 @@ static ChuteAPI *shared=nil;
      }];
 }
 
-- (void)getMyMetaDataWithResponse:(ResponseBlock)aResponseBlock
-                         andError:(ErrorBlock)anErrorBlock{
-    [self getRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:nil andResponse:^(id response) {
-        aResponseBlock([response objectForKey:@"data"]);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-}
-
-#pragma mark - Set Meta Data Methods
-
-- (void)setMyMetaData:(NSDictionary *)dictionary
-         WithResponse:(ResponseBlock)aResponseBlock
-             andError:(ErrorBlock)anErrorBlock {
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:[[dictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
-    [self postRequestWithPath:[NSString stringWithFormat:@"%@me/meta", API_URL] andParams:params andResponse:^(id response) {
-        aResponseBlock([response objectForKey:@"data"]);
-    } andError:^(NSError *error) {
-        anErrorBlock(error);
-    }];
-    [params release];
-}
-
-
 @end

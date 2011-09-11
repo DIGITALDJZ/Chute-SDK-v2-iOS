@@ -46,4 +46,10 @@ typedef enum {
 
 - (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock;
 
+- (GCResponse *) getMyMetaData;
+- (void) getMyMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
+- (BOOL) setMyMetaData:(NSDictionary *) metaData;
+- (void) setMyMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
+
 @end

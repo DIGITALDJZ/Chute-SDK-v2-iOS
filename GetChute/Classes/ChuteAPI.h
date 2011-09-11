@@ -25,12 +25,4 @@ typedef void (^ResponseBlock)(id);
 - (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
                            andError:(ErrorBlock)anErrorBlock;
 
-- (void)getMyMetaDataWithResponse:(ResponseBlock)aResponseBlock
-                         andError:(ErrorBlock)anErrorBlock;
-
-//Post Data
-- (void)setMyMetaData:(NSDictionary *)dictionary
-         WithResponse:(ResponseBlock)aResponseBlock
-             andError:(ErrorBlock)anErrorBlock;
-
 @end

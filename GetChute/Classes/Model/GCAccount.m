@@ -187,6 +187,40 @@ static GCAccount *sharedAccountManager = nil;
     }
 }
 
+#pragma mark - My Meta Data Methods
+
+- (GCResponse *) getMyMetaData {
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@me/meta", API_URL];
+    GCRequest *gcRequest         = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) getMyMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self getMyMetaData], aResponseBlock);
+}
+
+- (BOOL) setMyMetaData:(NSDictionary *) metaData {
+    NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
+    [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@me/meta", API_URL];
+    
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
+    [gcRequest release];
+    [_path release];
+    [_params release];
+    return _response;
+}
+
+- (void) setMyMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self setMyMetaData:metaData], aBoolBlock);
+}
+
+
 #pragma mark - Methods for Singleton class
 + (GCAccount *)sharedManager
 {
