@@ -89,10 +89,27 @@
 
 - (IBAction)sync:(id)sender {
     
-    GCResponse *response = [GCChute all];
-    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:[response object]];
-    [[GCUploader sharedUploader] addParcel:parcel];
+//    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+//        GCChute *first = [[response object] objectAtIndex:0];
+//        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
+//            GCAsset *_asset = [[response object] objectAtIndex:0];
+//            [_asset addComment:@"test comment 111"];
+//        }];
+//    }];
     
+    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+        GCChute *first = [[response object] objectAtIndex:0];
+        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
+            GCAsset *_asset = [[response object] objectAtIndex:0];
+            [_asset comments];
+        }];
+    }];
+    
+    
+    
+//    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:[response object]];
+//    [[GCUploader sharedUploader] addParcel:parcel];
+//    
     
 //
 //    GCResponse *response   = [GCChute searchMetaDataForKey:@"AnyKey" andValue:@"AnyValue"];

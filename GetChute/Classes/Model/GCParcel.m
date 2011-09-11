@@ -166,7 +166,7 @@
             }
             
             //Upload using the token to S3
-            NSDictionary *_token = [[_response rawResponse] JSONValue];
+            NSDictionary *_token = [_response data];
             [_asset setStatus:GCAssetStateUploadingToS3];
             
             BOOL uploaded = [self uploadAssetToS3:_asset withToken:_token];

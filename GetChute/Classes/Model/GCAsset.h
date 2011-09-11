@@ -32,6 +32,8 @@ typedef enum {
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, assign) GCAssetStatus status;
 
+@property (nonatomic, retain) NSString *parentID;
+
 - (NSDictionary *) uniqueRepresentation;
 - (NSString *) uniqueURL;
 
@@ -44,5 +46,12 @@ typedef enum {
 inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock;
 
 - (void) upload;
+
+- (GCResponse *) comments;
+- (void) commentsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
+- (GCResponse *) addComment:(NSString *) _comment;
+- (void) addComment:(NSString *) _comment inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 
 @end

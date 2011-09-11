@@ -46,7 +46,10 @@
     
     NSMutableArray *_assetsArray = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [_response data]) {
-        [_assetsArray addObject:[GCAsset objectWithDictionary:_dic]];
+        GCAsset *_asset = [[GCAsset objectWithDictionary:_dic] retain];
+        [_asset setParentID:[NSString stringWithFormat:@"%d", [self objectID]]];
+        [_assetsArray addObject:_asset];
+        [_asset release];
     }
     
     [_response setObject:_assetsArray];

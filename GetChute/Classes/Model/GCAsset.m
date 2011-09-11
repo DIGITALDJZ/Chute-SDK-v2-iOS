@@ -18,6 +18,52 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 @synthesize selected;
 @synthesize progress;
 @synthesize status;
+@synthesize parentID;
+
+#pragma mark - Comment Methods
+
+- (GCResponse *) comments {
+    if (IS_NULL([self parentID])) {
+        return nil;
+    }
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@chutes/%@/assets/%d/comments", API_URL, [self parentID], [self objectID]];
+    GCRequest *gcRequest         = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
+    NSMutableArray *_comments    = [[NSMutableArray alloc] init]; 
+    for (NSDictionary *_dic in [_response data]) {
+        [_comments addObject:[GCComment objectWithDictionary:_dic]];
+    }
+    [_response setObject:_comments];
+    [_comments release];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) commentsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self comments], aResponseBlock);
+}
+
+- (GCResponse *) addComment:(NSString *) _comment {
+    if (IS_NULL([self parentID])) {
+        return nil;
+    }
+    NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
+    [_params setValue:_comment forKey:@"comment"];
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@chutes/%@/assets/%d/comments", API_URL, [self parentID], [self objectID]];
+    
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    GCResponse *_response       = [[gcRequest postRequestWithPath:_path andParams:_params] retain];
+    [gcRequest release];
+    [_path release];
+    [_params release];
+    return [_response autorelease];
+}
+
+- (void) addComment:(NSString *) _comment inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self addComment:_comment], aResponseBlock);
+}
 
 - (NSDictionary *) uniqueRepresentation {
     ALAssetRepresentation *_representation = [alAsset defaultRepresentation];
@@ -110,6 +156,7 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
 }
 
 - (void) dealloc {
+    [parentID release];
     [alAsset release];
     [super dealloc];
 }
