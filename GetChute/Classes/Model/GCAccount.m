@@ -221,6 +221,27 @@ static GCAccount *sharedAccountManager = nil;
 }
 
 
+#pragma mark - Get Inbox Parcels
+
+- (GCResponse *) getInboxParcels {
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@inbox/parcels", API_URL];
+    GCRequest *gcRequest         = [[GCRequest alloc] init];
+    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
+    NSMutableArray *_parcels = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response data]) {
+        [_parcels addObject:[GCParcel objectWithDictionary:_dic]];
+    }
+    [_response setObject:_parcels];
+    [_parcels release];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease];
+}
+
+- (void) getInboxParcelsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
+    DO_IN_BACKGROUND([self getInboxParcels], aResponseBlock);
+}
+
 #pragma mark - Methods for Singleton class
 + (GCAccount *)sharedManager
 {

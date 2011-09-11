@@ -213,6 +213,35 @@
     return [[[self alloc] initWithAssets:_assets andChutes:_chutes] autorelease];
 }
 
++ (id) objectWithDictionary:(NSDictionary *) dictionary {
+    return [[[self alloc] initWithDictionary:dictionary] autorelease];
+}
+
+- (id) initWithDictionary:(NSDictionary *) dictionary {
+    [self init];
+    for (NSString *key in [dictionary allKeys]) {
+        id _obj;
+        if ([key isEqualToString:@"user"]) {
+            _obj = [GCUser objectWithDictionary:[dictionary objectForKey:key]];
+        }
+        else if ([key isEqualToString:@"assets"]) {
+            assets = [[NSMutableArray alloc] init];
+            for (NSDictionary *_dic in [dictionary objectForKey:key]) {
+                [assets addObject:[GCAsset objectWithDictionary:_dic]];
+            }
+        }
+        else if ([key isEqualToString:@"chute"]) {
+            chutes = [[NSArray arrayWithObject:[GCChute objectWithDictionary:[dictionary objectForKey:key]]] retain];
+        }
+        else {
+            _obj = IS_NULL([dictionary objectForKey:key])? @"": [dictionary objectForKey:key];
+        }
+        [self setObject:_obj forKey:key];
+    }
+    [self setStatus:GCParcelStatusDone];
+    return self;
+}
+
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [assets release];

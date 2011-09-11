@@ -89,6 +89,8 @@
 
 - (IBAction)sync:(id)sender {
     
+    [[GCAccount sharedManager] getInboxParcels];
+    
 //    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
 //        GCChute *first = [[response object] objectAtIndex:0];
 //        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {

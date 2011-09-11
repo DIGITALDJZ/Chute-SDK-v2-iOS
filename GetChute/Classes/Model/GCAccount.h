@@ -52,4 +52,7 @@ typedef enum {
 - (BOOL) setMyMetaData:(NSDictionary *) metaData;
 - (void) setMyMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
+- (GCResponse *) getInboxParcels;
+- (void) getInboxParcelsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
 @end
