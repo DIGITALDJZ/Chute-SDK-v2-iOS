@@ -41,12 +41,10 @@
     DO_IN_BACKGROUND([self all], aResponseBlock);
 }
 
-+ (GCResponse *)findById:(NSUInteger) objectID {
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [self elementName], objectID];
++ (GCResponse *)findById:(NSString *) objectID {
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%@", API_URL, [self elementName], objectID];
     GCRequest *gcRequest      = [[GCRequest alloc] init];
 
-    
-    
     GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     [_response setObject:[self objectWithDictionary:[_response object]]];
     
@@ -55,23 +53,15 @@
     return [_response autorelease];
 }
 
-+ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
++ (void)findById:(NSString *) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
     DO_IN_BACKGROUND([self findById:objectID], aResponseBlock);
 }
 
-+ (GCResponse *)findByShortcut:(NSString*) objectID {
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%@", API_URL, [self elementName], objectID];
-    GCRequest *gcRequest      = [[GCRequest alloc] init];
-    
-    GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
-    [_response setObject:[self objectWithDictionary:[_response object]]];
-    
-    [gcRequest release];
-    [_path release];
-    return [_response autorelease];
++ (GCResponse *)findByShortcut:(NSString *) objectID {
+    return [self findById:objectID];
 }
 
-+ (void)findByShortcut:(NSString*) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
++ (void)findByShortcut:(NSString *) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
     DO_IN_BACKGROUND([self findByShortcut:objectID], aResponseBlock);
 }
 
@@ -158,7 +148,7 @@
 }
 
 - (GCResponse *) getMetaData {
-    NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%@/meta", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest         = [[GCRequest alloc] init];
     GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     [gcRequest release];
@@ -171,10 +161,10 @@
 }
 
 - (GCResponse *) getMetaDataForKey:(NSString *) key {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return nil;
     }
-    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
+    NSString *_path     = [[NSString alloc] initWithFormat:@"%@%@/%@/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
     GCRequest *gcRequest          = [[GCRequest alloc] init];
     GCResponse *_response         = [[gcRequest getRequestWithPath:_path] retain];
@@ -188,13 +178,13 @@
 }
 
 - (BOOL) setMetaData:(NSDictionary *) metaData {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return NO;
     }
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:[[metaData JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
 
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/meta", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
@@ -209,13 +199,13 @@
 }
 
 - (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return NO;
     }
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:[data dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
     
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest postRequestWithPath:_path andParams:_params] isSuccessful];
@@ -230,10 +220,10 @@
 }
 
 - (BOOL) deleteMetaData {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return NO;
     }
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/meta", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
@@ -247,10 +237,10 @@
 }
 
 - (BOOL) deleteMetaDataForKey:(NSString *) key {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return NO;
     }
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/meta/%@", API_URL, [[self class] elementName], [self objectID], key];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     BOOL _response              = [[gcRequest deleteRequestWithPath:_path andParams:nil] isSuccessful];
@@ -268,8 +258,8 @@
     return [_content objectForKey:@"user"];
 }
 
-- (NSUInteger) objectID {
-    return [[_content objectForKey:@"id"] intValue];
+- (NSString *) objectID {
+    return [_content objectForKey:@"id"];
 }
 
 - (NSDate *) updatedAt {
@@ -327,7 +317,7 @@
 }
 
 - (GCResponse *) update {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return NO;
     }
     NSString *_data = [[NSString alloc] initWithFormat:@"{ \"data\":%@ }", [self JSONRepresentation]];
@@ -337,7 +327,7 @@
     
     [_data release];
     
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     GCResponse *_response       = [[gcRequest putRequestWithPath:_path andParams:_params] retain];
@@ -361,10 +351,10 @@
 }
 
 - (GCResponse *) destroy {
-    if ([self objectID] == 0) {
+    if (IS_NULL([self objectID])) {
         return NO;
     }
-    NSString *_path        = [[NSString alloc] initWithFormat:@"%@%@/%d", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path        = [[NSString alloc] initWithFormat:@"%@%@/%@", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest   = [[GCRequest alloc] init];
     GCResponse *_response   = [[gcRequest deleteRequestWithPath:_path andParams:nil] retain];

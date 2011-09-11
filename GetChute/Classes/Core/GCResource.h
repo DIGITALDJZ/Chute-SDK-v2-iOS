@@ -24,8 +24,8 @@
 + (void)allInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 //Find Specific object data with Id
-+ (GCResponse *)findById:(NSUInteger) objectID;
-+ (void)findById:(NSUInteger) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
++ (GCResponse *)findById:(NSString *) objectID;
++ (void)findById:(NSString *) objectID inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
 //Find Specific object data with Shortcut
 + (GCResponse *)findByShortcut:(NSString*) objectID;
@@ -62,7 +62,7 @@
 
 //Common Get Data Methods
 - (GCUser *) user;
-- (NSUInteger) objectID;
+- (NSString *) objectID;
 - (NSDate *) updatedAt;
 - (NSDate *) createdAt;
 

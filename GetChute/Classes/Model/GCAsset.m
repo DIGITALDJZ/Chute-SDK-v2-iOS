@@ -26,7 +26,7 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
     if (IS_NULL([self parentID])) {
         return nil;
     }
-    NSString *_path              = [[NSString alloc] initWithFormat:@"%@chutes/%@/assets/%d/comments", API_URL, [self parentID], [self objectID]];
+    NSString *_path              = [[NSString alloc] initWithFormat:@"%@chutes/%@/assets/%@/comments", API_URL, [self parentID], [self objectID]];
     GCRequest *gcRequest         = [[GCRequest alloc] init];
     GCResponse *_response        = [[gcRequest getRequestWithPath:_path] retain];
     NSMutableArray *_comments    = [[NSMutableArray alloc] init]; 
@@ -51,7 +51,7 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
     NSMutableDictionary *_params = [[NSMutableDictionary alloc] init];
     [_params setValue:_comment forKey:@"comment"];
     
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@chutes/%@/assets/%d/comments", API_URL, [self parentID], [self objectID]];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@chutes/%@/assets/%@/comments", API_URL, [self parentID], [self objectID]];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     GCResponse *_response       = [[gcRequest postRequestWithPath:_path andParams:_params] retain];

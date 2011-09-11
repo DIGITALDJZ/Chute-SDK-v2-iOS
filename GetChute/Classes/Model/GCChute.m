@@ -40,14 +40,14 @@
 #pragma mark - Assets
 
 - (GCResponse *) assets {
-    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%d/assets", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%@/assets", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest    = [[GCRequest alloc] init];
     GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
     
     NSMutableArray *_assetsArray = [[NSMutableArray alloc] init];
     for (NSDictionary *_dic in [_response data]) {
         GCAsset *_asset = [[GCAsset objectWithDictionary:_dic] retain];
-        [_asset setParentID:[NSString stringWithFormat:@"%d", [self objectID]]];
+        [_asset setParentID:[self objectID]];
         [_assetsArray addObject:_asset];
         [_asset release];
     }
@@ -65,7 +65,7 @@
 }
 
 - (GCResponse *) contributors {
-    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%d/contributors", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%@/contributors", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest    = [[GCRequest alloc] init];
     GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
     
@@ -87,7 +87,7 @@
 }
 
 - (GCResponse *) members {
-    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%d/members", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@%@/%@/members", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest    = [[GCRequest alloc] init];
     GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
     
@@ -111,7 +111,7 @@
 - (BOOL) join{
     if(!self.objectID)
         return NO;
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%d/join", API_URL, [[self class] elementName], [self objectID]];
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/join", API_URL, [[self class] elementName], [self objectID]];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     GCResponse *response        = [gcRequest getRequestWithPath:_path];
