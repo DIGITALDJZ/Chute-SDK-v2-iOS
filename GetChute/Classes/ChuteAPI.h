@@ -25,21 +25,10 @@ typedef void (^ResponseBlock)(id);
 - (void)getInboxParcelsWithResponse:(void (^)(NSArray *))aResponseBlock
                            andError:(ErrorBlock)anErrorBlock;
 
-- (void)getCommentsForChuteId:(NSString *)chuteId
-                      assetId:(NSString *)assetId
-                     response:(void (^)(NSArray *))aResponseBlock 
-                     andError:(ErrorBlock)anErrorBlock;
-
 - (void)getMyMetaDataWithResponse:(ResponseBlock)aResponseBlock
                          andError:(ErrorBlock)anErrorBlock;
 
 //Post Data
-- (void)postComment:(NSString *)comment
-         ForChuteId:(NSString *)chuteId
-         andAssetId:(NSString *)assetId
-           response:(void (^)(id))aResponseBlock 
-           andError:(ErrorBlock)anErrorBlock;
-
 - (void)setMyMetaData:(NSDictionary *)dictionary
          WithResponse:(ResponseBlock)aResponseBlock
              andError:(ErrorBlock)anErrorBlock;
