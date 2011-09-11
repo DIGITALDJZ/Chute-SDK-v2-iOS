@@ -245,10 +245,10 @@
 #pragma mark - JSON Representation Method
 - (id)proxyForJson {
     NSMutableDictionary *_temp = [[[NSMutableDictionary alloc] init] autorelease];
-    for (NSString *key in [_content allKeys]) {
+    for (NSString *key in [[self content] allKeys]) {
         if ([key isEqualToString:@"user"])
             continue;
-        [_temp setObject:[_content objectForKey:key] forKey:key];
+        [_temp setObject:[[self content] objectForKey:key] forKey:key];
     }
     return _temp;
 }

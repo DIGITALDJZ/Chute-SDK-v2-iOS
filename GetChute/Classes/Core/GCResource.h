@@ -12,8 +12,11 @@
 @class GCUser;
 
 @interface GCResource : NSObject {
+    @protected
     NSMutableDictionary *_content;
 }
+
+@property (nonatomic, readonly) NSMutableDictionary *content;
 
 //Initializing Methods
 + (id) objectWithDictionary:(NSDictionary *) dictionary;

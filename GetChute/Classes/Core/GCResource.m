@@ -18,6 +18,8 @@
 
 @implementation GCResource
 
+@synthesize content = _content;
+
 #pragma mark - All 
 /* Get all Objects of this class */
 + (GCResponse *)all {

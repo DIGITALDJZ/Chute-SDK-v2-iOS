@@ -7,6 +7,7 @@
 
 #import "GCAsset.h"
 #import "GCAssetUploader.h"
+#import "GC_UIImage+Extras.h"
 
 NSString * const GCAssetStatusChanged   = @"GCAssetStatusChanged";
 NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
@@ -93,7 +94,7 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 }
 
 - (NSDictionary *) uniqueRepresentation {
-    ALAssetRepresentation *_representation = [alAsset defaultRepresentation];
+    ALAssetRepresentation *_representation = [[self alAsset] defaultRepresentation];
     return [NSDictionary dictionaryWithObjectsAndKeys:[[_representation url] absoluteString], @"filename", 
      [NSString stringWithFormat:@"%d", [_representation size]], @"size", 
      [NSString stringWithFormat:@"%d", [_representation size]], @"md5", 
@@ -101,7 +102,7 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 }
 
 - (NSString *) uniqueURL {
-    return [[[alAsset defaultRepresentation] url] absoluteString];
+    return [[[[self alAsset] defaultRepresentation] url] absoluteString];
 }
 
 #pragma mark - Upload
@@ -112,8 +113,8 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 
 #pragma mark - Accessors Override
 - (UIImage *) thumbnail {
-    if (alAsset) {
-        return [UIImage imageWithCGImage:[alAsset thumbnail]];
+    if ([self alAsset]) {
+        return [UIImage imageWithCGImage:[[self alAsset] thumbnail]];
     }
     else if([self status] == GCAssetStateFinished) {
         return [self imageForWidth:75 andHeight:75];
@@ -144,8 +145,10 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 }
 
 - (UIImage *)imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height{
-    if ([self status] == GCAssetStateNew)
-        return nil;
+    if ([self alAsset]) {
+        UIImage *fullResolutionImage = [UIImage imageWithCGImage:[[[self alAsset] defaultRepresentation] fullResolutionImage] scale:1 orientation:[[[self alAsset] valueForProperty:ALAssetPropertyOrientation] intValue]];
+        return [fullResolutionImage imageByScalingProportionallyToSize:CGSizeMake(width, height)];
+    }
     
     NSString *urlString = [self urlStringForImageWithWidth:width andHeight:height];
     

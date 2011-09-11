@@ -25,6 +25,7 @@
 		EC46790913F012DC00533435 /* CreateChuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46790813F012DC00533435 /* CreateChuteViewController.xib */; };
 		EC46790E13F0132C00533435 /* ListChutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46790C13F0132C00533435 /* ListChutesViewController.m */; };
 		EC46791113F0134000533435 /* ListChutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC46791013F0134000533435 /* ListChutesViewController.xib */; };
+		EC4A9FCD141CA7D100F63435 /* GC_UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A9FCC141CA7D100F63435 /* GC_UIImage+Extras.m */; };
 		EC5B647D13F0019100EBA5A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B647C13F0019100EBA5A1 /* main.m */; };
 		EC5B648113F0019100EBA5A1 /* KitchenSinkAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5B648013F0019100EBA5A1 /* KitchenSinkAppDelegate.m */; };
 		EC5B64A713F0023A00EBA5A1 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5B649513F0022700EBA5A1 /* AssetsLibrary.framework */; };
@@ -136,6 +137,8 @@
 		EC46790B13F0132C00533435 /* ListChutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListChutesViewController.h; sourceTree = "<group>"; };
 		EC46790C13F0132C00533435 /* ListChutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListChutesViewController.m; sourceTree = "<group>"; };
 		EC46791013F0134000533435 /* ListChutesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListChutesViewController.xib; sourceTree = "<group>"; };
+		EC4A9FCB141CA7D100F63435 /* GC_UIImage+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "GC_UIImage+Extras.h"; sourceTree = "<group>"; };
+		EC4A9FCC141CA7D100F63435 /* GC_UIImage+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GC_UIImage+Extras.m"; sourceTree = "<group>"; };
 		EC5B646C13F0019100EBA5A1 /* KitchenSink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenSink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5B647813F0019100EBA5A1 /* KitchenSink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KitchenSink-Info.plist"; sourceTree = "<group>"; };
 		EC5B647C13F0019100EBA5A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -548,6 +551,8 @@
 		EC9B434C141A6E5E00280C69 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC4A9FCB141CA7D100F63435 /* GC_UIImage+Extras.h */,
+				EC4A9FCC141CA7D100F63435 /* GC_UIImage+Extras.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1008,6 +1013,7 @@
 				EC9B43FF141A6E5E00280C69 /* SBJsonTokeniser.m in Sources */,
 				EC9B4400141A6E5E00280C69 /* SBJsonUTF8Stream.m in Sources */,
 				EC9B4401141A6E5E00280C69 /* SBJsonWriter.m in Sources */,
+				EC4A9FCD141CA7D100F63435 /* GC_UIImage+Extras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

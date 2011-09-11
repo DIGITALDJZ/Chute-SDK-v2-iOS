@@ -16,7 +16,6 @@ typedef enum {
 
 @interface GCChute : GCResource
 
-
 @property (nonatomic, readonly) NSUInteger assetsCount;
 @property (nonatomic, readonly) NSUInteger contributersCount;
 @property (nonatomic, readonly) NSUInteger membersCount;
