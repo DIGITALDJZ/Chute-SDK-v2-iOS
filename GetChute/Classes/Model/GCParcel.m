@@ -9,6 +9,8 @@
 #import "GCAsset.h"
 #import "GCChute.h"
 
+NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
+
 @implementation GCParcel
 
 @synthesize status;
@@ -25,6 +27,7 @@
     
     if ([assets count] == 0) {
         [self setStatus:GCParcelStatusDone];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCParcelFinishedUploading object:self];
         if (delegate && [delegate respondsToSelector:completionSelector]) {
             [delegate performSelector:completionSelector];
         }
