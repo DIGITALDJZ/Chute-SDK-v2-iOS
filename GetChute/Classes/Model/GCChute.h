@@ -11,7 +11,8 @@ typedef enum {
     GCPermissionTypePrivate = 0,
     GCPermissionTypeMembers,
     GCPermissionTypePublic,
-    GCPermissionTypeFriends
+    GCPermissionTypeFriends,
+    GCPermissionTypePassword
 } GCPermissionType;
 
 @interface GCChute : GCResource
@@ -25,6 +26,7 @@ typedef enum {
 @property (nonatomic, assign) GCPermissionType moderatePhotos;
 
 @property (nonatomic, assign) NSString *name;
+@property (nonatomic, assign) NSString *password;
 
 @property (nonatomic, assign) GCPermissionType permissionAddComments;
 @property (nonatomic, assign) GCPermissionType permissionAddMembers;

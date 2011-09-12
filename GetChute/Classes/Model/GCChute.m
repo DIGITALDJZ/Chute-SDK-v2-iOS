@@ -22,6 +22,7 @@
 @synthesize moderatePhotos;
 
 @synthesize name;
+@synthesize password;
 
 @synthesize permissionAddComments;
 @synthesize permissionAddMembers;
@@ -180,6 +181,22 @@
     [aName release];
 }
 
+- (NSString *)password
+{
+    return [[[self objectForKey:@"password"] retain] autorelease]; 
+}
+- (void)setPassword:(NSString *)aPassword
+{
+    [aPassword retain];
+    if ([[aPassword stringByReplacingOccurrencesOfString:@" " withString:@""] length] > 0) {
+        [self setObject:aPassword forKey:@"password"];
+    }
+    else {
+        [self setObject:nil forKey:@"password"];
+    }
+    [aPassword release];
+}
+
 - (GCPermissionType)permissionAddComments
 {
     return [[self objectForKey:@"permission_add_comments"] intValue];
@@ -285,5 +302,17 @@
     DO_IN_BACKGROUND([self allPublic], aResponseBlock);
 }
 
+- (GCResponse *) save {
+    if ([self permissionView] == GCPermissionTypePassword && [self password]) {
+        return [super save];
+    }
+
+    GCResponse *response = [[[GCResponse alloc] init] autorelease];
+    NSMutableDictionary *_errorDetail = [[NSMutableDictionary alloc] init];
+    [_errorDetail setValue:@"Permission Type is set to Password but password is missing." forKey:NSLocalizedDescriptionKey];
+    [response setError:[GCError errorWithDomain:@"GCError" code:000 userInfo:_errorDetail]];
+    [_errorDetail release];
+    return response;
+}
 
 @end
