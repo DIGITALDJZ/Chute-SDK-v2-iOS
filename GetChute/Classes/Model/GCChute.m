@@ -303,16 +303,17 @@
 }
 
 - (GCResponse *) save {
-    if ([self permissionView] == GCPermissionTypePassword && [self password]) {
-        return [super save];
+    if ([self permissionView] == GCPermissionTypePassword) {
+        if (IS_NULL([self password])) {
+            GCResponse *response = [[[GCResponse alloc] init] autorelease];
+            NSMutableDictionary *_errorDetail = [[NSMutableDictionary alloc] init];
+            [_errorDetail setValue:@"Permission Type is set to Password but password is missing." forKey:NSLocalizedDescriptionKey];
+            [response setError:[GCError errorWithDomain:@"GCError" code:000 userInfo:_errorDetail]];
+            [_errorDetail release];
+            return response;
+        }
     }
-
-    GCResponse *response = [[[GCResponse alloc] init] autorelease];
-    NSMutableDictionary *_errorDetail = [[NSMutableDictionary alloc] init];
-    [_errorDetail setValue:@"Permission Type is set to Password but password is missing." forKey:NSLocalizedDescriptionKey];
-    [response setError:[GCError errorWithDomain:@"GCError" code:000 userInfo:_errorDetail]];
-    [_errorDetail release];
-    return response;
+    return [super save];
 }
 
 @end
