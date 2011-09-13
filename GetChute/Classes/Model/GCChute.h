@@ -54,6 +54,9 @@ typedef enum {
 - (BOOL) join;
 - (void) joinInBackgroundWithBOOLCompletion:(GCBoolBlock) aResponseBlock;
 
+- (BOOL) joinWithPassword:(NSString *) _password;
+- (void) joinWithPassword:(NSString *) _password inBackgroundWithBOOLCompletion:(GCBoolBlock) aBoolBlock;
+
 + (GCResponse *)allPublic;
 + (void)allPublicInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 

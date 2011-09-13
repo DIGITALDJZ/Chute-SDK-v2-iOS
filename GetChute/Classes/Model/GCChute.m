@@ -110,9 +110,18 @@
 }
 
 - (BOOL) join{
+    return [self joinWithPassword:@""];
+}
+
+- (void) joinInBackgroundWithBOOLCompletion:(GCBoolBlock) aResponseBlock{
+    DO_IN_BACKGROUND_BOOL([self join], aResponseBlock);
+}
+
+- (BOOL) joinWithPassword:(NSString *) _password {
     if(!self.objectID)
         return NO;
-    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/join", API_URL, [[self class] elementName], [self objectID]];
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/join?password=%@", API_URL, [[self class] elementName], [self objectID], _password];
     
     GCRequest *gcRequest        = [[GCRequest alloc] init];
     GCResponse *response        = [gcRequest getRequestWithPath:_path];
@@ -122,8 +131,8 @@
     return _response;
 }
 
-- (void) joinInBackgroundWithBOOLCompletion:(GCBoolBlock) aResponseBlock{
-    DO_IN_BACKGROUND_BOOL([self join], aResponseBlock);
+- (void) joinWithPassword:(NSString *) _password inBackgroundWithBOOLCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self joinWithPassword:_password], aBoolBlock);
 }
 
 #pragma mark - Accessors Override
