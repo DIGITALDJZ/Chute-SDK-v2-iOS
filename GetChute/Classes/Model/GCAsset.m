@@ -225,4 +225,11 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
     return @"assets";
 }
 
+- (BOOL) isEqual:(id)object {
+    if ([[self objectID] intValue] == [[object objectID] intValue]) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

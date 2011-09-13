@@ -89,15 +89,17 @@
 
 - (IBAction)sync:(id)sender {
     
-    [[GCAccount sharedManager] getInboxParcels];
+    //[[GCAccount sharedManager] getInboxParcels];
     
-//    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
-//        GCChute *first = [[response object] objectAtIndex:0];
-//        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
-//            GCAsset *_asset = [[response object] objectAtIndex:0];
-//            [_asset addComment:@"test comment 111"];
-//        }];
-//    }];
+    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+        GCChute *first = [[response object] objectAtIndex:0];
+        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
+            DLog(@"%d", [[[response object] objectAtIndex:0] isHearted]);
+            [[[response object] objectAtIndex:0] toggleHeartInBackgroundWithCompletion:^(BOOL value) {
+                DLog(@"%d", value); 
+            }];
+        }];
+    }];
     
 //    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
 //        GCChute *first = [[response object] objectAtIndex:0];
