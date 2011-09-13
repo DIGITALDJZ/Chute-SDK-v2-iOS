@@ -29,11 +29,14 @@ typedef enum {
     GCAccountStatus accountStatus;
     NSString *_accessToken;
     NSMutableArray *assetsArray;
+    
+    NSMutableArray *heartedAssets;
 }
 
 @property (nonatomic) GCAccountStatus accountStatus;
 @property (nonatomic, retain) NSString *accessToken;
 @property (nonatomic, retain) NSMutableArray *assetsArray;
+@property (nonatomic, retain) NSMutableArray *heartedAssets;
 
 + (GCAccount *)sharedManager;
 
@@ -55,5 +58,7 @@ typedef enum {
 
 - (GCResponse *) getInboxParcels;
 - (void) getInboxParcelsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+
+- (void) loadHeartedAssets;
 
 @end

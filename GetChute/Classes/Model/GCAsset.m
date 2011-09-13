@@ -21,7 +21,36 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 @synthesize status;
 @synthesize parentID;
 
+- (BOOL) isHearted {
+    if ([[[GCAccount sharedManager] heartedAssets] indexOfObject:self] == NSNotFound) {
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Heart Method
+- (BOOL) toggleHeart {
+    if ([self isHearted]) {
+        //unheart
+        GCResponse *response = [self unheart];
+        if ([response isSuccessful]) {
+            [[[GCAccount sharedManager] heartedAssets] removeObject:self];
+        }
+    }
+    else {
+        //heart
+        GCResponse *response = [self heart];
+        if ([response isSuccessful]) {
+            [[[GCAccount sharedManager] heartedAssets] addObject:self];
+        }
+    }
+    return [self isHearted];
+}
+
+- (void) toggleHeartInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
+    DO_IN_BACKGROUND_BOOL([self toggleHeart], aBoolBlock);
+}
+
 - (GCResponse *) heart {
     NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%@/heart", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest         = [[GCRequest alloc] init];

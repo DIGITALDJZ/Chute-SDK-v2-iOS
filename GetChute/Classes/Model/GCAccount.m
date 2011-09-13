@@ -15,6 +15,7 @@ static GCAccount *sharedAccountManager = nil;
 @synthesize accountStatus;
 @synthesize accessToken;
 @synthesize assetsArray;
+@synthesize heartedAssets;
 
 #pragma mark - Load Assets
 
@@ -100,6 +101,10 @@ static GCAccount *sharedAccountManager = nil;
 - (void) setAccountStatus:(GCAccountStatus)_accountStatus {
     accountStatus = _accountStatus;
     [[NSNotificationCenter defaultCenter] postNotificationName:GCAccountStatusChanged object:self];
+    
+    if (_accountStatus == GCAccountLoggedIn) {
+        [self loadHeartedAssets];
+    }
 }
 
 - (void) verifyAuthorizationWithAccessCode:(NSString *) accessCode 
@@ -240,6 +245,23 @@ static GCAccount *sharedAccountManager = nil;
 
 - (void) getInboxParcelsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock {
     DO_IN_BACKGROUND([self getInboxParcels], aResponseBlock);
+}
+
+- (void) loadHeartedAssets {
+    if (heartedAssets) {
+        [heartedAssets release], heartedAssets = nil;
+        
+    }
+    
+    //heartedAssets = [[NSMutableArray alloc] init];
+    
+    [GCChute findByShortcut:@"heart" inBackgroundWithCompletion:^(GCResponse *response) {
+        if ([response isSuccessful]) {
+            [[response object] assetsInBackgroundWithCompletion:^(GCResponse *response) {
+                [self setHeartedAssets:[response object]]; 
+            }];
+        }
+    }];
 }
 
 #pragma mark - Methods for Singleton class

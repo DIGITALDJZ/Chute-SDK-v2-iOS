@@ -55,7 +55,7 @@
     [authView setCenter:self.view.center];
     [authView setTransform:t1];
     [authView setAlpha:0.0f];
-    [self.view addSubview:authView];
+    [self.view.window addSubview:authView];
     
     [UIView animateWithDuration:0.2f animations:^{
         [authView setAlpha:1.0f];
