@@ -10,6 +10,7 @@
 
 NSString * const GCAssetStatusChanged;
 NSString * const GCAssetProgressChanged;
+NSString * const GCAssetUploadComplete;
 
 typedef enum {
     GCAssetStateNew = 0,

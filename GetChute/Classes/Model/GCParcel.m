@@ -21,6 +21,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 @synthesize completionSelector;
 
 @synthesize assetCount;
+@synthesize completedAssetCount;
 
 - (void) removeAsset:(GCAsset *)_asset {
     if ([assets indexOfObject:_asset] != NSNotFound) {
@@ -141,11 +142,11 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     }
     
     for (GCAsset *obj in assetsToRemove) {
-        //[obj setStatus:GCAssetStateFinished];
-        //[obj setProgress:1.0f];
         assetCount--; 
         [self removeAsset:obj];
     }
+    
+    completedAssetCount = 0;
     
     [assetsToRemove release];
     [assetUrls release];
@@ -160,14 +161,17 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     
     //Remove assets which are already uploaded.
     [self removeUploadedAssets];
+
+    dispatch_queue_t queue;
+    queue = dispatch_queue_create("com.sharedRoll.queue", NULL);
     
     //Start loop of assets
     for (GCAsset *_asset in assets) {
         if ([_asset status] == GCAssetStateFinished) {
             continue;
         }
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+
+        dispatch_async(queue, ^(void) {
             [_asset setStatus:GCAssetStateGettingToken];
             
             //Generate New token for each asset
@@ -199,6 +203,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 
 - (void) updateUploadQueue:(NSNotification *) notification {
     if ([[notification object] status] == GCAssetStateFinished) {
+        completedAssetCount ++;
         [self removeAsset:[notification object]];
     }
 }
@@ -217,7 +222,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
         assets = [[NSMutableArray arrayWithArray:_assets] retain];
         chutes = [[NSArray arrayWithArray:_chutes] retain];
         [self setStatus:GCParcelStatusNew];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUploadQueue:) name:GCAssetStatusChanged object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUploadQueue:) name:GCAssetUploadComplete object:nil];
     }
     return self;
 }

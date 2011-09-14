@@ -11,6 +11,7 @@
 
 NSString * const GCAssetStatusChanged   = @"GCAssetStatusChanged";
 NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
+NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 
 @implementation GCAsset
 
@@ -157,6 +158,10 @@ NSString * const GCAssetProgressChanged = @"GCAssetProgressChanged";
 }
 
 - (void) setStatus:(GCAssetStatus)aStatus {
+    if (status == GCAssetStateUploadingToS3 && aStatus == GCAssetStateFinished) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCAssetUploadComplete object:self];
+    }
+    
     status = aStatus;
     [[NSNotificationCenter defaultCenter] postNotificationName:GCAssetStatusChanged object:self];
 }

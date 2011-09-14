@@ -30,9 +30,9 @@ NSString * const GCUploaderProgressChanged = @"GCUploaderProgressChanged";
             for (GCAsset *_asset in [_parcel assets]) {
                 total += [_asset progress]; 
             }
+            total += [_parcel completedAssetCount];
         }
     }
-    DLog(@"%f, %d", total*100/totalAssets, totalAssets);
     [self setProgress:total/totalAssets];
 }
 
