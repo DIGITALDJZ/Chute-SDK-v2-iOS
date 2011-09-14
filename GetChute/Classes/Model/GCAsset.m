@@ -230,6 +230,10 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
 }
 
 - (BOOL) isEqual:(id)object {
+    if (IS_NULL([self objectID]) && IS_NULL([object objectID])) {
+        return [super isEqual:object];
+    }
+    
     if ([[self objectID] intValue] == [[object objectID] intValue]) {
         return YES;
     }

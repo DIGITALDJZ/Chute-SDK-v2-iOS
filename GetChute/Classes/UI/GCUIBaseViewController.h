@@ -18,9 +18,13 @@
     MBProgressHUD *HUD;
     NSUInteger HUDCount;
     
+    UIAlertView *_alert;
     void (^alertCompletionBlock)(void);
     void (^alertCancelBlock)(void);
 }
+
+- (void) setAlertCompletionBlock:(void (^)(void)) completionBlock;
+- (void) setAlertCancelBlock:(void (^)(void)) cancelBlock;
 
 - (void) showHUD;
 - (void) showHUDWithTitle:(NSString *) title andOpacity:(CGFloat) opacity;

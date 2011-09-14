@@ -7,6 +7,15 @@
 #import "GCUIBaseViewController.h"
 
 @implementation GCUIBaseViewController
+
+- (void) setAlertCompletionBlock:(void (^)(void)) completionBlock {
+    alertCompletionBlock = Block_copy(completionBlock);
+}
+
+- (void) setAlertCancelBlock:(void (^)(void)) cancelBlock {
+    alertCancelBlock = Block_copy(cancelBlock);
+}
+
 - (void) showHUD {
     [self showHUDWithTitle:@"Loading..." andOpacity:0.5f];
 }
@@ -50,11 +59,21 @@
                          button:(NSString *)button 
                 completionBlock:(void (^)(void))completionBlock 
                     cancelBlock:(void (^)(void))cancelBlock {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:button otherButtonTitles:@"Cancel", nil];
-    [alert show];
-    [alert release];
+    
+    if (_alert) {
+        [_alert release], _alert = nil;
+    }
+    
+    _alert = [[UIAlertView alloc] initWithTitle:title 
+                                                       message:message
+                                                      delegate:self 
+                                             cancelButtonTitle:button 
+                                             otherButtonTitles:@"Cancel", nil];
+    
+    [_alert show];
     alertCompletionBlock = Block_copy(completionBlock);
     alertCancelBlock = Block_copy(cancelBlock);
+    [_alert release], _alert = nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -70,6 +89,18 @@
     }
     Block_release(alertCompletionBlock);
     Block_release(alertCancelBlock);
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    if (_alert) {
+        [_alert setDelegate:nil];
+    }
+    
+    [super viewDidDisappear:YES];
+}
+
+- (void) viewDidUnload {
+    [super viewDidUnload];
 }
 
 @end
