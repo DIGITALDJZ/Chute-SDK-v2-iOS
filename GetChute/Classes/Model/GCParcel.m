@@ -20,6 +20,8 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 @synthesize delegate;
 @synthesize completionSelector;
 
+@synthesize assetCount;
+
 - (void) removeAsset:(GCAsset *)_asset {
     if ([assets indexOfObject:_asset] != NSNotFound) {
         [assets removeObject:_asset];
@@ -138,7 +140,10 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
         }
     }
     
-    for (id obj in assetsToRemove) {
+    for (GCAsset *obj in assetsToRemove) {
+        //[obj setStatus:GCAssetStateFinished];
+        //[obj setProgress:1.0f];
+        assetCount--; 
         [self removeAsset:obj];
     }
     
@@ -158,6 +163,10 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     
     //Start loop of assets
     for (GCAsset *_asset in assets) {
+        if ([_asset status] == GCAssetStateFinished) {
+            continue;
+        }
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
             [_asset setStatus:GCAssetStateGettingToken];
             
@@ -198,6 +207,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     [self setDelegate:_target];
     [self setCompletionSelector:_selector];
     [self setStatus:GCParcelStatusUploading];
+    [self setAssetCount:[assets count]];
     [self performSelector:@selector(startUpload) withObject:nil afterDelay:0.1f];
 }
 

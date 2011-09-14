@@ -91,15 +91,15 @@
     
     //[[GCAccount sharedManager] getInboxParcels];
     
-    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
-        GCChute *first = [[response object] objectAtIndex:0];
-        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
-            DLog(@"%d", [[[response object] objectAtIndex:0] isHearted]);
-            [[[response object] objectAtIndex:0] toggleHeartInBackgroundWithCompletion:^(BOOL value) {
-                DLog(@"%d", value); 
-            }];
-        }];
-    }];
+//    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+//        GCChute *first = [[response object] objectAtIndex:0];
+//        [first assetsInBackgroundWithCompletion:^(GCResponse *response) {
+//            DLog(@"%d", [[[response object] objectAtIndex:0] isHearted]);
+//            [[[response object] objectAtIndex:0] toggleHeartInBackgroundWithCompletion:^(BOOL value) {
+//                DLog(@"%d", value); 
+//            }];
+//        }];
+//    }];
     
 //    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
 //        GCChute *first = [[response object] objectAtIndex:0];
@@ -116,9 +116,11 @@
 //        DLog(@"%@", response);
 //    }];
     
+    [GCChute allInBackgroundWithCompletion:^(GCResponse *response) {
+        GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:[response object]];
+        [[GCUploader sharedUploader] addParcel:parcel];
+    }];
     
-//    GCParcel *parcel = [GCParcel objectWithAssets:[[GCAccount sharedManager] assetsArray] andChutes:[response object]];
-//    [[GCUploader sharedUploader] addParcel:parcel];
 //    
     
 //

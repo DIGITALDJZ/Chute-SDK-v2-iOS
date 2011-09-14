@@ -9,6 +9,8 @@
 
 static GCUploader *sharedUploader = nil;
 
+NSString * const GCUploaderProgressChanged = @"GCUploaderProgressChanged";
+
 @interface GCUploader()
 - (void) processQueue;
 @end
@@ -16,9 +18,30 @@ static GCUploader *sharedUploader = nil;
 @implementation GCUploader
 
 @synthesize queue;
+@synthesize progress;
+
+- (void) updateProgress:(NSNotification *) notification {
+    float total = 0.0;
+    int totalAssets = 0;
+    for (GCParcel *_parcel in queue) {
+        totalAssets += [_parcel assetCount];
+        if (_parcel == [queue objectAtIndex:0]) {
+            //calculate asset progress
+            for (GCAsset *_asset in [_parcel assets]) {
+                total += [_asset progress]; 
+            }
+        }
+    }
+    DLog(@"%f, %d", total*100/totalAssets, totalAssets);
+    [self setProgress:total/totalAssets];
+}
+
+- (void) setProgress:(CGFloat)aProgress {
+    progress = aProgress;
+    [[NSNotificationCenter defaultCenter] postNotificationName:GCUploaderProgressChanged object:nil];
+}
 
 - (void) parcelCompleted {
-    DLog(@"Parcel Completed");
     if ([self.queue count] > 0) {
         [self.queue removeObjectAtIndex:0];
     }
@@ -67,6 +90,7 @@ static GCUploader *sharedUploader = nil;
     self = [super init];
     if (self) {
         self.queue = [[NSMutableArray alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:GCAssetProgressChanged object:nil];
     }
     return self;
 }

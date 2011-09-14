@@ -9,9 +9,13 @@
 #import "GetChute.h"
 #import "GCParcel.h"
 
+NSString * const GCUploaderProgressChanged;
+
 @interface GCUploader : NSObject
 
 @property (nonatomic, retain) NSMutableArray *queue;
+
+@property (nonatomic, assign) CGFloat progress;
 
 + (GCUploader *)sharedUploader;
 
