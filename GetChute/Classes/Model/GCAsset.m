@@ -200,11 +200,11 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
     DO_IN_BACKGROUND([self imageForWidth:width andHeight:height], aResponseBlock);
 }
 
-- (NSDate*)creationDate{
+- (NSDate*)createdAt{
     if(self.alAsset){
         return [self.alAsset valueForProperty:ALAssetPropertyDate];
     }
-    return NULL;
+    return [super createdAt];
 }
 
 
