@@ -30,6 +30,9 @@
 @property (nonatomic, retain) NSArray *uploadChutes;
 @property (nonatomic, retain) NSDate *start;
 @property (nonatomic, retain) NSDate *end;
+@property (nonatomic, retain) NSMutableSet *_selected;
+@property (nonatomic, retain) IBOutlet UITableView *imageTable;
+@property (nonatomic, retain) IBOutlet UILabel *switchModeLabel;
 
 -(NSArray*)selectedImages;
 -(IBAction)uploadAssets:(id)sender;

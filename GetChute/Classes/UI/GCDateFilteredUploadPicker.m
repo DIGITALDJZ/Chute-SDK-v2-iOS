@@ -14,7 +14,7 @@
 @end
 
 @implementation GCDateFilteredUploadPicker
-@synthesize selectedIndicator, uploadChutes, start, end, filteredImages;
+@synthesize selectedIndicator, uploadChutes, start, end, filteredImages, _selected = selected, imageTable, switchModeLabel;
 
 -(void)hideSwitchView{
     [switchModeView setHidden:YES];
@@ -52,8 +52,8 @@
         NSDate *d1 = [obj1 createdAt];
         NSDate *d2 = [obj2 createdAt];
         if(!d1 || !d2)
-            return NSOrderedAscending;
-        return [d1 compare:d2];
+            return NSOrderedDescending;
+        return [d2 compare:d1];
     }];
     return array;
 }
@@ -85,6 +85,7 @@
         [imageTable reloadData];
         [sender setSelected:NO];
     }
+    [imageTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 -(void)objectTappedWithGesture:(UIGestureRecognizer*)gesture{
@@ -93,7 +94,7 @@
     if(![selected containsObject:asset]){
         UIImageView *v = [[UIImageView alloc] initWithImage:self.selectedIndicator.image];
         [v setBackgroundColor:[UIColor whiteColor]];
-        [v setFrame:CGRectMake(57, 57, 20, 20)];
+        [v setFrame:CGRectMake(view.frame.size.width-20, view.frame.size.height-20, 20, 20)];
         [view addSubview:v];
         [v release];
         [selected addObject:asset];
@@ -181,6 +182,36 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)loadImagesWithCompletionBlock:(GCBasicBlock)responseBlock{
+    NSMutableSet *set = [NSMutableSet set];
+    void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
+        if(result != NULL){
+            GCAsset *asset = [[GCAsset alloc] init];
+            [asset setAlAsset:result];
+            [set addObject:asset];
+            [asset release];
+        }
+    };
+    
+    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) =  ^(ALAssetsGroup *group, BOOL *stop) {
+        if(group != nil) {
+            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:assetEnumerator];
+        }
+        else{
+            [self setImages:[set allObjects]];
+            responseBlock();
+        }
+    };
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                           usingBlock:assetGroupEnumerator
+                         failureBlock: ^(NSError *error) {
+                         }];
+    [library release];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -207,8 +238,7 @@
     }
     if(!self.images){
         [self showHUDWithTitle:@"loading photos" andOpacity:.5];
-        [[GCAccount sharedManager] loadAssetsCompletionBlock:^(void){
-            [self setImages:[[GCAccount sharedManager] assetsArray]];
+        [self loadImagesWithCompletionBlock:^(void){
             [self hideHUD];
             [self filterArray];
             [imageTable reloadData];
@@ -298,7 +328,7 @@
         if([selected containsObject:asset]){
             UIImageView *v = [[UIImageView alloc] initWithImage:self.selectedIndicator.image];
             [v setBackgroundColor:[UIColor whiteColor]];
-            [v setFrame:CGRectMake(57, 57, 20, 20)];
+            [v setFrame:CGRectMake(image.frame.size.width-20, image.frame.size.height-20, 20, 20)];
             [image addSubview:v];
             [v release];
         }
