@@ -16,6 +16,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 @synthesize status;
 @synthesize assets;
 @synthesize chutes;
+@synthesize postMetaData;
 
 @synthesize delegate;
 @synthesize completionSelector;
@@ -52,10 +53,13 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     }
     
     //Make Parameters to be sent across with the request
-    NSDictionary *params    = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary *params    = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                [_assetsUniqueDescription JSONRepresentation], @"files", 
                                [_chuteIDs JSONRepresentation], @"chutes", 
                                nil];
+    
+    if(self.postMetaData)
+        [params setObject:[self.postMetaData JSONRepresentation] forKey:@"metadata"];
     
     [_chuteIDs release];
     [_assetsUniqueDescription release];
@@ -63,7 +67,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     NSString *_path = [[NSString alloc] initWithFormat:@"%@%@", API_URL, @"parcels"];
     
     GCRequest *gcRequest = [[GCRequest alloc] init];
-    GCResponse *response = [[gcRequest postRequestWithPath:_path andParams:(NSMutableDictionary *)params] retain];
+    GCResponse *response = [[gcRequest postRequestWithPath:_path andParams:params] retain];
     
     [gcRequest release];
     [_path release];
@@ -231,6 +235,15 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     return [[[self alloc] initWithAssets:_assets andChutes:_chutes] autorelease];
 }
 
+
++ (id) objectWithAssets:(NSArray *) _assets andChutes:(NSArray *) _chutes andMetaData:(NSDictionary*)_metaData{
+    id parcel = [[[self alloc] initWithAssets:_assets andChutes:_chutes] autorelease];
+    if(parcel){
+        [parcel setPostMetaData:_metaData];
+    }
+    return parcel;
+}
+
 + (id) objectWithDictionary:(NSDictionary *) dictionary {
     return [[[self alloc] initWithDictionary:dictionary] autorelease];
 }
@@ -258,6 +271,10 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     }
     [self setStatus:GCParcelStatusDone];
     return self;
+}
+
++ (NSString *)elementName {
+    return @"parcels";
 }
 
 - (void) dealloc {

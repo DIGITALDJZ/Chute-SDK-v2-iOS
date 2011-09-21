@@ -200,6 +200,13 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
     DO_IN_BACKGROUND([self imageForWidth:width andHeight:height], aResponseBlock);
 }
 
+- (NSDate*)createdAt{
+    if(self.alAsset){
+        return [self.alAsset valueForProperty:ALAssetPropertyDate];
+    }
+    return [super createdAt];
+}
+
 
 #pragma mark - Memory Management
 - (id) init {

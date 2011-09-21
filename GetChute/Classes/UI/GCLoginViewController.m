@@ -113,6 +113,9 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self hideHUD];
+    
+    if (error.code == NSURLErrorCancelled) return; 
+    
     if (![[error localizedDescription] isEqualToString:@"Frame load interrupted"]) {
         [self quickAlertViewWithTitle:@"Error" message:[error localizedDescription] button:@"Reload" completionBlock:^(void) {
             [authWebView reload]; 

@@ -52,7 +52,8 @@ NSString * const GCUploaderProgressChanged = @"GCUploaderProgressChanged";
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         if ([self.queue count] > 0) {
             GCParcel *_parcel = [self.queue objectAtIndex:0];
-            [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
+            if([_parcel status] == GCParcelStatusNew)
+                [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
         }
     });
 }

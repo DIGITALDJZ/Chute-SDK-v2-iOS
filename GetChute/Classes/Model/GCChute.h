@@ -57,6 +57,9 @@ typedef enum {
 - (BOOL) joinWithPassword:(NSString *) _password;
 - (void) joinWithPassword:(NSString *) _password inBackgroundWithBOOLCompletion:(GCBoolBlock) aBoolBlock;
 
+- (BOOL) setEventID:(NSString*)eventID forEventType:(NSString*)eventType;
+- (void) setEventID:(NSString*)eventID forEventType:(NSString*)eventType inBackgroundWithBOOLCompletion:(GCBoolBlock) aBoolBlock;
+
 + (GCResponse *)allPublic;
 + (void)allPublicInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 

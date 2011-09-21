@@ -51,7 +51,7 @@
 -(void) quickAlertWithTitle:(NSString *) title 
                     message:(NSString *) message 
                      button:(NSString *) buttonTitle {
-	[self quickAlertViewWithTitle:title message:message button:buttonTitle completionBlock:^(void) {} cancelBlock:^(void) {}];
+	[self quickAlertViewWithTitle:title message:message button:buttonTitle completionBlock:^(void) {} cancelBlock:nil];
 }
 
 - (void)quickAlertViewWithTitle:(NSString *) title 
@@ -64,17 +64,38 @@
         [_alert release], _alert = nil;
     }
     
-    _alert = [[UIAlertView alloc] initWithTitle:title 
-                                                       message:message
-                                                      delegate:self 
-                                             cancelButtonTitle:button 
-                                             otherButtonTitles:@"Cancel", nil];
+    if (cancelBlock != nil) {
+        _alert = [[UIAlertView alloc] initWithTitle:title 
+                                             message:message
+                                            delegate:self 
+                                   cancelButtonTitle:button 
+                                   otherButtonTitles:@"Cancel", nil];
+    }
+    else {
+        _alert = [[UIAlertView alloc] initWithTitle:title 
+                                             message:message
+                                            delegate:self 
+                                   cancelButtonTitle:button 
+                                   otherButtonTitles:nil];
+    }
+    
+    
+//    [_alert setBackgroundColor:[UIColor colorWithRed:50.0/255.0 green:49.0/255.0 blue:42.0/255.0 alpha:1.0] withStrokeColor:[UIColor blackColor]];
     
     [_alert show];
-    alertCompletionBlock = Block_copy(completionBlock);
-    alertCancelBlock = Block_copy(cancelBlock);
+    
+    if (completionBlock) {
+        alertCompletionBlock = Block_copy(completionBlock);
+    }
+    
+    if (cancelBlock) {
+        alertCancelBlock = Block_copy(cancelBlock);
+    }
+    
     [_alert release], _alert = nil;
 }
+
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {

@@ -135,6 +135,26 @@
     DO_IN_BACKGROUND_BOOL([self joinWithPassword:_password], aBoolBlock);
 }
 
+- (BOOL) setEventID:(NSString*)eventID forEventType:(NSString*)eventType{
+    if(!self.objectID)
+        return NO;
+    
+    NSString *_path             = [[NSString alloc] initWithFormat:@"%@%@/%@/events", API_URL, [[self class] elementName], [self objectID]];
+    NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    eventID, @"event[account_id]",
+                                    eventType, @"event[event_type]", nil];
+    
+    GCRequest *gcRequest        = [[GCRequest alloc] init];
+    GCResponse *response        = [gcRequest postRequestWithPath:_path andParams:_params];
+    BOOL _response              = [response isSuccessful];
+    [gcRequest release];
+    [_path release];
+    return _response;
+}
+- (void) setEventID:(NSString*)eventID forEventType:(NSString*)eventType inBackgroundWithBOOLCompletion:(GCBoolBlock) aBoolBlock{
+    DO_IN_BACKGROUND_BOOL([self setEventID:eventID forEventType:eventType], aBoolBlock);
+}
+
 #pragma mark - Accessors Override
 - (NSUInteger)assetsCount
 {

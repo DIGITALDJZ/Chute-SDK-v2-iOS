@@ -17,6 +17,37 @@ static GCAccount *sharedAccountManager = nil;
 @synthesize assetsArray;
 @synthesize heartedAssets;
 
+- (void) loadAccounts {
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@/accounts", API_URL];
+    GCRequest *gcRequest = [[GCRequest alloc] init];
+    
+    GCResponse *response = [[gcRequest getRequestWithPath:_path] retain];
+    
+    if ([response isSuccessful]) {
+        
+        NSMutableArray *_data = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary *_dic in [response data]) {
+            NSMutableDictionary *_obj = [[NSMutableDictionary alloc] init];
+            
+            [_obj setObject:[_dic objectForKey:@"access_key"] forKey:@"access_key"];
+            [_obj setObject:[_dic objectForKey:@"type"] forKey:@"type"];
+            [_obj setObject:[_dic objectForKey:@"uid"] forKey:@"uid"];
+            [_obj setObject:[_dic objectForKey:@"id"] forKey:@"accountID"];
+            
+            [_data addObject:_obj];
+            [_obj release];
+        }
+        
+        [self setAccounts:_data];
+        [_data release];
+    }
+    
+    [response release];
+    [gcRequest release];
+    [_path release];
+}
+
 #pragma mark - Load Assets
 
 - (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock {
@@ -61,6 +92,27 @@ static GCAccount *sharedAccountManager = nil;
 
 - (void)loadAssets {
     [self loadAssetsCompletionBlock:nil];
+}
+
+#pragma mark - Accounts
+
+- (void) setAccounts:(NSMutableArray *)aAccounts {
+    if (_accounts) {
+        [_accounts release], _accounts = nil;
+    }
+    
+    _accounts = [aAccounts retain];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:_accounts forKey:@"accounts"];
+    [prefs synchronize];
+}
+
+- (NSMutableArray *) accounts {
+    if (_accounts == nil) {
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        _accounts = [[prefs objectForKey:@"accounts"] retain];
+    }
+    return _accounts;
 }
 
 #pragma mark - Access Token
@@ -152,6 +204,7 @@ static GCAccount *sharedAccountManager = nil;
                 errorBlock([response error]);
             }
             else {
+                [self loadAccounts];
                 [self setUserId:[[[response object] valueForKey:@"id"] intValue]];
                 [self setAccountStatus:GCAccountLoggedIn];
                 successBlock();
