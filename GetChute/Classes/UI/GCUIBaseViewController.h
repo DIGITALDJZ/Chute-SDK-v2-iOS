@@ -7,12 +7,9 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
-#import "SBJson.h"
-#import "GCConstants.h"
-#import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"
-#import "GCAccount.h"
+
+@class MBProgressHUD;
 
 @interface GCUIBaseViewController : UIViewController <UIAlertViewDelegate> {
     MBProgressHUD *HUD;

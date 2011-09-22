@@ -5,8 +5,6 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "GCResource.h"
-
 NSString * const GCParcelFinishedUploading;
 
 typedef enum {

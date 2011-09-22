@@ -10,6 +10,7 @@
 #import "GCParcel.h"
 
 NSString * const GCUploaderProgressChanged;
+NSString * const GCUploaderFinished;
 
 @interface GCUploader : NSObject
 

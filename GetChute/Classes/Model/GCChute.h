@@ -5,8 +5,6 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
-#import "GCResource.h"
-
 typedef enum {
     GCPermissionTypePrivate = 0,
     GCPermissionTypeMembers,

@@ -6,6 +6,15 @@
 //
 
 #import "GCAccount.h"
+#import "GCRequest.h"
+#import "SBJson.h"
+#import "GCConstants.h"
+#import "ASIHTTPRequest.h"
+#import "NSDictionary+QueryString.h"
+#import "GCAsset.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "GCParcel.h"
+#import "GCChute.h"
 
 NSString * const GCAccountStatusChanged = @"GCAccountStatusChanged";
 static GCAccount *sharedAccountManager = nil;

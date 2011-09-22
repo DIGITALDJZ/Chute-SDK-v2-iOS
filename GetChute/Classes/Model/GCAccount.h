@@ -6,15 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCRequest.h"
-#import "SBJson.h"
-#import "GCConstants.h"
-#import "ASIHTTPRequest.h"
-#import "NSDictionary+QueryString.h"
-#import "GCAsset.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import "GCParcel.h"
-#import "GCChute.h"
 
 //Notification which is fired whenever the Account Status is changed
 NSString * const GCAccountStatusChanged;

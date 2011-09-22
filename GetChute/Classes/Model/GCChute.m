@@ -5,6 +5,7 @@
 //  Copyright 2011 NA. All rights reserved.
 //
 
+#import "GCResource.h"
 #import "GCChute.h"
 #import "GCAsset.h"
 #import "GCUser.h"
