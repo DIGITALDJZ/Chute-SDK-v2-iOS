@@ -54,9 +54,9 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     
     //Make Parameters to be sent across with the request
     NSMutableDictionary *params    = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                               [_assetsUniqueDescription JSONRepresentation], @"files", 
-                               [_chuteIDs JSONRepresentation], @"chutes", 
-                               nil];
+                                      [_assetsUniqueDescription JSONRepresentation], @"files", 
+                                      [_chuteIDs JSONRepresentation], @"chutes", 
+                                      nil];
     
     if(self.postMetaData)
         [params setObject:[self.postMetaData JSONRepresentation] forKey:@"metadata"];
@@ -95,6 +95,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 	[request addRequestHeader:@"Authorization" value:[_token objectForKey:@"signature"]];
 	[request addRequestHeader:@"Content-Type" value:[_token objectForKey:@"content_type"]];
     [request addRequestHeader:@"x-amz-acl" value:@"public-read"];
+    [request setTimeOutSeconds:300];
     [request startSynchronous];
     GCResponse *_result = [[GCResponse alloc] initWithRequest:request];
     
@@ -165,7 +166,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     
     //Remove assets which are already uploaded.
     [self removeUploadedAssets];
-
+    
     dispatch_queue_t queue;
     queue = dispatch_queue_create("com.sharedRoll.queue", NULL);
     
@@ -174,7 +175,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
         if ([_asset status] == GCAssetStateFinished) {
             continue;
         }
-
+        
         dispatch_async(queue, ^(void) {
             [_asset setStatus:GCAssetStateGettingToken];
             

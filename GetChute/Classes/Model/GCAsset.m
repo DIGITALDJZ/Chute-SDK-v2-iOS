@@ -158,7 +158,8 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 }
 
 - (void) setStatus:(GCAssetStatus)aStatus {
-    if (status == GCAssetStateUploadingToS3 && aStatus == GCAssetStateFinished) {
+    if (status == GCAssetStateCompleting && aStatus == GCAssetStateFinished) {
+        status = aStatus;
         [[NSNotificationCenter defaultCenter] postNotificationName:GCAssetUploadComplete object:self];
     }
     
@@ -206,7 +207,6 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
     }
     return [super createdAt];
 }
-
 
 #pragma mark - Memory Management
 - (id) init {

@@ -10,6 +10,7 @@
 static GCUploader *sharedUploader = nil;
 
 NSString * const GCUploaderProgressChanged = @"GCUploaderProgressChanged";
+NSString * const GCUploaderFinished = @"GCUploaderFinished";
 
 @interface GCUploader()
 - (void) processQueue;
@@ -45,15 +46,19 @@ NSString * const GCUploaderProgressChanged = @"GCUploaderProgressChanged";
     if ([self.queue count] > 0) {
         [self.queue removeObjectAtIndex:0];
     }
+    
+    if ([[self queue] count] == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:GCUploaderFinished object:nil];
+    }
+    
     [self processQueue];
 }
 
 - (void) processQueue {
     dispatch_async(dispatch_get_main_queue(), ^(void) {
-        if ([self.queue count] > 0) {
+        if ([[self queue] count] > 0) {
             GCParcel *_parcel = [self.queue objectAtIndex:0];
-            if([_parcel status] == GCParcelStatusNew)
-                [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
+            [_parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
         }
     });
 }
