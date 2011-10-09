@@ -2,7 +2,7 @@
 //  GCAsset.m
 //
 //  Created by Brandon Coston on 8/31/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Chute. All rights reserved.
 //
 
 #import "GCAsset.h"
@@ -144,7 +144,8 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 #pragma mark - Accessors Override
 - (UIImage *) thumbnail {
     if ([self alAsset]) {
-        return [UIImage imageWithCGImage:[[self alAsset] thumbnail]];
+            CGImageRef image = [[self alAsset] thumbnail];
+            return [UIImage imageWithCGImage:image];
     }
     else if([self status] == GCAssetStateFinished) {
         return [self imageForWidth:75 andHeight:75];

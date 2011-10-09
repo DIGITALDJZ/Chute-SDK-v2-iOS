@@ -3,7 +3,7 @@
 //  realtyChute
 //
 //  Created by Brandon Coston on 9/03/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Chute. All rights reserved.
 //
 
 #import "GCAssetSliderComponent.h"
@@ -101,7 +101,9 @@
     [image setContentMode:UIViewContentModeScaleAspectFit];
     [view addSubview:image];
     
-    [image setImageWithURL:[NSURL URLWithString:[asset urlStringForImageWithWidth:320 andHeight:480]]];
+    [asset imageForWidth:320 andHeight:480 inBackgroundWithCompletion:^(UIImage *_image){
+        [image setImage:_image];
+    }];
     
     image.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     [view setMinimumZoomScale:1];

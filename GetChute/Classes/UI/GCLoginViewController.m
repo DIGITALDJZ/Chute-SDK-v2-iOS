@@ -5,6 +5,7 @@
 //
 
 #import "GCLoginViewController.h"
+#import "GetChute.h"
 
 @interface GCLoginViewController()
 -(void) showAuthViewCompletion:(void (^)(void))completion;

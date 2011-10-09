@@ -3,7 +3,7 @@
 //  ChuteSDKDevProject
 //
 //  Created by Brandon Coston on 9/7/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Chute. All rights reserved.
 //
 
 #import "GCImageSelectionComponent.h"
@@ -142,7 +142,7 @@
 }
 
 -(UIView*)viewForIndexPath:(NSIndexPath*)indexPath{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, imageTable.frame.size.width, [self tableView:imageTable heightForRowAtIndexPath:indexPath])];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, imageTable.frame.size.width, [self tableView:imageTable heightForRowAtIndexPath:indexPath])] autorelease];
     int index = indexPath.row * 4;
 	int maxIndex = index + 3;
     CGRect rect = CGRectMake(3, 1, 77, 77);

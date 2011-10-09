@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GetChute.h"
 
 //Notification which is fired whenever the Account Status is changed
 NSString * const GCAccountStatusChanged;
