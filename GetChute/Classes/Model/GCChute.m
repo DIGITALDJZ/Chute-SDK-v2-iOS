@@ -275,7 +275,7 @@
 
 - (NSString *)recentThumbnailUrl
 {
-    return [[[self objectForKey:@"recent_thumbnail_url"] retain] autorelease];
+    return [[[self objectForKey:@"recent_thumbnail"] retain] autorelease];
 }
 
 - (NSUInteger)recentUserId
