@@ -9,6 +9,7 @@
 #import "GCParcel.h"
 #import "GCAsset.h"
 #import "GCChute.h"
+#import "GCUser.h"
 
 NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 
