@@ -17,6 +17,23 @@
     return @"invites";
 }
 
++ (GCResponse *)all {
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@inbox/%@", API_URL, [self elementName]];
+    GCRequest *gcRequest    = [[GCRequest alloc] init];
+    GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
+    
+    NSMutableArray *_result = [[NSMutableArray alloc] init];
+    for (NSDictionary *_dic in [_response object]) {
+        id _obj = [self objectWithDictionary:_dic];
+        [_result addObject:_obj];
+    }
+    [_response setObject:_result];
+    [_result release];
+    [gcRequest release];
+    [_path release];
+    return [_response autorelease]; 
+}
+
 -(GCChute*)chute{
     GCChute *_chute = NULL;
     if([self objectForKey:@"chute"]){
