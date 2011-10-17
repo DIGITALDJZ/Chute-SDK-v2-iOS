@@ -77,7 +77,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 }
 
 - (GCResponse *) tokenForAsset:(GCAsset *) anAsset {
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@/uploads/%@/token", API_URL, [anAsset objectID]];
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@uploads/%@/token", API_URL, [anAsset objectID]];
     GCRequest *gcRequest = [[GCRequest alloc] init];
     GCResponse *response = [[gcRequest getRequestWithPath:_path] retain];
     [gcRequest release];
@@ -114,7 +114,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
 }
 
 - (GCResponse *) completionRequestForAsset:(GCAsset *) anAsset {
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@/uploads/%@/complete", API_URL, [anAsset objectID]];
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@uploads/%@/complete", API_URL, [anAsset objectID]];
     GCRequest *gcRequest = [[GCRequest alloc] init];
     GCResponse *response = [[gcRequest getRequestWithPath:_path] retain];
     

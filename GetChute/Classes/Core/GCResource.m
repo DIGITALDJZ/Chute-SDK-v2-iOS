@@ -23,7 +23,7 @@
 #pragma mark - All 
 /* Get all Objects of this class */
 + (GCResponse *)all {
-    NSString *_path         = [[NSString alloc] initWithFormat:@"%@/me/%@", API_URL, [self elementName]];
+    NSString *_path         = [[NSString alloc] initWithFormat:@"%@me/%@", API_URL, [self elementName]];
     GCRequest *gcRequest    = [[GCRequest alloc] init];
     GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
     

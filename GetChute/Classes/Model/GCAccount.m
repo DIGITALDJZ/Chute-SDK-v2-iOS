@@ -12,7 +12,6 @@
 #import "ASIHTTPRequest.h"
 #import "NSDictionary+QueryString.h"
 #import "GCAsset.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "GCParcel.h"
 #import "GCChute.h"
 
@@ -25,9 +24,10 @@ static GCAccount *sharedAccountManager = nil;
 @synthesize accessToken;
 @synthesize assetsArray;
 @synthesize heartedAssets;
+@synthesize assetsLibrary;
 
 - (void) loadAccounts {
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@/accounts", API_URL];
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@accounts", API_URL];
     GCRequest *gcRequest = [[GCRequest alloc] init];
     
     GCResponse *response = [[gcRequest getRequestWithPath:_path] retain];
@@ -94,9 +94,14 @@ static GCAccount *sharedAccountManager = nil;
     {
     };
     
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:assetGroupEnumerator failureBlock:assetFailureBlock];
-    [assetsLibrary release];
+    if(!self.assetsLibrary){
+        ALAssetsLibrary *temp = [[ALAssetsLibrary alloc] init];
+        [self setAssetsLibrary:temp];
+        [temp release];
+    }
+    
+    
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:assetGroupEnumerator failureBlock:assetFailureBlock];
 }
 
 - (void)loadAssets {
@@ -230,7 +235,7 @@ static GCAccount *sharedAccountManager = nil;
 
 #pragma mark - Get Profile Info
 - (void)getProfileInfoWithResponse:(GCResponseBlock)aResponseBlock {
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@/me", API_URL];
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@me", API_URL];
     GCRequest *gcRequest = [[GCRequest alloc] init];
     
     [gcRequest getRequestInBackgroundWithPath:_path withResponse:^(GCResponse *response) {

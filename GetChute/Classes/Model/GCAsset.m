@@ -23,10 +23,9 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 @synthesize parentID;
 
 - (BOOL) isHearted {
-    if ([[[GCAccount sharedManager] heartedAssets] indexOfObject:self] == NSNotFound) {
-        return NO;
-    }
-    return YES;
+    if([[GCAccount sharedManager] heartedAssets])
+        return [[[GCAccount sharedManager] heartedAssets] containsObject:self];
+    return NO;
 }
 
 #pragma mark - Heart Method

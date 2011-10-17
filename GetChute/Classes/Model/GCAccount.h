@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "GetChute.h"
 
 //Notification which is fired whenever the Account Status is changed
@@ -26,6 +27,7 @@ typedef enum {
     NSMutableArray *heartedAssets;
     
     NSMutableArray *_accounts;
+    ALAssetsLibrary *assetsLibrary;
 }
 
 @property (nonatomic) GCAccountStatus accountStatus;
@@ -34,6 +36,8 @@ typedef enum {
 @property (nonatomic, retain) NSMutableArray *heartedAssets;
 
 @property (nonatomic, retain) NSMutableArray *accounts;
+
+@property (nonatomic, retain) ALAssetsLibrary *assetsLibrary;
 
 + (GCAccount *)sharedManager;
 
