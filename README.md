@@ -1,7 +1,33 @@
 Setup
 ====
 
-First copy the SDK files into your project.  Find the GCConstants.h file located at GetChute/Classes/Core and enter your OAuth information.  You can also adjust which service your users will use to sign in from this file.  At this point your application will be ready to use the Chute SDK.  Simply include GetChute.h in any classes that will be accessing the SDK.
+First copy the SDK files into your project.  Find the GCConstants.h file located at GetChute/Classes/Core and enter your OAuth information.
+
+``` Objective-C
+#define kOAuthRedirectURL               @"http://getchute/oauth/callback"
+#define kOAuthRedirectRelativeURL       @"/oauth/callback"
+#define kOAuthClientID                  @"xxxxxxxxxxxxxxxxxxxxxxxx"
+#define kOAuthClientSecret              @"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+#define kOAuthPermissions               @"all_resources manage_resources profile resources"
+
+#define kOAuthTokenURL                  @"http://getchute.com/oauth/access_token"
+```
+
+  You can also adjust which service your users will use to sign in from this file.
+  
+``` Objective-C
+  // Set which service is to be used
+// 0 - Facebook
+// 1 - Evernote
+// 2 - Chute
+// 3 - Twitter
+// 4 - Foursquare
+
+#define kSERVICE 0
+  ```
+  
+  At this point your application will be ready to use the Chute SDK.  Simply include GetChute.h in any classes that will be accessing the SDK.
 
 You can also find prebuilt customizable drop in components [here](https://github.com/chute/chute-ios-components).  You can pick and choose which components you want to use and it's a simple way to get working with chute quickly and see the SDK in action.
 
@@ -48,7 +74,9 @@ You may also set these to to nil if you don't wish have any completion behavior.
 
 ## Displaying Assets
 
-There are two convenience methods for displaying assets.  Each asset has a method to retrieve a thumbnail as well as one for a custom sized image.  You can access the thumbnail by simply calling [_asset thumbnail], which returns a UIImage that is formatted for 75x75 pixels.  To retrieve a custom sized image you can call [_asset imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height] which returns an image formatted to the given dimensions.  This method runs in the foreground so it may be somewhat slow.  You can also call [_asset imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock] to get the image in the background and run a response block on completion.  For example
+There are two convenience methods for displaying assets.  Each asset has a method to retrieve a thumbnail as well as one for a custom sized image.  You can access the thumbnail by simply calling `[_asset thumbnail]`, which returns a UIImage that is formatted for 75x75 pixels.  
+
+To retrieve a custom sized image you can call `[_asset imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height]` which returns an image formatted to the given dimensions.  This method runs in the foreground so it may be somewhat slow.  You can also call `[_asset imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock]` to get the image in the background and run a response block on completion.  For example
 
 ``` Objective-C
 UIImageView *v = [[[UIImageView alloc] init] autorelease];
