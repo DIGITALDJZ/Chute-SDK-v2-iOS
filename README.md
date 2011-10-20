@@ -94,6 +94,8 @@ Chutes are used for organizing assets.  Retriving the assets for a chute is simp
     - (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 ```
 
+Assets can also be organized into parcels.  Retrieving a parcel's assets is even easier.  Each parcel has an array of assets so to get a parcel's assets you simply call '[_parcel assets]'.
+
 ## Associating Your Data with Assets
 
 Many chute components can have metadata associated with them.  This metadata is specific to your application.  There are several methods for setting the metadata.  They are
