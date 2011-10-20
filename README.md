@@ -155,7 +155,7 @@ Hearting and unhearting an asset is simple.  You just call one of the following 
     - (void) unheartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock;
 ```
 
-You can also check if an asset is hearted by calling `[_asset isHearted]`.  This method checks against your hearted assets which must be loaded by calling `[[GCAccount sharedManager] loadHeartedAssets]`.  To get a correct response when checking if an asset is hearted it is recommended that you call this function once when your app loads and any time you heart or unhurt an asset.
+You can also check if an asset is hearted by calling `[_asset isHearted]`.  This method checks against your hearted assets which must be loaded by calling `[[GCAccount sharedManager] loadHeartedAssets]`.  To get a correct response when checking if an asset is hearted it is recommended that you call this function once when your app loads and any time you heart or unheart an asset.
 
 ## Commenting on Assets
 
