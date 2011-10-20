@@ -3,7 +3,7 @@ Setup
 
 First copy the SDK files into your project.  Find the GCConstants.h file located at GetChute/Classes/Core and enter your OAuth information.  You can also adjust which service your users will use to sign in from this file.  At this point your application will be ready to use the Chute SDK.  Simply include GetChute.h in any classes that will be accessing the SDK.
 
-You can also find prebuilt customizable drop in components [here](https://github.com/chute/chute-ios-components).  You can pick and choose which components you want to use and they are a simple way to get working with chute quickly and to see the SDK in action.
+You can also find prebuilt customizable drop in components [here](https://github.com/chute/chute-ios-components).  You can pick and choose which components you want to use and it's a simple way to get working with chute quickly and see the SDK in action.
 
 Key Concepts
 ========
@@ -32,14 +32,14 @@ You upload assets using a parcel.  You can use it in conjunction with the GCUplo
 
 The following code will queue an array of assets to upload to an array of chutes in the background.
 
-```
+``` Objective-C
     GCParcel *parcel = [GCParcel objectWithAssets:_assets andChutes:_chutes];
     [[GCUploader sharedUploader] addParcel:parcel];
 ```
 
 If you want to perform the upload now or with a custom completion block you can use the following code.
 
-```
+``` Objective-C
     GCParcel *parcel = [GCParcel objectWithAssets:_assets andChutes:_chutes];
     [parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
 ```
@@ -50,7 +50,7 @@ You may also set these to to nil if you don't wish have any completion behavior.
 
 There are two convenience methods for displaying assets.  Each asset has a method to retrieve a thumbnail as well as one for a custom sized image.  You can access the thumbnail by simply calling [_asset thumbnail], which returns a UIImage that is formatted for 75x75 pixels.  To retrieve a custom sized image you can call [_asset imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height] which returns an image formatted to the given dimensions.  This method runs in the foreground so it may be somewhat slow.  You can also call [_asset imageForWidth:(NSUInteger)width andHeight:(NSUInteger)height inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock] to get the image in the background and run a response block on completion.  For example
 
-```
+``` Objective-C
 UIImageView *v = [[[UIImageView alloc] init] autorelease];
 [_asset imageForWidth:320 andHeight:480 inBackgroundWithCompletion:^(UIImage *temp){
         [v setImage:temp];
@@ -63,7 +63,7 @@ UIImageView *v = [[[UIImageView alloc] init] autorelease];
 
 Many chute components can have metadata associated with them.  This metadata is specific to your application.  There are several methods for setting the metadata.  They are
 
-```
+``` Objective-C
 - (BOOL) setMetaData:(NSDictionary *) metaData;
 - (void) setMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
@@ -75,7 +75,7 @@ The first two methods can set multiple values by using a dictionary.  The second
 
 There are also several methods for retrieving metadata.  There are two methods for retrieving all your metadata and two for simply getting a value for a single key.  These methods are
 
-```
+``` Objective-C
 - (GCResponse *) getMetaData;
 - (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 
@@ -85,14 +85,14 @@ There are also several methods for retrieving metadata.  There are two methods f
 
 There are also methods for retrieving all objects that have a specific key/value pair.  These are
 
-```
+``` Objective-C
 + (GCResponse *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value;
 + (void) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 ```
 
 Finally you can also delete your metadata for an object.  You do this using one of the following methods
 
-```
+``` Objective-C
 - (BOOL) deleteMetaData;
 - (void) deleteMetaDataInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock;
 
@@ -112,7 +112,7 @@ Social Tasks
 
 Hearting and unhearting an asset is simple.  You just call one of the following methods
 
-```
+``` Objective-C
 - (GCResponse *) heart;
 - (void) heartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock;
 
@@ -126,14 +126,14 @@ You can also check if an asset is hearted by calling [_asset isHearted].  This m
 
 You can retrieve all comments for an asset by calling one of two methods
 
-```
+``` Objective-C
 - (GCResponse *) comments;
 - (void) commentsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 ```
 
 There are also two methods for posting a comment to an asset
 
-```
+``` Objective-C
 - (GCResponse *) addComment:(NSString *) _comment;
 - (void) addComment:(NSString *) _comment inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
 ```
