@@ -12,12 +12,12 @@
 // 3 - Twitter
 // 4 - Foursquare
 
-#define kSERVICE 3
+#define kSERVICE 0
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define API_URL @"http://api.developer.getchute.com/v1/"
-#define SERVER_URL @"http://developer.getchute.com"
+#define API_URL @"http://api.getchute.com/v1/"
+#define SERVER_URL @"http://getchute.com"
 
 #define kChutePathVerifyAssets          @"assets/verify"
 #define kChuteParcels                   @"parcels"
@@ -30,11 +30,11 @@
 #define kDEVICE_VERSION     [[UIDevice currentDevice] systemVersion]
 
 //#error Please remove this line after changing the client id and client secret
-#define kOAuthRedirectURL               @"http://getchute.com/oauth/callback"
+#define kOAuthRedirectURL               @"http://sharedroll.com/oauth/callback"
 #define kOAuthRedirectRelativeURL       @"/oauth/callback"
-#define kOAuthClientID                  @"4e6a2cc4f3e3bd0bcb000001"
-#define kOAuthClientSecret              @"a744516290995009e2aaaf308085cc4e07a6b53057f4e90e8f108df6b8becd4b"
+#define kOAuthClientID                  @"4e79ff9e32fc725e5b000001"
+#define kOAuthClientSecret              @"e8036d54e98682a3a2e02562cbc4f77bb922e8bb6cfd13264fe00b5e3b565693"
 
-#define kOAuthPermissions               @"resources profile manage_resources all_resources services"
+#define kOAuthPermissions               @"all_resources manage_resources profile resources"
 
-#define kOAuthTokenURL                  @"http://developer.getchute.com/oauth/access_token"
+#define kOAuthTokenURL                  @"http://getchute.com/oauth/access_token"
