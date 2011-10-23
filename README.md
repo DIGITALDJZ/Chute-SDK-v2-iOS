@@ -54,7 +54,7 @@ Basic Tasks
 =========
 
 ## Uploading Assets
-You upload assets using a parcel.  You can use it in conjunction with the GCUploader class to queue uploads in the background, or you can upload directly from the parcel.
+You upload assets using a parcel.  To perform an upload you first need to create an array of asset you want to upload and an array of chutes you want to upload the assets to.  Then you initialize a parcel with those arrays and either add it to the GCUploader to queue in the background or tell the parcell to begin uploading.  If you have the parcel handle the uploading you must retain it until uploading completes.  If you use the uploader it handels the memory management for the parcel.
 
 The following code will queue an array of assets to upload to an array of chutes in the background.
 
@@ -70,7 +70,7 @@ If you want to perform the upload now or with a custom completion block you can 
     [parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
 ```
 
-You may also set these to to nil if you don't wish have any completion behavior.
+You may also set the target and selector to nil if you don't wish have any completion behavior.
 
 ## Displaying Assets
 
