@@ -47,14 +47,14 @@ A container for assets.  Chutes can be nested inside of each other.
 A named collection of assets.  Whenever you upload assets, they are grouped into parcels.
 
 ## Response
-Many methods return a response object.  This tells you whether the API call succeeded and includes an error if it didn't.  The response object also has precreated objects if there were any returned as well as the raw JSON string and the native objective-C decoding of that string.  This allows you to easily get the response in whatever format is most convenient for your project.
+Many methods return a response object.  This tells you whether the API call succeeded and includes an error if it didn't.  The response object also has pre-created objects if there were any returned as well as the raw JSON string and the native objective-C decoding of that string.  This allows you to easily get the response in whatever format is most convenient for your project.
 
 
 Basic Tasks
 =========
 
 ## Uploading Assets
-You upload assets using a parcel.  To perform an upload you first need to create an array of asset you want to upload and an array of chutes you want to upload the assets to.  Then you initialize a parcel with those arrays and either add it to the GCUploader to queue in the background or tell the parcell to begin uploading.  If you have the parcel handle the uploading you must retain it until uploading completes.  If you use the uploader it handels the memory management for the parcel.
+You upload assets using a parcel.  To perform an upload you first need to create an array of asset you want to upload and an array of chutes you want to upload the assets to.  Then you initialize a parcel with those arrays and either add it to the GCUploader to queue in the background or tell the parcel to begin uploading.  If you have the parcel handle the uploading you must retain it until uploading completes.  If you use the uploader it handles the memory management for the parcel.
 
 The following code will queue an array of assets to upload to an array of chutes in the background.
 
@@ -88,7 +88,7 @@ You can retrieve a UIImage formatted to a custom size in the foreground.  Keep i
 
 ###In the Background
 
-Retreiving an image formatted to a custom size is easy to do in the background as well.  When downloading an image from chute this is recommended so that you don't block the main thread.  The code to do this is
+Retrieving an image formatted to a custom size is easy to do in the background as well.  When downloading an image from chute this is recommended so that you don't block the main thread.  The code to do this is
 
 ``` Objective-C
     UIImageView *v = [[[UIImageView alloc] init] autorelease];
@@ -99,7 +99,7 @@ Retreiving an image formatted to a custom size is easy to do in the background a
 
 ###Other UI Components
 
-It's also possible to retreive the most recent image that was uploaded to a chute.  This is retrived through the recentThumbnailUrl.  This returns the url to the fullsize image.  You can request a customized size by adding the dimensions to the end of the URL in the form of "/widthxheight".  If there is no thumbnail this returns null.  For example to retreive the image formatted to 50 by 50 px you could use the folling code
+It's also possible to retrieve the most recent image that was uploaded to a chute.  This is retrieved through the recentThumbnailUrl.  This returns the url to the full size image.  You can request a customized size by adding the dimensions to the end of the URL in the form of "/widthxheight".  If there is no thumbnail this returns null.  For example to retrieve the image formatted to 50 by 50 px you could use the following code
 
 ``` Objective-C
     UIImageView *v = [[[UIImageView alloc] init] autorelease];
@@ -148,7 +148,7 @@ Chutes are used for organizing assets.  When you create a chute you can set a va
     }];
 ```
 
-There are a couple methods for retreiving assets.  One runs in the foreground and the other in the background.  These methods are `- (GCResponse *) assets` and `- (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock`.  The following is an example of how to use the second method to initialize an array of assets from a chute.
+There are a couple methods for retrieving assets.  One runs in the foreground and the other in the background.  These methods are `- (GCResponse *) assets` and `- (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock`.  The following is an example of how to use the second method to initialize an array of assets from a chute.
 
 ```Objective-C
     [_chute assetsInBackgroundWithCompletion:^(GCResponse *response){
@@ -180,7 +180,7 @@ Bundles will be added soon.
 
 ##Make Chute Smarter
 
-You can associate metadata with most types of objects.  Chutes, Assets, Parcels, Users, and Bundles all support metadata.  You can set a string for any key and then retreive it later or find objects based on a key/value pair.
+You can associate metadata with most types of objects.  Chutes, Assets, Parcels, Users, and Bundles all support metadata.  You can set a string for any key and then retrieve it later or find objects based on a key/value pair.
 
 ###Storing Metadata
 
@@ -205,13 +205,13 @@ If you need to set multiple values you can use a dictionary to set them all at o
     [_chute setMetaData:meta];
 ```
 
-###Retreiving Metadata
+###Retrieving Metadata
 
-Just as you can set a single metadata value or a dictionary of values, you can also retreive a single value or a dictionary of all values.
+Just as you can set a single metadata value or a dictionary of values, you can also retrieve a single value or a dictionary of all values.
 
 ####Retrieving a Single Value
 
-You can use the methods `- (id) getMetaDataForKey:(NSString *) key` and `- (void) getMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to retreive a single value.
+You can use the methods `- (id) getMetaDataForKey:(NSString *) key` and `- (void) getMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to retrieve a single value.
 
 ``` Objective-C
     [_chute getMetaDataForKey:@"location" inBackgroundWithCompletion:^(GCResponse *response){
@@ -223,10 +223,10 @@ You can use the methods `- (id) getMetaDataForKey:(NSString *) key` and `- (void
 
 ####Retrieving All Values
 
-Getting all the values for an object is just as easy and flexable.  You can use `- (GCResponse *) getMetaData` or `- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to retreive a dictionary of values.
+Getting all the values for an object is just as easy and flexible.  You can use `- (GCResponse *) getMetaData` or `- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to retrieve a dictionary of values.
 
 ``` Objective-C
-    NSDictionary *meta = [[_asset getMetaData] obect];
+    NSDictionary *meta = [[_asset getMetaData] object];
 ```
 
 ###Searching With Metadata
