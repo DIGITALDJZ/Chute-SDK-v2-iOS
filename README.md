@@ -1,7 +1,9 @@
 Setup
 ====
 
-First copy the SDK files into your project.  Find the GCConstants.h file located at GetChute/Classes/Core and enter your OAuth information.
+##Client Authentication
+
+First copy the SDK files into your project.  Find the GCConstants.h file located at SDK/Classes/Core and enter your OAuth information.
 
 ``` Objective-C
     #define kOAuthRedirectURL               @"http://getchute.com/oauth/callback"
@@ -14,7 +16,21 @@ First copy the SDK files into your project.  Find the GCConstants.h file located
     #define kOAuthTokenURL                  @"http://getchute.com/oauth/access_token"
 ```
 
-  You can also adjust which service your users will use to sign in.
+##Login
+
+You need a logged in user to use the SDK.  You can have a single user account for all aspects of the app if you are just displaying images and have limited social interctions or you can have indivdual users log in to their own accounts.
+
+###Single User Account
+
+Having a single user account used by all versions of the app is the easiest to set up.  You can simply save your authentication key to GCAccount in 'application:didFinishLaunchingWithOptions:' in your app's delegte file.  You do this by adding the line
+
+``` Objective-C
+    [[GCAccount sharedManager] setAccessToken:@"USER_ACCESS_TOKEN"];
+```
+
+###User Login
+
+If you have users login to an account you must first determine which service you want to use.  You set this in the GCConstants file.  There are several popular services to choose from.
   
 ``` Objective-C
     // Set which service is to be used
@@ -26,6 +42,23 @@ First copy the SDK files into your project.  Find the GCConstants.h file located
 
     #define kSERVICE 0
 ```
+
+Then you must present the login view.  This is provided for you but has a blank customizable UI. When you want your user to login you call GCLoginViewController's `+(void)presentInController:(UIViewController *)controller`.  You want to pass in the view controller that will be used to display the login view.  This method automatically checks whether or not a user is already logged in and only displays the login scren if needed.  To login from the current view controller you would call the method like this
+
+``` Objective-C
+    [loginViewController presentInController:self];
+```
+
+###Logout
+
+If you want your user to be able to log out you simply call
+
+``` Objective-C
+    [[GCAccount sharedManager] reset];
+```
+
+
+
   
 At this point your application will be ready to use the Chute SDK.  Simply `#import "GetChute.h"` in any classes that will be accessing the SDK.
 
@@ -54,7 +87,7 @@ Basic Tasks
 =========
 
 ## Uploading Assets
-You upload assets using a parcel.  To perform an upload you first need to create an array of asset you want to upload and an array of chutes you want to upload the assets to.  Then you initialize a parcel with those arrays and either add it to the GCUploader to queue in the background or tell the parcel to begin uploading.  If you have the parcel handle the uploading you must retain it until uploading completes.  If you use the uploader it handles the memory management for the parcel.
+You upload assets using a parcel.  To perform an upload you first need to create an array of assets you want to upload and an array of chutes you want to upload the assets to.  Then you initialize a parcel with those arrays and either add it to the GCUploader to queue in the background or tell the parcel to begin uploading.  If you have the parcel handle the uploading you must retain it until uploading completes.  If you use the uploader it handles the memory management for the parcel.
 
 The following code will queue an array of assets to upload to an array of chutes in the background.
 
@@ -70,7 +103,7 @@ If you want to perform the upload now or with a custom completion block you can 
     [parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
 ```
 
-You may also set the target and selector to nil if you don't wish have any completion behavior.
+You may also set the target and selector to nil if you don't wish to have any completion behavior.
 
 ## Displaying Assets
 
@@ -128,7 +161,7 @@ Assets are organized into a few different objects; chutes, parcels, and bundles.
 
 ###Chutes
 
-Chutes are used for organizing assets.  When you create a chute you can set a variety of privacy options.  The privacy settings are GCPermissionTypePrivate, GCPermissionTypeMembers, GCPermissionTypePublic, GCPermissionTypeFriends, and GCPermissionTypePassword.  Use the following code to create a new chute
+Chutes are the main containers for organizing assets.  When you create a chute you can set a variety of privacy options.  The privacy settings are GCPermissionTypePrivate, GCPermissionTypeMembers, GCPermissionTypePublic, GCPermissionTypeFriends, and GCPermissionTypePassword.  Use the following code to create a new chute
 
 ```Objective-C
     GCChute *_newChute = [GCChute new];
