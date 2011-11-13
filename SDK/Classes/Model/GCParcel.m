@@ -99,6 +99,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     [request addRequestHeader:@"x-amz-acl" value:@"public-read"];
     [request setTimeOutSeconds:300];
     [request startSynchronous];
+    [_imageData release];
     GCResponse *_result = [[GCResponse alloc] initWithRequest:request];
     
     BOOL _response = [_result isSuccessful];

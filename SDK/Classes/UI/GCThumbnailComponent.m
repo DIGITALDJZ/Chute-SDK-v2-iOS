@@ -202,7 +202,7 @@
         }];
         rect = CGRectMake((rect.origin.x+[self thumbSize]+[self spacingSize]), rect.origin.y, rect.size.width, rect.size.height);
     }
-    return view;
+    return [view autorelease];
 }
 
 - (void) dealloc {

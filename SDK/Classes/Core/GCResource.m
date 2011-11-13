@@ -261,7 +261,7 @@
 }
 
 - (NSString *) objectID {
-    return [_content objectForKey:@"id"];
+    return [NSString stringWithFormat:@"%@",[_content objectForKey:@"id"]];
 }
 
 - (NSDate *) updatedAt {
@@ -368,7 +368,7 @@
     
     [gcRequest release];
     [_path release];
-    return _response;
+    return [_response autorelease];
 }
 
 - (void) destroyInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {

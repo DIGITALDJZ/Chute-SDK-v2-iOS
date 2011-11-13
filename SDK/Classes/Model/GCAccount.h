@@ -41,6 +41,8 @@ typedef enum {
 
 + (GCAccount *)sharedManager;
 
+- (NSString*) userId;
+
 - (void)loadAssets;
 - (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock;
 

@@ -151,15 +151,15 @@ static GCAccount *sharedAccountManager = nil;
 
 #pragma mark - User id
 
-- (void) setUserId:(NSUInteger) userId {
+- (void) setUserId:(NSString*) userId {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:[NSNumber numberWithInt:userId] forKey:@"user_id"];
+    [prefs setObject:userId forKey:@"user_id"];
     [prefs synchronize];
 }
 
-- (NSUInteger) userId {
+- (NSString*) userId {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    return [[prefs objectForKey:@"user_id"] intValue];
+    return [NSString stringWithFormat:@"%@",[prefs objectForKey:@"user_id"]];
 }
 
 #pragma mark - Authorization Methods
@@ -219,7 +219,7 @@ static GCAccount *sharedAccountManager = nil;
             }
             else {
                 [self loadAccounts];
-                [self setUserId:[[[response object] valueForKey:@"id"] intValue]];
+                [self setUserId:[NSString stringWithFormat:@"%@",[[response object] valueForKey:@"id"]]];
                 [self setAccountStatus:GCAccountLoggedIn];
                 successBlock();
             }
