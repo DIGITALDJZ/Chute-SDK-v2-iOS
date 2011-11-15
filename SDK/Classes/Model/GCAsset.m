@@ -238,7 +238,10 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
 
 - (BOOL) isEqual:(id)object {
     if (IS_NULL([self objectID]) && IS_NULL([object objectID])) {
-        return [super isEqual:object];
+        if([self alAsset] && [object alAsset])
+            return [[self alAsset] isEqual:[object alAsset]];
+        else
+            return [super isEqual:object];
     }
     if (IS_NULL([self objectID]) || IS_NULL([object objectID])) {
         return NO;
@@ -251,8 +254,12 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
 }
 
 -(NSUInteger)hash{
-    if(IS_NULL([self objectID]))
-        return [super hash];
+    if(IS_NULL([self objectID])){
+        if([self alAsset])
+            return [[self alAsset] hash];
+        else
+            return [super hash];
+    }
     return [[self objectID] hash];
 }
 

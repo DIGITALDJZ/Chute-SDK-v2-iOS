@@ -261,7 +261,9 @@
 }
 
 - (NSString *) objectID {
-    return [NSString stringWithFormat:@"%@",[_content objectForKey:@"id"]];
+    if(!IS_NULL([_content objectForKey:@"id"]))
+        return [NSString stringWithFormat:@"%@",[_content objectForKey:@"id"]];
+    return NULL;
 }
 
 - (NSDate *) updatedAt {
