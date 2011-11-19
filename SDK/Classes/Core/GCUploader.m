@@ -21,6 +21,23 @@ NSString * const GCUploaderFinished = @"GCUploaderFinished";
 @synthesize queue;
 @synthesize progress;
 
+
+- (int) queueParcelCount{
+    if(queue)
+        return queue.count;
+    return 0;
+}
+- (int) queueAssetCount{
+    if(queue){
+        int i = 0;
+        for(GCParcel *parcel in queue){
+            i += parcel.assets.count;
+        }
+        return i;
+    }
+    return 0;
+}
+
 - (void) updateProgress:(NSNotification *) notification {
     float total = 0.0;
     int totalAssets = 0;

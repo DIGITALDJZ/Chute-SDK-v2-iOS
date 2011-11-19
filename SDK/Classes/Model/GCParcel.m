@@ -11,7 +11,8 @@
 #import "GCChute.h"
 #import "GCUser.h"
 
-NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
+NSString * const GCParcelFinishedUploading  = @"GCParcelFinishedUploading";
+NSString * const GCParcelAssetsChanged      = @"GCParcelAssetsChanged";
 
 @implementation GCParcel
 
@@ -30,7 +31,7 @@ NSString * const GCParcelFinishedUploading   = @"GCParcelFinishedUploading";
     if ([assets indexOfObject:_asset] != NSNotFound) {
         [assets removeObject:_asset];
     }
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:GCParcelAssetsChanged object:self];
     if ([assets count] == 0) {
         [self setStatus:GCParcelStatusDone];
         [[NSNotificationCenter defaultCenter] postNotificationName:GCParcelFinishedUploading object:self];

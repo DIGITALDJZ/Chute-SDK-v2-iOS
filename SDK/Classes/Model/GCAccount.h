@@ -28,6 +28,7 @@ typedef enum {
     
     NSMutableArray *_accounts;
     ALAssetsLibrary *assetsLibrary;
+    NSLock *assetLock;
 }
 
 @property (nonatomic) GCAccountStatus accountStatus;

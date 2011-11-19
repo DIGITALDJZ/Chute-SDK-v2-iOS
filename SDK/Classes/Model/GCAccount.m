@@ -60,48 +60,48 @@ static GCAccount *sharedAccountManager = nil;
 #pragma mark - Load Assets
 
 - (void)loadAssetsCompletionBlock:(void (^)(void))aCompletionBlock {
-    
-    if (assetsArray) {
-        [assetsArray release], assetsArray = nil;
-    }
-    
-    assetsArray = [[NSMutableArray alloc] init];
-    
-    void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop)
-    {
-        if(result != nil)
-        {
-            GCAsset *_asset = [[GCAsset alloc] init];
-            [_asset setAlAsset:result];
-            [assetsArray addObject:_asset];
-            [_asset release];
-        }
-    };
-    
-    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
-    {
-        if (group == nil) {
-            if (aCompletionBlock) {
-                aCompletionBlock();
-            }
-            return;
+        if (assetsArray) {
+            [assetsArray release], assetsArray = nil;
         }
         
-        [group enumerateAssetsUsingBlock:assetEnumerator];
-    };
-    
-    void (^assetFailureBlock)(NSError *) = ^(NSError *error)
-    {
-    };
-    
-    if(!self.assetsLibrary){
-        ALAssetsLibrary *temp = [[ALAssetsLibrary alloc] init];
-        [self setAssetsLibrary:temp];
-        [temp release];
-    }
-    
-    
-    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:assetGroupEnumerator failureBlock:assetFailureBlock];
+        assetsArray = [[NSMutableArray alloc] init];
+        
+        void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop)
+        {
+            if(result != nil)
+            {
+                GCAsset *_asset = [[GCAsset alloc] init];
+                [_asset setAlAsset:result];
+                [assetsArray addObject:_asset];
+                [_asset release];
+            }
+        };
+        
+        void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
+        {
+            if (group == nil) {
+                if (aCompletionBlock) {
+                    aCompletionBlock();
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DONE_LOADING_ASSETS" object:nil];
+                return;
+            }
+            
+            [group enumerateAssetsUsingBlock:assetEnumerator];
+        };
+        
+        void (^assetFailureBlock)(NSError *) = ^(NSError *error)
+        {
+        };
+        
+        if(!self.assetsLibrary){
+            ALAssetsLibrary *temp = [[ALAssetsLibrary alloc] init];
+            [self setAssetsLibrary:temp];
+            [temp release];
+        }
+        
+        
+        [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:assetGroupEnumerator failureBlock:assetFailureBlock];
 }
 
 - (void)loadAssets {
@@ -332,6 +332,15 @@ static GCAccount *sharedAccountManager = nil;
 }
 
 #pragma mark - Methods for Singleton class
+
+-(id)init{
+    self = [super init];
+    if(self){
+        assetLock = [[NSLock alloc] init];
+    }
+    return self;
+}
+
 + (GCAccount *)sharedManager
 {
     if (sharedAccountManager == nil) {

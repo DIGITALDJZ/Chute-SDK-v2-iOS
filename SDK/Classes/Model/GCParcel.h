@@ -6,6 +6,7 @@
 //
 
 NSString * const GCParcelFinishedUploading;
+NSString * const GCParcelAssetsChanged;
 
 typedef enum {
     GCParcelStatusNew = 0,
