@@ -94,16 +94,18 @@
 }
 
 - (id) initWithDictionary:(NSDictionary *) dictionary {
-    [self init];
-    for (NSString *key in [dictionary allKeys]) {
-        id _obj;
-        if ([key isEqualToString:@"user"]) {
-            _obj = [GCUser objectWithDictionary:[dictionary objectForKey:key]];
+    self = [self init];
+    if(self){
+        for (NSString *key in [dictionary allKeys]) {
+            id _obj;
+            if ([key isEqualToString:@"user"]) {
+                _obj = [GCUser objectWithDictionary:[dictionary objectForKey:key]];
+            }
+            else {
+                _obj = IS_NULL([dictionary objectForKey:key])? @"": [dictionary objectForKey:key];
+            }
+            [self setObject:_obj forKey:key];
         }
-        else {
-            _obj = IS_NULL([dictionary objectForKey:key])? @"": [dictionary objectForKey:key];
-        }
-        [self setObject:_obj forKey:key];
     }
     return self;
 }
@@ -257,12 +259,16 @@
 
 #pragma mark - Common Data Getters
 - (GCUser *) user {
-    return [_content objectForKey:@"user"];
+    if(_content)
+        return [_content objectForKey:@"user"];
+    return nil;
 }
 
 - (NSString *) objectID {
-    if(!IS_NULL([_content objectForKey:@"id"]))
-        return [NSString stringWithFormat:@"%@",[_content objectForKey:@"id"]];
+    if(_content){
+        if(!IS_NULL([_content objectForKey:@"id"]))
+            return [NSString stringWithFormat:@"%@",[_content objectForKey:@"id"]];
+    }
     return NULL;
 }
 

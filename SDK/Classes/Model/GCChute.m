@@ -46,16 +46,18 @@
     GCRequest *gcRequest    = [[GCRequest alloc] init];
     GCResponse *_response   = [[gcRequest getRequestWithPath:_path] retain];
     
-    NSMutableArray *_assetsArray = [[NSMutableArray alloc] init];
-    for (NSDictionary *_dic in [_response data]) {
-        GCAsset *_asset = [[GCAsset objectWithDictionary:_dic] retain];
-        [_asset setParentID:[self objectID]];
-        [_assetsArray addObject:_asset];
-        [_asset release];
+    if([_response isSuccessful]){
+        NSMutableArray *_assetsArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *_dic in [_response data]) {
+            GCAsset *_asset = [[GCAsset objectWithDictionary:_dic] retain];
+            [_asset setParentID:[self objectID]];
+            [_assetsArray addObject:_asset];
+            [_asset release];
+        }
+        
+        [_response setObject:_assetsArray];
+        [_assetsArray release];
     }
-    
-    [_response setObject:_assetsArray];
-    [_assetsArray release];
     
     [gcRequest release];
     [_path release];
@@ -313,8 +315,9 @@
     NSMutableDictionary *_temp = [[[NSMutableDictionary alloc] init] autorelease];
     for (NSString *key in [[self content] allKeys]) {
         if ([key isEqualToString:@"user"])
-            continue;
-        [_temp setObject:[[self content] objectForKey:key] forKey:key];
+            [_temp setObject:[[[self content] objectForKey:@"user"] proxyForJson] forKey:@"user"];
+        else
+            [_temp setObject:[[self content] objectForKey:key] forKey:key];
     }
     return _temp;
 }

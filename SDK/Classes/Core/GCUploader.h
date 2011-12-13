@@ -25,4 +25,7 @@ NSString * const GCUploaderFinished;
 - (int) queueAssetCount;
 - (int) queueParcelCount;
 
+- (void) backupQueueToUserDefaults;
+- (void) loadQueueFromUserDefaults;
+
 @end
