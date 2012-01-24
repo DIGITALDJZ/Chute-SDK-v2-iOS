@@ -6,7 +6,7 @@
 
 //////////////////////////////////////////////////////////
 //                                                      //
-//                   VERSION 1.120115                   //
+//                   VERSION 1.120124                   //
 //                                                      //
 //////////////////////////////////////////////////////////
 
@@ -34,10 +34,10 @@
 #define kDEVICE_VERSION     [[UIDevice currentDevice] systemVersion]
 
 //#error Please remove this line after changing the client id and client secret
-#define kOAuthRedirectURL               @"http://sharedroll.com/oauth/callback"
-#define kOAuthRedirectRelativeURL       @"/oauth/callback"
-#define kOAuthClientID                  @"4e79ff9e32fc725e5b000001"
-#define kOAuthClientSecret              @"e8036d54e98682a3a2e02562cbc4f77bb922e8bb6cfd13264fe00b5e3b565693"
+#define kOAuthCallbackURL               @"http://www.costonb.com/oauth"
+#define kOAuthCallbackRelativeURL       @"/oauth"
+#define kOAuthClientID                  @"4efb7aff38ecef266f000004"
+#define kOAuthClientSecret              @"b0ebbd7db3366d746b8f1b3159139c58f58b3b9b60d05d7260b9beec0403fc5b"
 
 #define kOAuthPermissions               @"all_resources manage_resources profile resources"
 
