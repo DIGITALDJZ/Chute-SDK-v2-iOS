@@ -36,8 +36,8 @@
 //#error Please remove this line after changing the client id and client secret
 #define kOAuthCallbackURL               @"http://www.costonb.com/oauth"
 #define kOAuthCallbackRelativeURL       @"/oauth"
-#define kOAuthAppID                  @"4efb7aff38ecef266f000004"
-#define kOAuthAppSecret              @"b0ebbd7db3366d746b8f1b3159139c58f58b3b9b60d05d7260b9beec0403fc5b"
+#define kOAuthAppID                     @"4efb7aff38ecef266f000004"
+#define kOAuthAppSecret                 @"b0ebbd7db3366d746b8f1b3159139c58f58b3b9b60d05d7260b9beec0403fc5b"
 
 #define kOAuthPermissions               @"all_resources manage_resources profile resources"
 
