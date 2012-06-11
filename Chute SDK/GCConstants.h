@@ -6,7 +6,7 @@
 
 //////////////////////////////////////////////////////////
 //                                                      //
-//                   VERSION 1.0.7                      //
+//                   VERSION 1.0.8                      //
 //                                                      //
 //////////////////////////////////////////////////////////
 
@@ -22,8 +22,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define API_URL @"http://api.getchute.com/v1/"
-#define SERVER_URL @"http://getchute.com"
+#define API_URL @"https://api.getchute.com/v1/"
+#define API_URL_V2 @"https://api.getchute.com/v2/"
+#define SERVER_URL @"https://getchute.com"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,4 +42,4 @@
 
 #define kOAuthPermissions               @"all_resources manage_resources profile resources"
 
-#define kOAuthTokenURL                  @"http://getchute.com/oauth/access_token"
+#define kOAuthTokenURL                  @"https://getchute.com/oauth/access_token"
