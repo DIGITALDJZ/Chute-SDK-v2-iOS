@@ -14,28 +14,6 @@ static GCAssetUploader *sharedAssetUploader = nil;
 @synthesize queue;
 
 #pragma mark - Step 1 - Make Parcel with Assets and Chutes
-- (GCResponse *) createParcelWithAssets:(NSArray *) assets andChutes:(NSArray *) chutes {
-    NSMutableArray *_assetsUniqueDescription = [[NSMutableArray alloc] init];
-    for (GCAsset *_asset in assets) {
-        [_assetsUniqueDescription addObject:[_asset uniqueRepresentation]];
-    }
-    
-    NSDictionary *params    = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [_assetsUniqueDescription JSONRepresentation], @"files", 
-                                   [chutes JSONRepresentation], @"chutes", 
-                                   nil];
-    
-    [_assetsUniqueDescription release];
-    
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@%@", API_URL, @"parcels"];
-    
-    GCRequest *gcRequest = [[GCRequest alloc] init];
-    GCResponse *response = [[gcRequest postRequestWithPath:_path andParams:(NSMutableDictionary *)params] retain];
-    
-    [gcRequest release];
-    [_path release];
-    return [response autorelease];
-}
 
 #pragma mark - Step 2 - Remove already uploaded assets from the queue
 
