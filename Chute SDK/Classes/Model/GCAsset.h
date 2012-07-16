@@ -67,6 +67,4 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock;
 
 - (GCResponse*) verify;
 
-- (void) uploadAssetToPath:(NSString*)pathComponent;
-
 @end
