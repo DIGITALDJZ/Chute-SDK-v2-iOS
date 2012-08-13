@@ -200,18 +200,18 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 - (NSDictionary *) uniqueRepresentation {
     if([self alAsset]){
         ALAssetRepresentation *_representation = [[self alAsset] defaultRepresentation];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                           [[_representation url] absoluteString], @"filename", 
+                                           [NSString stringWithFormat:@"%d", [_representation size]], @"size", 
+                                           [NSString stringWithFormat:@"%d", [_representation size]], @"md5", 
+                                           nil];
         if([self objectID]){
-            return [NSDictionary dictionaryWithObjectsAndKeys:[[_representation url] absoluteString], @"filename", 
-                    [NSString stringWithFormat:@"%d", [_representation size]], @"size", 
-                    [NSString stringWithFormat:@"%d", [_representation size]], @"md5",
-                    [self objectID], @"id",
-                    [NSNumber numberWithInt:[self status]], @"status",
-                    nil];
+            [dictionary setObject:[self objectID] forKey:@"id"];
         }
-        return [NSDictionary dictionaryWithObjectsAndKeys:[[_representation url] absoluteString], @"filename", 
-                [NSString stringWithFormat:@"%d", [_representation size]], @"size", 
-                [NSString stringWithFormat:@"%d", [_representation size]], @"md5", 
-                nil];
+        if([self.alAsset valueForProperty:ALAssetPropertyType] == ALAssetTypeVideo){
+            [dictionary setObject:@"video" forKey:@"type"];
+        }
+        return [NSDictionary dictionaryWithDictionary:dictionary];
     }
     return nil;
 }

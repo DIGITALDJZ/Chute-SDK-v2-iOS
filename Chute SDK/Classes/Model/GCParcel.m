@@ -124,7 +124,7 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
         if(dict)
             [_assetsUniqueDescription addObject:dict];
     }
-    
+
     //Get all Chute IDs
     NSMutableArray *_chuteIDs = [[NSMutableArray alloc] init];
     for (GCChute *_chute in chutes) {
@@ -136,14 +136,14 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
                                       [_assetsUniqueDescription JSONRepresentation], @"files", 
                                       [_chuteIDs JSONRepresentation], @"chutes", 
                                       nil];
-    
+    params = [NSMutableDictionary dictionaryWithObject:[[params JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding] forKey:@"raw"];
     if(self.postMetaData)
         [params setObject:[self.postMetaData JSONRepresentation] forKey:@"metadata"];
     
     [_chuteIDs release];
     [_assetsUniqueDescription release];
     
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@%@", API_URL, @"parcels"];
+    NSString *_path = [[NSString alloc] initWithFormat:@"%@%@", API_URL_V2, @"uploads"];
     
     GCRequest *gcRequest = [[GCRequest alloc] init];
     GCResponse *response = [[gcRequest postRequestWithPath:_path andParams:params] retain];
@@ -164,8 +164,17 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
 
 - (BOOL) uploadAssetToS3:(GCAsset *) anAsset withToken:(NSDictionary *) _token {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    __block ALAssetRepresentation *rep = [anAsset.alAsset defaultRepresentation];
+    __block NSMutableData* _imageData = NULL;
     
-    __block NSMutableData* _imageData = [UIImageJPEGRepresentation([UIImage imageWithCGImage:[[anAsset.alAsset defaultRepresentation] fullResolutionImage] scale:1 orientation:[[anAsset.alAsset valueForProperty:ALAssetPropertyOrientation] intValue]], 1.0) mutableCopy];
+    if([anAsset.alAsset valueForProperty:ALAssetPropertyType] == ALAssetTypePhoto){
+    _imageData = [UIImageJPEGRepresentation([UIImage imageWithCGImage:[rep fullResolutionImage] scale:1 orientation:[[anAsset.alAsset valueForProperty:ALAssetPropertyOrientation] intValue]], 1.0) mutableCopy];
+    }
+    else if([anAsset.alAsset valueForProperty:ALAssetPropertyType] == ALAssetTypeVideo){
+        Byte *buffer = (Byte*)malloc(rep.size);
+        NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:rep.size error:nil];
+        _imageData = [NSMutableData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+    }
     if(!_imageData && [anAsset objectID]){
         [pool release];
         NSString *assetURL = NULL;
@@ -182,7 +191,15 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
         __block BOOL _response;
         [library assetForURL:[NSURL URLWithString:assetURL] resultBlock:^(ALAsset* _alasset){
             NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-            _imageData = [UIImageJPEGRepresentation([UIImage imageWithCGImage:[[_alasset defaultRepresentation] fullResolutionImage] scale:1 orientation:[[anAsset.alAsset valueForProperty:ALAssetPropertyOrientation] intValue]], 1.0) mutableCopy];
+            rep = [_alasset defaultRepresentation];
+            if([_alasset valueForProperty:ALAssetPropertyType] == ALAssetTypePhoto){
+                _imageData = [UIImageJPEGRepresentation([UIImage imageWithCGImage:[rep fullResolutionImage] scale:1 orientation:[[_alasset valueForProperty:ALAssetPropertyOrientation] intValue]], 1.0) mutableCopy];
+            }
+            else if([_alasset valueForProperty:ALAssetPropertyType] == ALAssetTypeVideo){
+                Byte *buffer = (Byte*)malloc(rep.size);
+                NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:rep.size error:nil];
+                _imageData = [NSMutableData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+            }
             
             ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[_token objectForKey:@"upload_url"]]];
             [request setUploadProgressDelegate:anAsset];
@@ -211,7 +228,7 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
         } failureBlock:^(NSError* error){
         }];
         return _response;
-    }else{
+    }else if(_imageData){
         
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[_token objectForKey:@"upload_url"]]];
         [request setUploadProgressDelegate:anAsset];
@@ -228,8 +245,8 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
         
         BOOL _response = [_result isSuccessful];
         [_result release];
+        if(_imageData)
         [_imageData release];
-        [pool release];
         
         if (_response) {
             [anAsset setStatus:GCAssetStateCompleting];
@@ -239,6 +256,7 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
         }
         return _response;
     }
+    return NO;
 }
 
 - (GCResponse *) completionRequestForAsset:(GCAsset *) anAsset {
@@ -260,20 +278,28 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
 
 - (void) removeUploadedAssets {
     NSMutableArray *assetUrls = [[NSMutableArray alloc] init];
-    for (NSDictionary *_assetDetails in [self objectForKey:@"uploads"]) {
-        [assetUrls addObject:[_assetDetails objectForKey:@"file_path"]];
+    if([self objectForKey:@"new_assets"]){
+        for (NSDictionary *_assetDetails in [self objectForKey:@"new_assets"]) {
+            if([_assetDetails objectForKey:@"upload_info"])
+                [assetUrls addObject:[[_assetDetails objectForKey:@"upload_info"] objectForKey:@"file_path"]];
+        }
     }
-    
     NSMutableArray *assetsToRemove = [[NSMutableArray alloc] init];
     
     for (GCAsset *_asset in assets) {
         if ([assetUrls indexOfObject:[_asset uniqueURL]] != NSNotFound) {
-            NSString *_id = [[[self objectForKey:@"uploads"] objectAtIndex:[assetUrls indexOfObject:[_asset uniqueURL]]] objectForKey:@"asset_id"];
-            [_asset setObject:_id forKey:@"id"];
+            NSDictionary *assetDict = [[self objectForKey:@"new_assets"] objectAtIndex:[assetUrls indexOfObject:[_asset uniqueURL]]];
+            for(id key in [assetDict allKeys]){
+                [_asset setObject:[assetDict objectForKey:key] forKey:key];
+            }
+            [_asset setStatus:GCAssetStateNew];
         }
         else if ([_asset objectForKey:@"filename"] && [assetUrls indexOfObject:[_asset objectForKey:@"filename"]] != NSNotFound) {
-            NSString *_id = [[[self objectForKey:@"uploads"] objectAtIndex:[assetUrls indexOfObject:[_asset objectForKey:@"filename"]]] objectForKey:@"asset_id"];
-            [_asset setObject:_id forKey:@"id"];
+            NSDictionary *assetDict = [[self objectForKey:@"new_assets"] objectAtIndex:[assetUrls indexOfObject:[_asset uniqueURL]]];
+            for(id key in [assetDict allKeys]){
+                [_asset setObject:[assetDict objectForKey:key] forKey:key];
+            }
+            [_asset setStatus:GCAssetStateNew];
         }
         else{
             [assetsToRemove addObject:_asset];
@@ -297,12 +323,69 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
 - (void) startUpload {
     //Create Parcel with Assets and Chutes
     if(![self objectID]){
-        NSDictionary *_parcel = [[[self newParcel] rawResponse] JSONValue];
+        NSDictionary *_parcel = [[self newParcel] data];
         for (NSString *key in [_parcel allKeys]) {
             [self setObject:[_parcel objectForKey:key] forKey:key];
         }
     }
     
+    //Remove assets which are already uploaded.
+    [self removeUploadedAssets];
+    if(status == GCParcelStatusDone)
+        return;
+    dispatch_queue_t queue;
+    queue = dispatch_queue_create("com.sharedRoll.queue", NULL);
+    for (GCAsset *_asset in assets) {
+        if ([_asset status] == GCAssetStateFinished || ![_asset objectForKey:@"upload_info"]) {
+            continue;
+        }
+        dispatch_async(queue, ^(void) {
+        NSDictionary *_token = [_asset objectForKey:@"upload_info"];
+        [_asset setStatus:GCAssetStateUploadingToS3];
+        
+        BOOL uploaded = [self uploadAssetToS3:_asset withToken:_token];
+        while (!uploaded) {
+            uploaded = [self uploadAssetToS3:_asset withToken:_token];
+        }
+        
+        [_asset setStatus:GCAssetStateCompleting];
+        //Send completion Request to the asset after uploading to S3
+        GCResponse *_response = [self completionRequestForAsset:_asset];
+        while (![_response isSuccessful]) {
+            _response = [self completionRequestForAsset:_asset];
+        }
+        });
+    }
+    /*
+    while (!data || [data objectForKey:@"error"]) {
+        data = [self getTokenForParams:params];
+    }
+    [self setAssetURL:[data objectForKey:@"url"]];
+    if(![data objectForKey:@"upload_info"]){
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [delegate APPUploaderImageAlreadyUploaded:self];
+        });
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [delegate APPUploaderDidGetToken:self];
+    });
+    GCResponse *response = [self uploadWithToken:[data objectForKey:@"upload_info"]];
+    while (![response isSuccessful]) {
+        response = [self uploadWithToken:data];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [delegate APPUploaderDidFinishUpload:self];
+    });
+    BOOL completed = [self completeUploadWithID:[data objectForKey:@"id"]];
+    while (!completed) {
+        completed = [self completeUploadWithID:[data objectForKey:@"id"]];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [delegate APPUploaderDidCompleteUpload:self];
+    });
+     */
+    /*
     //Remove assets which are already uploaded.
     [self removeUploadedAssets];
     if(status == GCParcelStatusDone)
@@ -349,6 +432,7 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
             
         });
     }
+     */
 }
 
 - (void) updateUploadQueue:(NSNotification *) notification {
@@ -420,7 +504,7 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
     self = [self init];
     if(self){
         for (NSString *key in [dictionary allKeys]) {
-            id _obj;
+            id _obj = NULL;
             if ([key isEqualToString:@"user"]) {
                 _obj = [GCUser objectWithDictionary:[dictionary objectForKey:key]];
             }
@@ -449,6 +533,7 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
             else {
                 _obj = IS_NULL([dictionary objectForKey:key])? @"": [dictionary objectForKey:key];
             }
+            if(_obj)
             [self setObject:_obj forKey:key];
         }
         [self setStatus:GCParcelStatusDone];
