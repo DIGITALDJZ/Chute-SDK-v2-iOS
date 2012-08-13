@@ -335,87 +335,18 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
         return;
     dispatch_queue_t queue;
     queue = dispatch_queue_create("com.sharedRoll.queue", NULL);
-    for (GCAsset *_asset in assets) {
-        if ([_asset status] == GCAssetStateFinished || ![_asset objectForKey:@"upload_info"]) {
-            continue;
-        }
-        dispatch_async(queue, ^(void) {
-        NSDictionary *_token = [_asset objectForKey:@"upload_info"];
-        [_asset setStatus:GCAssetStateUploadingToS3];
-        
-        BOOL uploaded = [self uploadAssetToS3:_asset withToken:_token];
-        while (!uploaded) {
-            uploaded = [self uploadAssetToS3:_asset withToken:_token];
-        }
-        
-        [_asset setStatus:GCAssetStateCompleting];
-        //Send completion Request to the asset after uploading to S3
-        GCResponse *_response = [self completionRequestForAsset:_asset];
-        while (![_response isSuccessful]) {
-            _response = [self completionRequestForAsset:_asset];
-        }
-        });
-    }
-    /*
-    while (!data || [data objectForKey:@"error"]) {
-        data = [self getTokenForParams:params];
-    }
-    [self setAssetURL:[data objectForKey:@"url"]];
-    if(![data objectForKey:@"upload_info"]){
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [delegate APPUploaderImageAlreadyUploaded:self];
-        });
-        return;
-    }
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [delegate APPUploaderDidGetToken:self];
-    });
-    GCResponse *response = [self uploadWithToken:[data objectForKey:@"upload_info"]];
-    while (![response isSuccessful]) {
-        response = [self uploadWithToken:data];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [delegate APPUploaderDidFinishUpload:self];
-    });
-    BOOL completed = [self completeUploadWithID:[data objectForKey:@"id"]];
-    while (!completed) {
-        completed = [self completeUploadWithID:[data objectForKey:@"id"]];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [delegate APPUploaderDidCompleteUpload:self];
-    });
-     */
-    /*
-    //Remove assets which are already uploaded.
-    [self removeUploadedAssets];
-    if(status == GCParcelStatusDone)
-        return;
-    dispatch_queue_t queue;
-    queue = dispatch_queue_create("com.sharedRoll.queue", NULL);
     
     //Start loop of assets
     for (GCAsset *_asset in assets) {
-        if ([_asset status] == GCAssetStateFinished) {
+        if ([_asset status] == GCAssetStateFinished || ![_asset objectForKey:@"upload_info"]) {
             continue;
         }
         
         dispatch_async(queue, ^(void) {
             [_asset setStatus:GCAssetStateGettingToken];
             
-            //Generate New token for each asset
-            GCResponse *_response = [self tokenForAsset:_asset];
-            if([_response statusCode] >=300 && [_response statusCode] < 400){
-                [self removeAsset:_asset];
-                return;
-            }
-            
-            while (![_response isSuccessful]) {
-                [_asset setStatus:GCAssetStateGettingTokenFailed];
-                _response = [self tokenForAsset:_asset];
-            }
-            
             //Upload using the token to S3
-            NSDictionary *_token = [_response data];
+            NSDictionary *_token = [_asset objectForKey:@"upload_info"];
             [_asset setStatus:GCAssetStateUploadingToS3];
             
             BOOL uploaded = [self uploadAssetToS3:_asset withToken:_token];
@@ -425,14 +356,13 @@ NSString * const GCParcelNoUploads   = @"GCParcelNoUploads";
             
             [_asset setStatus:GCAssetStateCompleting];
             //Send completion Request to the asset after uploading to S3
-            _response = [self completionRequestForAsset:_asset];
+            GCResponse *_response = [self completionRequestForAsset:_asset];
             while (![_response isSuccessful]) {
                 _response = [self completionRequestForAsset:_asset];
             }
             
         });
     }
-     */
 }
 
 - (void) updateUploadQueue:(NSNotification *) notification {

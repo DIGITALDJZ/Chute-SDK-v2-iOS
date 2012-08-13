@@ -60,7 +60,6 @@
     [_request setTimeOutSeconds:300.0];
     [_request setRequestMethod:method];
     [_request startSynchronous];
-    NSLog(@"POST BODY: %@",[_request postBody]);
     
     GCResponse *_result = [[[GCResponse alloc] initWithRequest:_request] autorelease];
     return _result;
