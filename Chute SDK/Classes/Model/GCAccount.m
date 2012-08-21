@@ -98,7 +98,7 @@ static GCAccount *sharedAccountManager = nil;
         [response setError:[GCError errorWithDomain:@"GCError" code:401 userInfo:_errorDetail]];
         return [response autorelease];
     }
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@accounts/%@/objects", API_URL,accountID];
+    NSString *_path = [NSString stringWithFormat:@"%@accounts/%@/objects", API_URL,accountID];
     GCRequest *gcRequest = [[GCRequest alloc] init];
     
     GCResponse *response = [[gcRequest getRequestWithPath:_path] retain];
@@ -129,7 +129,7 @@ static GCAccount *sharedAccountManager = nil;
         return [response autorelease];
     }
 
-    NSString *_path = [[NSString alloc] initWithFormat:@"%@accounts/%@/objects/%@", API_URL,accountID,albumID];
+    NSString *_path = [NSString stringWithFormat:@"%@accounts/%@/objects/%@", API_URL,accountID,albumID];
     GCRequest *gcRequest = [[GCRequest alloc] init];
     
     GCResponse *response = [[gcRequest getRequestWithPath:_path] retain];
