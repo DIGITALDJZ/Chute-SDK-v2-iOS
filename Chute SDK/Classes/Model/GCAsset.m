@@ -351,8 +351,27 @@ inBackgroundWithCompletion:(void (^)(UIImage *))aResponseBlock {
 - (id) initWithDictionary:(NSDictionary *) dictionary {
     self = [super initWithDictionary:dictionary];
     if (self) {
-        if([dictionary objectForKey:@"status"])
-            [self setStatus:[[dictionary objectForKey:@"status"] intValue]];
+        if([dictionary objectForKey:@"status"]){
+            if([[dictionary objectForKey:@"status"] caseInsensitiveCompare:@"new"] == NSOrderedSame){
+                [self setStatus:GCAssetStateNew];
+            }
+            else if([[dictionary objectForKey:@"status"] caseInsensitiveCompare:@"initialized"] == NSOrderedSame){
+                [self setStatus:GCAssetStateGettingToken];
+            }
+            else if([[dictionary objectForKey:@"status"] caseInsensitiveCompare:@"uploaded"] == NSOrderedSame){
+                [self setStatus:GCAssetStateCompleting];
+            }
+            else if([[dictionary objectForKey:@"status"] caseInsensitiveCompare:@"processing"] == NSOrderedSame){
+                [self setStatus:GCAssetStateCompleting];
+            }
+            else if([[dictionary objectForKey:@"status"] caseInsensitiveCompare:@"complete"] == NSOrderedSame){
+                [self setStatus:GCAssetStateFinished];
+            }
+            else if([[dictionary objectForKey:@"status"] caseInsensitiveCompare:@"error"] == NSOrderedSame){
+                [self setStatus:GCAssetStateNew];
+            }
+            
+        }
         else
             [self setStatus:GCAssetStateFinished];
         if(![self objectID]){
