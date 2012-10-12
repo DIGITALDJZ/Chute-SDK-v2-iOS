@@ -1,0 +1,413 @@
+--- Chute API v2 ---
+---
+Welcome to the Chute API. Our API enables you to quickly and easily add media capabilities to any application or site.
+---
+
+
+--
+Albums
+An Album is a collection of assets.
+--
+Retrieve a list of your albums
+GET https://api.getchute.com/v2/albums
+< 200
+< Content-Type: application/json
+{
+  "data": [
+    { Album },
+    { Album }
+  ],
+  "response": {
+    "code": 200    
+  },
+  "pagination": {
+    "next_page": "https://api.getchute.com/v2/albums?page=2",
+    "per_page": 30
+  }
+}
+
+Retrieve a specific album
+GET https://api.getchute.com/v2/albums/:album_id
+< 200
+< Content-Type: application/json
+{
+  "data": {
+    "id": 11419665,
+    "name": "Album Name",
+    "description": "Some Description",
+    "is_published": true,
+    "created_at": "2012-07-03T19:37:17Z",
+    "updated_at": "2012-07-03T19:37:17Z",
+    "counters": {
+      "total": 100,
+      "photos": 20,
+      "videos": 80
+    },
+    "links": {
+      "cover": "https://api.getchute.com/v2/",
+      "assets": "https://api.getchute.com/v2/albums/:album_id/assets"        
+    },
+    "user": {
+      "id": 302432,
+      "name": "User Name",
+      "username": "username",
+      "avatar": "http://images.instagram.com/profiles/profile_4710566_75sq_1323981634.jpg"
+    }
+  },
+  "response": {
+    "code": 200    
+  },
+  "pagination": {
+    "next_page": "https://api.getchute.com/v2/albums?page=2",
+    "per_page": 30,
+    "total_pages": 100
+  }
+}
+
+Remove an album
+DELETE https://api.getchute.com/v2/assets/:album_id
+< 200
+< Content-Type: application/json
+< 201
+< Content-Type: application/json
+{ 
+  "response": {
+    "code": 200    
+  }
+}
+
+--
+Assets
+An Asset is any photo or video file you'd like to manage with Chute.
+--
+Create/Upload a new asset
+POST http://upload.getchute.com/assets
+< 200
+< Content-Type: application/json
+{
+  "file":"BASE64 Encoded Data",
+  "identifier": null
+}
+< 201
+< Content-Type: application/json
+{ 
+  "response": {
+    "code": 200    
+  },
+  "links": {
+    "item": "https://api.getchute.com/v2/assets/id"
+  }
+}
+
+Import asset(s) from a url
+POST http://upload.getchute.com/import
+< 200
+< Content-Type: application/json
+{
+  "urls": [
+    "http://url.to/file"
+  ]
+}
+< 201
+< Content-Type: application/json
+{ 
+  "response": {
+    "code": 200    
+  },
+  "links": {
+    "item": "https://api.getchute.com/v2/assets/id"
+  }
+}
+
+Retrieve a list of your assets
+GET https://api.getchute.com/v2/assets
+< 200
+< Content-Type: application/json
+{
+  "data": [
+    {
+      "id": 11419665,
+      "caption": "Caption Here",
+      "description": "Longer description can go here",
+      "status": "complete",
+      "is_published": true,
+      "created_at": "2012-07-03T19:37:17Z",
+      "updated_at": "2012-07-03T19:37:17Z",
+      "file": {
+        "type": "image",
+        "height": null,
+        "width": null,
+        "md5": null,
+        "is_portrait": true,         
+      },
+      "links": {
+        "url": "http://media.getchute.com/m/LUM9xlhy/c/285406",
+        "original": "http://distilleryimage8.s3.amazonaws.com/1002734ac54611e1b00112313800c5e4_7.jpg",
+        "thumb": "http://media.getchute.com/m/LUM9xlhy/c/285406/75x75",
+        "share": "http://getchute.com/assets/LUM9xlhy",
+        "album_detail": "https://api.getchute.com/v2/albums/assets/14424539"        
+      },
+      "import": {
+        "service": "instagram",
+        "id": "227532837275360300_4710566",
+        "url": "http://instagr.am/p/MoW-j0iNws/",        
+      },
+      "user": {
+        "id": 302432,
+        "name": "User Name",
+        "username": "username",
+        "avatar": "http://images.instagram.com/profiles/profile_4710566_75sq_1323981634.jpg"
+      }
+    }
+  ],
+  "response": {
+    "code": 200    
+  },
+  "pagination": {
+    "next_page": "https://api.getchute.com/v2/assets?page=2",
+    "per_page": 30,
+    "total_pages": 100
+  }
+}
+
+Retrieve a specific asset
+GET https://api.getchute.com/v2/assets/:id
+< 200
+< Content-Type: application/json
+{
+  "data": [
+    {
+      "id": 11419665,
+      "caption": "Caption Here",
+      "description": "Longer description can go here",
+      "status": "complete",
+      "is_published": true,
+      "created_at": "2012-07-03T19:37:17Z",
+      "updated_at": "2012-07-03T19:37:17Z",
+      "file": {
+        "type": "image",
+        "height": null,
+        "width": null,
+        "md5": null,
+        "is_portrait": true,         
+      },
+      "links": {
+        "url": "http://media.getchute.com/m/LUM9xlhy/c/285406",
+        "original": "http://distilleryimage8.s3.amazonaws.com/1002734ac54611e1b00112313800c5e4_7.jpg",
+        "thumb": "http://media.getchute.com/m/LUM9xlhy/c/285406/75x75",
+        "share": "http://getchute.com/assets/LUM9xlhy",
+        "album_detail": "https://api.getchute.com/v2/albums/assets/14424539"        
+      }
+      "import": {
+        "service": "instagram",
+        "id": "227532837275360300_4710566",
+        "url": "http://instagr.am/p/MoW-j0iNws/",        
+      }
+      "user": {
+        "id": 302432,
+        "name": "User Name",
+        "username": "username",
+        "avatar": "http://images.instagram.com/profiles/profile_4710566_75sq_1323981634.jpg"
+      },
+    }
+  ],
+  "response": {
+    "code": 200    
+  }
+}
+
+Retrieve the EXIF data for a photo assets.  EXIF data will vary based on the original photo. 
+GET https://api.getchute.com/v2/assets/:id/exif
+< 200
+< Content-Type: application/json
+{
+  "data": {
+    "name": "value"
+  },
+  "response": {
+    "code": 200    
+  }
+}
+
+Update caption of an asset
+PATCH https://api.getchute.com/v2/assets/:id
+< 200
+< Content-Type: application/json
+{
+  "caption": "Caption here",
+}
+< 201
+< Content-Type: application/json
+{
+  "data": [
+    {
+      "id": 11419665,
+      "caption": "Caption Here",
+      "description": "Longer description can go here",
+      "status": "complete",
+      "is_published": true,
+      "created_at": "2012-07-03T19:37:17Z",
+      "updated_at": "2012-07-03T19:37:17Z",
+      "file": {
+        "type": "image",
+        "height": null,
+        "width": null,
+        "md5": null,
+        "is_portrait": true,         
+      },
+      "links": {
+        "url": "http://media.getchute.com/m/LUM9xlhy/c/285406",
+        "original": "http://distilleryimage8.s3.amazonaws.com/1002734ac54611e1b00112313800c5e4_7.jpg",
+        "thumb": "http://media.getchute.com/m/LUM9xlhy/c/285406/75x75",
+        "share": "http://getchute.com/assets/LUM9xlhy",
+        "album_detail": "https://api.getchute.com/v2/albums/assets/14424539"        
+      }
+      "import": {
+        "service": "instagram",
+        "id": "227532837275360300_4710566",
+        "url": "http://instagr.am/p/MoW-j0iNws/",        
+      }
+      "user": {
+        "id": 302432,
+        "name": "User Name",
+        "username": "username",
+        "avatar": "http://images.instagram.com/profiles/profile_4710566_75sq_1323981634.jpg"
+      },
+    }
+  ],
+  "response": {
+    "code": 200    
+  }
+}
+
+Remove an asset
+DELETE https://api.getchute.com/v2/assets/:asset_id
+< 200
+< Content-Type: application/json
+< 201
+< Content-Type: application/json
+{ 
+  "response": {
+    "code": 200    
+  }
+}
+
+Set the caption for an asset in an album
+POST http://upload.getchute.com/albums/:album_id/assets/:asset_id
+< 200
+< Content-Type: application/json
+{
+  "caption": "Title Goes Here"
+}
+
+--
+Batch
+Allows you to make multiple requests to the Chute API.
+
+Should be implemented as FB does: https://developers.facebook.com/docs/reference/api/batch/
+--
+
+--
+Geo-location
+Geo-location resources for Chute resources.
+--
+Retrieve the Geo data for a photo assets.  Not guaranteed to exist, dependent on original asset. 
+GET https://api.getchute.com/v2/assets/:id/geo
+< 200
+< Content-Type: application/json
+{
+  "data": {
+    "lat": "value",
+    "long": "value"
+  },
+  "response": {
+    "code": 200    
+  }
+}
+
+--
+Metadata
+Metadata lets your add your own custom data to Chute Resources.
+--
+Retrieve the custom app metadata assets.  Scoped to current app. 
+GET https://api.getchute.com/v2/assets/:id/meta
+< 200
+< Content-Type: application/json
+{
+  "data": {
+  },
+  "response": {
+    "code": 200    
+  }
+}
+
+--
+Tags
+Extra information about a specific Asset.
+--
+Retrieve the tags associated with an asset.  Scoped to current app. 
+GET https://api.getchute.com/v2/assets/:id/tags
+< 200
+< Content-Type: application/json
+{
+  "data": {
+  },
+  "response": {
+    "code": 200    
+  }
+}
+
+Update all tags associated with an asset.  Scoped to current app. 
+PUT https://api.getchute.com/v2/assets/:id/tags
+< 200
+< Content-Type: application/json
+{
+  "tags": {[
+      'keyword1',
+      'keyword2'
+  ]},
+  "response": {
+    "code": 200    
+  }
+}
+
+--
+Triggers
+Triggers let you fire custom webhooks for actions performed by Chute.
+--
+Retrieve a list of triggers associated with the account
+GET https://api.getchute.com/v2/triggers
+< 200
+< Content-Type: application/json
+{
+  "data": [
+    {
+        
+    }
+  ],
+  "response": {
+    "code": 200    
+  }
+}
+
+Create a new trigger
+POST https://api.getchute.com/v2/triggers
+< 200
+< Content-Type: application/json
+[
+  {
+    "trigger": "asset.upload",
+    "object_id": 12345,
+    "target_url": "http://url.com" 
+  }
+]
+< 201
+< Content-Type: application/json
+{ 
+  "response": {
+    "code": 200    
+  },
+  "links": {
+    "item": "https://api.getchute.com/v2/assets/id"
+  }
+}
