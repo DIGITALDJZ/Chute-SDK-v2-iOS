@@ -1,0 +1,714 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CCAF7EF3171D953300F4BA81 /* Chute-SDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF1171D953300F4BA81 /* Chute-SDKTests.m */; };
+		CCAF7F29171D95C800F4BA81 /* GCLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF6171D95C700F4BA81 /* GCLoginView.m */; };
+		CCAF7F2A171D95C800F4BA81 /* GCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF8171D95C700F4BA81 /* GCPopupView.m */; };
+		CCAF7F2B171D95C800F4BA81 /* GCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EFB171D95C700F4BA81 /* GCClient.m */; };
+		CCAF7F2C171D95C800F4BA81 /* GCOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EFD171D95C700F4BA81 /* GCOAuth2Client.m */; };
+		CCAF7F2D171D95C800F4BA81 /* GCServiceAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F00171D95C700F4BA81 /* GCServiceAlbum.m */; };
+		CCAF7F2E171D95C800F4BA81 /* GCServiceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F02171D95C800F4BA81 /* GCServiceAsset.m */; };
+		CCAF7F2F171D95C800F4BA81 /* GetChute.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F04171D95C800F4BA81 /* GetChute.m */; };
+		CCAF7F30171D95C800F4BA81 /* GCAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F07171D95C800F4BA81 /* GCAlbum.m */; };
+		CCAF7F31171D95C800F4BA81 /* GCApiLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F09171D95C800F4BA81 /* GCApiLimits.m */; };
+		CCAF7F32171D95C800F4BA81 /* GCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F0B171D95C800F4BA81 /* GCAsset.m */; };
+		CCAF7F33171D95C800F4BA81 /* GCAssetDimensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F0D171D95C800F4BA81 /* GCAssetDimensions.m */; };
+		CCAF7F34171D95C800F4BA81 /* GCAssetSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F0F171D95C800F4BA81 /* GCAssetSource.m */; };
+		CCAF7F35171D95C800F4BA81 /* GCCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F11171D95C800F4BA81 /* GCCoordinate.m */; };
+		CCAF7F36171D95C800F4BA81 /* GCCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F13171D95C800F4BA81 /* GCCounter.m */; };
+		CCAF7F37171D95C800F4BA81 /* GCLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F15171D95C800F4BA81 /* GCLinks.m */; };
+		CCAF7F38171D95C800F4BA81 /* GCPagination.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F17171D95C800F4BA81 /* GCPagination.m */; };
+		CCAF7F39171D95C800F4BA81 /* GCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F19171D95C800F4BA81 /* GCResponse.m */; };
+		CCAF7F3A171D95C800F4BA81 /* GCResponseStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F1B171D95C800F4BA81 /* GCResponseStatus.m */; };
+		CCAF7F3B171D95C800F4BA81 /* GCURL.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F1D171D95C800F4BA81 /* GCURL.m */; };
+		CCAF7F3C171D95C800F4BA81 /* GCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F1F171D95C800F4BA81 /* GCUser.m */; };
+		CCAF7F3D171D95C800F4BA81 /* KXDataEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F22171D95C800F4BA81 /* KXDataEncoder.m */; };
+		CCAF7F3E171D95C800F4BA81 /* NSDictionary+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F24171D95C800F4BA81 /* NSDictionary+QueryString.m */; };
+		CCAF7F3F171D95C800F4BA81 /* NSMutableDictionary+GCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F26171D95C800F4BA81 /* NSMutableDictionary+GCUtil.m */; };
+		CCAF7F40171D95C800F4BA81 /* NSString+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F28171D95C800F4BA81 /* NSString+QueryString.m */; };
+		CCAF7F5D171D98BC00F4BA81 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F45171D98BC00F4BA81 /* AFHTTPClient.m */; };
+		CCAF7F5E171D98BC00F4BA81 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F47171D98BC00F4BA81 /* AFHTTPRequestOperation.m */; };
+		CCAF7F5F171D98BC00F4BA81 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F49171D98BC00F4BA81 /* AFImageRequestOperation.m */; };
+		CCAF7F60171D98BC00F4BA81 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F4B171D98BC00F4BA81 /* AFJSONRequestOperation.m */; };
+		CCAF7F61171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F4D171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.m */; };
+		CCAF7F62171D98BC00F4BA81 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F50171D98BC00F4BA81 /* AFPropertyListRequestOperation.m */; };
+		CCAF7F63171D98BC00F4BA81 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F52171D98BC00F4BA81 /* AFURLConnectionOperation.m */; };
+		CCAF7F64171D98BC00F4BA81 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F54171D98BC00F4BA81 /* AFXMLRequestOperation.m */; };
+		CCAF7F65171D98BC00F4BA81 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F56171D98BC00F4BA81 /* UIImageView+AFNetworking.m */; };
+		CCAF7F66171D98BC00F4BA81 /* KeyValueObjectMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */; };
+		CCAF7F67171D98BC00F4BA81 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F5C171D98BC00F4BA81 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CCC359441689F705009E372C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359431689F705009E372C /* MobileCoreServices.framework */; };
+		CCC359471689F70D009E372C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359461689F70D009E372C /* SystemConfiguration.framework */; };
+		CCC9A2241672716D0016BD3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2231672716D0016BD3C /* Foundation.framework */; };
+		CCC9A2331672716E0016BD3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2321672716E0016BD3C /* SenTestingKit.framework */; };
+		CCC9A2361672716E0016BD3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2231672716D0016BD3C /* Foundation.framework */; };
+		CCC9A2391672716E0016BD3C /* libChute-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2201672716D0016BD3C /* libChute-SDK.a */; };
+		CCC9A23F1672716E0016BD3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCC9A23D1672716E0016BD3C /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CCC9A2371672716E0016BD3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCC9A2171672716D0016BD3C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CCC9A21F1672716D0016BD3C;
+			remoteInfo = GetChute;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CCC9A21E1672716D0016BD3C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CCAF7EF1171D953300F4BA81 /* Chute-SDKTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Chute-SDKTests.m"; path = "Chute-SDKTests/Chute-SDKTests.m"; sourceTree = SOURCE_ROOT; };
+		CCAF7EF2171D953300F4BA81 /* Chute-SDKTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Chute-SDKTests.h"; path = "Chute-SDKTests/Chute-SDKTests.h"; sourceTree = SOURCE_ROOT; };
+		CCAF7EF5171D95C700F4BA81 /* GCLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLoginView.h; sourceTree = "<group>"; };
+		CCAF7EF6171D95C700F4BA81 /* GCLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLoginView.m; sourceTree = "<group>"; };
+		CCAF7EF7171D95C700F4BA81 /* GCPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPopupView.h; sourceTree = "<group>"; };
+		CCAF7EF8171D95C700F4BA81 /* GCPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPopupView.m; sourceTree = "<group>"; };
+		CCAF7EFA171D95C700F4BA81 /* GCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCClient.h; sourceTree = "<group>"; };
+		CCAF7EFB171D95C700F4BA81 /* GCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCClient.m; sourceTree = "<group>"; };
+		CCAF7EFC171D95C700F4BA81 /* GCOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOAuth2Client.h; sourceTree = "<group>"; };
+		CCAF7EFD171D95C700F4BA81 /* GCOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOAuth2Client.m; sourceTree = "<group>"; };
+		CCAF7EFF171D95C700F4BA81 /* GCServiceAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServiceAlbum.h; sourceTree = "<group>"; };
+		CCAF7F00171D95C700F4BA81 /* GCServiceAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServiceAlbum.m; sourceTree = "<group>"; };
+		CCAF7F01171D95C800F4BA81 /* GCServiceAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServiceAsset.h; sourceTree = "<group>"; };
+		CCAF7F02171D95C800F4BA81 /* GCServiceAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServiceAsset.m; sourceTree = "<group>"; };
+		CCAF7F03171D95C800F4BA81 /* GetChute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetChute.h; path = "Chute-SDK/GetChute.h"; sourceTree = SOURCE_ROOT; };
+		CCAF7F04171D95C800F4BA81 /* GetChute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetChute.m; path = "Chute-SDK/GetChute.m"; sourceTree = SOURCE_ROOT; };
+		CCAF7F06171D95C800F4BA81 /* GCAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAlbum.h; sourceTree = "<group>"; };
+		CCAF7F07171D95C800F4BA81 /* GCAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAlbum.m; sourceTree = "<group>"; };
+		CCAF7F08171D95C800F4BA81 /* GCApiLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCApiLimits.h; sourceTree = "<group>"; };
+		CCAF7F09171D95C800F4BA81 /* GCApiLimits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCApiLimits.m; sourceTree = "<group>"; };
+		CCAF7F0A171D95C800F4BA81 /* GCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAsset.h; sourceTree = "<group>"; };
+		CCAF7F0B171D95C800F4BA81 /* GCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAsset.m; sourceTree = "<group>"; };
+		CCAF7F0C171D95C800F4BA81 /* GCAssetDimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAssetDimensions.h; sourceTree = "<group>"; };
+		CCAF7F0D171D95C800F4BA81 /* GCAssetDimensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAssetDimensions.m; sourceTree = "<group>"; };
+		CCAF7F0E171D95C800F4BA81 /* GCAssetSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAssetSource.h; sourceTree = "<group>"; };
+		CCAF7F0F171D95C800F4BA81 /* GCAssetSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAssetSource.m; sourceTree = "<group>"; };
+		CCAF7F10171D95C800F4BA81 /* GCCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCoordinate.h; sourceTree = "<group>"; };
+		CCAF7F11171D95C800F4BA81 /* GCCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCoordinate.m; sourceTree = "<group>"; };
+		CCAF7F12171D95C800F4BA81 /* GCCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCounter.h; sourceTree = "<group>"; };
+		CCAF7F13171D95C800F4BA81 /* GCCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCounter.m; sourceTree = "<group>"; };
+		CCAF7F14171D95C800F4BA81 /* GCLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLinks.h; sourceTree = "<group>"; };
+		CCAF7F15171D95C800F4BA81 /* GCLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLinks.m; sourceTree = "<group>"; };
+		CCAF7F16171D95C800F4BA81 /* GCPagination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPagination.h; sourceTree = "<group>"; };
+		CCAF7F17171D95C800F4BA81 /* GCPagination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPagination.m; sourceTree = "<group>"; };
+		CCAF7F18171D95C800F4BA81 /* GCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResponse.h; sourceTree = "<group>"; };
+		CCAF7F19171D95C800F4BA81 /* GCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResponse.m; sourceTree = "<group>"; };
+		CCAF7F1A171D95C800F4BA81 /* GCResponseStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCResponseStatus.h; sourceTree = "<group>"; };
+		CCAF7F1B171D95C800F4BA81 /* GCResponseStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCResponseStatus.m; sourceTree = "<group>"; };
+		CCAF7F1C171D95C800F4BA81 /* GCURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURL.h; sourceTree = "<group>"; };
+		CCAF7F1D171D95C800F4BA81 /* GCURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCURL.m; sourceTree = "<group>"; };
+		CCAF7F1E171D95C800F4BA81 /* GCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUser.h; sourceTree = "<group>"; };
+		CCAF7F1F171D95C800F4BA81 /* GCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUser.m; sourceTree = "<group>"; };
+		CCAF7F21171D95C800F4BA81 /* KXDataEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KXDataEncoder.h; sourceTree = "<group>"; };
+		CCAF7F22171D95C800F4BA81 /* KXDataEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KXDataEncoder.m; sourceTree = "<group>"; };
+		CCAF7F23171D95C800F4BA81 /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+QueryString.h"; sourceTree = "<group>"; };
+		CCAF7F24171D95C800F4BA81 /* NSDictionary+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+QueryString.m"; sourceTree = "<group>"; };
+		CCAF7F25171D95C800F4BA81 /* NSMutableDictionary+GCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+GCUtil.h"; sourceTree = "<group>"; };
+		CCAF7F26171D95C800F4BA81 /* NSMutableDictionary+GCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+GCUtil.m"; sourceTree = "<group>"; };
+		CCAF7F27171D95C800F4BA81 /* NSString+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QueryString.h"; sourceTree = "<group>"; };
+		CCAF7F28171D95C800F4BA81 /* NSString+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QueryString.m"; sourceTree = "<group>"; };
+		CCAF7F41171D95EC00F4BA81 /* Chute-SDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Chute-SDK-Prefix.pch"; path = "Chute-SDK/Chute-SDK-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		CCAF7F44171D98BC00F4BA81 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		CCAF7F45171D98BC00F4BA81 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		CCAF7F46171D98BC00F4BA81 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		CCAF7F47171D98BC00F4BA81 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		CCAF7F48171D98BC00F4BA81 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		CCAF7F49171D98BC00F4BA81 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		CCAF7F4A171D98BC00F4BA81 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		CCAF7F4B171D98BC00F4BA81 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		CCAF7F4C171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		CCAF7F4D171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		CCAF7F4E171D98BC00F4BA81 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		CCAF7F4F171D98BC00F4BA81 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		CCAF7F50171D98BC00F4BA81 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		CCAF7F51171D98BC00F4BA81 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		CCAF7F52171D98BC00F4BA81 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		CCAF7F53171D98BC00F4BA81 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		CCAF7F54171D98BC00F4BA81 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		CCAF7F55171D98BC00F4BA81 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		CCAF7F56171D98BC00F4BA81 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		CCAF7F58171D98BC00F4BA81 /* DCKeyValueObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCKeyValueObjectMapping.h; sourceTree = "<group>"; };
+		CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KeyValueObjectMapping.framework; sourceTree = "<group>"; };
+		CCAF7F5B171D98BC00F4BA81 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CCAF7F5C171D98BC00F4BA81 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CCC359431689F705009E372C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CCC359461689F70D009E372C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CCC9A2201672716D0016BD3C /* libChute-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libChute-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCC9A2231672716D0016BD3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CCC9A2311672716E0016BD3C /* Chute-SDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chute-SDKTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCC9A2321672716E0016BD3C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		CCC9A23C1672716E0016BD3C /* Chute-SDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chute-SDKTests-Info.plist"; sourceTree = "<group>"; };
+		CCC9A23E1672716E0016BD3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCC9A21D1672716D0016BD3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCC359471689F70D009E372C /* SystemConfiguration.framework in Frameworks */,
+				CCC359441689F705009E372C /* MobileCoreServices.framework in Frameworks */,
+				CCC9A2241672716D0016BD3C /* Foundation.framework in Frameworks */,
+				CCAF7F66171D98BC00F4BA81 /* KeyValueObjectMapping.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCC9A22D1672716E0016BD3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCC9A2331672716E0016BD3C /* SenTestingKit.framework in Frameworks */,
+				CCC9A2361672716E0016BD3C /* Foundation.framework in Frameworks */,
+				CCC9A2391672716E0016BD3C /* libChute-SDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CCAF7EF4171D95C700F4BA81 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7EF5171D95C700F4BA81 /* GCLoginView.h */,
+				CCAF7EF6171D95C700F4BA81 /* GCLoginView.m */,
+				CCAF7EF7171D95C700F4BA81 /* GCPopupView.h */,
+				CCAF7EF8171D95C700F4BA81 /* GCPopupView.m */,
+			);
+			name = Views;
+			path = "Chute-SDK/Views";
+			sourceTree = SOURCE_ROOT;
+		};
+		CCAF7EF9171D95C700F4BA81 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7EFA171D95C700F4BA81 /* GCClient.h */,
+				CCAF7EFB171D95C700F4BA81 /* GCClient.m */,
+				CCAF7EFC171D95C700F4BA81 /* GCOAuth2Client.h */,
+				CCAF7EFD171D95C700F4BA81 /* GCOAuth2Client.m */,
+				CCAF7EFE171D95C700F4BA81 /* Services */,
+			);
+			name = API;
+			path = "Chute-SDK/API";
+			sourceTree = SOURCE_ROOT;
+		};
+		CCAF7EFE171D95C700F4BA81 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7EFF171D95C700F4BA81 /* GCServiceAlbum.h */,
+				CCAF7F00171D95C700F4BA81 /* GCServiceAlbum.m */,
+				CCAF7F01171D95C800F4BA81 /* GCServiceAsset.h */,
+				CCAF7F02171D95C800F4BA81 /* GCServiceAsset.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CCAF7F05171D95C800F4BA81 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F06171D95C800F4BA81 /* GCAlbum.h */,
+				CCAF7F07171D95C800F4BA81 /* GCAlbum.m */,
+				CCAF7F08171D95C800F4BA81 /* GCApiLimits.h */,
+				CCAF7F09171D95C800F4BA81 /* GCApiLimits.m */,
+				CCAF7F0A171D95C800F4BA81 /* GCAsset.h */,
+				CCAF7F0B171D95C800F4BA81 /* GCAsset.m */,
+				CCAF7F0C171D95C800F4BA81 /* GCAssetDimensions.h */,
+				CCAF7F0D171D95C800F4BA81 /* GCAssetDimensions.m */,
+				CCAF7F0E171D95C800F4BA81 /* GCAssetSource.h */,
+				CCAF7F0F171D95C800F4BA81 /* GCAssetSource.m */,
+				CCAF7F10171D95C800F4BA81 /* GCCoordinate.h */,
+				CCAF7F11171D95C800F4BA81 /* GCCoordinate.m */,
+				CCAF7F12171D95C800F4BA81 /* GCCounter.h */,
+				CCAF7F13171D95C800F4BA81 /* GCCounter.m */,
+				CCAF7F14171D95C800F4BA81 /* GCLinks.h */,
+				CCAF7F15171D95C800F4BA81 /* GCLinks.m */,
+				CCAF7F16171D95C800F4BA81 /* GCPagination.h */,
+				CCAF7F17171D95C800F4BA81 /* GCPagination.m */,
+				CCAF7F18171D95C800F4BA81 /* GCResponse.h */,
+				CCAF7F19171D95C800F4BA81 /* GCResponse.m */,
+				CCAF7F1A171D95C800F4BA81 /* GCResponseStatus.h */,
+				CCAF7F1B171D95C800F4BA81 /* GCResponseStatus.m */,
+				CCAF7F1C171D95C800F4BA81 /* GCURL.h */,
+				CCAF7F1D171D95C800F4BA81 /* GCURL.m */,
+				CCAF7F1E171D95C800F4BA81 /* GCUser.h */,
+				CCAF7F1F171D95C800F4BA81 /* GCUser.m */,
+			);
+			name = Models;
+			path = "Chute-SDK/Models";
+			sourceTree = SOURCE_ROOT;
+		};
+		CCAF7F20171D95C800F4BA81 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F21171D95C800F4BA81 /* KXDataEncoder.h */,
+				CCAF7F22171D95C800F4BA81 /* KXDataEncoder.m */,
+				CCAF7F23171D95C800F4BA81 /* NSDictionary+QueryString.h */,
+				CCAF7F24171D95C800F4BA81 /* NSDictionary+QueryString.m */,
+				CCAF7F25171D95C800F4BA81 /* NSMutableDictionary+GCUtil.h */,
+				CCAF7F26171D95C800F4BA81 /* NSMutableDictionary+GCUtil.m */,
+				CCAF7F27171D95C800F4BA81 /* NSString+QueryString.h */,
+				CCAF7F28171D95C800F4BA81 /* NSString+QueryString.m */,
+			);
+			name = Util;
+			path = "Chute-SDK/Util";
+			sourceTree = SOURCE_ROOT;
+		};
+		CCAF7F42171D98BC00F4BA81 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F43171D98BC00F4BA81 /* AFNetworking */,
+				CCAF7F57171D98BC00F4BA81 /* KeyValueObjectMapping */,
+				CCAF7F5A171D98BC00F4BA81 /* MBProgressHUD */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		CCAF7F43171D98BC00F4BA81 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F44171D98BC00F4BA81 /* AFHTTPClient.h */,
+				CCAF7F45171D98BC00F4BA81 /* AFHTTPClient.m */,
+				CCAF7F46171D98BC00F4BA81 /* AFHTTPRequestOperation.h */,
+				CCAF7F47171D98BC00F4BA81 /* AFHTTPRequestOperation.m */,
+				CCAF7F48171D98BC00F4BA81 /* AFImageRequestOperation.h */,
+				CCAF7F49171D98BC00F4BA81 /* AFImageRequestOperation.m */,
+				CCAF7F4A171D98BC00F4BA81 /* AFJSONRequestOperation.h */,
+				CCAF7F4B171D98BC00F4BA81 /* AFJSONRequestOperation.m */,
+				CCAF7F4C171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.h */,
+				CCAF7F4D171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.m */,
+				CCAF7F4E171D98BC00F4BA81 /* AFNetworking.h */,
+				CCAF7F4F171D98BC00F4BA81 /* AFPropertyListRequestOperation.h */,
+				CCAF7F50171D98BC00F4BA81 /* AFPropertyListRequestOperation.m */,
+				CCAF7F51171D98BC00F4BA81 /* AFURLConnectionOperation.h */,
+				CCAF7F52171D98BC00F4BA81 /* AFURLConnectionOperation.m */,
+				CCAF7F53171D98BC00F4BA81 /* AFXMLRequestOperation.h */,
+				CCAF7F54171D98BC00F4BA81 /* AFXMLRequestOperation.m */,
+				CCAF7F55171D98BC00F4BA81 /* UIImageView+AFNetworking.h */,
+				CCAF7F56171D98BC00F4BA81 /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		CCAF7F57171D98BC00F4BA81 /* KeyValueObjectMapping */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F58171D98BC00F4BA81 /* DCKeyValueObjectMapping.h */,
+				CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */,
+			);
+			path = KeyValueObjectMapping;
+			sourceTree = "<group>";
+		};
+		CCAF7F5A171D98BC00F4BA81 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F5B171D98BC00F4BA81 /* MBProgressHUD.h */,
+				CCAF7F5C171D98BC00F4BA81 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		CCC9A2151672716D0016BD3C = {
+			isa = PBXGroup;
+			children = (
+				CCC9A2251672716D0016BD3C /* Chute-SDK */,
+				CCC9A23A1672716E0016BD3C /* GetChuteTests */,
+				CCC9A2221672716D0016BD3C /* Frameworks */,
+				CCC9A2211672716D0016BD3C /* Products */,
+				CCAF7F42171D98BC00F4BA81 /* Vendor */,
+			);
+			sourceTree = "<group>";
+		};
+		CCC9A2211672716D0016BD3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCC9A2201672716D0016BD3C /* libChute-SDK.a */,
+				CCC9A2311672716E0016BD3C /* Chute-SDKTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCC9A2221672716D0016BD3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCC359461689F70D009E372C /* SystemConfiguration.framework */,
+				CCC359431689F705009E372C /* MobileCoreServices.framework */,
+				CCC9A2231672716D0016BD3C /* Foundation.framework */,
+				CCC9A2321672716E0016BD3C /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCC9A2251672716D0016BD3C /* Chute-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7EF4171D95C700F4BA81 /* Views */,
+				CCAF7EF9171D95C700F4BA81 /* API */,
+				CCAF7F05171D95C800F4BA81 /* Models */,
+				CCAF7F20171D95C800F4BA81 /* Util */,
+				CCC9A2261672716D0016BD3C /* Supporting Files */,
+			);
+			name = "Chute-SDK";
+			path = GetChute;
+			sourceTree = "<group>";
+		};
+		CCC9A2261672716D0016BD3C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7F03171D95C800F4BA81 /* GetChute.h */,
+				CCAF7F04171D95C800F4BA81 /* GetChute.m */,
+				CCAF7F41171D95EC00F4BA81 /* Chute-SDK-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CCC9A23A1672716E0016BD3C /* GetChuteTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCAF7EF2171D953300F4BA81 /* Chute-SDKTests.h */,
+				CCAF7EF1171D953300F4BA81 /* Chute-SDKTests.m */,
+				CCC9A23B1672716E0016BD3C /* Supporting Files */,
+			);
+			path = GetChuteTests;
+			sourceTree = "<group>";
+		};
+		CCC9A23B1672716E0016BD3C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCC9A23C1672716E0016BD3C /* Chute-SDKTests-Info.plist */,
+				CCC9A23D1672716E0016BD3C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CCC9A21F1672716D0016BD3C /* Chute-SDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCC9A2451672716E0016BD3C /* Build configuration list for PBXNativeTarget "Chute-SDK" */;
+			buildPhases = (
+				CCC9A21C1672716D0016BD3C /* Sources */,
+				CCC9A21D1672716D0016BD3C /* Frameworks */,
+				CCC9A21E1672716D0016BD3C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chute-SDK";
+			productName = GetChute;
+			productReference = CCC9A2201672716D0016BD3C /* libChute-SDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CCC9A2301672716E0016BD3C /* Chute-SDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCC9A2481672716E0016BD3C /* Build configuration list for PBXNativeTarget "Chute-SDKTests" */;
+			buildPhases = (
+				CCC9A22C1672716E0016BD3C /* Sources */,
+				CCC9A22D1672716E0016BD3C /* Frameworks */,
+				CCC9A22E1672716E0016BD3C /* Resources */,
+				CCC9A22F1672716E0016BD3C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CCC9A2381672716E0016BD3C /* PBXTargetDependency */,
+			);
+			name = "Chute-SDKTests";
+			productName = GetChuteTests;
+			productReference = CCC9A2311672716E0016BD3C /* Chute-SDKTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CCC9A2171672716D0016BD3C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Aleksandar Trpeski";
+			};
+			buildConfigurationList = CCC9A21A1672716D0016BD3C /* Build configuration list for PBXProject "Chute-SDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CCC9A2151672716D0016BD3C;
+			productRefGroup = CCC9A2211672716D0016BD3C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CCC9A21F1672716D0016BD3C /* Chute-SDK */,
+				CCC9A2301672716E0016BD3C /* Chute-SDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CCC9A22E1672716E0016BD3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCC9A23F1672716E0016BD3C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CCC9A22F1672716E0016BD3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CCC9A21C1672716D0016BD3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAF7F29171D95C800F4BA81 /* GCLoginView.m in Sources */,
+				CCAF7F2A171D95C800F4BA81 /* GCPopupView.m in Sources */,
+				CCAF7F2B171D95C800F4BA81 /* GCClient.m in Sources */,
+				CCAF7F2C171D95C800F4BA81 /* GCOAuth2Client.m in Sources */,
+				CCAF7F2D171D95C800F4BA81 /* GCServiceAlbum.m in Sources */,
+				CCAF7F2E171D95C800F4BA81 /* GCServiceAsset.m in Sources */,
+				CCAF7F2F171D95C800F4BA81 /* GetChute.m in Sources */,
+				CCAF7F30171D95C800F4BA81 /* GCAlbum.m in Sources */,
+				CCAF7F31171D95C800F4BA81 /* GCApiLimits.m in Sources */,
+				CCAF7F32171D95C800F4BA81 /* GCAsset.m in Sources */,
+				CCAF7F33171D95C800F4BA81 /* GCAssetDimensions.m in Sources */,
+				CCAF7F34171D95C800F4BA81 /* GCAssetSource.m in Sources */,
+				CCAF7F35171D95C800F4BA81 /* GCCoordinate.m in Sources */,
+				CCAF7F36171D95C800F4BA81 /* GCCounter.m in Sources */,
+				CCAF7F37171D95C800F4BA81 /* GCLinks.m in Sources */,
+				CCAF7F38171D95C800F4BA81 /* GCPagination.m in Sources */,
+				CCAF7F39171D95C800F4BA81 /* GCResponse.m in Sources */,
+				CCAF7F3A171D95C800F4BA81 /* GCResponseStatus.m in Sources */,
+				CCAF7F3B171D95C800F4BA81 /* GCURL.m in Sources */,
+				CCAF7F3C171D95C800F4BA81 /* GCUser.m in Sources */,
+				CCAF7F3D171D95C800F4BA81 /* KXDataEncoder.m in Sources */,
+				CCAF7F3E171D95C800F4BA81 /* NSDictionary+QueryString.m in Sources */,
+				CCAF7F3F171D95C800F4BA81 /* NSMutableDictionary+GCUtil.m in Sources */,
+				CCAF7F40171D95C800F4BA81 /* NSString+QueryString.m in Sources */,
+				CCAF7F5D171D98BC00F4BA81 /* AFHTTPClient.m in Sources */,
+				CCAF7F5E171D98BC00F4BA81 /* AFHTTPRequestOperation.m in Sources */,
+				CCAF7F5F171D98BC00F4BA81 /* AFImageRequestOperation.m in Sources */,
+				CCAF7F60171D98BC00F4BA81 /* AFJSONRequestOperation.m in Sources */,
+				CCAF7F61171D98BC00F4BA81 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				CCAF7F62171D98BC00F4BA81 /* AFPropertyListRequestOperation.m in Sources */,
+				CCAF7F63171D98BC00F4BA81 /* AFURLConnectionOperation.m in Sources */,
+				CCAF7F64171D98BC00F4BA81 /* AFXMLRequestOperation.m in Sources */,
+				CCAF7F65171D98BC00F4BA81 /* UIImageView+AFNetworking.m in Sources */,
+				CCAF7F67171D98BC00F4BA81 /* MBProgressHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCC9A22C1672716E0016BD3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAF7EF3171D953300F4BA81 /* Chute-SDKTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CCC9A2381672716E0016BD3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CCC9A21F1672716D0016BD3C /* Chute-SDK */;
+			targetProxy = CCC9A2371672716E0016BD3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CCC9A23D1672716E0016BD3C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCC9A23E1672716E0016BD3C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CCC9A2431672716E0016BD3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CCC9A2441672716E0016BD3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCC9A2461672716E0016BD3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/GetChute.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor/KeyValueObjectMapping\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Chute-SDK/Chute-SDK-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Chute-SDK";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CCC9A2471672716E0016BD3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/GetChute.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor/KeyValueObjectMapping\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Chute-SDK/Chute-SDK-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Chute-SDK";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CCC9A2491672716E0016BD3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/Vendor/KeyValueObjectMapping\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GetChute/GetChute-Prefix.pch";
+				INFOPLIST_FILE = "GetChuteTests/Chute-SDKTests-Info.plist";
+				PRODUCT_NAME = "Chute-SDKTests";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		CCC9A24A1672716E0016BD3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/Vendor/KeyValueObjectMapping\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GetChute/GetChute-Prefix.pch";
+				INFOPLIST_FILE = "GetChuteTests/Chute-SDKTests-Info.plist";
+				PRODUCT_NAME = "Chute-SDKTests";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCC9A21A1672716D0016BD3C /* Build configuration list for PBXProject "Chute-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCC9A2431672716E0016BD3C /* Debug */,
+				CCC9A2441672716E0016BD3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCC9A2451672716E0016BD3C /* Build configuration list for PBXNativeTarget "Chute-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCC9A2461672716E0016BD3C /* Debug */,
+				CCC9A2471672716E0016BD3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCC9A2481672716E0016BD3C /* Build configuration list for PBXNativeTarget "Chute-SDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCC9A2491672716E0016BD3C /* Debug */,
+				CCC9A24A1672716E0016BD3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CCC9A2171672716D0016BD3C /* Project object */;
+}

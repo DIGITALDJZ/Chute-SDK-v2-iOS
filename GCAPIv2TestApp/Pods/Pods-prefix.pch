@@ -1,0 +1,29 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#endif
+
+#import "Pods-header.h"
+#ifdef __OBJC__
+#import <Availability.h>
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+  #import <SystemConfiguration/SystemConfiguration.h>
+  #import <MobileCoreServices/MobileCoreServices.h>
+#else
+  #import <SystemConfiguration/SystemConfiguration.h>
+  #import <CoreServices/CoreServices.h>
+#endif
+#endif /* __OBJC__*/
+
+
+//
+// Prefix header for all source files of the 'GetChute' target in the 'GetChute' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import <UIKit/UIKit.h>
+#endif
+
+

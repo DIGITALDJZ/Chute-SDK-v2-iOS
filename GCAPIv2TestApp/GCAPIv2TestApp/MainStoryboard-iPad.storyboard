@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="c3s-4X-DUx">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="bZZ-Ui-n8P">
+            <objects>
+                <viewController id="A0z-Id-bOR" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="trA-qB-XZi">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-zH-n2D">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="PLT-a8-WUp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Chute">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chute:" destination="A0z-Id-bOR" eventType="touchUpInside" id="uCz-TY-ZUt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqf-60-9jP">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Flickr">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flickr:" destination="A0z-Id-bOR" eventType="touchUpInside" id="12Q-8C-Fqu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHN-If-1dJ">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Trendabl">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="trendabl:" destination="A0z-Id-bOR" eventType="touchUpInside" id="qrW-eM-Fer"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLL-uo-Se1">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Facebook">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebook:" destination="A0z-Id-bOR" eventType="touchUpInside" id="wLq-dp-bhS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lln-Ut-Wq4">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Twitter">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="twitter:" destination="A0z-Id-bOR" eventType="touchUpInside" id="If3-T4-day"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBE-cM-7iV">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Google">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="google:" destination="A0z-Id-bOR" eventType="touchUpInside" id="GGW-ky-YKF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFp-x9-DS1">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Instagram">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="instagram:" destination="A0z-Id-bOR" eventType="touchUpInside" id="198-uc-HnL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBn-YE-IWK">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Foursquare">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="foursquare:" destination="A0z-Id-bOR" eventType="touchUpInside" id="OUB-Jd-3BO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lln-Ut-Wq4" firstAttribute="leading" secondItem="YLL-uo-Se1" secondAttribute="leading" type="default" id="1sV-kX-4iJ"/>
+                            <constraint firstItem="jqf-60-9jP" firstAttribute="trailing" secondItem="YHN-If-1dJ" secondAttribute="trailing" type="default" id="2gm-jj-V3c"/>
+                            <constraint firstItem="Dgc-zH-n2D" firstAttribute="top" secondItem="trA-qB-XZi" secondAttribute="top" constant="304" id="7wz-fQ-iKp"/>
+                            <constraint firstItem="jqf-60-9jP" firstAttribute="trailing" secondItem="dFp-x9-DS1" secondAttribute="trailing" type="default" id="9FC-e5-rwD"/>
+                            <constraint firstItem="NBn-YE-IWK" firstAttribute="trailing" secondItem="dFp-x9-DS1" secondAttribute="trailing" type="default" id="DSp-hR-A6A"/>
+                            <constraint firstItem="YLL-uo-Se1" firstAttribute="top" secondItem="Dgc-zH-n2D" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="KjV-mY-58u"/>
+                            <constraint firstItem="YHN-If-1dJ" firstAttribute="top" secondItem="sBE-cM-7iV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="P5M-6p-mzG"/>
+                            <constraint firstItem="Lln-Ut-Wq4" firstAttribute="trailing" secondItem="YLL-uo-Se1" secondAttribute="trailing" type="default" id="THc-RH-80A"/>
+                            <constraint firstItem="jqf-60-9jP" firstAttribute="centerX" secondItem="trA-qB-XZi" secondAttribute="centerX" type="default" id="TXi-dR-ksb"/>
+                            <constraint firstItem="jqf-60-9jP" firstAttribute="leading" secondItem="YHN-If-1dJ" secondAttribute="leading" type="default" id="YC2-wb-gnB"/>
+                            <constraint firstItem="NBn-YE-IWK" firstAttribute="top" secondItem="dFp-x9-DS1" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZGN-3Z-xXU"/>
+                            <constraint firstItem="sBE-cM-7iV" firstAttribute="top" secondItem="Lln-Ut-Wq4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZsO-Tn-4mO"/>
+                            <constraint firstItem="dFp-x9-DS1" firstAttribute="top" secondItem="jqf-60-9jP" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dQm-h1-Hv5"/>
+                            <constraint firstItem="YLL-uo-Se1" firstAttribute="leading" secondItem="Dgc-zH-n2D" secondAttribute="leading" type="default" id="exy-0J-RXM"/>
+                            <constraint firstItem="Lln-Ut-Wq4" firstAttribute="trailing" secondItem="sBE-cM-7iV" secondAttribute="trailing" type="default" id="goc-lU-TUE"/>
+                            <constraint firstItem="Lln-Ut-Wq4" firstAttribute="top" secondItem="YLL-uo-Se1" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="kQL-mX-j2A"/>
+                            <constraint firstItem="sBE-cM-7iV" firstAttribute="leading" secondItem="YHN-If-1dJ" secondAttribute="leading" type="default" id="kny-bd-mea"/>
+                            <constraint firstItem="NBn-YE-IWK" firstAttribute="leading" secondItem="dFp-x9-DS1" secondAttribute="leading" type="default" id="pAS-S0-dgy"/>
+                            <constraint firstItem="YHN-If-1dJ" firstAttribute="trailing" secondItem="sBE-cM-7iV" secondAttribute="trailing" type="default" id="r2c-hg-udm"/>
+                            <constraint firstItem="Dgc-zH-n2D" firstAttribute="trailing" secondItem="YLL-uo-Se1" secondAttribute="trailing" type="default" id="utQ-es-SKy"/>
+                            <constraint firstItem="dFp-x9-DS1" firstAttribute="leading" secondItem="jqf-60-9jP" secondAttribute="leading" type="default" id="yBL-gQ-Hgq"/>
+                            <constraint firstItem="jqf-60-9jP" firstAttribute="top" secondItem="YHN-If-1dJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="yP5-CO-lTe"/>
+                            <constraint firstItem="sBE-cM-7iV" firstAttribute="leading" secondItem="Lln-Ut-Wq4" secondAttribute="leading" type="default" id="yTz-qW-D1R"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dem-5C-EFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2029" y="-1659"/>
+        </scene>
+        <!--Images View Controller-->
+        <scene sceneID="cme-lP-TKS">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="4FO-6R-C9W" customClass="ImagesViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="xT0-Zs-Lfh">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eg4-RA-0BX">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="SZ5-49-Iph" customClass="ImageViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cye-Jl-tcH"/>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="leading" secondItem="SZ5-49-Iph" secondAttribute="leading" type="default" id="EW1-lX-taL"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="bottom" secondItem="SZ5-49-Iph" secondAttribute="bottom" type="default" id="FvH-2N-GJb"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="trailing" secondItem="SZ5-49-Iph" secondAttribute="trailing" type="default" id="eeJ-b7-cPi"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="top" secondItem="SZ5-49-Iph" secondAttribute="top" type="default" id="u0y-Tl-jMw"/>
+                                </constraints>
+                                <size key="customSize" width="120" height="120"/>
+                                <connections>
+                                    <outlet property="imageView" destination="cye-Jl-tcH" id="Bu8-AE-grc"/>
+                                    <segue destination="RVm-YK-sv5" kind="modal" identifier="details" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="wWs-q7-TX9"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="4FO-6R-C9W" id="Tpz-c9-dxw"/>
+                            <outlet property="delegate" destination="4FO-6R-C9W" id="cwb-Ys-AFF"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="oMl-dE-hO1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VLP-VB-Frc">
+                            <connections>
+                                <action selector="addAsset:" destination="4FO-6R-C9W" id="CN9-zO-mlg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="A0z-Id-bOR" kind="modal" identifier="login" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="DcZ-tU-Vlx"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tV2-3j-Sf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="-255"/>
+        </scene>
+        <!--Image Details View Controller-->
+        <scene sceneID="GKN-j5-gQV">
+            <objects>
+                <viewController id="RVm-YK-sv5" customClass="ImageDetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T43-fB-MIW">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaY-Bz-CR5">
+                                <items>
+                                    <navigationItem id="ruF-kp-PcR">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="TXK-vp-Fwc">
+                                            <connections>
+                                                <action selector="close:" destination="RVm-YK-sv5" id="nxT-K2-1VI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-gF-YD3"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GaY-Bz-CR5" firstAttribute="trailing" secondItem="T43-fB-MIW" secondAttribute="trailing" type="default" id="A2W-e2-6pT"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="bottom" secondItem="T43-fB-MIW" secondAttribute="bottom" type="default" id="U6t-2U-Mrg"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="trailing" secondItem="T43-fB-MIW" secondAttribute="trailing" type="default" id="bW3-zn-m4m"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="top" secondItem="GaY-Bz-CR5" secondAttribute="bottom" type="default" id="fKJ-7H-a7A"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="leading" secondItem="T43-fB-MIW" secondAttribute="leading" type="default" id="hQA-nq-4Bv"/>
+                            <constraint firstItem="GaY-Bz-CR5" firstAttribute="leading" secondItem="T43-fB-MIW" secondAttribute="leading" type="default" id="qWb-Sg-mY9"/>
+                            <constraint firstItem="GaY-Bz-CR5" firstAttribute="top" secondItem="T43-fB-MIW" secondAttribute="top" type="default" id="u3W-rK-4SH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="oHd-fu-GsQ"/>
+                    <connections>
+                        <outlet property="imageView" destination="Boa-gF-YD3" id="c6t-Eb-uUp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TDK-Pe-rFo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2984" y="-47"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aaA-ih-PPt">
+            <objects>
+                <navigationController id="c3s-4X-DUx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WGZ-hP-NMj">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4FO-6R-C9W" kind="relationship" relationship="rootViewController" id="6LZ-QG-9wF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hYG-F8-RKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1036" y="-255"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="ImageDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ImageViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ImagesViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImagesViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
