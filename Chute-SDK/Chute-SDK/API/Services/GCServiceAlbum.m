@@ -13,6 +13,8 @@
 #import "GCAsset.h"
 #import "GCResponse.h"
 
+static NSString * const kGCDefaultAlbumName = @"Album";
+
 @implementation GCServiceAlbum
 
 + (void)getAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure {
@@ -107,7 +109,7 @@
     if (moderateComments == nil)
         moderateComments = NO;
     if (name == nil)
-        name = @"Album";
+        name = kGCDefaultAlbumName;
     
     NSDictionary *params = @{@"name":name,
                              @"moderate_media":@(moderateMedia),

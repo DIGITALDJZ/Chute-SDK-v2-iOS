@@ -10,7 +10,11 @@
 #import "GCClient.h"
 #import "GCAsset.h"
 #import "GCResponse.h"
+
 @implementation GCServiceAsset
+
+static NSString * const kGCPerPage = @"per_page";
+static NSString * const kGCDefaultPerPage = @"100";
 
 + (void)getAssetsForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success failure:(void (^)(NSError *))failure {
     
@@ -18,7 +22,7 @@
     
     NSString *path = [NSString stringWithFormat:@"/albums/%@/assets", albumID];
     
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
@@ -33,7 +37,7 @@
     
     NSString *path = @"assets";
     
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
@@ -141,7 +145,7 @@
     
     NSString *path = [NSString stringWithFormat:@"assets/geo/%@,%@/%@", coordinate.latitude, coordinate.longitude, radius];
     
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);

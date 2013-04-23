@@ -138,28 +138,11 @@ static dispatch_queue_t serialQueue;
 #pragma mark - Base Method for the Services
 // request, class, success, failure
 
-- (void)request:(NSMutableURLRequest *)request factoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success failure:(void (^)(NSError *))failure {
+- (void)request:(NSMutableURLRequest *)request factoryClass:(Class)factoryClass success:(void (^)(GCResponse *response))success failure:(void (^)(NSError *error))failure {
+    
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         
-        DCKeyValueObjectMapping *responseParser = [DCKeyValueObjectMapping mapperForClass:[GCResponseStatus class]];
-        DCKeyValueObjectMapping *dataParser = [DCKeyValueObjectMapping mapperForClass:factoryClass];
-        DCKeyValueObjectMapping *paginationParser = [DCKeyValueObjectMapping mapperForClass:[GCPagination class]];
-        
-        GCResponse *gcResponse = [GCResponse new];
-        gcResponse.response = [responseParser parseDictionary:[JSON objectForKey:kGCResponse]];
-        
-        if (factoryClass != nil) {
-            if ([[JSON objectForKey:kGCData] isKindOfClass:[NSArray class]]) {
-                gcResponse.data = [dataParser parseArray:[JSON objectForKey:kGCData]];
-            } else {
-                gcResponse.data = [dataParser parseDictionary:[JSON objectForKey:kGCData]];
-            }
-        }
-        
-        gcResponse.pagination = [paginationParser parseDictionary:[JSON objectForKey:kGCPagination]];
-        
-        success(gcResponse);
-        
+        [self parseJSON:JSON withFactoryClass:factoryClass success:success];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Failure: %@", JSON);
@@ -170,6 +153,29 @@ static dispatch_queue_t serialQueue;
     
     
     [operation start];
+}
+
+- (void)parseJSON:(id)JSON withFactoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success
+{
+    
+    DCKeyValueObjectMapping *responseParser = [DCKeyValueObjectMapping mapperForClass:[GCResponseStatus class]];
+    DCKeyValueObjectMapping *dataParser = [DCKeyValueObjectMapping mapperForClass:factoryClass];
+    DCKeyValueObjectMapping *paginationParser = [DCKeyValueObjectMapping mapperForClass:[GCPagination class]];
+    
+    GCResponse *gcResponse = [GCResponse new];
+    gcResponse.response = [responseParser parseDictionary:[JSON objectForKey:kGCResponse]];
+    
+    if (factoryClass != nil) {
+        if ([[JSON objectForKey:kGCData] isKindOfClass:[NSArray class]]) {
+            gcResponse.data = [dataParser parseArray:[JSON objectForKey:kGCData]];
+        } else {
+            gcResponse.data = [dataParser parseDictionary:[JSON objectForKey:kGCData]];
+        }
+    }
+    
+    gcResponse.pagination = [paginationParser parseDictionary:[JSON objectForKey:kGCPagination]];
+    
+    success(gcResponse);
 }
 
 @end
