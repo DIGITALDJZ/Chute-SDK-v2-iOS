@@ -172,6 +172,9 @@ static dispatch_queue_t serialQueue;
             gcResponse.data = [dataParser parseDictionary:[JSON objectForKey:kGCData]];
         }
     }
+    else {
+        gcResponse.data = [JSON objectForKey:kGCData];
+    }
     
     gcResponse.pagination = [paginationParser parseDictionary:[JSON objectForKey:kGCPagination]];
     
