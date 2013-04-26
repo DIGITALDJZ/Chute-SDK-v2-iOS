@@ -1,34 +1,32 @@
 //
-//  GCHeart.h
+//  GCFlag.h
 //  Chute-SDK
 //
-//  Created by Aleksandar Trpeski on 4/25/13.
+//  Created by Aleksandar Trpeski on 4/26/13.
 //  Copyright (c) 2013 Aleksandar Trpeski. All rights reserved.
 //
 /*
- 
  "data": {
- "id": 341,
- "links": {
- "self": {
- "href": "http://api.getchute.com/v2/hearts/341",
- "title": "Heart Details"
+     "id": 1,
+     "links": {
+         "self": {
+             "href": "http://api.getchute.com/v2/flags/1",
+             "title": "Flag Details"
+         }
+     },
+     "created_at": "2012-12-05T15:07:39Z",
+     "updated_at": "2012-12-05T15:07:39Z",
+     "identifier": "zrysgfiurqmqwygnezqo1354720059",
+     "album_id": 2331370,
+     "asset_id": 79517672
  }
- },
- "created_at": "2012-12-05T14:19:21Z",
- "updated_at": "2012-12-05T14:19:21Z",
- "identifier": "riqonhnaomxnjiyorani1354717161",
- "album_id": "2331343",
- "asset_id": 79517672
- }
- 
  */
 
 #import <Foundation/Foundation.h>
 
 @class GCLinks;
 
-@interface GCHeart : NSObject
+@interface GCFlag : NSObject
 
 @property (strong, nonatomic) NSString  *id;
 @property (strong, nonatomic) GCLinks   *links;

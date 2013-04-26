@@ -1,14 +1,14 @@
 //
-//  GCHeart.m
+//  GCFlag.m
 //  Chute-SDK
 //
-//  Created by Aleksandar Trpeski on 4/25/13.
+//  Created by Aleksandar Trpeski on 4/26/13.
 //  Copyright (c) 2013 Aleksandar Trpeski. All rights reserved.
 //
 
-#import "GCHeart.h"
+#import "GCFlag.h"
 
-@implementation GCHeart
+@implementation GCFlag
 
 @synthesize id, links, createdAt, updatedAt, identifier, albumId, assetId;
 
