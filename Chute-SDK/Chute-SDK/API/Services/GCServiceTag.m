@@ -49,7 +49,6 @@ static NSString * const kGCTags = @"tags";
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response, response.data);
     } failure:failure];
-    
 }
 
 + (void)replaceTags:(NSArray *)tags forAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void (^)(NSError *error))failure
@@ -68,7 +67,24 @@ static NSString * const kGCTags = @"tags";
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response, response.data);
     } failure:failure];
+}
+
++ (void)deleteTags:(NSArray *)tags forAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void (^)(NSError *error))failure
+{
+    NSParameterAssert(tags);
+    NSParameterAssert(assetID);
+    NSParameterAssert(albumID);
     
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/tags", albumID, assetID];
+    NSDictionary *params = @{kGCTags: tags};
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientDELETE path:path parameters:params];
+    
+    [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
+        success(response.response, response.data);
+    } failure:failure];
 }
 
 @end
