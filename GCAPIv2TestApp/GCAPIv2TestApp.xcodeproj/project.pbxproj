@@ -472,7 +472,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -492,7 +492,7 @@
 				);
 				PROVISIONING_PROFILE = "39B3AAA2-8E71-4368-A39D-24C6DCAB9784";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
 			};
 			name = Debug;
 		};
@@ -508,7 +508,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -522,7 +522,7 @@
 				);
 				PROVISIONING_PROFILE = "39B3AAA2-8E71-4368-A39D-24C6DCAB9784";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -540,6 +540,7 @@
 				GCC_PREFIX_HEADER = "GCAPIv2TestApp/GCAPIv2TestApp-Prefix.pch";
 				INFOPLIST_FILE = "GCAPIv2TestApp/GCAPIv2TestApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PODS_ROOT[arch=*]" = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
