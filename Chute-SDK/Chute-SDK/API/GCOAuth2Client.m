@@ -11,19 +11,19 @@
 #import "NSDictionary+QueryString.h"
 #import "GCClient.h"
 
-NSString * const kGCBaseURLString = @"https://getchute.com/";
+static NSString * const kGCBaseURLString = @"https://getchute.com/";
 
-NSString * const kGCScope = @"scope";
-NSString * const kGCScopeDefaultValue = @"all_resources manage_resources profile resources";
-NSString * const kGCType = @"type";
-NSString * const kGCTypeValue = @"web_server";
-NSString * const kGCResponseType = @"response_type";
-NSString * const kGCResponseTypeValue = @"code";
-NSString * const kGCClientID = @"client_id";
-NSString * const kGCRedirectURI = @"redirect_uri";
-NSString * const kGCRedirectURIDefaultValue = @"http://getchute.com/oauth/callback";
+static NSString * const kGCScope = @"scope";
+static NSString * const kGCScopeDefaultValue = @"all_resources manage_resources profile resources";
+static NSString * const kGCType = @"type";
+static NSString * const kGCTypeValue = @"web_server";
+static NSString * const kGCResponseType = @"response_type";
+static NSString * const kGCResponseTypeValue = @"code";
+static NSString * const kGCClientID = @"client_id";
+static NSString * const kGCRedirectURI = @"redirect_uri";
+static NSString * const kGCRedirectURIDefaultValue = @"http://getchute.com/oauth/callback";
 
-NSString * const kGCOAuth = @"oauth";
+static NSString * const kGCOAuth = @"oauth";
 
 static NSString * kGCServices[] = {
     @"chute",

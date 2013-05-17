@@ -42,7 +42,7 @@ static NSString * const kGCDefaultPerPage = @"100";
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
     } failure:^(NSError *error) {
-        
+        failure(error);
     }];
 }
 

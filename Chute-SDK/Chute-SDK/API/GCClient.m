@@ -12,6 +12,7 @@
 #import "GCResponseStatus.h"
 #import "GCPagination.h"
 #import "DCKeyValueObjectMapping.h"
+#import "GCUploads.h"
 
 NSString * const kGCClientGET = @"GET";
 NSString * const kGCClientPOST = @"POST";

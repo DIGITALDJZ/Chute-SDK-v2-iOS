@@ -14,7 +14,7 @@ extern NSString * const kGCClientPOST;
 extern NSString * const kGCClientPUT;
 extern NSString * const kGCClientDELETE;
 
-@class GCResponse;
+@class GCResponse, GCUploads;
 
 @interface GCClient : AFHTTPClient
 
@@ -24,6 +24,5 @@ extern NSString * const kGCClientDELETE;
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token;
 - (void)request:(NSMutableURLRequest *)request factoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success failure:(void (^)(NSError *))failure;
-
 
 @end
