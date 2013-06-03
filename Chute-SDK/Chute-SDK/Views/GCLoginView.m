@@ -18,9 +18,9 @@
 
 @synthesize webView, oauth2Client, service, success, failure;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame inParentView:(UIView *)parentView
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frame inParentView:parentView];
     if (self) {
         
         self.webView = [[UIWebView alloc] initWithFrame:contentView.frame];
@@ -53,7 +53,7 @@
     
     CGRect popupFrame = [self popupFrameForView:_view withStartPoint:_startPoint];
     
-    GCLoginView *popup = [[GCLoginView alloc] initWithFrame:popupFrame];
+    GCLoginView *popup = [[GCLoginView alloc] initWithFrame:popupFrame inParentView:_view];
     
     popup.oauth2Client = _oauth2Client;
     popup.service = _service;

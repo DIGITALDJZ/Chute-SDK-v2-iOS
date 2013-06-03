@@ -12,7 +12,6 @@
 		CC49266E168A4AE200397C1E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC492669168A4AC400397C1E /* SystemConfiguration.framework */; };
 		CC4DA5171710BA7C004E2191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4DA5141710BA70004E2191 /* QuartzCore.framework */; };
 		CC4DA52E17143FFA004E2191 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4DA52D17143FFA004E2191 /* MainStoryboard-iPad.storyboard */; };
-		CC4DA53F1715993C004E2191 /* GCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC4DA53E1715993C004E2191 /* GCConfig.plist */; };
 		CCAF7F6A171DA46D00F4BA81 /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F69171DA46D00F4BA81 /* ImagesViewController.m */; };
 		CCC359581689F8CA009E372C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359571689F8CA009E372C /* UIKit.framework */; };
 		CCC3595A1689F8CA009E372C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359591689F8CA009E372C /* Foundation.framework */; };
@@ -53,7 +52,6 @@
 		CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CC4DA5141710BA70004E2191 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CC4DA52D17143FFA004E2191 /* MainStoryboard-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
-		CC4DA53E1715993C004E2191 /* GCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GCConfig.plist; sourceTree = "<group>"; };
 		CCAF7F68171DA46D00F4BA81 /* ImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagesViewController.h; path = GCAPIv2TestApp/ImagesViewController.h; sourceTree = "<group>"; };
 		CCAF7F69171DA46D00F4BA81 /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagesViewController.m; path = GCAPIv2TestApp/ImagesViewController.m; sourceTree = "<group>"; };
 		CCC359531689F8CA009E372C /* GCAPIv2TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCAPIv2TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +163,6 @@
 				CCE2FD84171F54CE00FCB285 /* ImageViewCell.h */,
 				CCE2FD85171F54CE00FCB285 /* ImageViewCell.m */,
 				CCC3595E1689F8CA009E372C /* Supporting Files */,
-				CC4DA53E1715993C004E2191 /* GCConfig.plist */,
 			);
 			path = GCAPIv2TestApp;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 				CCC3596E1689F8CA009E372C /* Default-568h@2x.png in Resources */,
 				CCC359711689F8CA009E372C /* MainStoryboard-iPhone.storyboard in Resources */,
 				CC4DA52E17143FFA004E2191 /* MainStoryboard-iPad.storyboard in Resources */,
-				CC4DA53F1715993C004E2191 /* GCConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +468,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
+				FRAMEWORK_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -490,9 +486,9 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PROVISIONING_PROFILE = "39B3AAA2-8E71-4368-A39D-24C6DCAB9784";
+				PROVISIONING_PROFILE = "0B8EC19B-AF03-4B54-B30B-23C60AC5F855";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
 			};
 			name = Debug;
 		};
@@ -508,7 +504,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
+				FRAMEWORK_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -520,9 +516,9 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PROVISIONING_PROFILE = "39B3AAA2-8E71-4368-A39D-24C6DCAB9784";
+				PROVISIONING_PROFILE = "0B8EC19B-AF03-4B54-B30B-23C60AC5F855";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../GetChute/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -540,7 +536,6 @@
 				GCC_PREFIX_HEADER = "GCAPIv2TestApp/GCAPIv2TestApp-Prefix.pch";
 				INFOPLIST_FILE = "GCAPIv2TestApp/GCAPIv2TestApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				"PODS_ROOT[arch=*]" = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

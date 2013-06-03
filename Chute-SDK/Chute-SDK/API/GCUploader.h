@@ -20,7 +20,10 @@
 
 @property (strong, nonatomic) NSNumber *maxFileSize;
 
++ (GCUploader *)sharedUploader;
 + (NSString *)generateTimestamp;
-+ (void)requestFilesForUpload:(NSArray *)files success:(void (^)(GCUploads *uploads))successsuccess failure:(void (^)(NSError *error))failure;
+
+- (void)uploadFiles:(NSArray *)files success:(void (^) (NSArray *files))success failure:(void (^)(NSError *error))failure;
+- (void)uploadFiles:(NSArray *)files inAlbumsWithIDs:(NSArray *)albumIDs success:(void (^) (NSArray *files))success failure:(void (^)(NSError *error))failure;
 
 @end

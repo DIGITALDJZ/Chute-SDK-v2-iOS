@@ -40,16 +40,6 @@
         NSLog(@"Failed: %@", [error localizedDescription]);
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Login Not Successful!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
-    
-//    CGRect parent = self.view.bounds;
-//    float factorX = 1.0/10.0 * parent.size.width;
-//    float factorY = 1.0/10.0 * parent.size.height;
-//
-//    CGRect rect = CGRectMake(parent.origin.x + factorX, parent.origin.y + factorY, parent.size.width - 2*factorX, parent.size.height - 2*factorY);
-//    GCLoginView *popup = [[GCLoginView alloc] initWithFrame:rect];//self.view.bounds];
-////    [popup show];
-//    [self.view addSubview:popup];
-//	[popup showFromPoint:[sender center]];
 }
 
 #pragma mark - IBActions

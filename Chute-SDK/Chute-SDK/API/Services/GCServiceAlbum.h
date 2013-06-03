@@ -12,14 +12,14 @@
 
 @interface GCServiceAlbum : NSObject
 
-+ (void)getAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure;
++ (void)getAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure;
 + (void)getAlbumsWithSuccess:(void (^)(GCResponseStatus *response, NSArray *albums, GCPagination *pagination))success
                      failure:(void (^)(NSError *error))failure;
-+ (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure;
-+ (void)updateAlbumWithID:(NSNumber *)albumID name:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure;
-+ (void)deleteAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure;
-+ (void)addAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure;
-+ (void)removeAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure;
++ (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure;
++ (void)updateAlbumWithID:(NSNumber *)albumID name:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure;
++ (void)deleteAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure;
++ (void)addAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure;
++ (void)removeAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure;
 
 
 @end

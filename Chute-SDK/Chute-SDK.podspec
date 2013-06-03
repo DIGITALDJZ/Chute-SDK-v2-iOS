@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   
   s.prefix_header_file = 'Chute-SDK/Chute-SDK-Prefix.pch'
   
-  s.source_files = 'Chute-SDK', 'Chute-SDK/**/*.{h,m}'
+  s.source_files = 'Chute-SDK', 'Chute-SDK/**/*.{h,m,c}'
 
   # A list of file patterns which select the header files that should be
   # made available to the application. If the pattern is a directory then the

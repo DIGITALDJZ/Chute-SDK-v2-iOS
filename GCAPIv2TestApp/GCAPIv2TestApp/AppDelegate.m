@@ -8,13 +8,6 @@
 
 #import "AppDelegate.h"
 #import "GCClient.h"
-#import "AFJSONRequestOperation.h"
-#import "GCResponseStatus.h"
-#import "GCServiceAlbum.h"
-#import "GCServiceAsset.h"
-#import "GCCoordinate.h"
-#import "GCServiceAlbum.h"
-#import "GCServiceAsset.h"
 
 @implementation AppDelegate
 
@@ -28,82 +21,6 @@
     
 //    [oauthClient authenticateUsingOAuthWithPath:@"auth/chute" code:@"" redirectURI:@"http://getchute.com/oauth/callback" success:<#^(AFOAuthCredential *credential)success#> failure:<#^(NSError *error)failure#>
 
-    
-
-//    GCCoordinate *coord = [GCCoordinate new];
-//    [coord setLatitude:@20.24];
-//    [coord setLongitude:@20.13];
-//    [GCServiceAsset getAssetsForCentralCoordinate:coord andRadius:@1000000 success:^(GCResponseStatus *response, NSArray *assets, GCPagination *pagination) {
-//
-//        NSLog(@"kex");
-//
-//    } failure:^(NSError *error) {
-//
-//        NSLog(@"dare");
-//        
-//    }];
-//    
-//    
-//    [GCServiceAsset importAssetsFromURLs:@[@"http://chute.github.com/chute-api-v2-documentation/images/logo_developer.png"] forAlbumWithID:@2332606 success:^(GCResponseStatus *response, NSArray *assets, GCPagination *pagination) {
-//        
-//        NSLog(@"kex");
-//        
-//    } failure:^(NSError *error) {
-//        
-//        NSLog(@"dare");
-//        
-//    }];
-
-
-//    [GCServiceAlbum addAssets:@[@23131231, @12332423, @2343243232] ForAlbumWithID:@2332606 success:^(GCResponseStatus *response) {
-//        
-//        NSLog(@"kex");
-//
-//    } failure:^(NSError *error) {
-//
-//        NSLog(@"dare");
-//        
-//    }];
-//
-//    
-//    [GCServiceAlbum updateAlbumWithID:@(2332606) name:@"Test Title" moderateMedia:YES moderateComments:YES success:^(GCResponseStatus *response, GCAlbum *album) {
-//
-//        NSLog(@"kex");
-//
-//    } failure:^(NSError *error) {
-//
-//        NSLog(@"dare");
-//        
-//    }];
-//    
-//    
-//    [GCServiceAlbum createAlbumWithName:@"Kex's Photos" moderateMedia:YES moderateComments:YES success:^(GCResponseStatus *response, GCAlbum *album) {
-//
-//        NSLog(@"kex");
-//
-//    } failure:^(NSError *error) {
-//        
-//        NSLog(@"dare");
-//        
-//    }];
-//    
-//    [GCServiceAlbum getAlbumWithID:@(2332606) success:^(GCResponseStatus *response, GCAlbum *album) {
-//        
-//        NSLog(@"kex");
-//        
-//    } failure:^(NSError *error) {
-//        
-//        NSLog(@"dare");
-//        
-//    }];
-//    
-//    [GCServiceAlbum getAlbumsWithSuccess:^(GCResponseStatus *response, NSArray *albums, GCPagination *pagination) {
-//        NSLog(@"kex");
-//    } failure:^(NSError *error) {
-//        NSLog(@"dare");
-//    }];
-    
-    //https://getchute.com/oauth/access_token?client_id=APP_ID&client_secret=APP_SECRET&code=CODE&grant_type=authorization_code&redirect_uri=REDIRECT_URI
     
     return YES;
 }

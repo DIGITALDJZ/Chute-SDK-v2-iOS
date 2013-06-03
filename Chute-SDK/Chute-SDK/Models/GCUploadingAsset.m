@@ -10,6 +10,13 @@
 
 @implementation GCUploadingAsset
 
-@synthesize uploadInfo;
+@synthesize uploadInfo, uploadProgress;
+
+- (id)init {
+    if (self = [super init])  {
+        self.uploadProgress = @(0);
+    }
+    return self;
+}
 
 @end

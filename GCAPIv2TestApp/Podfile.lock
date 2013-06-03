@@ -8,16 +8,16 @@ PODS:
   - MBProgressHUD (0.6)
 
 DEPENDENCIES:
-  - Chute-SDK (from `../Chute-SDK`)
+  - Chute-SDK (from `/Users/aleksandartrpeski/Dropbox/GetChute (1)/Chute-SDK`)
 
 EXTERNAL SOURCES:
   Chute-SDK:
-    :path: ../Chute-SDK
+    :path: /Users/aleksandartrpeski/Dropbox/GetChute (1)/Chute-SDK
 
 SPEC CHECKSUMS:
-  AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
-  Chute-SDK: 8218aabe66d6e863d17c985b6bf41c72e2162ac5
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+  Chute-SDK: 4b5f1d9f704f5b3298648013c0bc50e88f95ec20
   DCKeyValueObjectMapping: b6d88bad4290d3b1f2e5b770c478734701e3acf0
   MBProgressHUD: 9b55a90566fb5d07df0602f6fd9fa04510ad5d52
 
-COCOAPODS: 0.19.1
+COCOAPODS: 0.20.2

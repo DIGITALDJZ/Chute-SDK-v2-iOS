@@ -29,9 +29,9 @@
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSDictionary *attributes = [fileManager attributesOfItemAtPath:filePath error:&error];
         
-        self.fileName = [fileManager displayNameAtPath:filePath];
+        self.fileName = filePath; //[fileManager displayNameAtPath:filePath];
         self.fileSize = [attributes objectForKey:NSFileSize];
-        self.MD5Hash = CFBridgingRelease(GCCreateMD5HashWithPath(CFBridgingRetain(filePath)));
+        self.MD5Hash = CFBridgingRelease(GCCreateMD5HashWithPath(CFBridgingRetain(filePath))); //[@(arc4random()) stringValue];
         
     }
     return self;

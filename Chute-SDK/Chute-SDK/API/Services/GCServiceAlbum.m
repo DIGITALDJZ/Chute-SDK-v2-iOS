@@ -17,8 +17,7 @@ static NSString * const kGCDefaultAlbumName = @"Album";
 
 @implementation GCServiceAlbum
 
-+ (void)getAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure {
-    
++ (void)getAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
     GCClient *apiClient = [GCClient sharedClient];
     
     NSString *path = [NSString stringWithFormat:@"albums/%@", albumID];
@@ -27,13 +26,11 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
         success(response.response, response.data);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)getAlbumsWithSuccess:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success
-                     failure:(void (^)(NSError *))failure {
++ (void)getAlbumsWithSuccess:(void (^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success
+                     failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -43,12 +40,10 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure {
++ (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -81,13 +76,11 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
         success(response.response, response.data);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
 
-+ (void)updateAlbumWithID:(NSNumber *)albumID name:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *, GCAlbum *))success failure:(void (^)(NSError *))failure {
++ (void)updateAlbumWithID:(NSNumber *)albumID name:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -120,12 +113,10 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
         success(response.response, response.data);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)deleteAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure {
++ (void)deleteAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -135,12 +126,10 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)addAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure {
++ (void)addAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -169,12 +158,10 @@ static NSString * const kGCDefaultAlbumName = @"Album";
 
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)removeAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure {
++ (void)removeAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -203,9 +190,7 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
     
 }
 

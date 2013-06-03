@@ -41,10 +41,7 @@
     [super viewDidAppear:animated];
     
     GCClient *apiClient = [GCClient sharedClient];
-    
-//    [apiClient setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
-    
-    
+            
     if ([apiClient isLoggedIn] == NO)
         [self performSegueWithIdentifier:@"login" sender:self.view];
     [self getAssets];
@@ -56,6 +53,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Adjust cell size for orientation
+////    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+////        return CGSizeMake(170.f, 170.f);
+////    }
+//    return CGSizeMake(80.f, 80.f);
+//}
+//
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    [self.collectionView performBatchUpdates:nil completion:nil];
+//}
 
 #pragma mark - CollectionView Delegate Methods
 

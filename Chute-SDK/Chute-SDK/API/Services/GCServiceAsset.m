@@ -16,7 +16,7 @@
 static NSString * const kGCPerPage = @"per_page";
 static NSString * const kGCDefaultPerPage = @"100";
 
-+ (void)getAssetsForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success failure:(void (^)(NSError *))failure {
++ (void)getAssetsForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -26,12 +26,10 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:failure];
 }
 
-+ (void)getAssetsWithSuccess:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success failure:(void (^)(NSError *))failure {
++ (void)getAssetsWithSuccess:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -41,22 +39,44 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
+}
+////////////////////////////////  THESE ARE THE ONES I'VE ADDED  ////////////////////////////////
++ (void)getAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void (^)(NSError *error))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"assets/%@",assetID];
+
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response, response.data);
+    } failure:failure];
 }
 
-+ (void)importAssetsFromURLs:(NSArray *)urls success:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success failure:(void (^)(NSError *))failure {
++ (void)getAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void (^)(NSError *error))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@", albumID, assetID];
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response, response.data);
+    } failure:failure];
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)importAssetsFromURLs:(NSArray *)urls success:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
     [self importAssetsFromURLs:urls forAlbumWithID:nil success:^(GCResponseStatus *response, NSArray *assets, GCPagination *pagination) {
         success(response, assets, pagination);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
     
 }
 
-+ (void)importAssetsFromURLs:(NSArray *)urls forAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success failure:(void (^)(NSError *))failure {
++ (void)importAssetsFromURLs:(NSArray *)urls forAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *repsonseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -73,12 +93,10 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)updateAssetWithID:(NSNumber *)assetID caption:(NSString *)caption success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure {
++ (void)updateAssetWithID:(NSNumber *)assetID caption:(NSString *)caption success:(void (^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -102,12 +120,10 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)deleteAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *))success failure:(void (^)(NSError *))failure {
++ (void)deleteAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -117,13 +133,11 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
 
-+ (void)getGeoCoordinateForAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *, GCCoordinate *))success failure:(void (^)(NSError *))failure {
++ (void)getGeoCoordinateForAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *responseStatus, GCCoordinate *coordinate))success failure:(void (^)(NSError *error))failure {
     
     
     GCClient *apiClient = [GCClient sharedClient];
@@ -134,12 +148,10 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response, response.data);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
-+ (void)getAssetsForCentralCoordinate:(GCCoordinate *)coordinate andRadius:(NSNumber *)radius success:(void (^)(GCResponseStatus *, NSArray *, GCPagination *))success failure:(void (^)(NSError *))failure {
++ (void)getAssetsForCentralCoordinate:(GCCoordinate *)coordinate andRadius:(NSNumber *)radius success:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -149,9 +161,7 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
 

@@ -7,9 +7,19 @@
 //
 
 #import "GCVote.h"
+#import "GCServiceVote.h"
 
 @implementation GCVote
 
 @synthesize id, links, createdAt, updatedAt, identifier, albumId, assetId;
+
+- (void)removeVoteAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure
+{
+    [GCServiceVote removeVote:self.id assetWithID:assetID inAlbumWithID:albumID success:^(GCResponseStatus *response, GCVote *vote) {
+        success(response,vote);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
 
 @end

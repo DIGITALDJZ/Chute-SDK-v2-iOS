@@ -16,7 +16,7 @@
 + (void)showInView:(UIView *)view;
 + (void) showInView:(UIView *)view fromStartPoint:(CGPoint)startPoint;
 
-- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame inParentView:(UIView *)parentView;
 - (void)layoutSubviews;
 + (CGRect)popupFrameForView:(UIView *)_view withStartPoint:(CGPoint)_startPoint;
 

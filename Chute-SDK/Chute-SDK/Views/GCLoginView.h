@@ -23,7 +23,6 @@
 + (void)showInView:(UIView *)_view fromStartPoint:(CGPoint)startPoint oauth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service;
 + (void)showInView:(UIView *)_view fromStartPoint:(CGPoint)startPoint oauth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service  success:(void(^)(void))_success failure:(void (^)(NSError *))_failure;
 
-//- (id)initWithFrame:(CGRect)frame;
-//- (void)layoutSubviews;
+- (id)initWithFrame:(CGRect)frame inParentView:(UIView *)parentView;
 
 @end

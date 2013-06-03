@@ -36,8 +36,8 @@ static dispatch_queue_t serialQueue;
     static GCClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        serialQueue = dispatch_queue_create("com.getchute.serialqueue", NULL);
-        _sharedClient = [[GCClient alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.getchute.com/v2/"]];
+        serialQueue = dispatch_queue_create("com.getchute.gcclient.serialqueue", NULL);
+        _sharedClient = [[GCClient alloc] initWithBaseURL:[NSURL URLWithString:kGCBaseURLString]];
     });
     
     [_sharedClient setParameterEncoding:AFJSONParameterEncoding];
@@ -65,12 +65,12 @@ static dispatch_queue_t serialQueue;
     
     [self setIsLoggedIn:NO];
     
-    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (status == AFNetworkReachabilityStatusNotReachable) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No Internet connection detected." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
+//    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        if (status == AFNetworkReachabilityStatusNotReachable) {
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No Internet connection detected." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alertView show];
+//        }
+//    }];
     
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
@@ -153,7 +153,7 @@ static dispatch_queue_t serialQueue;
     }];
     
     
-    [operation start];
+    [self enqueueHTTPRequestOperation:operation];
 }
 
 - (void)parseJSON:(id)JSON withFactoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success
