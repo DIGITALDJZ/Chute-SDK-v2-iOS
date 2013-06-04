@@ -48,44 +48,19 @@ describe(@"GCUploader", ^{
             //                fetchedError = error;
             //            }];
             
-            __block NSArray *theFiles = nil;
+            __block NSArray *assets = nil;
             __block NSError *error = nil;
-            [[GCUploader sharedUploader] uploadFiles:@[[GCFile fileAtPath:filePath], [GCFile fileAtPath:filePath2], [GCFile fileAtPath:filePath3], [GCFile fileAtPath:filePath4]] success:^(NSArray *files) {
-                theFiles = files;
+            [[GCUploader sharedUploader] uploadFiles:@[[GCFile fileAtPath:filePath], [GCFile fileAtPath:filePath2], [GCFile fileAtPath:filePath3], [GCFile fileAtPath:filePath4]] progress:^(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads) {
+                
+            }  success:^(NSArray *files) {
+                assets = files;
             } failure:^(NSError *error) {
                 error = error;
             }];
             
-            [[expectFutureValue(theFiles) shouldEventuallyBeforeTimingOutAfter(120.0)] equal:@[@"lala"]];
+            [[expectFutureValue(assets) shouldEventuallyBeforeTimingOutAfter(120.0)] beNonNil];
             [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(300.0)] beNil];
-            
-            //            NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"chute" ofType:@"png"];
-            //            DCParserConfiguration *configuration= [DCParserConfiguration configuration];
-            //            DCObjectMapping *fileNameMapper = [DCObjectMapping mapKeyPath:@"filename" toAttribute:@"fileName" onClass:[GCFile class]];
-            //            DCObjectMapping *fileSizeMapper = [DCObjectMapping mapKeyPath:@"size" toAttribute:@"fileSize" onClass:[GCFile class]];
-            //            DCObjectMapping *fileMD5Mapper = [DCObjectMapping mapKeyPath:@"md5" toAttribute:@"MD5Hash" onClass:[GCFile class]];
-            //            [configuration addObjectMapping:fileNameMapper];
-            //            [configuration addObjectMapping:fileSizeMapper];
-            //            [configuration addObjectMapping:fileMD5Mapper];
-            //            DCKeyValueObjectMapping *mapping = [DCKeyValueObjectMapping mapperForClass:[GCFile class] andConfiguration:configuration];
-            //            NSArray *files = @[[mapping serializeObject:[GCFile fileAtPath:filePath]]];
-            //
-            //            NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPOST path:@"uploads" parameters:@{@"files":files}];
-            //
-            //            __block id data;
-            //
-            //            void (^success)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            //                data = JSON;
-            //                NSLog(@"DATA: %@", JSON);
-            //            };
-            //            void (^failure)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            //                data = error;
-            //                NSLog(error);
-            //            };
-            //
-            //            AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:success failure:failure];
-            //            [operation start];
-            //            [[data shouldEventuallyBeforeTimingOutAfter(5.0)] beKindOfClass:[NSDictionary class]];
+
         });
         
         it(@"should create an uploading notification", ^{

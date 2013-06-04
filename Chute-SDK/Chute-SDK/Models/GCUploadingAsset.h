@@ -12,7 +12,6 @@
 
 @interface GCUploadingAsset : GCAsset
 
-@property (nonatomic, strong) NSNumber *uploadProgress;
 @property (nonatomic, strong) GCUploadInfo *uploadInfo;
 
 @end

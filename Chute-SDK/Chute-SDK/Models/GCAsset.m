@@ -29,9 +29,6 @@
     }];
 }
 
-//DODADENI METODI - ZAMERKATA MOZES DA JA ZAKOMENTIRAS I DA MI PISES KRATKO OBJASNUVANJE
-
-
 - (void)getCommentsForAssetInAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *comments,GCPagination *pagination))success failure:(void (^)(NSError *error))failure
 {
     [GCServiceComment getCommentsForAssetWithID:self.id inAlbumWithID:albumID success:^(GCResponseStatus *responseStatus, NSArray *comments, GCPagination *pagination) {
@@ -49,8 +46,6 @@
         failure(error);
     }];
 }
-
-// replaceTags i deleteTags mora vo ovaa klasa da idat
 
 - (void)replaceTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void(^)(NSError *error))failure
 {

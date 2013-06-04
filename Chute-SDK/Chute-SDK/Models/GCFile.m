@@ -31,7 +31,7 @@
         
         self.fileName = filePath; //[fileManager displayNameAtPath:filePath];
         self.fileSize = [attributes objectForKey:NSFileSize];
-        self.MD5Hash = CFBridgingRelease(GCCreateMD5HashWithPath(CFBridgingRetain(filePath))); //[@(arc4random()) stringValue];
+        self.MD5Hash = /*CFBridgingRelease(GCCreateMD5HashWithPath(CFBridgingRetain(filePath))); */[@(arc4random()) stringValue];
         
     }
     return self;
