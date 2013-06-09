@@ -18,11 +18,11 @@ extern NSString * const kGCClientDELETE;
 
 @interface GCClient : AFHTTPClient
 
-@property (assign, nonatomic) BOOL isLoggedIn;
-
 + (GCClient *)sharedClient;
 
+- (BOOL)isLoggedIn;
 - (void)setAuthorizationHeaderWithToken:(NSString *)token;
+- (NSString *)authorizationToken;
 - (void)request:(NSMutableURLRequest *)request factoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success failure:(void (^)(NSError *))failure;
 
 @end

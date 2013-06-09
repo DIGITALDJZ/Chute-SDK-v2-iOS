@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		67ABB6F1B9A74A2A8392F0EE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A506D29B144105888A40DD /* libPods.a */; };
+		CC0EA6E6176447E300A9B622 /* chute.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0EA6E5176447E300A9B622 /* chute.png */; };
 		CC49266D168A4AE200397C1E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */; };
 		CC49266E168A4AE200397C1E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC492669168A4AC400397C1E /* SystemConfiguration.framework */; };
 		CC4DA5171710BA7C004E2191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4DA5141710BA70004E2191 /* QuartzCore.framework */; };
@@ -48,6 +49,7 @@
 		6DD348C5E8FF497087FABC8B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		92A506D29B144105888A40DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9614534300904C54936F29C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0EA6E5176447E300A9B622 /* chute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chute.png; sourceTree = "<group>"; };
 		CC492669168A4AC400397C1E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CC4DA5141710BA70004E2191 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -170,6 +172,7 @@
 		CCC3595E1689F8CA009E372C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC0EA6E5176447E300A9B622 /* chute.png */,
 				CCC3595F1689F8CA009E372C /* GCAPIv2TestApp-Info.plist */,
 				CCC359601689F8CA009E372C /* InfoPlist.strings */,
 				CCC359631689F8CA009E372C /* main.m */,
@@ -283,6 +286,7 @@
 				CCC3596E1689F8CA009E372C /* Default-568h@2x.png in Resources */,
 				CCC359711689F8CA009E372C /* MainStoryboard-iPhone.storyboard in Resources */,
 				CC4DA52E17143FFA004E2191 /* MainStoryboard-iPad.storyboard in Resources */,
+				CC0EA6E6176447E300A9B622 /* chute.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

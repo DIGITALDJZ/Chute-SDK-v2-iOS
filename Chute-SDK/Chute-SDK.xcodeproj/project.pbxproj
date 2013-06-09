@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC0EA6BB176217BB00A9B622 /* GCImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6BA176217BB00A9B622 /* GCImageData.m */; };
+		CC0EA6DA17643D4D00A9B622 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6C217643D4C00A9B622 /* AppDelegate.m */; };
+		CC0EA6DB17643D4D00A9B622 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6C917643D4C00A9B622 /* main.m */; };
+		CC0EA6DC17643D4D00A9B622 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6CB17643D4C00A9B622 /* ViewController.m */; };
+		CC0EA6DD17643D4D00A9B622 /* LockboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6D317643D4D00A9B622 /* LockboxTests.m */; };
+		CC0EA6DE17643D4D00A9B622 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6D717643D4D00A9B622 /* Lockbox.m */; };
 		CC2985EC173ED628003C28A6 /* GCFile.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2985EB173ED628003C28A6 /* GCFile.m */; };
 		CC2985EF173F286A003C28A6 /* GCMD5Hash.c in Sources */ = {isa = PBXBuildFile; fileRef = CC2985EE173F286A003C28A6 /* GCMD5Hash.c */; };
 		CC2985F3173F37BD003C28A6 /* chute.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2985F1173F2F60003C28A6 /* chute.png */; };
+		CC9A73581760ED6400B7F271 /* GCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9A73571760ED6400B7F271 /* GCFileManager.m */; };
 		CCAF7F29171D95C800F4BA81 /* GCLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF6171D95C700F4BA81 /* GCLoginView.m */; };
 		CCAF7F2A171D95C800F4BA81 /* GCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF8171D95C700F4BA81 /* GCPopupView.m */; };
 		CCAF7F2B171D95C800F4BA81 /* GCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EFB171D95C700F4BA81 /* GCClient.m */; };
@@ -171,6 +178,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CC0EA6E117643D4D00A9B622 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2D0B9E5F1540556E00E5BE71;
+			remoteInfo = LockBox;
+		};
+		CC0EA6E317643D4D00A9B622 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D6801E816B478CB000CED0E;
+			remoteInfo = UnitTests;
+		};
 		CCC9A2371672716E0016BD3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CCC9A2171672716D0016BD3C /* Project object */;
@@ -193,6 +214,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CC0EA6B9176217BB00A9B622 /* GCImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCImageData.h; sourceTree = "<group>"; };
+		CC0EA6BA176217BB00A9B622 /* GCImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCImageData.m; sourceTree = "<group>"; };
+		CC0EA6BD17643D4C00A9B622 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CC0EA6BE17643D4C00A9B622 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CC0EA6C117643D4C00A9B622 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CC0EA6C217643D4C00A9B622 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CC0EA6C417643D4C00A9B622 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CC0EA6C617643D4C00A9B622 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		CC0EA6C717643D4C00A9B622 /* LockBox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LockBox-Info.plist"; sourceTree = "<group>"; };
+		CC0EA6C817643D4C00A9B622 /* LockBox-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LockBox-Prefix.pch"; sourceTree = "<group>"; };
+		CC0EA6C917643D4C00A9B622 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CC0EA6CA17643D4C00A9B622 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CC0EA6CB17643D4C00A9B622 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LockBox.xcodeproj; sourceTree = "<group>"; };
+		CC0EA6D117643D4D00A9B622 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CC0EA6D217643D4D00A9B622 /* LockboxTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockboxTests.h; sourceTree = "<group>"; };
+		CC0EA6D317643D4D00A9B622 /* LockboxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockboxTests.m; sourceTree = "<group>"; };
+		CC0EA6D417643D4D00A9B622 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		CC0EA6D517643D4D00A9B622 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		CC0EA6D617643D4D00A9B622 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
+		CC0EA6D717643D4D00A9B622 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox.m; sourceTree = "<group>"; };
+		CC0EA6D817643D4D00A9B622 /* Lockbox.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lockbox.podspec; sourceTree = "<group>"; };
+		CC0EA6D917643D4D00A9B622 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		CC2985EA173ED627003C28A6 /* GCFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCFile.h; sourceTree = "<group>"; };
 		CC2985EB173ED628003C28A6 /* GCFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFile.m; sourceTree = "<group>"; };
 		CC2985EE173F286A003C28A6 /* GCMD5Hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GCMD5Hash.c; sourceTree = "<group>"; };
@@ -201,6 +245,8 @@
 		CC2985F4173F404D003C28A6 /* DCParserConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCParserConfiguration.h; sourceTree = "<group>"; };
 		CC2985F5173F412D003C28A6 /* DCObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCObjectMapping.h; sourceTree = "<group>"; };
 		CC2985F6173F4224003C28A6 /* DCValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCValueConverter.h; sourceTree = "<group>"; };
+		CC9A73561760ED6400B7F271 /* GCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCFileManager.h; sourceTree = "<group>"; };
+		CC9A73571760ED6400B7F271 /* GCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFileManager.m; sourceTree = "<group>"; };
 		CCAF7EF5171D95C700F4BA81 /* GCLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLoginView.h; sourceTree = "<group>"; };
 		CCAF7EF6171D95C700F4BA81 /* GCLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLoginView.m; sourceTree = "<group>"; };
 		CCAF7EF7171D95C700F4BA81 /* GCPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPopupView.h; sourceTree = "<group>"; };
@@ -537,6 +583,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC0EA6BC17643D4C00A9B622 /* Lockbox */ = {
+			isa = PBXGroup;
+			children = (
+				CC0EA6BD17643D4C00A9B622 /* .gitignore */,
+				CC0EA6BE17643D4C00A9B622 /* LICENSE */,
+				CC0EA6BF17643D4C00A9B622 /* LockBox */,
+				CC0EA6D617643D4D00A9B622 /* Lockbox.h */,
+				CC0EA6D717643D4D00A9B622 /* Lockbox.m */,
+				CC0EA6D817643D4D00A9B622 /* Lockbox.podspec */,
+				CC0EA6D917643D4D00A9B622 /* README.md */,
+			);
+			path = Lockbox;
+			sourceTree = "<group>";
+		};
+		CC0EA6BF17643D4C00A9B622 /* LockBox */ = {
+			isa = PBXGroup;
+			children = (
+				CC0EA6C017643D4C00A9B622 /* LockBox */,
+				CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */,
+				CC0EA6CF17643D4D00A9B622 /* UnitTests */,
+			);
+			path = LockBox;
+			sourceTree = "<group>";
+		};
+		CC0EA6C017643D4C00A9B622 /* LockBox */ = {
+			isa = PBXGroup;
+			children = (
+				CC0EA6C117643D4C00A9B622 /* AppDelegate.h */,
+				CC0EA6C217643D4C00A9B622 /* AppDelegate.m */,
+				CC0EA6C317643D4C00A9B622 /* InfoPlist.strings */,
+				CC0EA6C517643D4C00A9B622 /* ViewController.xib */,
+				CC0EA6C717643D4C00A9B622 /* LockBox-Info.plist */,
+				CC0EA6C817643D4C00A9B622 /* LockBox-Prefix.pch */,
+				CC0EA6C917643D4C00A9B622 /* main.m */,
+				CC0EA6CA17643D4C00A9B622 /* ViewController.h */,
+				CC0EA6CB17643D4C00A9B622 /* ViewController.m */,
+			);
+			path = LockBox;
+			sourceTree = "<group>";
+		};
+		CC0EA6CD17643D4C00A9B622 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC0EA6E217643D4D00A9B622 /* LockBox.app */,
+				CC0EA6E417643D4D00A9B622 /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC0EA6CF17643D4D00A9B622 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				CC0EA6D017643D4D00A9B622 /* InfoPlist.strings */,
+				CC0EA6D217643D4D00A9B622 /* LockboxTests.h */,
+				CC0EA6D317643D4D00A9B622 /* LockboxTests.m */,
+				CC0EA6D417643D4D00A9B622 /* UnitTests-Info.plist */,
+				CC0EA6D517643D4D00A9B622 /* UnitTests-Prefix.pch */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		CCAF7EF4171D95C700F4BA81 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +743,8 @@
 				CCC23E6D174535230091887A /* GCUploads.m */,
 				CCC23E70174547150091887A /* GCUploadInfo.h */,
 				CCC23E71174547150091887A /* GCUploadInfo.m */,
+				CC0EA6B9176217BB00A9B622 /* GCImageData.h */,
+				CC0EA6BA176217BB00A9B622 /* GCImageData.m */,
 			);
 			name = Models;
 			path = "Chute-SDK/Models";
@@ -654,6 +763,8 @@
 				CCAF7F28171D95C800F4BA81 /* NSString+QueryString.m */,
 				CC2985F0173F2884003C28A6 /* GCMD5Hash.h */,
 				CC2985EE173F286A003C28A6 /* GCMD5Hash.c */,
+				CC9A73561760ED6400B7F271 /* GCFileManager.h */,
+				CC9A73571760ED6400B7F271 /* GCFileManager.m */,
 			);
 			name = Util;
 			path = "Chute-SDK/Util";
@@ -662,6 +773,7 @@
 		CCAF7F42171D98BC00F4BA81 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				CC0EA6BC17643D4C00A9B622 /* Lockbox */,
 				CCE2FD8A17214F3D00FCB285 /* Kiwi */,
 				CCAF7F43171D98BC00F4BA81 /* AFNetworking */,
 				CCAF7F57171D98BC00F4BA81 /* KeyValueObjectMapping */,
@@ -1064,6 +1176,12 @@
 			mainGroup = CCC9A2151672716D0016BD3C;
 			productRefGroup = CCC9A2211672716D0016BD3C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CC0EA6CD17643D4C00A9B622 /* Products */;
+					ProjectRef = CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CCC9A21F1672716D0016BD3C /* Chute-SDK */,
@@ -1071,6 +1189,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CC0EA6E217643D4D00A9B622 /* LockBox.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = LockBox.app;
+			remoteRef = CC0EA6E117643D4D00A9B622 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CC0EA6E417643D4D00A9B622 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = CC0EA6E317643D4D00A9B622 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CCC9A22E1672716E0016BD3C /* Resources */ = {
@@ -1163,6 +1298,13 @@
 				CCE2B4BE17426C1C00F4EB19 /* GCUploadingAsset.m in Sources */,
 				CCC23E6E174535230091887A /* GCUploads.m in Sources */,
 				CCC23E72174547150091887A /* GCUploadInfo.m in Sources */,
+				CC9A73581760ED6400B7F271 /* GCFileManager.m in Sources */,
+				CC0EA6BB176217BB00A9B622 /* GCImageData.m in Sources */,
+				CC0EA6DA17643D4D00A9B622 /* AppDelegate.m in Sources */,
+				CC0EA6DB17643D4D00A9B622 /* main.m in Sources */,
+				CC0EA6DC17643D4D00A9B622 /* ViewController.m in Sources */,
+				CC0EA6DD17643D4D00A9B622 /* LockboxTests.m in Sources */,
+				CC0EA6DE17643D4D00A9B622 /* Lockbox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1273,6 +1415,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CC0EA6C317643D4C00A9B622 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC0EA6C417643D4C00A9B622 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CC0EA6C517643D4C00A9B622 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC0EA6C617643D4C00A9B622 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+		CC0EA6D017643D4D00A9B622 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC0EA6D117643D4D00A9B622 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		CCE2FF01172151EB00FCB285 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

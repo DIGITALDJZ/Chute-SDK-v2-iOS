@@ -1,36 +1,40 @@
 //
 //  AppDelegate.m
-//  GCServiceAPIv2TestApp
+//  LockBox
 //
-//  Created by Aleksandar Trpeski on 12/25/12.
-//  Copyright (c) 2012 Aleksandar Trpeski. All rights reserved.
+//  Created by Mark H. Granoff on 4/19/12.
+//  Copyright (c) 2012 Hawk iMedia. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "GCClient.h"
+
+#import "ViewController.h"
 
 @implementation AppDelegate
 
+@synthesize window = _window;
+@synthesize viewController = _viewController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [[GCClient sharedClient] setAuthorizationHeaderWithToken:@"092220d0ea809448f0070c2d60a9bc29e7b3d36ce57257a283face54bd0ade09"];
-  
-    
-//    NSURL *url = [NSURL URLWithString:@"http://getchute.com/"];
-//    AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:@"50d9c930018d1672df00002e" secret:@"ee9b33013c0592aa41d30d1f347ff62514b737e61e6ce9c64fb13a44d31917d9"];
-    
-//    [oauthClient authenticateUsingOAuthWithPath:@"auth/chute" code:@"" redirectURI:@"http://getchute.com/oauth/callback" success:<#^(AFOAuthCredential *credential)success#> failure:<#^(NSError *error)failure#>
-
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    if ([userDefaults objectForKey:@"GCToken"]) {
-//        GCClient *apiClient = [GCClient sharedClient];
-//        [apiClient setAuthorizationHeaderWithToken:[userDefaults objectForKey:@"GCToken"]];
-//        [apiClient setIsLoggedIn:YES];
-//    }
-    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    ViewController *vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.viewController = vc;
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
     return YES;
 }
-							
+
+#if !__has_feature(objc_arc)
+-(void)dealloc
+{
+    [_viewController release];
+    [_window release];
+    [super dealloc];
+}
+#endif
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -39,12 +43,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    GCClient *apiClient = [GCClient sharedClient];
-//    if ([apiClient isLoggedIn]) {
-//        [userDefaults setObject:[apiClient authorizationToken] forKey:@"GCToken"];
-//        [userDefaults synchronize];
-//    }
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="c3s-4X-DUx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="c3s-4X-DUx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -160,17 +160,17 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eg4-RA-0BX">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="75" height="75"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="SZ5-49-Iph" customClass="ImageViewCell">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cye-Jl-tcH"/>
@@ -178,15 +178,14 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="leading" secondItem="SZ5-49-Iph" secondAttribute="leading" type="default" id="EW1-lX-taL"/>
-                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="bottom" secondItem="SZ5-49-Iph" secondAttribute="bottom" type="default" id="FvH-2N-GJb"/>
-                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="trailing" secondItem="SZ5-49-Iph" secondAttribute="trailing" type="default" id="eeJ-b7-cPi"/>
-                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="top" secondItem="SZ5-49-Iph" secondAttribute="top" type="default" id="u0y-Tl-jMw"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="trailing" secondItem="SZ5-49-Iph" secondAttribute="trailing" type="default" id="7hf-8v-VvZ"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="leading" secondItem="SZ5-49-Iph" secondAttribute="leading" type="default" id="hKQ-zD-OTC"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="bottom" secondItem="SZ5-49-Iph" secondAttribute="bottom" type="default" id="lfi-ul-iZI"/>
+                                    <constraint firstItem="cye-Jl-tcH" firstAttribute="top" secondItem="SZ5-49-Iph" secondAttribute="top" type="default" id="xq3-Cu-jYv"/>
                                 </constraints>
-                                <size key="customSize" width="120" height="120"/>
                                 <connections>
                                     <outlet property="imageView" destination="cye-Jl-tcH" id="Bu8-AE-grc"/>
-                                    <segue destination="RVm-YK-sv5" kind="modal" identifier="details" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="wWs-q7-TX9"/>
+                                    <segue destination="9im-gZ-YYi" kind="modal" identifier="details" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="wWs-q7-TX9"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -215,41 +214,33 @@
             <objects>
                 <viewController id="RVm-YK-sv5" customClass="ImageDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T43-fB-MIW">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="44" width="540" height="576"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaY-Bz-CR5">
-                                <items>
-                                    <navigationItem id="ruF-kp-PcR">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="TXK-vp-Fwc">
-                                            <connections>
-                                                <action selector="close:" destination="RVm-YK-sv5" id="nxT-K2-1VI"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-gF-YD3"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GaY-Bz-CR5" firstAttribute="trailing" secondItem="T43-fB-MIW" secondAttribute="trailing" type="default" id="A2W-e2-6pT"/>
-                            <constraint firstItem="Boa-gF-YD3" firstAttribute="bottom" secondItem="T43-fB-MIW" secondAttribute="bottom" type="default" id="U6t-2U-Mrg"/>
-                            <constraint firstItem="Boa-gF-YD3" firstAttribute="trailing" secondItem="T43-fB-MIW" secondAttribute="trailing" type="default" id="bW3-zn-m4m"/>
-                            <constraint firstItem="Boa-gF-YD3" firstAttribute="top" secondItem="GaY-Bz-CR5" secondAttribute="bottom" type="default" id="fKJ-7H-a7A"/>
-                            <constraint firstItem="Boa-gF-YD3" firstAttribute="leading" secondItem="T43-fB-MIW" secondAttribute="leading" type="default" id="hQA-nq-4Bv"/>
-                            <constraint firstItem="GaY-Bz-CR5" firstAttribute="leading" secondItem="T43-fB-MIW" secondAttribute="leading" type="default" id="qWb-Sg-mY9"/>
-                            <constraint firstItem="GaY-Bz-CR5" firstAttribute="top" secondItem="T43-fB-MIW" secondAttribute="top" type="default" id="u3W-rK-4SH"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="top" secondItem="T43-fB-MIW" secondAttribute="top" type="default" id="5zd-LZ-SlR"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="leading" secondItem="T43-fB-MIW" secondAttribute="leading" type="default" id="GtM-Y2-Su9"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="trailing" secondItem="T43-fB-MIW" secondAttribute="trailing" type="default" id="SdG-hF-gms"/>
+                            <constraint firstItem="Boa-gF-YD3" firstAttribute="bottom" secondItem="T43-fB-MIW" secondAttribute="bottom" type="default" id="cxd-6t-a06"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="oHd-fu-GsQ"/>
+                    <navigationItem key="navigationItem" id="oHd-fu-GsQ">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="IF1-wf-IrT">
+                            <connections>
+                                <action selector="close:" destination="RVm-YK-sv5" id="jqv-lr-fuH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="Boa-gF-YD3" id="c6t-Eb-uUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDK-Pe-rFo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2984" y="-47"/>
+            <point key="canvasLocation" x="3730" y="-47"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aaA-ih-PPt">
@@ -268,6 +259,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYG-F8-RKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1036" y="-255"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3jb-0w-LO3">
+            <objects>
+                <navigationController id="9im-gZ-YYi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mc2-gX-oo1">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RVm-YK-sv5" kind="relationship" relationship="rootViewController" id="taq-5M-Og1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n0J-Vc-ktn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2984" y="-47"/>
         </scene>
     </scenes>
     <classes>
@@ -289,6 +299,16 @@
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chute:"/>
+                <relationship kind="action" name="facebook:"/>
+                <relationship kind="action" name="flickr:"/>
+                <relationship kind="action" name="foursquare:"/>
+                <relationship kind="action" name="google:"/>
+                <relationship kind="action" name="instagram:"/>
+                <relationship kind="action" name="trendabl:"/>
+                <relationship kind="action" name="twitter:"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -304,6 +324,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

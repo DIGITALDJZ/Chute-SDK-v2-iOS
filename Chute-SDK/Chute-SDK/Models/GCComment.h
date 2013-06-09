@@ -29,7 +29,7 @@
 
 @interface GCComment : NSObject
 
-@property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) NSNumber *id;
 @property (strong, nonatomic) GCLinks *links;
 @property (strong, nonatomic) NSDate *createdAt;
 @property (strong, nonatomic) NSDate *updatedAt;

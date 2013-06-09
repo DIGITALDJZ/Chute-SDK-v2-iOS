@@ -1,23 +1,26 @@
 PODS:
-  - AFNetworking (1.2.1)
+  - AFNetworking (1.3.0)
   - Chute-SDK (0.0.1):
     - AFNetworking
     - DCKeyValueObjectMapping
+    - Lockbox
     - MBProgressHUD
   - DCKeyValueObjectMapping (1.3)
+  - Lockbox (1.4.2)
   - MBProgressHUD (0.6)
 
 DEPENDENCIES:
-  - Chute-SDK (from `/Users/aleksandartrpeski/Dropbox/GetChute (1)/Chute-SDK`)
+  - Chute-SDK (from `../Chute-SDK`)
 
 EXTERNAL SOURCES:
   Chute-SDK:
-    :path: /Users/aleksandartrpeski/Dropbox/GetChute (1)/Chute-SDK
+    :path: ../Chute-SDK
 
 SPEC CHECKSUMS:
-  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
-  Chute-SDK: 4b5f1d9f704f5b3298648013c0bc50e88f95ec20
+  AFNetworking: e528f20d06b1b818c3571266fb5efa20031a8ace
+  Chute-SDK: e40e34596144b60f2dbeaa0238cf644fc06ff4bf
   DCKeyValueObjectMapping: b6d88bad4290d3b1f2e5b770c478734701e3acf0
+  Lockbox: d1be948dcf7ef9e584ee9d56787728f99336e87f
   MBProgressHUD: 9b55a90566fb5d07df0602f6fd9fa04510ad5d52
 
 COCOAPODS: 0.20.2

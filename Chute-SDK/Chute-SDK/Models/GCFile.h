@@ -15,8 +15,9 @@
 @property (strong, nonatomic) NSString *MD5Hash;
 
 + (instancetype)fileAtPath:(NSString *)filePath;
-- (instancetype)initWithFileAtPath:(NSString *)filePath;
++ (instancetype)fileWithUIImage:(UIImage *)image;
 
+- (instancetype)initWithFileAtPath:(NSString *)filePath;
 - (NSDictionary *)serialize;
 
 

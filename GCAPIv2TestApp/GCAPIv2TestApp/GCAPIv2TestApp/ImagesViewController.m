@@ -13,6 +13,9 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "ImageViewCell.h"
 #import "ImageDetailsViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <Chute-SDK/GCUploader.h>
+#import <Chute-SDK/GCFile.h>
 
 @interface ImagesViewController ()
 
@@ -21,6 +24,7 @@
 @implementation ImagesViewController
 
 @synthesize assets;
+@synthesize popOver;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +48,8 @@
             
     if ([apiClient isLoggedIn] == NO)
         [self performSegueWithIdentifier:@"login" sender:self.view];
-    [self getAssets];
+    else
+        [self getAssets];
 
 }
 
@@ -60,9 +65,9 @@
 ////    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 ////        return CGSizeMake(170.f, 170.f);
 ////    }
-//    return CGSizeMake(80.f, 80.f);
+//    return CGSizeMake(75.f, 75.f);
 //}
-//
+
 //- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 //{
 //    [self.collectionView performBatchUpdates:nil completion:nil];
@@ -106,11 +111,50 @@
     }
 }
 
+#pragma mark - UIImagePicker Delegate Methods
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    if (self.popOver) {
+        [self.popOver dismissPopoverAnimated:YES];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+
+    
+    
+    GCUploader *uploader = [GCUploader sharedUploader];
+    [uploader uploadFiles:@[[GCFile fileWithUIImage:[info objectForKey:UIImagePickerControllerOriginalImage]]] inAlbumsWithIDs:@[@(2425529)] progress:^(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads) {
+        NSLog(@"Progress: %f", currentUploadProgress);
+    } success:^(NSArray *_assets) {
+        [self getAssets];
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    } failure:^(NSError *error) {
+        NSLog([error localizedDescription]);
+    }];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 #pragma mark - SEGUE 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"details"]) {
-        ImageDetailsViewController *vc = segue.destinationViewController;
+        
+        ImageDetailsViewController *vc;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+            vc = [[segue.destinationViewController viewControllers] objectAtIndex:0];
+        else
+            vc = segue.destinationViewController;
         NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
         GCAsset *asset = [assets objectAtIndex:indexPath.item];
         [vc setAsset:asset];
@@ -121,11 +165,28 @@
 #pragma mark - IBActions
 
 - (IBAction)addAsset:(id)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Import Asset from URL:" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *inputField = [alertView textFieldAtIndex:0];
-    inputField.keyboardType = UIKeyboardTypeURL;
-    [alertView show];
+    
+    UIImagePickerController *picker = [UIImagePickerController new];
+    [picker setDelegate:self];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (![[self popOver] isPopoverVisible]) {
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:picker];
+            [popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            self.popOver = popover;
+        }
+        else {
+            [[self popOver] dismissPopoverAnimated:NO];
+        }
+    }
+    else {
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Import Asset from URL:" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
+//    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    UITextField *inputField = [alertView textFieldAtIndex:0];
+//    inputField.keyboardType = UIKeyboardTypeURL;
+//    [alertView show];
 }
 
 #pragma mark - Custom Methods
@@ -133,7 +194,7 @@
 - (void)getAssets {
     
     [GCServiceAsset getAssetsWithSuccess:^(GCResponseStatus *response, NSArray *_assets, GCPagination *pagination) {
-        self.assets = _assets;
+        self.assets = [[NSMutableArray alloc] initWithArray:_assets];
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Cannot fetch assets!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

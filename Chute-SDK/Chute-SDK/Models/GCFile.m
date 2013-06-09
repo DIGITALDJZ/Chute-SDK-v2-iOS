@@ -11,6 +11,8 @@
 #import "DCKeyValueObjectMapping.h"
 #import "DCParserConfiguration.h"
 #import "DCObjectMapping.h"
+#import "GCFileManager.h"
+#import "GCImageData.h"
 
 @implementation GCFile
 
@@ -31,10 +33,18 @@
         
         self.fileName = filePath; //[fileManager displayNameAtPath:filePath];
         self.fileSize = [attributes objectForKey:NSFileSize];
-        self.MD5Hash = /*CFBridgingRelease(GCCreateMD5HashWithPath(CFBridgingRetain(filePath))); */[@(arc4random()) stringValue];
+        self.MD5Hash = CFBridgingRelease(GCCreateMD5HashWithPath(CFBridgingRetain(filePath))); //[@(arc4random()) stringValue];
         
     }
     return self;
+}
+
++ (instancetype)fileWithUIImage:(UIImage *)image
+{
+    GCImageData *imageData = [GCImageData dataWithUIImage:image];
+    NSString *filePath = [GCFileManager createTempFileWithData:imageData.data extension:imageData.extension];
+    
+    return [GCFile fileAtPath:filePath];
 }
 
 - (NSDictionary *)serialize

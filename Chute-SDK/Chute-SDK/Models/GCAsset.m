@@ -139,9 +139,9 @@
     }];
 }
 
-- (void)getAssetWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure
++ (void)getAssetWithID:(NSNumber *)ID Success:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure
 {
-    [GCServiceAsset getAssetWithID:self.id success:^(GCResponseStatus *responseStatus, GCAsset *asset) {
+    [GCServiceAsset getAssetWithID:ID success:^(GCResponseStatus *responseStatus, GCAsset *asset) {
         success(responseStatus,asset);
     } failure:^(NSError *error) {
         failure(error);

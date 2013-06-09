@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xu0-Xs-3dR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xu0-Xs-3dR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -160,35 +160,32 @@
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="EQX-ne-L5M">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dkl-bN-A7J">
-                            <size key="itemSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="dkl-bN-A7J">
+                            <size key="itemSize" width="75" height="75"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="OPq-uw-Ynw" customClass="ImageViewCell">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyD-pW-xc9">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="300" id="EzJ-0G-JNE"/>
-                                                <constraint firstAttribute="width" constant="300" id="cni-ow-n1p"/>
-                                            </constraints>
-                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZyD-pW-xc9"/>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" cyan="0.69999999999999996" magenta="0.14999999999999999" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ZyD-pW-xc9" firstAttribute="centerY" secondItem="OPq-uw-Ynw" secondAttribute="centerY" type="default" id="5Yz-6Y-jCV"/>
-                                    <constraint firstItem="ZyD-pW-xc9" firstAttribute="centerX" secondItem="OPq-uw-Ynw" secondAttribute="centerX" type="default" id="fKy-1S-Ivs"/>
+                                    <constraint firstItem="ZyD-pW-xc9" firstAttribute="leading" secondItem="OPq-uw-Ynw" secondAttribute="leading" type="default" id="4Q6-vm-CuX"/>
+                                    <constraint firstItem="ZyD-pW-xc9" firstAttribute="trailing" secondItem="OPq-uw-Ynw" secondAttribute="trailing" type="default" id="8dU-Aw-cmy"/>
+                                    <constraint firstItem="ZyD-pW-xc9" firstAttribute="top" secondItem="OPq-uw-Ynw" secondAttribute="top" type="default" id="Jhe-6R-Tbu"/>
+                                    <constraint firstItem="ZyD-pW-xc9" firstAttribute="bottom" secondItem="OPq-uw-Ynw" secondAttribute="bottom" type="default" id="WFr-Hk-enD"/>
                                 </constraints>
-                                <size key="customSize" width="320" height="320"/>
+                                <size key="customSize" width="75" height="75"/>
                                 <connections>
                                     <outlet property="imageView" destination="ZyD-pW-xc9" id="qhn-AR-d9d"/>
                                     <segue destination="FuR-uA-HWq" kind="push" identifier="details" id="OOc-2A-ud8"/>
@@ -261,6 +258,58 @@
             <point key="canvasLocation" x="665" y="-36"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ImageDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ImageViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ImagesViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImagesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAsset:"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chute:"/>
+                <relationship kind="action" name="facebook:"/>
+                <relationship kind="action" name="flickr:"/>
+                <relationship kind="action" name="foursquare:"/>
+                <relationship kind="action" name="google:"/>
+                <relationship kind="action" name="instagram:"/>
+                <relationship kind="action" name="trendabl:"/>
+                <relationship kind="action" name="twitter:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

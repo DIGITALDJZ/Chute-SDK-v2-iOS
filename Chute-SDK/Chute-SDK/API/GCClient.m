@@ -13,6 +13,7 @@
 #import "GCPagination.h"
 #import "DCKeyValueObjectMapping.h"
 #import "GCUploads.h"
+#import "Lockbox.h"
 
 NSString * const kGCClientGET = @"GET";
 NSString * const kGCClientPOST = @"POST";
@@ -25,12 +26,12 @@ static NSString * const kGCPagination = @"pagination";
 
 static NSString * const kGCClient = @"GCClient";
 
+static NSString * const kGCToken = @"GCToken";
+
 static NSString * const kGCBaseURLString = @"https://api.getchute.com/v2/";
 static dispatch_queue_t serialQueue;
 
 @implementation GCClient
-
-@synthesize isLoggedIn;
 
 + (GCClient *)sharedClient {
     static GCClient *_sharedClient = nil;
@@ -63,7 +64,8 @@ static dispatch_queue_t serialQueue;
         return nil;
     }
     
-    [self setIsLoggedIn:NO];
+    if([Lockbox stringForKey:kGCToken])
+        [self setAuthorizationHeaderWithToken:[Lockbox stringForKey:kGCToken]];
     
 //    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 //        if (status == AFNetworkReachabilityStatusNotReachable) {
@@ -93,46 +95,29 @@ static dispatch_queue_t serialQueue;
     return self;
 }
 
+- (BOOL)isLoggedIn
+{
+    if ([Lockbox stringForKey:kGCToken])
+        return YES;
+    else
+        return NO;
+}
+
 #pragma mark - Overrided Methods
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {
     [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"OAuth %@", token]];
-    
-    [self setIsLoggedIn:YES];
-/*
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kGCClient];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-*/
+    [Lockbox setString:token forKey:kGCToken];
+}
+
+- (NSString *)authorizationToken
+{
+    return [self defaultValueForHeader:@"Authorization"];
 }
 
 - (void)clearAuthorizationHeader {
     [super clearAuthorizationHeader];
-    
-    [self setIsLoggedIn:NO];
-    
-/*
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kGCClient];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-*/
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    
-    self = [super initWithCoder:aDecoder];
-    
-    if (!self)
-        return nil;
-    
-    self.isLoggedIn = [aDecoder decodeBoolForKey:@"isLoggedIn"];
-    
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeBool:self.isLoggedIn forKey:@"isLoggedIn"];
+    [Lockbox setString:nil forKey:kGCToken];
 }
 
 
@@ -151,7 +136,6 @@ static dispatch_queue_t serialQueue;
         failure(error);
         
     }];
-    
     
     [self enqueueHTTPRequestOperation:operation];
 }

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImagesViewController : UICollectionViewController <UIAlertViewDelegate>
+@interface ImagesViewController : UICollectionViewController <UIAlertViewDelegate, UIImagePickerControllerDelegate>
 
-@property (strong, nonatomic) NSArray *assets;
+@property (strong, nonatomic) NSMutableArray *assets;
+
+@property (strong, nonatomic) UIPopoverController *popOver;
 
 @end

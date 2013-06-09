@@ -9,6 +9,7 @@
 #import "ImageDetailsViewController.h"
 #import <Chute-SDK/GCAsset.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <AFNetworking/AFImageRequestOperation.h>
 
 @interface ImageDetailsViewController ()
 
@@ -33,11 +34,22 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     [self setTitle:[asset caption]];
-    [self.imageView setImageWithURL:[NSURL URLWithString:[asset url]]];
+    [self.imageView setImage:[UIImage imageNamed:@"chute.png"]];
+//    AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[asset url]]] success:^(UIImage *image) {
+//        [self.imageView setImage:image];
+//    }];
+//    [operation start];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[asset url]]]]];
 }
 
 - (void)didReceiveMemoryWarning

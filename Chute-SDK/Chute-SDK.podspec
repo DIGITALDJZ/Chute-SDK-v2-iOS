@@ -132,5 +132,6 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking'
   s.dependency 'DCKeyValueObjectMapping'
   s.dependency 'MBProgressHUD'
+  s.dependency 'Lockbox'
   
 end
