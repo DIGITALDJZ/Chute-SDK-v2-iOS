@@ -28,7 +28,8 @@ static NSString * const kGCDate = @"Date";
 static NSString * const kGCContentType = @"Content-Type";
 static int const kGCUploaderMaxConcurrentOperationCount = 1;
 
-static NSString * const kGCBaseURLString = @"https://upload.getchute.com/";
+static NSString * const kGCBaseURLString = @"https://upload.getchute.com/v2";
+//static NSString * const kGCBaseURLString = @"http://localhost:8000";
 static dispatch_queue_t serialQueue;
 
 @implementation GCUploader
@@ -92,6 +93,60 @@ static dispatch_queue_t serialQueue;
     return [timestamp substringToIndex:28];
 }
 
+
+- (void)uploadImages:(NSArray *)images inAlbumWithID:(NSNumber *)albumID progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure
+{
+    __block NSMutableArray *operations = [NSMutableArray new];
+    __block NSMutableArray *assets = [NSMutableArray new];
+    __block NSUInteger totalNumberOfUploads = [images count];
+    __block NSInteger numberOfCompletedUploads = 0;
+    __block CGFloat currentProgress = 0.0;
+    
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIImage *image = obj;
+        
+        NSString *path = [NSString stringWithFormat:@"albums/%@/assets/upload", albumID];
+        
+         NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kGCClientPOST path:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+
+             [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:@"filedata"  fileName:@"asset.jpg" mimeType:@"application/octet-stream"];
+         }];
+        
+        [request setValue:[apiClient authorizationToken] forHTTPHeaderField:kGCAuthorization];
+        
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        
+        [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+            currentProgress = ((CGFloat)totalBytesWritten) / totalBytesExpectedToWrite;
+            NSLog(@"<KXLog> progress: %f", currentProgress);
+            progress(currentProgress, numberOfCompletedUploads, totalNumberOfUploads);
+        }];
+        
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+            [apiClient parseJSON:responseDictionary withFactoryClass:[GCAsset class] success:^(GCResponse *response) {
+                [assets addObject:response.data];
+            }];
+        
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog([error localizedDescription]);
+        }];
+        
+        [operations addObject:operation];
+    }];
+    
+    [self enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
+        numberOfCompletedUploads = numberOfCompletedUploads;
+        totalNumberOfUploads = totalNumberOfOperations;
+        progress(currentProgress, numberOfCompletedUploads, totalNumberOfUploads);
+        NSLog(@"<KXLog> %d out of %d is uploaded", numberOfCompletedUploads, totalNumberOfUploads);
+    } completionBlock:^(NSArray *operations) {
+        success([NSArray arrayWithArray:assets]);
+    }];
+}
+
 - (void)uploadFiles:(NSArray *)files progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure
 {
     [self requestFilesForUpload:files inAlbumsWithIDs:nil success:^(GCUploads *uploads) {
@@ -109,6 +164,7 @@ static dispatch_queue_t serialQueue;
     }];
 }
 
+
 - (void)uploadFiles:(NSArray *)files inAlbumsWithIDs:(NSArray *)albumIDs progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure
 {
     [self requestFilesForUpload:files inAlbumsWithIDs:albumIDs success:^(GCUploads *uploads) {
@@ -125,6 +181,7 @@ static dispatch_queue_t serialQueue;
         failure(error);
     }];
 }
+
 
 - (void)requestFilesForUpload:(NSArray *)files inAlbumsWithIDs:(NSArray *)albumIDs success:(void (^)(GCUploads *uploads))success failure:(void (^)(NSError *error))failure
 {

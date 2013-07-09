@@ -28,7 +28,7 @@ static NSString * const kGCClient = @"GCClient";
 
 static NSString * const kGCToken = @"GCToken";
 
-static NSString * const kGCBaseURLString = @"https://api.getchute.com/v2/";
+static NSString * const kGCBaseURLString = @"https://api.getchute.com/v2";
 static dispatch_queue_t serialQueue;
 
 @implementation GCClient

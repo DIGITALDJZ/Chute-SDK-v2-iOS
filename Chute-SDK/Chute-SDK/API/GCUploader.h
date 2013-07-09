@@ -26,4 +26,6 @@
 - (void)uploadFiles:(NSArray *)files progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure;
 - (void)uploadFiles:(NSArray *)files inAlbumsWithIDs:(NSArray *)albumIDs progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure;
 
+- (void)uploadImages:(NSArray *)images inAlbumWithID:(NSNumber *)albumID progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure;
+
 @end

@@ -11,11 +11,14 @@
 		CC0EA6DA17643D4D00A9B622 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6C217643D4C00A9B622 /* AppDelegate.m */; };
 		CC0EA6DB17643D4D00A9B622 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6C917643D4C00A9B622 /* main.m */; };
 		CC0EA6DC17643D4D00A9B622 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6CB17643D4C00A9B622 /* ViewController.m */; };
-		CC0EA6DD17643D4D00A9B622 /* LockboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6D317643D4D00A9B622 /* LockboxTests.m */; };
 		CC0EA6DE17643D4D00A9B622 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0EA6D717643D4D00A9B622 /* Lockbox.m */; };
 		CC2985EC173ED628003C28A6 /* GCFile.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2985EB173ED628003C28A6 /* GCFile.m */; };
 		CC2985EF173F286A003C28A6 /* GCMD5Hash.c in Sources */ = {isa = PBXBuildFile; fileRef = CC2985EE173F286A003C28A6 /* GCMD5Hash.c */; };
 		CC2985F3173F37BD003C28A6 /* chute.png in Resources */ = {isa = PBXBuildFile; fileRef = CC2985F1173F2F60003C28A6 /* chute.png */; };
+		CC9690DE178C2AD500004759 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9690D8178C2A1300004759 /* Security.framework */; };
+		CC9690DF178C2AE200004759 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9690D8178C2A1300004759 /* Security.framework */; };
+		CC9690E2178C3CF200004759 /* GCUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9690E1178C3CF200004759 /* GCUploader.m */; };
+		CC9690E5178C41B200004759 /* GCUploaderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9690E3178C3D6800004759 /* GCUploaderSpec.m */; };
 		CC9A73581760ED6400B7F271 /* GCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9A73571760ED6400B7F271 /* GCFileManager.m */; };
 		CCAF7F29171D95C800F4BA81 /* GCLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF6171D95C700F4BA81 /* GCLoginView.m */; };
 		CCAF7F2A171D95C800F4BA81 /* GCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7EF8171D95C700F4BA81 /* GCPopupView.m */; };
@@ -70,8 +73,6 @@
 		CCBAA607172985B4001D5B2C /* GCServiceHeart.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBAA606172985B4001D5B2C /* GCServiceHeart.m */; };
 		CCBAA60A17298655001D5B2C /* GCHeartCount.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBAA60917298655001D5B2C /* GCHeartCount.m */; };
 		CCBAA60C17298996001D5B2C /* GCServiceHeartSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBAA60B17298996001D5B2C /* GCServiceHeartSpec.m */; };
-		CCBC5C41175647A500C37D94 /* GCUploaderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBC5C3F1756451D00C37D94 /* GCUploaderSpec.m */; };
-		CCBCA92C17396030008AF433 /* GCUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBCA92B17396030008AF433 /* GCUploader.m */; };
 		CCC23E6E174535230091887A /* GCUploads.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC23E6D174535230091887A /* GCUploads.m */; };
 		CCC23E72174547150091887A /* GCUploadInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC23E71174547150091887A /* GCUploadInfo.m */; };
 		CCC359441689F705009E372C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359431689F705009E372C /* MobileCoreServices.framework */; };
@@ -192,6 +193,13 @@
 			remoteGlobalIDString = 4D6801E816B478CB000CED0E;
 			remoteInfo = UnitTests;
 		};
+		CC9690DC178C2AAF00004759 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D0B9E5E1540556E00E5BE71;
+			remoteInfo = LockBox;
+		};
 		CCC9A2371672716E0016BD3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CCC9A2171672716D0016BD3C /* Project object */;
@@ -229,8 +237,6 @@
 		CC0EA6CB17643D4C00A9B622 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LockBox.xcodeproj; sourceTree = "<group>"; };
 		CC0EA6D117643D4D00A9B622 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CC0EA6D217643D4D00A9B622 /* LockboxTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockboxTests.h; sourceTree = "<group>"; };
-		CC0EA6D317643D4D00A9B622 /* LockboxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockboxTests.m; sourceTree = "<group>"; };
 		CC0EA6D417643D4D00A9B622 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		CC0EA6D517643D4D00A9B622 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		CC0EA6D617643D4D00A9B622 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lockbox.h; sourceTree = "<group>"; };
@@ -245,6 +251,10 @@
 		CC2985F4173F404D003C28A6 /* DCParserConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCParserConfiguration.h; sourceTree = "<group>"; };
 		CC2985F5173F412D003C28A6 /* DCObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCObjectMapping.h; sourceTree = "<group>"; };
 		CC2985F6173F4224003C28A6 /* DCValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCValueConverter.h; sourceTree = "<group>"; };
+		CC9690D8178C2A1300004759 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CC9690E0178C3CF200004759 /* GCUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUploader.h; sourceTree = "<group>"; };
+		CC9690E1178C3CF200004759 /* GCUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploader.m; sourceTree = "<group>"; };
+		CC9690E3178C3D6800004759 /* GCUploaderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploaderSpec.m; sourceTree = "<group>"; };
 		CC9A73561760ED6400B7F271 /* GCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCFileManager.h; sourceTree = "<group>"; };
 		CC9A73571760ED6400B7F271 /* GCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFileManager.m; sourceTree = "<group>"; };
 		CCAF7EF5171D95C700F4BA81 /* GCLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLoginView.h; sourceTree = "<group>"; };
@@ -343,9 +353,6 @@
 		CCBAA60817298655001D5B2C /* GCHeartCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHeartCount.h; sourceTree = "<group>"; };
 		CCBAA60917298655001D5B2C /* GCHeartCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHeartCount.m; sourceTree = "<group>"; };
 		CCBAA60B17298996001D5B2C /* GCServiceHeartSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServiceHeartSpec.m; sourceTree = "<group>"; };
-		CCBC5C3F1756451D00C37D94 /* GCUploaderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploaderSpec.m; sourceTree = "<group>"; };
-		CCBCA92A17396030008AF433 /* GCUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUploader.h; sourceTree = "<group>"; };
-		CCBCA92B17396030008AF433 /* GCUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploader.m; sourceTree = "<group>"; };
 		CCC23E6C174535230091887A /* GCUploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUploads.h; sourceTree = "<group>"; };
 		CCC23E6D174535230091887A /* GCUploads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploads.m; sourceTree = "<group>"; };
 		CCC23E6F17453E7E0091887A /* DCArrayMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCArrayMapping.h; sourceTree = "<group>"; };
@@ -562,6 +569,7 @@
 				CCC359441689F705009E372C /* MobileCoreServices.framework in Frameworks */,
 				CCC9A2241672716D0016BD3C /* Foundation.framework in Frameworks */,
 				CCAF7F66171D98BC00F4BA81 /* KeyValueObjectMapping.framework in Frameworks */,
+				CC9690DE178C2AD500004759 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +585,7 @@
 				CCC9A2361672716E0016BD3C /* Foundation.framework in Frameworks */,
 				CCC9A2331672716E0016BD3C /* SenTestingKit.framework in Frameworks */,
 				CCC9A2391672716E0016BD3C /* libChute-SDK.a in Frameworks */,
+				CC9690DF178C2AE200004759 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,8 +645,6 @@
 			isa = PBXGroup;
 			children = (
 				CC0EA6D017643D4D00A9B622 /* InfoPlist.strings */,
-				CC0EA6D217643D4D00A9B622 /* LockboxTests.h */,
-				CC0EA6D317643D4D00A9B622 /* LockboxTests.m */,
 				CC0EA6D417643D4D00A9B622 /* UnitTests-Info.plist */,
 				CC0EA6D517643D4D00A9B622 /* UnitTests-Prefix.pch */,
 			);
@@ -663,8 +670,8 @@
 				CCAF7EFB171D95C700F4BA81 /* GCClient.m */,
 				CCAF7EFC171D95C700F4BA81 /* GCOAuth2Client.h */,
 				CCAF7EFD171D95C700F4BA81 /* GCOAuth2Client.m */,
-				CCBCA92A17396030008AF433 /* GCUploader.h */,
-				CCBCA92B17396030008AF433 /* GCUploader.m */,
+				CC9690E0178C3CF200004759 /* GCUploader.h */,
+				CC9690E1178C3CF200004759 /* GCUploader.m */,
 				CCAF7EFE171D95C700F4BA81 /* Services */,
 			);
 			name = API;
@@ -835,7 +842,7 @@
 			children = (
 				CCBAA5ED17259DCC001D5B2C /* GCClientSpec.m */,
 				CCBAA5EE17259DCC001D5B2C /* GCOAuth2Spec.m */,
-				CCBC5C3F1756451D00C37D94 /* GCUploaderSpec.m */,
+				CC9690E3178C3D6800004759 /* GCUploaderSpec.m */,
 				CCBAA5EF17259DCC001D5B2C /* Services */,
 			);
 			name = API;
@@ -879,6 +886,7 @@
 		CCC9A2221672716D0016BD3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC9690D8178C2A1300004759 /* Security.framework */,
 				CCE2FF06172154A100FCB285 /* UIKit.framework */,
 				CCC359461689F70D009E372C /* SystemConfiguration.framework */,
 				CCC359431689F705009E372C /* MobileCoreServices.framework */,
@@ -1150,6 +1158,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CC9690DD178C2AAF00004759 /* PBXTargetDependency */,
 				CCC9A2381672716E0016BD3C /* PBXTargetDependency */,
 			);
 			name = "Chute-SDKTests";
@@ -1292,7 +1301,6 @@
 				CCE49BCB172ADB3500DA1BBC /* GCFlag.m in Sources */,
 				CCE49BCE172ADEE600DA1BBC /* GCFlagCount.m in Sources */,
 				CCE49BD1172ADF6900DA1BBC /* GCServiceFlag.m in Sources */,
-				CCBCA92C17396030008AF433 /* GCUploader.m in Sources */,
 				CC2985EC173ED628003C28A6 /* GCFile.m in Sources */,
 				CC2985EF173F286A003C28A6 /* GCMD5Hash.c in Sources */,
 				CCE2B4BE17426C1C00F4EB19 /* GCUploadingAsset.m in Sources */,
@@ -1303,8 +1311,8 @@
 				CC0EA6DA17643D4D00A9B622 /* AppDelegate.m in Sources */,
 				CC0EA6DB17643D4D00A9B622 /* main.m in Sources */,
 				CC0EA6DC17643D4D00A9B622 /* ViewController.m in Sources */,
-				CC0EA6DD17643D4D00A9B622 /* LockboxTests.m in Sources */,
 				CC0EA6DE17643D4D00A9B622 /* Lockbox.m in Sources */,
+				CC9690E2178C3CF200004759 /* GCUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1400,13 +1408,18 @@
 				CCE49BD3172AE0BF00DA1BBC /* GCServiceFlagSpec.m in Sources */,
 				E4BAB847174E4EEF00480F11 /* GCServiceAssetSpec.m in Sources */,
 				E41B298A17539B5B00C0D401 /* GCServiceAlbumSpec.m in Sources */,
-				CCBC5C41175647A500C37D94 /* GCUploaderSpec.m in Sources */,
+				CC9690E5178C41B200004759 /* GCUploaderSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CC9690DD178C2AAF00004759 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LockBox;
+			targetProxy = CC9690DC178C2AAF00004759 /* PBXContainerItemProxy */;
+		};
 		CCC9A2381672716E0016BD3C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CCC9A21F1672716D0016BD3C /* Chute-SDK */;

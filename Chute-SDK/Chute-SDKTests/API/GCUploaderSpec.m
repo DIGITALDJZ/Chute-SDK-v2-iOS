@@ -16,8 +16,32 @@
 SPEC_BEGIN(GCUploaderSpec)
 
 describe(@"GCUploader", ^{
-    
-    context(@"create an upload", ^{
+        
+    context(@"upload", ^{
+        
+        it(@"images", ^{
+            
+            __block NSNumber *isSuccess = nil;
+            GCClient *apiClient = [GCClient sharedClient];
+            [apiClient setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
+            
+            NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+            NSString *imagePath = [bundle pathForResource:@"chute" ofType:@"jpg"];
+            NSString *imagePath2 = [bundle pathForResource:@"chute" ofType:@"png"];
+            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+            UIImage *image2 = [UIImage imageWithContentsOfFile:imagePath2];
+            NSArray *images = @[image, image2];
+            
+            [[GCUploader sharedUploader] uploadImages:images inAlbumWithID:@(2425529) progress:^(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads) {
+            } success:^(NSArray *assets){
+                isSuccess = @YES;
+            } failure:^(NSError *error) {
+                isSuccess = @NO;
+            }];
+            
+            [[expectFutureValue(isSuccess) shouldEventuallyBeforeTimingOutAfter(120.0)] equal:@NO];
+            
+        });
         
         it(@"should generate timestamp", ^{
             
@@ -26,7 +50,7 @@ describe(@"GCUploader", ^{
             NSLog(@"Timestamp: %@", timestamp);
         });
         
-        it(@"upload files", ^{
+        it(@"files", ^{
             GCClient *apiClient = [GCClient sharedClient];
             [apiClient setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
             
@@ -61,10 +85,6 @@ describe(@"GCUploader", ^{
             [[expectFutureValue(assets) shouldEventuallyBeforeTimingOutAfter(120.0)] beNonNil];
             [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(300.0)] beNil];
 
-        });
-        
-        it(@"should create an uploading notification", ^{
-            
         });
         
     });

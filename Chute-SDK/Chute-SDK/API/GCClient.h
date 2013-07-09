@@ -24,5 +24,6 @@ extern NSString * const kGCClientDELETE;
 - (void)setAuthorizationHeaderWithToken:(NSString *)token;
 - (NSString *)authorizationToken;
 - (void)request:(NSMutableURLRequest *)request factoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success failure:(void (^)(NSError *))failure;
+- (void)parseJSON:(id)JSON withFactoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success;
 
 @end
