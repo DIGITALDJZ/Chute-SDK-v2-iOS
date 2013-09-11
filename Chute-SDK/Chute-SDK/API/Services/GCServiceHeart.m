@@ -14,7 +14,7 @@
 
 @implementation GCServiceHeart
 
-+ (void)getHeartCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeartCount *heartCount))success failure:(void (^)(NSError *))failure
++ (void)getHeartCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeartCount *heartCount))success failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(assetID);
     NSParameterAssert(albumID);
@@ -26,11 +26,17 @@
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
     
     [apiClient request:request factoryClass:[GCHeartCount class] success:^(GCResponse *response) {
-        success(response.response, response.data);
+        if ([(GCHeartCount *)response.data count] != nil)
+            success(response.response, response.data);
+        else {
+            GCHeartCount *heartCount = [GCHeartCount new];
+            [heartCount setCount:@0];
+            success(response.response, heartCount);
+        }
     } failure:failure];
 }
 
-+ (void)heartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *))failure
++ (void)heartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(assetID);
     NSParameterAssert(albumID);
@@ -46,15 +52,14 @@
     } failure:failure];
 }
 
-+ (void)unheart:(NSString *)identifier assetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *))failure
++ (void)unheartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *error))failure
 {
-    NSParameterAssert(identifier);
     NSParameterAssert(assetID);
     NSParameterAssert(albumID);
     
     GCClient *apiClient = [GCClient sharedClient];
     
-    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/hearts/%@", albumID, assetID, identifier];
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/hearts", albumID, assetID];
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientDELETE path:path parameters:nil];
     

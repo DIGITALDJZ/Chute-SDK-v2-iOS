@@ -20,38 +20,12 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     GCClient *apiClient = [GCClient sharedClient];
     
-    NSString *path = [NSString stringWithFormat:@"/albums/%@/assets", albumID];
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets", albumID];
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
     
     [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
-    } failure:failure];
-}
-
-+ (void)getAssetsWithSuccess:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
-    
-    GCClient *apiClient = [GCClient sharedClient];
-    
-    NSString *path = @"assets";
-    
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
-    
-    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
-        success(response.response, response.data, response.pagination);
-    } failure:failure];
-}
-////////////////////////////////  THESE ARE THE ONES I'VE ADDED  ////////////////////////////////
-+ (void)getAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void (^)(NSError *error))failure
-{
-    GCClient *apiClient = [GCClient sharedClient];
-    
-    NSString *path = [NSString stringWithFormat:@"assets/%@",assetID];
-
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
-    
-    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
-        success(response.response, response.data);
     } failure:failure];
 }
 
@@ -67,14 +41,6 @@ static NSString * const kGCDefaultPerPage = @"100";
         success(response.response, response.data);
     } failure:failure];
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)importAssetsFromURLs:(NSArray *)urls success:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
-    
-    [self importAssetsFromURLs:urls forAlbumWithID:nil success:^(GCResponseStatus *response, NSArray *assets, GCPagination *pagination) {
-        success(response, assets, pagination);
-    } failure:failure];
-    
-}
 
 + (void)importAssetsFromURLs:(NSArray *)urls forAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *repsonseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
@@ -82,10 +48,7 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     NSString *path;
     
-    if (albumID != nil)
-        path = [NSString stringWithFormat:@"albums/%@/assets/import", albumID];
-    else
-        path = @"assets/import";
+    path = [NSString stringWithFormat:@"albums/%@/assets/import", albumID];
     
     NSDictionary *params = @{@"urls":urls};
     
@@ -96,22 +59,52 @@ static NSString * const kGCDefaultPerPage = @"100";
     } failure:failure];
 }
 
+
+//                                 THE FOLLOWING METHODS ARE DEPRECATED                             //
+/*
++ (void)getAssetsWithSuccess:(void (^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
+    
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = @"assets";
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response, response.data, response.pagination);
+    } failure:failure];
+}
+ 
++ (void)getAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void (^)(NSError *error))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"assets/%@",assetID];
+
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response, response.data);
+    } failure:failure];
+}
+
+
 + (void)updateAssetWithID:(NSNumber *)assetID caption:(NSString *)caption success:(void (^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
     NSString *path = [NSString stringWithFormat:@"assets/%@", assetID];
     
-    /*
-     GCAlbum *album = [GCAlbum new];
-     [album setName:name];
-     [album setModerateMedia:moderateMedia];
-     [album setModerateComments:moderateComments];
-     
-     DCKeyValueObjectMapping *mapping = [DCKeyValueObjectMapping mapperForClass:[GCAlbum class]];
-     
-     NSDictionary *params = [mapping serializeObject:album];
-     */
+
+//     GCAlbum *album = [GCAlbum new];
+//     [album setName:name];
+//     [album setModerateMedia:moderateMedia];
+//     [album setModerateComments:moderateComments];
+//     
+//     DCKeyValueObjectMapping *mapping = [DCKeyValueObjectMapping mapperForClass:[GCAlbum class]];
+//     
+//     NSDictionary *params = [mapping serializeObject:album];
+
     
     NSDictionary *params = @{@"caption":caption};
     
@@ -135,7 +128,6 @@ static NSString * const kGCDefaultPerPage = @"100";
         success(response.response);
     } failure:failure];
 }
-
 
 + (void)getGeoCoordinateForAssetWithID:(NSNumber *)assetID success:(void (^)(GCResponseStatus *responseStatus, GCCoordinate *coordinate))success failure:(void (^)(NSError *error))failure {
     
@@ -163,6 +155,6 @@ static NSString * const kGCDefaultPerPage = @"100";
         success(response.response, response.data, response.pagination);
     } failure:failure];
 }
-
+*/
 
 @end

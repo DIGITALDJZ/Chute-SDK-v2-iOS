@@ -37,7 +37,6 @@
     __block NSMutableArray *filePaths = [[NSMutableArray alloc] initWithCapacity:[directoryContent count]];
     
     [directoryContent enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        NSLog(@"File %d: %@", idx, obj);
         [filePaths addObject:[path stringByAppendingPathComponent:obj]];
     }];
  

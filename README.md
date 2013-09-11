@@ -3,15 +3,11 @@ Setup
 
 ##Client Authentication
 
-First copy the SDK files into your project.  Find the GCConstants.h file located at SDK/Classes/Core and enter your OAuth information.
+First copy the SDK files into your project.  Find the GCOAuth2Client.m file located at Chute-SDK/Chute-SDK/API and enter your OAuth information.
 
 ``` Objective-C
-    #define kOAuthRedirectURL               @"http://getchute.com/oauth/callback"
-    #define kOAuthRedirectRelativeURL       @"/oauth/callback"
-    #define kOAuthClientID                  @"xxxxxxxxxxxxxxxxxxxxxxxx"
-    #define kOAuthClientSecret              @"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-    #define kOAuthPermissions               @"all_resources manage_resources profile resources"
+    static NSString * const kGCRedirectURIDefaultValue = @"http://getchute.com/oauth/callback";
+    static NSString * const kGCScopeDefaultValue = @"all_resources manage_resources profile resources";
 
     #define kOAuthTokenURL                  @"http://getchute.com/oauth/access_token"
 ```
@@ -22,44 +18,56 @@ You need a logged in user to use the SDK.  You can have a single user account fo
 
 ###Single User Account
 
-Having a single user account used by all versions of the app is the easiest to set up.  You can simply save your authentication key to GCAccount in 'application:didFinishLaunchingWithOptions:' in your app's delegte file.  You do this by adding the line
+Having a single user account used by all versions of the app is the easiest to set up.  You can simply save your authentication key to GCClient in 'application:didFinishLaunchingWithOptions:' in your app's delegate file.  You do this by adding the line
 
 ``` Objective-C
-    [[GCAccount sharedManager] setAccessToken:@"USER_ACCESS_TOKEN"];
+    [GCClient sharedClient] setAuthorizationHeaderWithToken:@"USER_ACCESS_TOKEN"];
 ```
 
 ###User Login
 
-If you have users login to an account you must first determine which service you want to use.  You set this in the GCConstants file.  There are several popular services to choose from.
+If you have users login to an account you must first determine which service you want to use.  You set this in GCOAuth2Client files.  There are several popular services to choose from. 
   
 ``` Objective-C
-    // Set which service is to be used
-    // 0 - Facebook
-    // 1 - Evernote
-    // 2 - Chute
-    // 3 - Twitter
-    // 4 - Foursquare
+    static NSString * kGCServices[] = {
+    @"chute",
+    @"facebook",
+    @"twitter",
+    @"google",
+    @"flickr",
+    @"instagram",
+    @"foursquare"
+};
 
-    #define kSERVICE 0
 ```
 
-Then you must present the login view.  This is provided for you but has a blank customizable UI. When you want your user to login you call GCLoginViewController's `+(void)presentInController:(UIViewController *)controller`.  You want to pass in the view controller that will be used to display the login view.  This method automatically checks whether or not a user is already logged in and only displays the login scren if needed.  To login from the current view controller you would call the method like this
+You need to create a view controller for your image picker. You can perform a check if you're already logged in by using GCClient method like this:
 
 ``` Objective-C
-    [loginViewController presentInController:self];
+    if([[GCClient sharedClient] isLoggedIn]==NO)
+        [self performSegueWithIdentifier:@"xxx" sender:self.view];
 ```
+
+In addition it is necessary to create another view controller with couple of buttons which will represent the services available for use to login.
+And then when some button is pressed you just simply call GCLoginView method like this:
+
+``` Objective-C
+    GCOAuth2Client *oauth2Client = [GCOAuth2Client clientWithClientID:@"xxxxxxxxxxxxxxxxxxxxxxxx"  clientSecret:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
+    [GCLoginView showInView:_view fromStartPoint:_startPoint oauth2Client:oauth2Client service:service success:^{
+                    [self dismissViewControllerAnimated:YES completion:^{}];
+} failure:^{}; 
+```
+
+which actually creates a popup view with chosen service interface. You can use failure block to present some UIAlert or something of your choice.
 
 ###Logout
 
 If you want your user to be able to log out you simply call
 
 ``` Objective-C
-    [[GCAccount sharedManager] reset];
+    [[GCClient sharedManager] clearAuthorizationHeader];
 ```
 
-
-
-  
 At this point your application will be ready to use the Chute SDK.  Simply `#import "GetChute.h"` in any classes that will be accessing the SDK.
 
 You can also find prebuilt customizable drop in components [here](https://github.com/chute/chute-ios-components).  You can pick and choose which components you want to use and it's a simple way to get working with chute quickly and see the SDK in action.
@@ -73,11 +81,8 @@ All Chute applications use OAuth and are referred to as 'Clients'
 ## Asset
 Any photo or video managed by Chute
 
-## Chute
-A container for assets.  Chutes can be nested inside of each other.
-
-## Parcel
-A named collection of assets.  Whenever you upload assets, they are grouped into parcels.
+##Album
+A named collection of assets. Whenever you upload assets, they are grouped into albums.
 
 ## Response
 Many methods return a response object.  This tells you whether the API call succeeded and includes an error if it didn't.  The response object also has pre-created objects if there were any returned as well as the raw JSON string and the native objective-C decoding of that string.  This allows you to easily get the response in whatever format is most convenient for your project.
@@ -86,247 +91,152 @@ Many methods return a response object.  This tells you whether the API call succ
 Basic Tasks
 =========
 
+## Create, Update and Delete an Album
+
+Creating, updating and deleting an album is simple. You just have to call one of these methods:
+
+``` Objective-C
+    - (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
+
+    - (void)updateAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *))failure
+
+    -(void)deleteAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus))success failure:(void(^)(NSError *error))failure
+
+```
+
 ## Uploading Assets
-You upload assets using a parcel.  To perform an upload you first need to create an array of assets you want to upload and an array of chutes you want to upload the assets to.  Then you initialize a parcel with those arrays and either add it to the GCUploader to queue in the background or tell the parcel to begin uploading.  If you have the parcel handle the uploading you must retain it until uploading completes.  If you use the uploader it handles the memory management for the parcel.
 
-The following code will queue an array of assets to upload to an array of chutes in the background.
-
-``` Objective-C
-    GCParcel *parcel = [GCParcel objectWithAssets:_assets andChutes:_chutes];
-    [[GCUploader sharedUploader] addParcel:parcel];
-```
-
-If you want to perform the upload now or with a custom completion block you can use the following code.
+Uploading assets is now easier than ever. You upload assets using one step uploader.  To perform an upload you first need to create an array of assets you want to upload.  Then you just call the following method from the CGUploader.h
 
 ``` Objective-C
-    GCParcel *parcel = [GCParcel objectWithAssets:_assets andChutes:_chutes];
-    [parcel startUploadWithTarget:self andSelector:@selector(parcelCompleted)];
+	- (void)uploadImages:(NSArray *)images inAlbumWithID:(NSNumber *)albumID progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure;
+
 ```
-
-You may also set the target and selector to nil if you don't wish to have any completion behavior.
-
 ## Displaying Assets
 
-Each asset has a method to retrieve a thumbnail or a custom size image.  You can access the thumbnail by simply calling `[_asset thumbnail]`, which returns a UIImage that is formatted for 75x75 pixels.  Custom sized images can be accessed in the foreground or background
-
-###In the Foreground
-
-You can retrieve a UIImage formatted to a custom size in the foreground.  Keep in mind that doing so will block the UI until the image is downloaded.  This will however be quick if you are loading an asset from the device's camera roll.  You can get an image this way with the following code
+Assets can be displayed in two ways. You can call GCAlbum method to retrieve all the assets thumbnails from that album like this:
 
 ``` Objective-C
-    UIImageView *v = [[[UIImageView alloc] init] autorelease];
-    UIImage *temp = [_asset imageForWidth:320 andHeight:480];
-    [v setImage:temp];
-```
-
-###In the Background
-
-Retrieving an image formatted to a custom size is easy to do in the background as well.  When downloading an image from chute this is recommended so that you don't block the main thread.  The code to do this is
-
-``` Objective-C
-    UIImageView *v = [[[UIImageView alloc] init] autorelease];
-    [_asset imageForWidth:320 andHeight:480 inBackgroundWithCompletion:^(UIImage *temp){
-        [v setImage:temp];
+    [GCAlbum getAllAssetsWithSuccess:^(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination) {
+        <#code#>
+    } failure:^(NSError *error) {
+        <#code#>
     }];
 ```
 
-###Other UI Components
-
-It's also possible to retrieve the most recent image that was uploaded to a chute.  This is retrieved through the recentThumbnailUrl.  This returns the url to the full size image.  You can request a customized size by adding the dimensions to the end of the URL in the form of "/widthxheight".  If there is no thumbnail this returns null.  For example to retrieve the image formatted to 50 by 50 px you could use the following code
+or you can get full detailed version of certain asset like this:
 
 ``` Objective-C
-    UIImageView *v = [[[UIImageView alloc] init] autorelease];
-    NSString *thumbString = [_chute recentThumbnailUrl];
-    if(thumbString && thumbString.length > 0){
-        thumbString = [thumbString stringByAppendingString:@"/50x50"];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbString]]];
-        [v setImage:image];
-    }
+    [GCAlbum getAssetWithID:_assetID success:^(GCResponseStatus *responseStatus, GCAsset *asset) {
+        <#code#>
+    } failure:^(NSError *error) {
+        <#code#>
+    }]
 ```
 
-You can also load an icon for a user.  This is done using the avatarURL
+## Import Assets
+
+You can import multiple assets from an array of URL's to an album by calling this method:
 
 ``` Objective-C
-    UIImageView *v = [[[UIImageView alloc] init] autorelease];
-    NSString *thumbString = [_user avatarURL];
-    if(thumbString && thumbString.length > 0){
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbString]]];
-        [v setImage:image];
-    }
+    - (void)importAssetsFromURLs:(NSArray *)urls success:(void(^)(GCResponseStatus *responseStatus, NSArray *assets, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
 ```
 
-## Organizing Assets
+## Adding and Removing Assets
 
-Assets are organized into a few different objects; chutes, parcels, and bundles.
-
-###Chutes
-
-Chutes are the main containers for organizing assets.  When you create a chute you can set a variety of privacy options.  The privacy settings are GCPermissionTypePrivate, GCPermissionTypeMembers, GCPermissionTypePublic, GCPermissionTypeFriends, and GCPermissionTypePassword.  Use the following code to create a new chute
-
-```Objective-C
-    GCChute *_newChute = [GCChute new];
-    
-    [_newChute setName:_name];
-    
-    [_newChute setPermissionView:GCPermissionTypePublic];
-    [_newChute setPermissionAddMembers:GCPermissionTypePublic];
-    [_newChute setPermissionAddPhotos:GCPermissionTypePublic];
-    [_newChute setPermissionAddComments:GCPermissionTypePublic];
-    [_newChute setModeratePhotos:GCPermissionTypePublic];
-    [_newChute setModerateMembers:GCPermissionTypePublic];
-    [_newChute setModerateComments:GCPermissionTypePublic];
-    
-    [_newChute saveInBackgroundWithCompletion:^(BOOL value, NSError *error) {
-        
-    }];
-```
-
-There are a couple methods for retrieving assets.  One runs in the foreground and the other in the background.  These methods are `- (GCResponse *) assets` and `- (void) assetsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock`.  The following is an example of how to use the second method to initialize an array of assets from a chute.
-
-```Objective-C
-    [_chute assetsInBackgroundWithCompletion:^(GCResponse *response){
-        if([response isSuccessful]){
-            NSArray *assets = [response object];
-        }
-    }];
-```
-
-###Parcels
-
-Assets can also be organized into parcels.  See the section on uploading assets to see how to create a parcel.
-
-You can retrieve the latests parcels for chutes you have subscribed to or created.  This is known as the inbox.  You can retrieve the inbox with the following code
-
-```Objective-C
-    [[GCAccount sharedManager] getInboxParcelsInBackgroundWithCompletion:^(GCResponse *response){
-        if([response isSuccessful]){
-            NSArray *parcels = [response object];
-        }
-    }];
-```
-
-Retrieving a parcel's assets is even easier.  Each parcel has an array of assets so to get a parcel's assets you simply call `[_parcel assets]`.
-
-###Bundles
-
-Bundles will be added soon.
-
-##Make Chute Smarter
-
-You can associate metadata with most types of objects.  Chutes, Assets, Parcels, Users, and Bundles all support metadata.  You can set a string for any key and then retrieve it later or find objects based on a key/value pair.
-
-###Storing Metadata
-
-There are several methods for setting metadata.  You can set a single string for a key or you can set a dictionary of several key/value pairs.
-
-####Setting a Single Property
-
-You can set a single value for a key either in the foreground or background.  You do this by either calling `- (BOOL) setMetaData:(NSString *) data forKey:(NSString *) key` or `- (void) setMetaData:(NSString *) data forKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock`.  Here is an example of this
+You can add to or remove from album existing assets by using these methods:
 
 ``` Objective-C
-    [_chute setMetaData:@"San Francisco" forKey:@"location" inBackgroundWithCompletion:^(BOOL *success){
-        
-    }];
+    - (void)addAssets:(NSArray *)asssetsArray success:(void(^)(GCResponseStatus *responseStatus))success failure:(void(^)(NSError *error))failure
+
+    - (void)removeAssets:(NSArray *)asssetsArray success:(void(^)(GCResponseStatus *responseStatus))success failure:(void(^)(NSError *error))failure
+
 ```
+######Note: The assets must already exist either by upload or import. 
 
-####Setting Multiple Properties
-
-If you need to set multiple values you can use a dictionary to set them all at once.  This can also be done in the foreground or background.  The methods for this are `- (BOOL) setMetaData:(NSDictionary *) metaData` and `- (void) setMetaData:(NSDictionary *) metaData inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock`.
-
-``` Objective-C
-    NSDictionary *meta = [NSDictionary dictionaryWithObjectsAndKeys:@"value1", @"key1", @"value2", @"key2", nil];
-    [_chute setMetaData:meta];
-```
-
-###Retrieving Metadata
-
-Just as you can set a single metadata value or a dictionary of values, you can also retrieve a single value or a dictionary of all values.
-
-####Retrieving a Single Value
-
-You can use the methods `- (id) getMetaDataForKey:(NSString *) key` and `- (void) getMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to retrieve a single value.
-
-``` Objective-C
-    [_chute getMetaDataForKey:@"location" inBackgroundWithCompletion:^(GCResponse *response){
-        if([response isSuccessful]){
-            NSString *location = [response object];
-        }
-    }];
-```
-
-####Retrieving All Values
-
-Getting all the values for an object is just as easy and flexible.  You can use `- (GCResponse *) getMetaData` or `- (void) getMetaDataInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to retrieve a dictionary of values.
-
-``` Objective-C
-    NSDictionary *meta = [[_asset getMetaData] object];
-```
-
-###Searching With Metadata
-
-You can do a search on a specific key/value pair to get all objects of a specific type that have that metadata saved.  You can use the methods `+ (GCResponse *) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value` and `+ (void) searchMetaDataForKey:(NSString *) key andValue:(NSString *) value inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock` to accomplish this.  You will get back an array of objects matching the data.
-
-``` Objective-C
-    [GCParcel searchMetaDataForKey:@"location" andValue:@"Portland" inBackgroundWithCompletion:^(GCResponse *response){
-        if([response isSuccessful]){
-            NSArray *parcels = [response object];
-        }
-    }];
-```
-
-###Removing Metadata
-
-Finally you can also delete your metadata for an object.  This can also be done for a single value or for all metadata associated with an object.
-
-####Deleting a Single Value
-
-If you just want to remove a single value for a key there a couple methods that can do that.  You can call `- (BOOL) deleteMetaDataForKey:(NSString *) key` or `- (void) deleteMetaDataForKey:(NSString *) key inBackgroundWithCompletion:(GCBoolBlock) aBoolBlock`.
-
-```Objective-C
-    [_chute deleteMetaDataForKey:@"location"];
-```
-
-####Deleting All Metadata
-
-You can also delete all metadata that you have set for an object.  This is done with either `- (BOOL) deleteMetaData` or `- (void) deleteMetaDataInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock`.
-
-``` Objective-C
-    [_chute deleteMetaDataInBackgroundWithCompletion:^(BOOL *success){
-        
-    }];
-```
+##
 
 Social Tasks
 ==========
 
 ## Hearting Assets
 
-Hearting and unhearting an asset is simple.  You just call one of the following methods
+You can retrieve heart count for an asset by calling this method:
 
 ``` Objective-C
-    - (GCResponse *) heart;
-    - (void) heartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock;
-
-    - (GCResponse *) unheart;
-    - (void) unheartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock;
+    - (void)getHeartCountForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeartCount *heartCount))success failure:(void(^)(NSError *error))failure
 ```
 
-You can also check if an asset is hearted by calling `[_asset isHearted]`.  This method checks against your hearted assets which must be loaded by calling `[[GCAccount sharedManager] loadHeartedAssets]`.  To get a correct response when checking if an asset is hearted it is recommended that you call this function once when your app loads and any time you heart or unheart an asset.
+Hearting and unhearting an asset is simple. You just call  the following methods:
+
+``` Objective-C
+    - (void)heartAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus,GCHeart *heart))success failure:(void(^)(NSError *error))failure
+
+    - (void)unheartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeart *heart))success failure:(void(^)(NSError *error))failure
+```
 
 ## Commenting on Assets
 
-You can retrieve all comments for an asset by calling one of two methods
+You can retrieve all comments for an asset by calling this method:
 
 ``` Objective-C
-    - (GCResponse *) comments;
-    - (void) commentsInBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+    - (void)getCommentsForAssetInAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *comments,GCPagination *pagination))success failure:(void (^)(NSError *error))failure
 ```
 
-There are also two methods for posting a comment to an asset
+There are also two methods for posting a comment and removing comment from an asset
 
 ``` Objective-C
-    - (GCResponse *) addComment:(NSString *) _comment;
-    - (void) addComment:(NSString *) _comment inBackgroundWithCompletion:(GCResponseBlock) aResponseBlock;
+    - (void)createComment:(NSString *)comment forAlbumWithID:(NSNumber *)albumID fromUserWithName:(NSString *)name andEmail:(NSString *)email success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure
+
+    - (void)deleteCommentForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void(^)(NSError *error))failure
 ```
 
-Both of these rely on the asset's parentID to be set.  If the asset is retrieved from a chute then this as already set, however if you are retrieving the asset from a parcel you need to set it manually since there could be multiple chutes that the asset was uploaded to.  You can set it by calling `[_asset setParentID:[_chute objectID]]`.
+## Tagging Assets
+
+You can retrieve all tags for an asset by using this method:
+
+``` Objective-C
+    - (void)getTagsForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus,NSArray *tags))success failure:(void (^)(NSError *error))failure
+```
+
+There are also methods to add, replace and delete tags from an asset:
+
+``` Objective-C
+    - (void)addTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void(^)(NSError *error))failure
+
+    - (void)replaceTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void(^)(NSError *error))failure
+
+    - (void)deleteTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void (^)(NSError *error))failure
+```
+
+## Voting Assets
+
+You can retrieve vote count for an asset by calling this method:
+
+``` Objective-C
+    - (void)getVoteCountForAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVoteCount *voteCount))success failure:(void(^)(NSError *error))failure
+```
+
+Voting and unvoting an assets is simple. Just call the following methods:
+
+``` Objective-C
+    - (void)voteAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure
+
+    - (void)removeVoteForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure
+```
+
+## Flag an asset
+
+You can retrieve flag count for an asset by calling this method:
+
+``` Objective-C
+    -(void)getFlagCountForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlagCount *flagCount))success failure:(void(^)(NSError *error))failure
+```
+
+You can add or remove flag from an asset by calling one of these methods:
+
+``` Objective-C
+    - (void)flagAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure
+
+    - (void)removeFlagFromAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure
+```

@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
 
   # Finally, specify any Pods that this Pod depends on.
   #
-  s.dependency 'AFNetworking'
+  s.dependency 'AFNetworking','~> 1.3.2'
   s.dependency 'DCKeyValueObjectMapping'
   s.dependency 'MBProgressHUD'
   s.dependency 'Lockbox'

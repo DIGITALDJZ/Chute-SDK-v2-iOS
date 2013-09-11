@@ -13,13 +13,6 @@
 
 @synthesize id, links, createdAt, updatedAt, identifier, albumId, assetId;
 
-- (void)removeFlagFromAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure
-{
-    [GCServiceFlag removeFlag:self.id assetWithID:assetID inAlbumWithID:albumID success:^(GCResponseStatus *response, GCFlag *flag) {
-        success(response,flag);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
-}
+
 
 @end

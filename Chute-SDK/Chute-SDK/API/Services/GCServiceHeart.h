@@ -14,6 +14,6 @@
 
 + (void)getHeartCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeartCount *heartCount))success failure:(void (^)(NSError *))failure;
 + (void)heartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *))failure;
-+ (void)unheart:(NSString *)identifier assetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *))failure;
++ (void)unheartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCHeart *heart))success failure:(void (^)(NSError *))failure;
 
 @end

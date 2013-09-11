@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImagesViewController : UICollectionViewController <UIAlertViewDelegate, UIImagePickerControllerDelegate>
+@class GCAlbum;
+
+@interface ImagesViewController : UICollectionViewController <UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *assets;
+@property (strong, nonatomic) GCAlbum *album;
 
 @property (strong, nonatomic) UIPopoverController *popOver;
 

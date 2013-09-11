@@ -9,6 +9,7 @@
 
 @interface NSString (QueryString)
 
+- (NSString *)stringByEscapingForURL;
 - (NSString*)stringByEscapingForURLQuery;
 - (NSString*)stringByUnescapingFromURLQuery;
 

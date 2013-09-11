@@ -147,6 +147,10 @@ static dispatch_queue_t serialQueue;
     }];
 }
 
+//                      THE FOLLOWING UPLOADER METHODS ARE DEPRECATED                      //
+
+/*
+
 - (void)uploadFiles:(NSArray *)files progress:(void (^) (CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^) (NSArray *assets))success failure:(void (^)(NSError *error))failure
 {
     [self requestFilesForUpload:files inAlbumsWithIDs:nil success:^(GCUploads *uploads) {
@@ -214,6 +218,7 @@ static dispatch_queue_t serialQueue;
     [apiClient enqueueHTTPRequestOperation:operation];
 }
 
+
 - (void)uploadData:(GCUploads *)uploads progress:(void (^)(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads))progress success:(void (^)(GCUploads *uploads))success
 {
        
@@ -228,17 +233,17 @@ static dispatch_queue_t serialQueue;
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:asset.uploadInfo.filePath];
         [request setHTTPBody:[[GCImageData dataWithUIImage:image] data]];
         
-        /*
-        NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kGCClientPUT path:asset.uploadInfo.uploadUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            NSString *name = asset.caption ? asset.caption : @"";
-#warning TODO: implement in-memory upload functionality
-            // If the image is already in an instance variable
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:asset.uploadInfo.filePath];
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:name fileName:@"image1.jpg" mimeType:@"image/jpeg"];
-            // If the image is on disk
-//            [formData appendPartWithFileURL:[NSURL fileURLWithPath:asset.uploadInfo.filePath] name:name error:nil];
-        }];
-         */
+        
+//        NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kGCClientPUT path:asset.uploadInfo.uploadUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//            NSString *name = asset.caption ? asset.caption : @"";
+//#warning TODO: implement in-memory upload functionality
+//            // If the image is already in an instance variable
+//            UIImage *image = [[UIImage alloc] initWithContentsOfFile:asset.uploadInfo.filePath];
+//            [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:name fileName:@"image1.jpg" mimeType:@"image/jpeg"];
+//            // If the image is on disk
+////            [formData appendPartWithFileURL:[NSURL fileURLWithPath:asset.uploadInfo.filePath] name:name error:nil];
+//        }];
+ 
         
         [request setValue:asset.uploadInfo.signature forHTTPHeaderField:kGCAuthorization];
         [request setValue:asset.uploadInfo.date forHTTPHeaderField:kGCDate];
@@ -296,6 +301,6 @@ static dispatch_queue_t serialQueue;
     [apiClient enqueueHTTPRequestOperation:operation];
 }
 
-
+*/
 
 @end

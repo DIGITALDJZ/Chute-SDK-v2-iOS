@@ -58,15 +58,13 @@ static NSString * const kGCCommentEmail = @"email";
     } failure:failure];
 }
 
-+ (void)deleteCommentWithID:(NSNumber *)commentID forAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure
++ (void)deleteCommentWithID:(NSNumber *)commentID  success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(commentID);
-    NSParameterAssert(assetID);
-    NSParameterAssert(albumID);
     
     GCClient *apiClient = [GCClient sharedClient];
     
-    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/comments/%@", albumID, assetID, commentID];
+    NSString *path = [NSString stringWithFormat:@"comments/%@", commentID];
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientDELETE path:path parameters:nil];
 

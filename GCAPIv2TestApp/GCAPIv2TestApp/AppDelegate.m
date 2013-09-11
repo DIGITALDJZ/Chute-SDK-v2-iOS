@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [[GCClient sharedClient] setAuthorizationHeaderWithToken:@"092220d0ea809448f0070c2d60a9bc29e7b3d36ce57257a283face54bd0ade09"];
+    [[GCClient sharedClient] setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
   
     
 //    NSURL *url = [NSURL URLWithString:@"http://getchute.com/"];

@@ -13,8 +13,9 @@
     UIButton *closeButton;
 }
 
++ (void)show;
 + (void)showInView:(UIView *)view;
-+ (void) showInView:(UIView *)view fromStartPoint:(CGPoint)startPoint;
++ (void)showInView:(UIView *)view fromStartPoint:(CGPoint)startPoint;
 
 - (id)initWithFrame:(CGRect)frame inParentView:(UIView *)parentView;
 - (void)layoutSubviews;

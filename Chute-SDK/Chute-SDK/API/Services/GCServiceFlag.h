@@ -12,8 +12,8 @@
 
 @interface GCServiceFlag : NSObject
 
-+ (void)getFlagCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCFlagCount *flagCount))success failure:(void (^)(NSError *))failure;
-+ (void)flagAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCFlag *flag))success failure:(void (^)(NSError *))failure;
-+ (void)removeFlag:(NSString *)identifier assetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCFlag *flag))success failure:(void (^)(NSError *))failure;
++ (void)getFlagCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCFlagCount *flagCount))success failure:(void (^)(NSError *error))failure;
++ (void)flagAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCFlag *flag))success failure:(void (^)(NSError *error))failure;
++ (void)removeFlagForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCFlag *flag))success failure:(void (^)(NSError *error))failure;
 
 @end

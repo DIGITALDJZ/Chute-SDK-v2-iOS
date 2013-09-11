@@ -9,14 +9,18 @@
 #import "AFHTTPClient.h"
 
 typedef enum {
-    GCServiceChute,
     GCServiceFacebook,
-    GCServiceTwitter,
-    GCServiceGoogle,
-    GCServiceTrendabl,
-    GCServiceFlickr,
     GCServiceInstagram,
+    GCServiceSkydrive,
+    GCServiceGoogleDrive,
+    GCServiceGooglePlus,
+    GCServicePicasa,
+    GCServiceFlickr,
+    GCServiceTwitter,
+    GCServiceChute,
     GCServiceFoursquare,
+    GCServiceDropbox,
+    kGCServiceUndefined
 } GCService;
 
 @interface GCOAuth2Client : AFHTTPClient {
@@ -26,10 +30,22 @@ typedef enum {
     NSString *scope;
 }
 
+extern NSString * const kGCClientID;
+extern NSString * const kGCClientSecret;
+extern int const kGCServicesCount;
+
+@property (strong, nonatomic) NSArray *gcServices;
+
 + (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret;
 + (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret redirectURI:(NSString *)_redirectURI;
 + (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret scope:(NSString *)_scope;
 + (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret redirectURI:(NSString *)_redirectURI scope:(NSString *)_scope;
+
++ (NSString *)serviceString:(GCService)service;
++ (GCService)serviceForString:(NSString *)serviceString;
+
++ (NSString *)loginMethodForService:(GCService)service;
++ (GCService)serviceForLoginMethod:(NSString *)loginMethod;
 
 - (NSURLRequest *)requestAccessForService:(GCService)service;
 - (void)verifyAuthorizationWithAccessCode:(NSString *)code success:(void(^)(void))success failure:(void(^)(NSError *error))failure;

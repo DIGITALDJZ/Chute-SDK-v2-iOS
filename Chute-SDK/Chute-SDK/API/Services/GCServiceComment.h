@@ -14,6 +14,6 @@
 
 + (void)getCommentsForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *comments, GCPagination *pagination))success failure:(void (^)(NSError *error))failure;
 + (void)createComment:(NSString *)comment forUserWithName:(NSString *)name andEmail:(NSString *)email forAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure;
-+ (void)deleteCommentWithID:(NSNumber *)commentID forAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure;
++ (void)deleteCommentWithID:(NSNumber *)commentID success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure;
 
 @end

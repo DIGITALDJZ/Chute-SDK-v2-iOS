@@ -58,11 +58,7 @@
 }
 
 - (IBAction)google:(id)sender {
-    [self showLoginForService:GCServiceGoogle fromStartPoint:[sender layer].position];
-}
-
-- (IBAction)trendabl:(id)sender {
-    [self showLoginForService:GCServiceTrendabl fromStartPoint:[sender layer].position];
+    [self showLoginForService:GCServiceGooglePlus fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)flickr:(id)sender {

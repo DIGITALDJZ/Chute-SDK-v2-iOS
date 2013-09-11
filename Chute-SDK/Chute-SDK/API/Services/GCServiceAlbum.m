@@ -14,6 +14,8 @@
 #import "GCResponse.h"
 
 static NSString * const kGCDefaultAlbumName = @"Album";
+static NSString * const kGCPerPage = @"per_page";
+static NSString * const kGCDefaultPerPage = @"100";
 
 @implementation GCServiceAlbum
 
@@ -36,7 +38,7 @@ static NSString * const kGCDefaultAlbumName = @"Album";
     
     NSString *path = @"albums";
     
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
     
     [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
@@ -162,7 +164,7 @@ static NSString * const kGCDefaultAlbumName = @"Album";
 }
 
 + (void)removeAssets:(NSArray *)assetsArray ForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus))success failure:(void (^)(NSError *error))failure {
-    
+
     GCClient *apiClient = [GCClient sharedClient];
     
     if ([assetsArray count] == 0) {
@@ -179,7 +181,6 @@ static NSString * const kGCDefaultAlbumName = @"Album";
         }];
         
         assetsArray = arrayWithIDs;
-        
     }
     
     NSString *path = [NSString stringWithFormat:@"albums/%@/remove_assets", albumID];

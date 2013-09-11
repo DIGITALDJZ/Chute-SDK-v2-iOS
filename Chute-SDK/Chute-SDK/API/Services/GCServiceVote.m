@@ -14,7 +14,7 @@
 
 @implementation GCServiceVote
 
-+ (void)getVoteCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVoteCount *voteCount))success failure:(void (^)(NSError *))failure
++ (void)getVoteCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVoteCount *voteCount))success failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(assetID);
     NSParameterAssert(albumID);
@@ -26,11 +26,18 @@
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
     
     [apiClient request:request factoryClass:[GCVoteCount class] success:^(GCResponse *response) {
-        success(response.response, response.data);
+        if([(GCVoteCount *)response.data count]!= nil)
+            success(response.response, response.data);
+        else
+        {
+            GCVoteCount *voteCount = [GCVoteCount new];
+            [voteCount setCount:@0];
+            success(response.response, voteCount);
+        }
     } failure:failure];
 }
 
-+ (void)voteAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *))failure
++ (void)voteAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *error))failure
 {
     NSParameterAssert(assetID);
     NSParameterAssert(albumID);
@@ -46,15 +53,14 @@
     } failure:failure];
 }
 
-+ (void)removeVote:(NSString *)identifier assetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *))failure
++ (void)removeVoteForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *error))failure
 {
-    NSParameterAssert(identifier);
     NSParameterAssert(assetID);
     NSParameterAssert(albumID);
     
     GCClient *apiClient = [GCClient sharedClient];
     
-    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/votes/%@", albumID, assetID, identifier];
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/votes", albumID, assetID];
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientDELETE path:path parameters:nil];
     

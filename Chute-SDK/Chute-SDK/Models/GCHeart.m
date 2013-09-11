@@ -13,13 +13,6 @@
 
 @synthesize id, links, createdAt, updatedAt, identifier, albumId, assetId;
 
-- (void)unheartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeart *heart))success failure:(void(^)(NSError *error))failure
-{
-    [GCServiceHeart unheart:self.id assetWithID:assetID inAlbumWithID:albumID success:^(GCResponseStatus *response, GCHeart *heart) {
-        success(response,heart);
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
-}
+
 
 @end

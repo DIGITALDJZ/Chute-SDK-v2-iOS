@@ -12,8 +12,8 @@
 
 @interface GCServiceVote : NSObject
 
-+ (void)getVoteCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVoteCount *voteCount))success failure:(void (^)(NSError *))failure;
-+ (void)voteAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *))failure;
-+ (void)removeVote:(NSString *)identifier assetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *))failure;
++ (void)getVoteCountForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVoteCount *voteCount))success failure:(void (^)(NSError *error))failure;
++ (void)voteAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *error))failure;
++ (void)removeVoteForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *response, GCVote *vote))success failure:(void (^)(NSError *error))failure;
 
 @end
