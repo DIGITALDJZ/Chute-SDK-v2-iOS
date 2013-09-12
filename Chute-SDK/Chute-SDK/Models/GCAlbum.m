@@ -9,7 +9,7 @@
 #import "GCAlbum.h"
 #import "GCClient.h"
 #import "AFJSONRequestOperation.h"
-#import <KeyValueObjectMapping/DCKeyValueObjectMapping.h>
+#import "DCKeyValueObjectMapping.h"
 #import "GCAsset.h"
 #import "GCServiceAsset.h"
 #import "GCServiceAlbum.h"
