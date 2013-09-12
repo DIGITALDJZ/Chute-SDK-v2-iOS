@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "2.0.2"
   s.summary      = "iOS SDK for developing apps using the Chute Platform."
   s.homepage     = "http://getchute.com"
-  s.license      = {:type => 'MIT'}
+  s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Aleksandar Kex Trpeski" => "kex@getchute.com" }
   s.source       = { :git => "https://github.com/chute/Chute-SDK-v2-iOS.git", :tag => "2.0.2" } 
   s.platform     = :ios, '6.0'
