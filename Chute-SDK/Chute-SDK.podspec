@@ -11,9 +11,9 @@ Pod::Spec.new do |s|
 
   # s.prefix_header_file = 'Chute-SDK/Chute-SDK-Prefix.pch'
   s.source_files = 'Chute-SDK', 'Chute-SDK/**/*.{h,m,c}'
-  s.frameworks = 'AssetsLibrary', 'CoreGraphics', 'QuartzCore', 'KeyValueObjectMapping'
+  s.frameworks = 'AssetsLibrary', 'CoreGraphics', 'QuartzCore'
   
-#  s.xcconfig = { 'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework"','FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Vendor/KeyValueObjectMapping/*"' }
+ # s.xcconfig = { 'HEADER_SEARCH_PATHS' => '"$(SRCROOT)/Vendor/KeyValueObjectMapping/**"','FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Vendor/KeyValueObjectMapping/*"' }
     
   s.dependency 'AFNetworking','~> 1.3.2'
   s.dependency 'DCKeyValueObjectMapping'
