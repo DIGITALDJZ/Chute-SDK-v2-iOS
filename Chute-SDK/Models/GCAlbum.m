@@ -18,7 +18,7 @@
 
 @synthesize id, links, counters, shortcut, name, user, moderateMedia, moderateComments, createdAt, updatedAt, description;
 
-- (void)getAllAlbumsWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
++ (void)getAllAlbumsWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
 {
     [GCServiceAlbum getAlbumsWithSuccess:^(GCResponseStatus *response, NSArray *albums, GCPagination *pagination) {
         success(response,albums,pagination);
@@ -27,7 +27,7 @@
     }];
 }
 
--(void)getAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void(^)(NSError *error))failure
+- (void)getAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void(^)(NSError *error))failure
 {
     [GCServiceAlbum getAlbumWithID:self.id success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
         success(responseStatus,album);
@@ -36,8 +36,7 @@
     }];
 }
 
-///////////////////////////////////// CHECK THESE TWO METHODS /////////////////////////////////////
-- (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
++ (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
 {
     
     [GCServiceAlbum createAlbumWithName:name moderateMedia:moderateMedia moderateComments:moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
@@ -55,9 +54,8 @@
         failure(error);
     }];
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 
--(void)deleteAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus))success failure:(void(^)(NSError *error))failure
+- (void)deleteAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus))success failure:(void(^)(NSError *error))failure
 {
     [GCServiceAlbum deleteAlbumWithID:self.id success:^(GCResponseStatus *responseStatus) {
         success(responseStatus);

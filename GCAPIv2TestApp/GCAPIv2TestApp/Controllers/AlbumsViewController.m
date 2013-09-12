@@ -9,10 +9,9 @@
 #import "AlbumsViewController.h"
 #import "AlbumViewCell.h"
 #import "ImagesViewController.h"
-#import <Chute-SDK/GCClient.h>
-#import <Chute-SDK/GCServiceAlbum.h>
-#import <Chute-SDK/GCAlbum.h>
 
+#import <Chute-SDK/GetChute.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface AlbumsViewController ()
 @property (nonatomic) BOOL isManagingAlbumsEnabled;
@@ -78,7 +77,7 @@
     GCAlbum *album = (GCAlbum *)self.albums[indexPath.item];
     
     // just for initial version a simple label representing albumID.
-    cell.albumTitleLabel.text = [album.id stringValue];
+    cell.albumTitleLabel.text = [album name];
     
     if (cell.selected)
         cell.backgroundColor = [UIColor blueColor]; // highlight selection
@@ -127,7 +126,7 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"showAssets"])
+    if([segue.identifier isEqualToString:@"ShowAssets"])
     {
         ImagesViewController *ivc = segue.destinationViewController;
             
@@ -138,14 +137,37 @@
         [self.collectionView deselectItemAtIndexPath:[[self.collectionView indexPathsForSelectedItems] objectAtIndex:0] animated:YES];
     }
 }
+
+#pragma makr - UIAlertView Delegate Methods
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex)
+    {
+        UITextField *inputField = [alertView textFieldAtIndex:0];
+        
+        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        [GCAlbum createAlbumWithName:inputField.text moderateMedia:NO moderateComments:NO success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
+            [self getAlbums];
+        } failure:^(NSError *error) {
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
+            [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Unable to create new album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        }];
+    }
+}
+
 #pragma mark - Custom methods
 
 -(void)getAlbums
 {
-    [GCServiceAlbum getAlbumsWithSuccess:^(GCResponseStatus *response, NSArray *_albums, GCPagination *pagination) {
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [GCAlbum getAllAlbumsWithSuccess:^(GCResponseStatus *responseStatus, NSArray *_albums, GCPagination *pagination) {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         self.albums = [[NSMutableArray alloc] initWithArray:_albums];
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Cannot fetch albums!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
 }
@@ -169,23 +191,34 @@
         [self.collectionView reloadData];
         [self.selectedAlbums removeAllObjects];
     }
-
 }
+
 - (void)createAlbum
 {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Create New Album With Name:" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *inputField = [alertView textFieldAtIndex:0];
+    inputField.keyboardType = UIKeyboardTypeDefault;
+    [alertView show];
 }
 
 - (void)deleteSelectedAlbum
 {
-    for (GCAlbum *album in self.selectedAlbums) {
-        [GCServiceAlbum deleteAlbumWithID:album.id success:^(GCResponseStatus *responseStatus) {
-            
-        } failure:^(NSError *error) {
-            [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Cannot delete album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-
-        }];
-    }
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    [HUD showAnimated:YES whileExecutingBlock:^{
+        for (GCAlbum *album in self.selectedAlbums) {
+            [album deleteAlbumWithSuccess:^(GCResponseStatus *responseStatus) {
+                
+            } failure:^(NSError *error) {
+                [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Cannot delete album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }];
+        }
+    }];
+    
+    [HUD hide:YES];
+    [HUD removeFromSuperview];
+    
     [self getAlbums];
     [self manageAlbums];
 }

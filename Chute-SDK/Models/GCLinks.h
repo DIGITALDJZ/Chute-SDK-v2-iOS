@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCURL.h"
+
+@class GCURL;
 
 @interface GCLinks : NSObject
 

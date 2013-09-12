@@ -13,7 +13,7 @@
 
 @synthesize id, links, createdAt, updatedAt, commentText, name, email;
 
-- (void)deleteCommentForAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void(^)(NSError *error))failure
+- (void)deleteCommentWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void(^)(NSError *error))failure
 {
     [GCServiceComment deleteCommentWithID:self.id success:^(GCResponseStatus *responseStatus, GCComment *comment) {
         success(responseStatus,comment);

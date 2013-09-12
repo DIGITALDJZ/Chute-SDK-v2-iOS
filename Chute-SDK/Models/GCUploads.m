@@ -7,11 +7,12 @@
 //
 
 #import "GCUploads.h"
-#import "DCKeyValueObjectMapping.h"
 #import "DCObjectMapping.h"
-#import "DCArrayMapping.h"
 #import "DCParserConfiguration.h"
+#import "DCArrayMapping.h"
+#import "DCKeyValueObjectMapping.h"
 #import "GCUploadingAsset.h"
+#import "DCParserConfiguration.h"
 
 @implementation GCUploads
 

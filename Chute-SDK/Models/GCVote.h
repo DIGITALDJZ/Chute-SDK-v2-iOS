@@ -27,8 +27,6 @@
 
 @class GCLinks;
 
-@class GCLinks;
-
 @interface GCVote : NSObject
 
 @property (strong, nonatomic) NSString  *id;

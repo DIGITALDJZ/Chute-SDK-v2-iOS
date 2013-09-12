@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCLinks.h"
+
+@class GCLinks;
 
 @interface GCUser : NSObject
 

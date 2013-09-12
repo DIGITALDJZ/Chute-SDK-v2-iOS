@@ -14,6 +14,8 @@
 #import "GCServiceHeart.h"
 #import "GCServiceVote.h"
 #import "GCServiceFlag.h"
+#import "GCResponseStatus.h"
+#import "GCPagination.h"
 
 @implementation GCAsset
 
@@ -91,9 +93,9 @@
         failure(error);
     }];
 }
-- (void)unheartAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeart *heart))success failure:(void(^)(NSError *error))failure
+- (void)unheartAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeart *heart))success failure:(void(^)(NSError *error))failure
 {
-    [GCServiceHeart unheartAssetWithID:assetID inAlbumWithID:albumID success:^(GCResponseStatus *response, GCHeart *heart) {
+    [GCServiceHeart unheartAssetWithID:self.id inAlbumWithID:albumID success:^(GCResponseStatus *response, GCHeart *heart) {
         success(response,heart);
     } failure:^(NSError *error) {
         failure(error);
@@ -117,15 +119,14 @@
         failure(error);
     }];
 }
-- (void)removeVoteAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure
+- (void)removeVoteForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure
 {
-    [GCServiceVote removeVoteForAssetWithID:assetID inAlbumWithID:albumID success:^(GCResponseStatus *response, GCVote *vote) {
+    [GCServiceVote removeVoteForAssetWithID:self.id inAlbumWithID:albumID success:^(GCResponseStatus *response, GCVote *vote) {
         success(response,vote);
     } failure:^(NSError *error) {
         failure(error);
     }];
 }
-
 
 - (void)flagAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure
 {
@@ -144,9 +145,9 @@
         failure(error);
     }];
 }
-- (void)removeFlagFromAssetWithID:(NSNumber *)assetID inAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure
+- (void)removeFlagFromAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure
 {
-    [GCServiceFlag removeFlagForAssetWithID:assetID inAlbumWithID:albumID success:^(GCResponseStatus *response, GCFlag *flag) {
+    [GCServiceFlag removeFlagForAssetWithID:self.id inAlbumWithID:albumID success:^(GCResponseStatus *response, GCFlag *flag) {
         success(response,flag);
     } failure:^(NSError *error) {
         failure(error);
@@ -156,7 +157,6 @@
 //                                    THE FOLLOWING METHODS ARE DEPRECATED                        //
 
 /*
-#pragma mark - Own Methods
 
 - (void)getAllAssetsWithSuccess:(void(^)(GCResponseStatus *responseStatus,NSArray *assets, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
 {

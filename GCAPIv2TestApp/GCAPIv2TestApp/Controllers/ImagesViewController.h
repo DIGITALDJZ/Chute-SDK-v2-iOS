@@ -10,7 +10,7 @@
 
 @class GCAlbum;
 
-@interface ImagesViewController : UICollectionViewController <UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ImagesViewController : UICollectionViewController <UIAlertViewDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *assets;
 @property (strong, nonatomic) GCAlbum *album;

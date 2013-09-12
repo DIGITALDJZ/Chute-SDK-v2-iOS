@@ -7,12 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCLinks.h"
-#import "GCAssetDimensions.h"
-#import "GCAssetSource.h"
-#import "GCResponseStatus.h"
-#import "GCPagination.h"
-#import "GCCoordinate.h"
+
+@class GCComment,GCResponseStatus,GCLinks,GCAssetDimensions,GCAssetSource,GCCoordinate,GCPagination,GCHeart,GCHeartCount, GCVote,GCVoteCount,GCFlag,GCFlagCount;
 
 @interface GCAsset : NSObject
 
@@ -25,5 +21,35 @@
 @property (strong, nonatomic) GCAssetDimensions *dimensions;
 @property (strong, nonatomic) GCAssetSource     *source;
 @property (strong, nonatomic) GCCoordinate      *coordinate;
+
+- (void)createComment:(NSString *)comment forAlbumWithID:(NSNumber *)albumID fromUserWithName:(NSString *)name andEmail:(NSString *)email success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure;
+
+- (void)getCommentsForAssetInAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *comments,GCPagination *pagination))success failure:(void (^)(NSError *error))failure;
+
+- (void)addTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void(^)(NSError *error))failure;
+
+- (void)replaceTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void(^)(NSError *error))failure;
+
+- (void)deleteTags:(NSArray *)tags inAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *responseStatus, NSArray *tags))success failure:(void (^)(NSError *error))failure;
+
+- (void)getTagsForAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus,NSArray *tags))success failure:(void (^)(NSError *error))failure;
+
+- (void)heartAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus,GCHeart *heart))success failure:(void(^)(NSError *error))failure;
+
+- (void)getHeartCountForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeartCount *heartCount))success failure:(void(^)(NSError *error))failure;
+
+- (void)unheartAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCHeart *heart))success failure:(void(^)(NSError *error))failure;
+
+- (void)voteAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure;
+
+- (void)getVoteCountForAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVoteCount *voteCount))success failure:(void(^)(NSError *error))failure;
+
+- (void)removeVoteForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCVote *vote))success failure:(void(^)(NSError *error))failure;
+
+- (void)flagAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure;
+
+-(void)getFlagCountForAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlagCount *flagCount))success failure:(void(^)(NSError *error))failure;
+
+- (void)removeFlagFromAssetInAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCFlag *flag))success failure:(void(^)(NSError *error))failure;
 
 @end

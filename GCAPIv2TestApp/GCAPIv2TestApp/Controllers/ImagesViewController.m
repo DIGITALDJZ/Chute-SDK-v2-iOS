@@ -7,18 +7,12 @@
 //
 
 #import "ImagesViewController.h"
-#import <Chute-SDK/GCServiceAsset.h>
-#import <Chute-SDK/GCAsset.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "ImageViewCell.h"
 #import "ImageDetailsViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <Chute-SDK/GCUploader.h>
-#import <Chute-SDK/GCFile.h>
-#import <Chute-SDK/GCServiceAlbum.h>
-#import <Chute-SDK/GCAlbum.h>
 
-//#import "PhotoPickerViewController.h"
+#import <Chute-SDK/GetChute.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ImagesViewController ()
 
@@ -170,18 +164,16 @@
     }
     
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-
-    
-    
     GCUploader *uploader = [GCUploader sharedUploader];
     
     [uploader uploadImages:@[[info objectForKey:UIImagePickerControllerOriginalImage]] inAlbumWithID:self.album.id progress:^(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads) {
          NSLog(@"Progress: %f", currentUploadProgress);
     } success:^(NSArray *assets) {
-        [self getAssets];
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        [self getAssets];
     } failure:^(NSError *error) {
-        NSLog([error localizedDescription]);
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Unable to upload images.Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     }];
 }
 
@@ -198,8 +190,10 @@
     else
         return YES;
 }
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"details"]) {
+    
+    if ([segue.identifier isEqualToString:@"PushAssetDetails"]) {
         
         ImageDetailsViewController *vc;
         
@@ -248,12 +242,14 @@
 
 - (void)getAssets {
     
-    [GCServiceAsset getAssetsForAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, NSArray *_assets, GCPagination *pagination) {
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [self.album getAllAssetsWithSuccess:^(GCResponseStatus *responseStatus, NSArray *_assets, GCPagination *pagination) {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         self.assets = [[NSMutableArray alloc] initWithArray:_assets];
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Cannot fetch assets!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-
     }];
 }
 
@@ -281,11 +277,15 @@
 
 - (void)deleteSelectedAssets
 {
-    [GCServiceAlbum removeAssets:self.selectedAssets ForAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus) {
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [self.album removeAssets:self.selectedAssets success:^(GCResponseStatus *responseStatus) {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         [self getAssets];
         [self manageAssets];
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Cannot delete assets!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        
     }];
 }
 

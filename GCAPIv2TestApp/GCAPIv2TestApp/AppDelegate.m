@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "GCClient.h"
+
+#import <Chute-SDK/GetChute.h>
+//#import "GCClient.h"
 
 @implementation AppDelegate
 

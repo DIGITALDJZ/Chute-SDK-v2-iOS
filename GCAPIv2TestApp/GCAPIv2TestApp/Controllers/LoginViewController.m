@@ -7,9 +7,11 @@
 //
 
 #import "LoginViewController.h"
-#import <Chute-SDK/GCLoginView.h>
-#import <Chute-SDK/GCOAuth2Client.h>
 #import <QuartzCore/QuartzCore.h>
+
+#import <Chute-SDK/GetChute.h>
+//#import <Chute-SDK/GCLoginView.h>
+//#import <Chute-SDK/GCOAuth2Client.h>
 
 @interface LoginViewController ()
 

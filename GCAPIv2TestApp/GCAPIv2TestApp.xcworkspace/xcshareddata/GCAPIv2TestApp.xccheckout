@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4A6EDBC1-F9E3-4545-93F0-16D10304F5A3</string>
+	<string>DAC78DF5-2BE4-4AD1-A05F-FCB43DDB5D48</string>
 	<key>IDESourceControlProjectName</key>
 	<string>GCAPIv2TestApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>67C47E63-8804-4E6E-9D3B-1A51E79AFF26</key>
-		<string>https://github.com/chute/ChuteSDKv2.git</string>
+		<key>255BDB01-E8FB-4D86-B919-1C2BB057BE09</key>
+		<string>https://github.com/chute/Chute-SDK-v2-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>GCAPIv2TestApp/GCAPIv2TestApp.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>67C47E63-8804-4E6E-9D3B-1A51E79AFF26</key>
+		<key>255BDB01-E8FB-4D86-B919-1C2BB057BE09</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/chute/ChuteSDKv2.git</string>
+	<string>https://github.com/chute/Chute-SDK-v2-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>67C47E63-8804-4E6E-9D3B-1A51E79AFF26</string>
+	<string>255BDB01-E8FB-4D86-B919-1C2BB057BE09</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>67C47E63-8804-4E6E-9D3B-1A51E79AFF26</string>
+			<string>255BDB01-E8FB-4D86-B919-1C2BB057BE09</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ChuteSDKv2 4</string>
+			<string>Chute-SDK-v2-iOS</string>
 		</dict>
 	</array>
 </dict>

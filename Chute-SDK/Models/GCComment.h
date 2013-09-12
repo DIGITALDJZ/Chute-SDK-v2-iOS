@@ -25,7 +25,7 @@
 }
  */
 
-@class GCLinks;
+@class GCLinks,GCResponseStatus;
 
 @interface GCComment : NSObject
 
@@ -36,5 +36,8 @@
 @property (strong, nonatomic) NSString *commentText;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;
+
+- (void)deleteCommentWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void(^)(NSError *error))failure;
+
 
 @end

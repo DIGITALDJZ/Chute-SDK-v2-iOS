@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlbumsViewController : UICollectionViewController
+@interface AlbumsViewController : UICollectionViewController <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *albums;
 

@@ -9,23 +9,10 @@
 #import "ImageDetailsViewController.h"
 #import "CommentCell.h"
 
+#import <Chute-SDK/GetChute.h>
 #import <MBProgressHUD/MBProgressHUD.h>
-#import <Chute-SDK/GCAsset.h>
-#import <Chute-SDK/GCServiceAsset.h>
-#import <Chute-SDK/GCServiceHeart.h>
-#import <Chute-SDK/GCServiceVote.h>
-#import <Chute-SDK/GCServiceFlag.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <AFNetworking/AFImageRequestOperation.h>
-#import <Chute-SDK/GCHeartCount.h>
-#import <Chute-SDK/GCVoteCount.h>
-#import <Chute-SDK/GCFlagCount.h>
-#import <Chute-SDK/GCComment.h>
-#import <Chute-SDK/GCServiceComment.h>
-#import <Chute-SDK/GCHeart.h>
-#import <Chute-SDK/GCVote.h>
-#import <Chute-SDK/GCFlag.h>
-#import <Chute-SDK/GCAlbum.h>
 
 @interface ImageDetailsViewController ()
 
@@ -40,6 +27,7 @@
 @end
 
 @implementation ImageDetailsViewController
+
 @synthesize scrollView,heartsLabel,votesLabel,flagLabel,commentsTable,tableViewHeightConstraint;
 @synthesize heartButton,voteButton,flagButton;
 
@@ -82,6 +70,7 @@
 //    }
    
 }
+
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
@@ -103,7 +92,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self.imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.asset url]]]]];
     
     AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self.asset url]]] success:^(UIImage *image) {
         [self.imageView setImage:image];
@@ -142,55 +130,53 @@
 
     if(!isItHearted)
     {
-        [GCServiceHeart heartAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCHeart *heart) {
-
+        [self.asset heartAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCHeart *heart) {
             [self updateHeartLabelCount];
             isItHearted = YES;
             [self.heartButton setBackgroundImage:[UIImage imageNamed:@"heart.png"] forState:UIControlStateNormal];
-            
         } failure:^(NSError *error) {
             NSLog(@"Unable to heart this asset!");
         }];
     }
     else
     {
-        [GCServiceHeart unheartAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCHeart *heart) {
-
+        [self.asset unheartAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCHeart *heart) {
             [self updateHeartLabelCount];
             isItHearted = NO;
             [self.heartButton setBackgroundImage:[UIImage imageNamed:@"unheart.png"] forState:UIControlStateNormal];
 
         } failure:^(NSError *error) {
             NSLog(@"Unable to unheart this asset!");
+
         }];
     }
-
 }
 
 - (IBAction)voteUnvote:(UIButton *)sender {
     
     if(!isItVoted)
     {
-        [GCServiceVote voteAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCVote *vote) {
-
+        [self.asset voteAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCVote *vote) {
+            
             [self updateVoteLabelCount];
             isItVoted = YES;
             [self.voteButton setBackgroundImage:[UIImage imageNamed:@"vote"] forState:UIControlStateNormal];
-            
+
         } failure:^(NSError *error) {
             NSLog(@"Unable to vote this asset!");
+
         }];
     }
     else
     {
-        [GCServiceVote removeVoteForAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCVote *vote) {
-            
+        [self.asset removeVoteForAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCVote *vote) {
             [self updateVoteLabelCount];
             isItVoted = NO;
             [self.voteButton setBackgroundImage:[UIImage imageNamed:@"unvote"] forState:UIControlStateNormal];
-            
+
         } failure:^(NSError *error) {
             NSLog(@"Unable to remove vote from this asset!");
+
         }];
     }
 }
@@ -198,8 +184,7 @@
 - (IBAction)flagUnflag:(UIButton *)sender {
     if(!isItFlagged)
     {
-        [GCServiceFlag flagAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCFlag *flag) {
-
+        [self.asset flagAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCFlag *flag) {
             [self updateFlagLabelCount];
             isItFlagged = YES;
             [self.flagButton setBackgroundImage:[UIImage imageNamed:@"flag.png"] forState:UIControlStateNormal];
@@ -210,12 +195,10 @@
     }
     else
     {
-        [GCServiceFlag removeFlagForAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCFlag *flag) {
-            
+        [self.asset removeFlagFromAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCFlag *flag) {
             [self updateFlagLabelCount];
             isItFlagged = NO;
             [self.flagButton setBackgroundImage:[UIImage imageNamed:@"unflag.png"] forState:UIControlStateNormal];
-            
         } failure:^(NSError *error) {
             NSLog(@"Unable to flag this asset!");
         }];
@@ -279,66 +262,62 @@
 
 -(void)updateHeartLabelCount
 {
-    [GCServiceHeart getHeartCountForAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCHeartCount *heartCount) {
-        
+    [self.asset getHeartCountForAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCHeartCount *heartCount) {
         self.heartsLabel.text = [heartCount.count stringValue];
-        
+
     } failure:^(NSError *error) {
         NSLog(@"Failed to obtain heart count!");
+
     }];
 }
+
 -(void)updateVoteLabelCount
 {
-    [GCServiceVote getVoteCountForAssetWithID:self.asset.id
-                                inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCVoteCount *voteCount) {
-                                    
-                                    self.votesLabel.text = [voteCount.count stringValue];
-                                    
-                                } failure:^(NSError *error) {
-                                    NSLog(@"Failed to obtain vote count!");
-                                }];
+    [self.asset getVoteCountForAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCVoteCount *voteCount) {
+        self.votesLabel.text = [voteCount.count stringValue];
+
+    } failure:^(NSError *error) {
+        NSLog(@"Failed to obtain vote count!");
+
+    }];
 }
+
 -(void)updateFlagLabelCount
 {
-    [GCServiceFlag getFlagCountForAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *response, GCFlagCount *flagCount) {
-        
+    [self.asset getFlagCountForAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCFlagCount *flagCount) {
         self.flagLabel.text = [flagCount.count stringValue];
-        
     } failure:^(NSError *error) {
         NSLog(@"Failed to obtain flag count!");
-        
     }];
 }
 
 -(void)populateComments
 {
-    [GCServiceComment getCommentsForAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, NSArray *comments, GCPagination *pagination) {
+    [self.asset getCommentsForAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, NSArray *comments, GCPagination *pagination) {
         [self setComments:[NSMutableArray arrayWithArray:comments]];
         [self.commentsTable reloadData];
         [self adjustHeightOfTableview];
         [self setScrollViewContentSize];
     } failure:^(NSError *error) {
         NSLog([error localizedDescription]);
+        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Comments can't be retrieved." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     }];
-
 }
 
 -(void)postComment
 {
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    [GCServiceComment createComment:commentTextField.text forUserWithName:@"Me" andEmail:@"mine-email@someemail.com" forAssetWithID:self.asset.id inAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCComment *comment) {
+    [self.asset createComment:commentTextField.text forAlbumWithID:self.album.id fromUserWithName:@"Me" andEmail:@"mine-email@someemail.com" success:^(GCResponseStatus *responseStatus, GCComment *comment) {
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         [self.comments addObject:comment];
         [commentTextField resignFirstResponder];
         [commentTextField setText:@""];
         [commentTextField setPlaceholder:@"Write your comment..."];
         [self populateComments];
-
     } failure:^(NSError *error) {
-       [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Comment text can't be blank." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     }];
-
 }
 
 #pragma mark - Table View Delegate Methods
@@ -387,15 +366,20 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         GCComment *comment = [self.comments objectAtIndex:indexPath.row];
-        [GCServiceComment deleteCommentWithID:comment.id success:^(GCResponseStatus *responseStatus, GCComment *comment) {
+        
+        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        [comment deleteCommentWithSuccess:^(GCResponseStatus *responseStatus, GCComment *comment) {
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
             [self populateComments];
             [self adjustHeightOfTableview];
             [self setScrollViewContentSize];
         } failure:^(NSError *error) {
-            NSLog([error localizedDescription]);
+           [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
+            [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Unable to delete comment." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
         }];
     }
 }
+
 #pragma mark - NSNotification methods
 - (void)keyboardWillShow:(NSNotification *)notification
 {
