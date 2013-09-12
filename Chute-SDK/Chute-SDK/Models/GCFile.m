@@ -8,9 +8,9 @@
 
 #import "GCFile.h"
 #include "GCMD5Hash.h"
-#import "DCKeyValueObjectMapping.h"
-#import "DCParserConfiguration.h"
-#import "DCObjectMapping.h"
+#import <KeyValueObjectMapping/DCKeyValueObjectMapping.h>
+#import <KeyValueObjectMapping/DCParserConfiguration.h>
+#import <KeyValueObjectMapping/DCObjectMapping.h>
 #import "GCFileManager.h"
 #import "GCImageData.h"
 

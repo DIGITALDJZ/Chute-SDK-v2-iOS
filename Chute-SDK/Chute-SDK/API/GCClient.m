@@ -11,7 +11,7 @@
 #import "GCResponse.h"
 #import "GCResponseStatus.h"
 #import "GCPagination.h"
-#import "DCKeyValueObjectMapping.h"
+#import <KeyValueObjectMapping/DCKeyValueObjectMapping.h>
 #import "GCUploads.h"
 #import "Lockbox.h"
 
