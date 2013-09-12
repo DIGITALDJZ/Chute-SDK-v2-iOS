@@ -7,7 +7,6 @@
 //
 
 #import "ImagesViewController.h"
-#import <Chute-SDK/GCClient.h>
 #import <Chute-SDK/GCServiceAsset.h>
 #import <Chute-SDK/GCAsset.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
