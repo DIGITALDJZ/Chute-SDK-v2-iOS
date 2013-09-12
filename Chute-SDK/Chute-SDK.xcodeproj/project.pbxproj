@@ -52,7 +52,6 @@
 		CCAF7F63171D98BC00F4BA81 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F52171D98BC00F4BA81 /* AFURLConnectionOperation.m */; };
 		CCAF7F64171D98BC00F4BA81 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F54171D98BC00F4BA81 /* AFXMLRequestOperation.m */; };
 		CCAF7F65171D98BC00F4BA81 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F56171D98BC00F4BA81 /* UIImageView+AFNetworking.m */; };
-		CCAF7F66171D98BC00F4BA81 /* KeyValueObjectMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */; };
 		CCAF7F67171D98BC00F4BA81 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAF7F5C171D98BC00F4BA81 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CCB8B09A174925F900D5B702 /* chute2.png in Resources */ = {isa = PBXBuildFile; fileRef = CCB8B097174925F900D5B702 /* chute2.png */; };
 		CCB8B09B174925F900D5B702 /* chute3.png in Resources */ = {isa = PBXBuildFile; fileRef = CCB8B098174925F900D5B702 /* chute3.png */; };
@@ -81,7 +80,6 @@
 		CCC9A2331672716E0016BD3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2321672716E0016BD3C /* SenTestingKit.framework */; };
 		CCC9A2361672716E0016BD3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2231672716D0016BD3C /* Foundation.framework */; };
 		CCC9A2391672716E0016BD3C /* libChute-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC9A2201672716D0016BD3C /* libChute-SDK.a */; };
-		CCCD467917215BCC0094ABB5 /* KeyValueObjectMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */; };
 		CCCD467A17215C180094ABB5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359461689F70D009E372C /* SystemConfiguration.framework */; };
 		CCCD467B17215C1C0094ABB5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359431689F705009E372C /* MobileCoreServices.framework */; };
 		CCE2B4BE17426C1C00F4EB19 /* GCUploadingAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE2B4BD17426C1C00F4EB19 /* GCUploadingAsset.m */; };
@@ -199,6 +197,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D0B9E5E1540556E00E5BE71;
 			remoteInfo = LockBox;
+		};
+		CCBCEEDB17E21C070054C56C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCBCEED617E21C070054C56C /* KeyValueObjectMapping.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 205FD3A3153F02AA00693E13;
+			remoteInfo = KeyValueObjectMapping;
+		};
+		CCBCEEDD17E21C070054C56C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCBCEED617E21C070054C56C /* KeyValueObjectMapping.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 205FD3B1153F02AA00693E13;
+			remoteInfo = KeyValueObjectMappingTests;
+		};
+		CCBCEEDF17E21C1D0054C56C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCBCEED617E21C070054C56C /* KeyValueObjectMapping.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 205FD3A2153F02AA00693E13;
+			remoteInfo = KeyValueObjectMapping;
 		};
 		CCC9A2371672716E0016BD3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -320,7 +339,6 @@
 		CCAF7F54171D98BC00F4BA81 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		CCAF7F55171D98BC00F4BA81 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		CCAF7F56171D98BC00F4BA81 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KeyValueObjectMapping.framework; sourceTree = "<group>"; };
 		CCAF7F5B171D98BC00F4BA81 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		CCAF7F5C171D98BC00F4BA81 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		CCB8B097174925F900D5B702 /* chute2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chute2.png; sourceTree = SOURCE_ROOT; };
@@ -349,6 +367,7 @@
 		CCBAA60817298655001D5B2C /* GCHeartCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHeartCount.h; sourceTree = "<group>"; };
 		CCBAA60917298655001D5B2C /* GCHeartCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHeartCount.m; sourceTree = "<group>"; };
 		CCBAA60B17298996001D5B2C /* GCServiceHeartSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServiceHeartSpec.m; sourceTree = "<group>"; };
+		CCBCEED617E21C070054C56C /* KeyValueObjectMapping.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KeyValueObjectMapping.xcodeproj; sourceTree = "<group>"; };
 		CCC23E6C174535230091887A /* GCUploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUploads.h; sourceTree = "<group>"; };
 		CCC23E6D174535230091887A /* GCUploads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUploads.m; sourceTree = "<group>"; };
 		CCC23E70174547150091887A /* GCUploadInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUploadInfo.h; sourceTree = "<group>"; };
@@ -563,7 +582,6 @@
 				CCC359471689F70D009E372C /* SystemConfiguration.framework in Frameworks */,
 				CCC359441689F705009E372C /* MobileCoreServices.framework in Frameworks */,
 				CCC9A2241672716D0016BD3C /* Foundation.framework in Frameworks */,
-				CCAF7F66171D98BC00F4BA81 /* KeyValueObjectMapping.framework in Frameworks */,
 				CC9690DE178C2AD500004759 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,7 +593,6 @@
 				CCBAA5E417258983001D5B2C /* CoreGraphics.framework in Frameworks */,
 				CCCD467B17215C1C0094ABB5 /* MobileCoreServices.framework in Frameworks */,
 				CCCD467A17215C180094ABB5 /* SystemConfiguration.framework in Frameworks */,
-				CCCD467917215BCC0094ABB5 /* KeyValueObjectMapping.framework in Frameworks */,
 				CCE2FF08172154AC00FCB285 /* UIKit.framework in Frameworks */,
 				CCC9A2361672716E0016BD3C /* Foundation.framework in Frameworks */,
 				CCC9A2331672716E0016BD3C /* SenTestingKit.framework in Frameworks */,
@@ -813,7 +830,7 @@
 		CCAF7F57171D98BC00F4BA81 /* KeyValueObjectMapping */ = {
 			isa = PBXGroup;
 			children = (
-				CCAF7F59171D98BC00F4BA81 /* KeyValueObjectMapping.framework */,
+				CCBCEED617E21C070054C56C /* KeyValueObjectMapping.xcodeproj */,
 			);
 			path = KeyValueObjectMapping;
 			sourceTree = "<group>";
@@ -851,6 +868,15 @@
 				CCE49BD2172AE0BF00DA1BBC /* GCServiceFlagSpec.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CCBCEED717E21C070054C56C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCBCEEDC17E21C070054C56C /* KeyValueObjectMapping.framework */,
+				CCBCEEDE17E21C070054C56C /* KeyValueObjectMappingTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CCC9A2151672716D0016BD3C = {
@@ -1130,6 +1156,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CCBCEEE017E21C1D0054C56C /* PBXTargetDependency */,
 			);
 			name = "Chute-SDK";
 			productName = GetChute;
@@ -1177,6 +1204,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = CCBCEED717E21C070054C56C /* Products */;
+					ProjectRef = CCBCEED617E21C070054C56C /* KeyValueObjectMapping.xcodeproj */;
+				},
+				{
 					ProductGroup = CC0EA6CD17643D4C00A9B622 /* Products */;
 					ProjectRef = CC0EA6CC17643D4C00A9B622 /* LockBox.xcodeproj */;
 				},
@@ -1202,6 +1233,20 @@
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = CC0EA6E317643D4D00A9B622 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CCBCEEDC17E21C070054C56C /* KeyValueObjectMapping.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KeyValueObjectMapping.framework;
+			remoteRef = CCBCEEDB17E21C070054C56C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CCBCEEDE17E21C070054C56C /* KeyValueObjectMappingTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KeyValueObjectMappingTests.octest;
+			remoteRef = CCBCEEDD17E21C070054C56C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1409,6 +1454,11 @@
 			isa = PBXTargetDependency;
 			name = LockBox;
 			targetProxy = CC9690DC178C2AAF00004759 /* PBXContainerItemProxy */;
+		};
+		CCBCEEE017E21C1D0054C56C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeyValueObjectMapping;
+			targetProxy = CCBCEEDF17E21C1D0054C56C /* PBXContainerItemProxy */;
 		};
 		CCC9A2381672716E0016BD3C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

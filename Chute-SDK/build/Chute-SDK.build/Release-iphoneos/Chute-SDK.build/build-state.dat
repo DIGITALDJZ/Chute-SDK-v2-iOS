@@ -161,50 +161,100 @@ c00000000522ACC1500000000001A2270
 t1378536469
 s1712752
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/GCClient.h
+c0000000052306EBA000000000000032A
+t1378905786
+s810
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/GCClient.m
 c00000000523109EE00000000000015BA
 t1378945518
 s5562
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/GCOAuth2Client.h
+c0000000052306EBA00000000000006BF
+t1378905786
+s1727
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/GCOAuth2Client.m
 c0000000052306EBA0000000000001C13
 t1378905786
 s7187
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/GCUploader.h
+c000000005230986C00000000000005B8
+t1378916460
+s1464
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/GCUploader.m
 c000000005230986D00000000000036FF
 t1378916461
 s14079
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceAlbum.h
+c0000000052306EBA0000000000000664
+t1378905786
+s1636
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceAlbum.m
 c00000000523098E80000000000001C67
 t1378916584
 s7271
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceAsset.h
+c00000000523094FF0000000000000841
+t1378915583
+s2113
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceAsset.m
 c00000000523094EC00000000000019FA
 t1378915564
 s6650
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceComment.h
+c0000000052306EBA00000000000003E0
+t1378905786
+s992
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceComment.m
 c0000000052306EBA0000000000000B9E
 t1378905786
 s2974
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceFlag.h
+c0000000052306EBA0000000000000379
+t1378905786
+s889
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceFlag.m
 c0000000052306EBA0000000000000A70
 t1378905786
 s2672
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceHeart.h
+c0000000052306EBA0000000000000363
+t1378905786
+s867
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceHeart.m
 c0000000052306EBA0000000000000A7C
 t1378905786
 s2684
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceTag.h
+c0000000052306EBA0000000000000471
+t1378905786
+s1137
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceTag.m
 c0000000052306EBA0000000000000D46
 t1378905786
 s3398
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceVote.h
+c0000000052306EBA0000000000000379
+t1378905786
+s889
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/API/Services/GCServiceVote.m
 c0000000052306EBA0000000000000A6E
@@ -216,130 +266,260 @@ c0000000052306EBA0000000000000127
 t1378905786
 s295
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAlbum.h
+c0000000052306EBA000000000000037D
+t1378905786
+s893
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAlbum.m
 c00000000523109EE00000000000012EE
 t1378945518
 s4846
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCApiLimits.h
+c0000000052306EBA00000000000001D2
+t1378905786
+s466
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCApiLimits.m
 c0000000052306EBA0000000000000154
 t1378905786
 s340
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAsset.h
+c0000000052306EBA0000000000000379
+t1378905786
+s889
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAsset.m
 c000000005230951800000000000026EB
 t1378915608
 s9963
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAssetDimensions.h
+c0000000052306EBA000000000000014E
+t1378905786
+s334
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAssetDimensions.m
 c0000000052306EBA0000000000000100
 t1378905786
 s256
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAssetSource.h
+c0000000052306EBA0000000000000248
+t1378905786
+s584
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCAssetSource.m
 c0000000052306EBA000000000000012D
 t1378905786
 s301
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCComment.h
+c0000000052306EBA00000000000003A4
+t1378905786
+s932
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCComment.m
 c0000000052306EBA00000000000002E7
 t1378905786
 s743
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCCoordinate.h
+c0000000052306EBA000000000000014A
+t1378905786
+s330
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCCoordinate.m
 c0000000052306EBA00000000000000F7
 t1378905786
 s247
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCCounter.h
+c0000000052306EBA000000000000016E
+t1378905786
+s366
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCCounter.m
 c0000000052306EBA00000000000000F0
 t1378905786
 s240
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCFile.h
+c0000000052306EBA000000000000022B
+t1378905786
+s555
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCFile.m
 c0000000052310A2A0000000000000903
 t1378945578
 s2307
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCFlag.h
+c0000000052306EBA00000000000003C1
+t1378905786
+s961
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCFlag.m
 c0000000052306EBA000000000000012C
 t1378905786
 s300
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCFlagCount.h
+c0000000052306EBA0000000000000113
+t1378905786
+s275
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCFlagCount.m
 c0000000052306EBA00000000000000E7
 t1378905786
 s231
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCHeart.h
+c0000000052306EBA0000000000000387
+t1378905786
+s903
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCHeart.m
 c0000000052306EBA0000000000000130
 t1378905786
 s304
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCHeartCount.h
+c0000000052306EBA0000000000000115
+t1378905786
+s277
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCHeartCount.m
 c0000000052306EBA00000000000000EA
 t1378905786
 s234
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCImageData.h
+c0000000052306EBA0000000000000203
+t1378905786
+s515
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCImageData.m
 c0000000052306EBA0000000000000510
 t1378905786
 s1296
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCLinks.h
+c0000000052306EBA0000000000000170
+t1378905786
+s368
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCLinks.m
 c0000000052306EBA0000000000000120
 t1378905786
 s288
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCPagination.h
+c0000000052306EBA0000000000000253
+t1378905786
+s595
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCPagination.m
 c0000000052306EBA0000000000000133
 t1378905786
 s307
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCResponse.h
+c0000000052306EBA00000000000001B6
+t1378905786
+s438
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCResponse.m
 c0000000052306EBA00000000000000F7
 t1378905786
 s247
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCResponseStatus.h
+c0000000052306EBA0000000000000240
+t1378905786
+s576
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCResponseStatus.m
 c0000000052306EBA0000000000000129
 t1378905786
 s297
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCURL.h
+c0000000052306EBA0000000000000137
+t1378905786
+s311
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCURL.m
 c0000000052306EBA00000000000000DC
 t1378905786
 s220
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUploadInfo.h
+c0000000052306EBA0000000000000210
+t1378905786
+s528
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUploadInfo.m
 c0000000052306EBA000000000000011D
 t1378905786
 s285
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUploadingAsset.h
+c0000000052306EBA000000000000012D
+t1378905786
+s301
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUploadingAsset.m
 c0000000052306EBA0000000000000142
 t1378905786
 s322
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUploads.h
+c0000000052306EBA00000000000001BD
+t1378905786
+s445
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUploads.m
 c0000000052310A7400000000000005F7
 t1378945652
 s1527
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUser.h
+c0000000052306EBA00000000000001DC
+t1378905786
+s476
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCUser.m
 c0000000052306EBA00000000000000F2
 t1378905786
 s242
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCVote.h
+c0000000052306EBA00000000000003DA
+t1378905786
+s986
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCVote.m
 c0000000052306EBA000000000000012B
 t1378905786
 s299
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCVoteCount.h
+c0000000052306EBA0000000000000113
+t1378905786
+s275
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Models/GCVoteCount.m
 c0000000052306EBA00000000000000E7
 t1378905786
 s231
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/GCFileManager.h
+c0000000052306EBA0000000000000182
+t1378905786
+s386
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/GCFileManager.m
 c0000000052306EBA0000000000000CC7
@@ -351,90 +531,205 @@ c0000000052306EBA0000000000000904
 t1378905786
 s2308
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/GCMD5Hash.h
+c0000000052306EBA000000000000010E
+t1378905786
+s270
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/KXDataEncoder.h
+c0000000052306EBA00000000000001EE
+t1378905786
+s494
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/KXDataEncoder.m
 c0000000052306EBA0000000000000BA6
 t1378905786
 s2982
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/NSDictionary+QueryString.h
+c0000000052306EBA000000000000014E
+t1378905786
+s334
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/NSDictionary+QueryString.m
 c0000000052306EBA00000000000006BA
 t1378905786
 s1722
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/NSMutableDictionary+GCUtil.h
+c0000000052306EBA0000000000000124
+t1378905786
+s292
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/NSMutableDictionary+GCUtil.m
 c0000000052306EBA000000000000016F
 t1378905786
 s367
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/NSString+QueryString.h
+c0000000052306EBA0000000000000169
+t1378905786
+s361
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Util/NSString+QueryString.m
 c0000000052306EBA00000000000005AE
 t1378905786
 s1454
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Views/GCLoginView.h
+c0000000052306EBA00000000000005B0
+t1378905786
+s1456
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Views/GCLoginView.m
 c0000000052306EBA000000000000164F
 t1378905786
 s5711
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Views/GCPopupView.h
+c0000000052306EBA00000000000002CB
+t1378905786
+s715
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Chute-SDK/Views/GCPopupView.m
 c0000000052306EBA000000000000240F
 t1378905786
 s9231
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFHTTPClient.h
+c0000000052306EBA0000000000008E79
+t1378905786
+s36473
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFHTTPClient.m
 c0000000052306EBA000000000000C643
 t1378905786
 s50755
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFHTTPRequestOperation.h
+c0000000052306EBA0000000000001912
+t1378905786
+s6418
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFHTTPRequestOperation.m
 c0000000052306EBA00000000000032BB
 t1378905786
 s12987
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFImageRequestOperation.h
+c0000000052306EBA000000000000162C
+t1378905786
+s5676
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFImageRequestOperation.m
 c0000000052306EBA000000000000247D
 t1378905786
 s9341
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFJSONRequestOperation.h
+c0000000052306EBA0000000000000E83
+t1378905786
+s3715
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFJSONRequestOperation.m
 c0000000052306EBA000000000000169C
 t1378905786
 s5788
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFNetworkActivityIndicatorManager.h
+c0000000052306EBA0000000000000EC4
+t1378905786
+s3780
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFNetworkActivityIndicatorManager.m
 c0000000052306EBA0000000000001514
 t1378905786
 s5396
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFPropertyListRequestOperation.h
+c0000000052306EBA0000000000000DCB
+t1378905786
+s3531
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFPropertyListRequestOperation.m
 c0000000052306EBA0000000000001621
 t1378905786
 s5665
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFURLConnectionOperation.h
+c0000000052306EBA000000000000461B
+t1378905786
+s17947
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFURLConnectionOperation.m
 c0000000052306EBA00000000000066D6
 t1378905786
 s26326
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFXMLRequestOperation.h
+c0000000052306EBA00000000000013E0
+t1378905786
+s5088
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/AFXMLRequestOperation.m
 c0000000052306EBA000000000000191B
 t1378905786
 s6427
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/UIImageView+AFNetworking.h
+c0000000052306EBA0000000000001550
+t1378905786
+s5456
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/AFNetworking/UIImageView+AFNetworking.m
 c0000000052306EBA000000000000191D
 t1378905786
 s6429
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework/Headers/DCArrayMapping.h
+c0000000052306EBA00000000000002E8
+t1378905786
+s744
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework/Headers/DCKeyValueObjectMapping.h
+c0000000052306EBA00000000000003B5
+t1378905786
+s949
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework/Headers/DCObjectMapping.h
+c0000000052306EBA000000000000040A
+t1378905786
+s1034
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework/Headers/DCParserConfiguration.h
+c0000000052306EBA0000000000000503
+t1378905786
+s1283
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework/Headers/DCValueConverter.h
+c0000000052306EBA00000000000001F8
+t1378905786
+s504
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/KeyValueObjectMapping/KeyValueObjectMapping.framework/KeyValueObjectMapping
 c0000000052306EBA000000000009D02C
 t1378905786
 s643116
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/Lockbox/LockBox/LockBox/AppDelegate.h
+c0000000052306EBA0000000000000170
+t1378905786
+s368
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/Lockbox/LockBox/LockBox/AppDelegate.m
 c0000000052306EBA00000000000009DF
 t1378905786
 s2527
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/Lockbox/LockBox/LockBox/ViewController.h
+c0000000052306EBA000000000000020E
+t1378905786
+s526
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/Lockbox/LockBox/LockBox/ViewController.m
 c0000000052306EBA0000000000000DD7
@@ -446,10 +741,20 @@ c0000000052306EBA0000000000000154
 t1378905786
 s340
 
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/Lockbox/Lockbox.h
+c0000000052306EBA00000000000003A0
+t1378905786
+s928
+
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/Lockbox/Lockbox.m
 c0000000052306EBA000000000000170F
 t1378905786
 s5903
+
+N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/MBProgressHUD/MBProgressHUD.h
+c0000000052306EBA000000000000325B
+t1378905786
+s12891
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/Vendor/MBProgressHUD/MBProgressHUD.m
 c0000000052306EBA0000000000005826
@@ -931,8 +1236,8 @@ t1378947223
 s3496
 
 N/Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2 4/Chute-SDK/build/Release-iphoneos/libChute-SDK.a
-t2
-s0
+t1378947223
+s3955968
 
 N/var/folders/vy/_kcg_9p14gl_1kv8d03qs3bw0000gn/C/com.apple.DeveloperTools/5.0-5A1412/Xcode/SharedPrecompiledHeaders/Chute-SDK-Prefix-aflilukbffkqbffyxkjuuidiukxv/Chute-SDK-Prefix.pch.pch
 t1378947219
@@ -960,7 +1265,7 @@ s81888
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies469a7c1248e1b741^944fb71248e1b741^---0#1#1#--18"Check dependencies36"3FA8F73A-7886-4AE5-9BC9-D108B942189E-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies75e890525de1b741^84f4cc525de1b741^---0#1#1#--18"Check dependencies36"AF37ABEA-724C-43A7-8170-0E8B784826C6-
 
 CCompileC build/Chute-SDK.build/Release-iphoneos/Chute-SDK.build/Objects-normal/armv7/AFHTTPClient.o /Users/aleksandartrpeski/Documents/TMP/ChuteSDKv2\ 4/Chute-SDK/Vendor/AFNetworking/AFHTTPClient.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s400640020.431560
