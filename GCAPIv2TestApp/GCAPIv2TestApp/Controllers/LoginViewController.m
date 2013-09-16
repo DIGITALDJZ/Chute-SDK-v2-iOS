@@ -10,8 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import <Chute-SDK/GetChute.h>
-//#import <Chute-SDK/GCLoginView.h>
-//#import <Chute-SDK/GCOAuth2Client.h>
 
 @interface LoginViewController ()
 
@@ -31,11 +29,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showLoginForService:(GCService)service fromStartPoint:(CGPoint)point {
+- (void)showLoginForLoginType:(GCLoginType)loginType fromStartPoint:(CGPoint)point {
     
     
     GCOAuth2Client *oauth2Client = [GCOAuth2Client clientWithClientID:@"50d9c930018d1672df00002e"  clientSecret:@"ee9b33013c0592aa41d30d1f347ff62514b737e61e6ce9c64fb13a44d31917d9"];
-    [GCLoginView showInView:self.view fromStartPoint:point oauth2Client:oauth2Client service:service success:^{
+    [GCLoginView showInView:self.view fromStartPoint:point oauth2Client:oauth2Client withLoginType:loginType success:^{
         NSLog(@"Success");
         [self dismissViewControllerAnimated:YES completion:^{}];
     } failure:^(NSError *error) {
@@ -48,31 +46,31 @@
 
 
 - (IBAction)chute:(id)sender {
-    [self showLoginForService:GCServiceChute fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeChute fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)facebook:(id)sender {
-    [self showLoginForService:GCServiceFacebook fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeFacebook fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)twitter:(id)sender {
-    [self showLoginForService:GCServiceTwitter fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeTwitter fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)google:(id)sender {
-    [self showLoginForService:GCServiceGooglePlus fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeGoogle fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)flickr:(id)sender {
-    [self showLoginForService:GCServiceFlickr fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeFlickr fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)instagram:(id)sender {
-    [self showLoginForService:GCServiceInstagram fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeInstagram fromStartPoint:[sender layer].position];
 }
 
 - (IBAction)foursquare:(id)sender {
-    [self showLoginForService:GCServiceFoursquare fromStartPoint:[sender layer].position];
+    [self showLoginForLoginType:GCLoginTypeFoursquare fromStartPoint:[sender layer].position];
 }
 
 @end

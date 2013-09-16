@@ -24,27 +24,11 @@ static NSString * const kGCRedirectURIDefaultValue = @"http://getchute.com/oauth
 
 static NSString * const kGCOAuth = @"oauth";
 
-static NSString * kGCServices[] = {
-    @"facebook",
-    @"instagram",
-    @"skydrive",
-    @"googledrive",
-    @"google",
-    @"picasa",
-    @"flickr",
-    @"twitter",
-    @"chute",
-    @"foursquare",
-    @"dropbox"
-};
-
-static NSString * kGCLoginMethods[] = {
+static NSString * kGCLoginTypes[] = {
     @"facebook",
     @"instagram",
     @"microsoft_account",
     @"google",
-    @"google",
-    @"google",
     @"flickr",
     @"twitter",
     @"chute",
@@ -52,7 +36,7 @@ static NSString * kGCLoginMethods[] = {
     @"dropbox"
 };
 
-int const kGCServicesCount = 11;
+int const kGCLoginTypeCount = 9;
 
 NSString * const kGCClientID = @"client_id";
 NSString * const kGCClientSecret = @"client_secret";
@@ -140,7 +124,7 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
     [operation start];
 }
 
-- (NSURLRequest *)requestAccessForService:(GCService)service {
+- (NSURLRequest *)requestAccessForLoginType:(GCLoginType)loginType {
     
     NSDictionary *params = @{
                              kGCScope:@"",
@@ -150,57 +134,24 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
                              };
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://getchute.com/v2/oauth/%@/authorize?%@",
-                                                                               kGCLoginMethods[service],
+                                                                               kGCLoginTypes[loginType],
                                                                                [params stringWithFormEncodedComponents]]]];
-    [self clearCookiesForService:service];
+    [self clearCookiesForLoginType:loginType];
+    NSLog(@"Request description:%@",[request description]);
     return request;
 }
 
-- (void)clearCookiesForService:(GCService)service {
+- (void)clearCookiesForLoginType:(GCLoginType)loginType {
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     [[storage cookies] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSHTTPCookie *cookie = obj;
         NSString* domainName = [cookie domain];
-        NSRange domainRange = [domainName rangeOfString:kGCServices[service]];
+        NSRange domainRange = [domainName rangeOfString:kGCLoginTypes[loginType]];
         if(domainRange.length > 0)
         {
             [storage deleteCookie:cookie];
         }
     }];
-}
-
-+ (NSString *)serviceString:(GCService)service
-{
-    if (service >= kGCServicesCount)
-        return @"";
-    return kGCServices[service];
-}
-
-+ (GCService)serviceForString:(NSString *)serviceString
-{
-    for (int i = 0; i < kGCServicesCount; i++) {
-        if ([serviceString isEqualToString:kGCServices[i]]) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-+ (NSString *)loginMethodForService:(GCService)service
-{
-    if (service >= kGCServicesCount)
-        return @"";
-    return kGCLoginMethods[service];
-}
-
-+ (GCService)serviceForLoginMethod:(NSString *)loginMethod
-{
-    for (int i = 0; i < kGCServicesCount; i++) {
-        if ([loginMethod isEqualToString:kGCLoginMethods[i]]) {
-            return i;
-        }
-    }
-    return -1;
 }
 
 @end

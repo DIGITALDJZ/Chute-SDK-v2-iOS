@@ -16,7 +16,7 @@
 
 @implementation GCLoginView
 
-@synthesize webView, oauth2Client, service, success, failure;
+@synthesize webView, oauth2Client, loginType, success, failure;
 
 - (id)initWithFrame:(CGRect)frame inParentView:(UIView *)parentView
 {
@@ -33,46 +33,46 @@
     return self;
 }
 
-+ (void)showOAuth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service  success:(void (^)(void))_success failure:(void (^)(NSError *))_failure
++ (void)showOAuth2Client:(GCOAuth2Client *)_oauth2Client withLoginType:(GCLoginType)_loginType success:(void (^)(void))_success failure:(void (^)(NSError *))_failure
 {
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    [self showInView:window oauth2Client:_oauth2Client service:_service success:_success failure:_failure];
+    [self showInView:window oauth2Client:_oauth2Client withLoginType:_loginType success:_success failure:_failure];
 }
 
-+ (void)showInView:(UIView *)_view oauth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service
++ (void)showInView:(UIView *)_view oauth2Client:(GCOAuth2Client *)_oauth2Client withLoginType:(GCLoginType)_loginType
 {
         
-    [self showInView:_view fromStartPoint:_view.layer.position oauth2Client:_oauth2Client service:_service success:nil failure:nil];
+    [self showInView:_view fromStartPoint:_view.layer.position oauth2Client:_oauth2Client withLoginType:_loginType success:nil failure:nil];
 }
 
-+ (void)showInView:(UIView *)_view fromStartPoint:(CGPoint)_startPoint oauth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service
++ (void)showInView:(UIView *)_view fromStartPoint:(CGPoint)_startPoint oauth2Client:(GCOAuth2Client *)_oauth2Client withLoginType:(GCLoginType)_loginType
 {
     
-    [self showInView:_view fromStartPoint:_startPoint oauth2Client:_oauth2Client service:_service  success:nil failure:nil];
+    [self showInView:_view fromStartPoint:_startPoint oauth2Client:_oauth2Client withLoginType:_loginType success:nil failure:nil];
 
 }
 
-+ (void)showInView:(UIView *)_view oauth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service  success:(void (^)(void))_success failure:(void (^)(NSError *))_failure
++ (void)showInView:(UIView *)_view oauth2Client:(GCOAuth2Client *)_oauth2Client withLoginType:(GCLoginType)_loginType success:(void (^)(void))_success failure:(void (^)(NSError *))_failure
 {
     
-    [self showInView:_view fromStartPoint:_view.layer.position oauth2Client:_oauth2Client service:_service success:_success failure:_failure];
+    [self showInView:_view fromStartPoint:_view.layer.position oauth2Client:_oauth2Client withLoginType:_loginType success:_success failure:_failure];
 }
 
-+ (void) showInView:(UIView *)_view fromStartPoint:(CGPoint)_startPoint oauth2Client:(GCOAuth2Client *)_oauth2Client service:(GCService)_service  success:(void (^)(void))_success failure:(void (^)(NSError *))_failure {
++ (void) showInView:(UIView *)_view fromStartPoint:(CGPoint)_startPoint oauth2Client:(GCOAuth2Client *)_oauth2Client withLoginType:(GCLoginType)_loginType success:(void (^)(void))_success failure:(void (^)(NSError *))_failure {
     
     CGRect popupFrame = [self popupFrameForView:_view withStartPoint:_startPoint];
     
     GCLoginView *popup = [[GCLoginView alloc] initWithFrame:popupFrame inParentView:_view];
     
     popup.oauth2Client = _oauth2Client;
-    popup.service = _service;
+    popup.loginType = _loginType;
     popup.success = _success;
     popup.failure = _failure;
     
     [_view addSubview:popup];
     
     [popup showPopupWithCompletition:^{
-        [popup.webView loadRequest:[popup.oauth2Client requestAccessForService:_service]];
+        [popup.webView loadRequest:[popup.oauth2Client requestAccessForLoginType:_loginType]];
     }];
     
 }
@@ -161,7 +161,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Reload"])
-        [self.webView loadRequest:[self.oauth2Client requestAccessForService:self.service]];
+        [self.webView loadRequest:[self.oauth2Client requestAccessForLoginType:self.loginType]];
 }
 
 

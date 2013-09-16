@@ -65,7 +65,8 @@ static dispatch_queue_t serialQueue;
     }
     
     if([Lockbox stringForKey:kGCToken])
-        [self setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
+        [self setAuthorizationHeaderWithToken:[Lockbox stringForKey:kGCToken]];
+//        [self setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
     
 //    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 //        if (status == AFNetworkReachabilityStatusNotReachable) {

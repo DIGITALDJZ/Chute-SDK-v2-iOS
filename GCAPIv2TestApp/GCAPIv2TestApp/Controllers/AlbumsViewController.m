@@ -223,6 +223,13 @@
     [self manageAlbums];
 }
 
+- (void)logout
+{
+//    GCClient *apiClient = [GCClient sharedClient];
+//    [apiClient clearAuthorizationHeader];
+    [self performSegueWithIdentifier:@"login" sender:self.view];
+}
+
 - (void)setToolbarWithItems
 {
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -235,12 +242,13 @@
 
 - (void)setNavBarWithItems
 {
-
+    UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
+    
     self.manageButton = [[UIBarButtonItem alloc] initWithTitle:@"Manage" style:UIBarButtonItemStyleBordered target:self action:@selector(manageAlbums)];
     UIBarButtonItem *addAlbumsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createAlbum)];
-
-    self.navigationItem.leftBarButtonItem = self.manageButton;
-    self.navigationItem.rightBarButtonItem = addAlbumsButton;
-}
+    NSArray *rightBarButtons = [NSArray arrayWithObjects:addAlbumsButton,self.manageButton, nil];
+    
+    self.navigationItem.leftBarButtonItem = logout;
+    self.navigationItem.rightBarButtonItems = rightBarButtons;}
 
 @end

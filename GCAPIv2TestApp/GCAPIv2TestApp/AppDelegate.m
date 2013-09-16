@@ -9,26 +9,12 @@
 #import "AppDelegate.h"
 
 #import <Chute-SDK/GetChute.h>
-//#import "GCClient.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[GCClient sharedClient] setAuthorizationHeaderWithToken:@"36de240aee63494fb0986ed74e87b3285616638698baf90a9eec511c2d4ee0f8"];
-  
-    
-//    NSURL *url = [NSURL URLWithString:@"http://getchute.com/"];
-//    AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:@"50d9c930018d1672df00002e" secret:@"ee9b33013c0592aa41d30d1f347ff62514b737e61e6ce9c64fb13a44d31917d9"];
-    
-//    [oauthClient authenticateUsingOAuthWithPath:@"auth/chute" code:@"" redirectURI:@"http://getchute.com/oauth/callback" success:<#^(AFOAuthCredential *credential)success#> failure:<#^(NSError *error)failure#>
-
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    if ([userDefaults objectForKey:@"GCToken"]) {
-//        GCClient *apiClient = [GCClient sharedClient];
-//        [apiClient setAuthorizationHeaderWithToken:[userDefaults objectForKey:@"GCToken"]];
-//        [apiClient setIsLoggedIn:YES];
-//    }
+//    [[GCClient sharedClient] setAuthorizationHeaderWithToken:@"HARD_CODED_TOKEN"];
     
     return YES;
 }
@@ -41,12 +27,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    GCClient *apiClient = [GCClient sharedClient];
-//    if ([apiClient isLoggedIn]) {
-//        [userDefaults setObject:[apiClient authorizationToken] forKey:@"GCToken"];
-//        [userDefaults synchronize];
-//    }
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
