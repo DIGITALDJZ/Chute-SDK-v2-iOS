@@ -24,7 +24,8 @@ static NSString * const kGCRedirectURIDefaultValue = @"http://getchute.com/oauth
 
 static NSString * const kGCOAuth = @"oauth";
 
-static NSString * kGCLoginTypes[] = {
+
+NSString * const kGCLoginTypes[] = {
     @"facebook",
     @"instagram",
     @"microsoft_account",
@@ -84,13 +85,6 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
     clientSecret = _clientSecret;
     redirectURI = _redirectURI;
     scope = _scope;
-    
-//    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-//        if (status == AFNetworkReachabilityStatusNotReachable) {
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No Internet connection detected." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alertView show];
-//        }
-//    }];
     
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     
