@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import <Chute-SDK/GetChute.h>
+#import "GetChute.h"
 
 @interface LoginViewController ()
 

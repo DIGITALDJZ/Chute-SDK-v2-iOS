@@ -10,8 +10,8 @@
 #import "AlbumViewCell.h"
 #import "ImagesViewController.h"
 
-#import <Chute-SDK/GetChute.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "GetChute.h"
+#import "MBProgressHUD.h"
 
 @interface AlbumsViewController ()
 @property (nonatomic) BOOL isManagingAlbumsEnabled;

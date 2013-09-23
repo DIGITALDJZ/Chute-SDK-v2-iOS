@@ -10,9 +10,9 @@
 #import "ImageViewCell.h"
 #import "ImageDetailsViewController.h"
 
-#import <Chute-SDK/GetChute.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "GetChute.h"
+#import "UIImageView+AFNetworking.h"
+#import "MBProgressHUD.h"
 
 @interface ImagesViewController ()
 

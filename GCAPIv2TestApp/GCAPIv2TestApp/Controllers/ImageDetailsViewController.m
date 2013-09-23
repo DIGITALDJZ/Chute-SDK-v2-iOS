@@ -9,10 +9,10 @@
 #import "ImageDetailsViewController.h"
 #import "CommentCell.h"
 
-#import <Chute-SDK/GetChute.h>
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
-#import <AFNetworking/AFImageRequestOperation.h>
+#import "GetChute.h"
+#import "MBProgressHUD.h"
+#import "UIImageView+AFNetworking.h"
+#import "AFImageRequestOperation.h"
 
 @interface ImageDetailsViewController ()
 

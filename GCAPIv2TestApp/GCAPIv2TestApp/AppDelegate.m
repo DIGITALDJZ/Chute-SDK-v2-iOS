@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import <Chute-SDK/GetChute.h>
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
