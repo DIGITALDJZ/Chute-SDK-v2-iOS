@@ -104,6 +104,29 @@ static dispatch_queue_t serialQueue;
         return NO;
 }
 
+- (void)clearCookiesForChute
+{
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    for (cookie in [storage cookies]) {
+        NSRange rangeGoogle = [[cookie domain] rangeOfString:@"google"];
+        NSRange rangeFacebook = [[cookie domain] rangeOfString:@"facebook"];
+        NSRange rangeDropBox = [[cookie domain] rangeOfString:@"dropbox"];
+        NSRange rangeChute = [[cookie domain] rangeOfString:@"getchute"];
+        NSRange rangeFlick = [[cookie domain] rangeOfString:@"flickr"];
+        NSRange rangeYahoo = [[cookie domain] rangeOfString:@"yahoo"];
+        NSRange rangeMicrosoft = [[cookie domain] rangeOfString:@"live"];
+        NSRange rangeInstagram = [[cookie domain] rangeOfString:@"instagram"];
+        
+        if(rangeDropBox.location == NSNotFound || rangeFacebook.location == NSNotFound || rangeGoogle.location == NSNotFound || rangeChute.location == NSNotFound || rangeFlick.location == NSNotFound || rangeYahoo.location == NSNotFound || rangeMicrosoft.location == NSNotFound || rangeInstagram.location == NSNotFound)
+            
+            [storage deleteCookie:cookie];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Overrided Methods
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {

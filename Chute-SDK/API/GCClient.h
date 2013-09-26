@@ -21,6 +21,7 @@ extern NSString * const kGCClientDELETE;
 + (GCClient *)sharedClient;
 
 - (BOOL)isLoggedIn;
+- (void)clearCookiesForChute;
 - (void)setAuthorizationHeaderWithToken:(NSString *)token;
 - (NSString *)authorizationToken;
 - (void)request:(NSMutableURLRequest *)request factoryClass:(Class)factoryClass success:(void (^)(GCResponse *))success failure:(void (^)(NSError *))failure;

@@ -7,7 +7,7 @@ PODS:
     - MBProgressHUD (~> 0.7)
   - DCKeyValueObjectMapping (1.4)
   - Lockbox (1.4.3)
-  - MBProgressHUD (0.7)
+  - MBProgressHUD (0.8)
 
 DEPENDENCIES:
   - Chute-SDK (from `..`)
@@ -21,6 +21,6 @@ SPEC CHECKSUMS:
   Chute-SDK: 2a62b6076b4694307bdb0052aae06b6ec80fbf0b
   DCKeyValueObjectMapping: 39adaf0a54ff6368a22d9221db60f0696d81ad7b
   Lockbox: 1bcfd564f034b83456fcad5bdd49470a80a38d2b
-  MBProgressHUD: 1fd8591a2216d5dec6de24e09187bb03bcbe9946
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
 
-COCOAPODS: 0.24.0
+COCOAPODS: 0.20.2
