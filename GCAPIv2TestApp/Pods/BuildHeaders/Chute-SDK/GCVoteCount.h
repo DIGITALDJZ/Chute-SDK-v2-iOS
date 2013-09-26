@@ -1,0 +1,1 @@
+../../../../Chute-SDK/Models/GCVoteCount.h
