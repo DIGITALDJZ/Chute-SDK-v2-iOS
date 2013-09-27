@@ -249,7 +249,6 @@
 {
     GCClient *apiClient = [GCClient sharedClient];
     [apiClient clearAuthorizationHeader];
-    [apiClient clearCookiesForChute];
     [self performSegueWithIdentifier:@"login" sender:self.view];
 }
 
