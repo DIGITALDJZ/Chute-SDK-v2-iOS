@@ -83,14 +83,24 @@ static CGPoint endPoint;
 }
 
 - (CGRect)closeButtonFrame {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        return CGRectMake(0.0, kSpacingSize, kSpacingSize * 2, kSpacingSize * 2);
+    }
     return CGRectMake(0.0, 0.0, kSpacingSize * 2, kSpacingSize * 2);
 }
 
 - (CGRect)contentViewFrame {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        return CGRectMake(0.0, kSpacingSize, self.bounds.size.width, self.bounds.size.height - kSpacingSize * 2);
+    }
     return CGRectMake(kSpacingSize, kSpacingSize, self.bounds.size.width - kSpacingSize * 2.0, self.bounds.size.height - kSpacingSize * 2.0);
 }
 
 + (CGRect)popupFrameForView:(UIView *)_view withStartPoint:(CGPoint)_startPoint {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        return  CGRectMake(0.0, 0.0, _view.bounds.size.width, _view.bounds.size.height);
+    }
     
     startPoint = _startPoint;
     endPoint = _view.layer.position;
