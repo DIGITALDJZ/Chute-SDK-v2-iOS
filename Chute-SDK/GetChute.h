@@ -38,7 +38,7 @@
 #import "GCResponseStatus.h"
 #import "GCUploadingAsset.h"
 #import "GCUploads.h"
-#import "GCUploadsInfo.h"
+#import "GCUploadInfo.h"
 #import "GCURL.h"
 #import "GCUser.h"
 #import "GCVote.h"

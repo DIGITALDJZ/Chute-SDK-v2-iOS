@@ -1,5 +1,5 @@
 //
-//  GCUploadsInfo.h
+//  GCUploadInfo.h
 //  Chute-SDK
 //
 //  Created by Aleksandar Trpeski on 5/16/13.
