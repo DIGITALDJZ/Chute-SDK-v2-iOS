@@ -167,8 +167,11 @@
     GCUploader *uploader = [GCUploader sharedUploader];
     
     [uploader uploadImages:@[[info objectForKey:UIImagePickerControllerOriginalImage]] inAlbumWithID:self.album.id progress:^(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads) {
-         NSLog(@"Progress: %f", currentUploadProgress);
+         NSLog(@"File %d of %d - Progress: %f", numberOfCompletedUploads, totalNumberOfUploads, currentUploadProgress);
     } success:^(NSArray *assets) {
+        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+        }];
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         [self getAssets];
     } failure:^(NSError *error) {

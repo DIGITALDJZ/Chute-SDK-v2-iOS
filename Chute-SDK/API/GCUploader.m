@@ -120,7 +120,6 @@ static dispatch_queue_t serialQueue;
         
         [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
             currentProgress = ((CGFloat)totalBytesWritten) / totalBytesExpectedToWrite;
-            NSLog(@"<KXLog> progress: %f", currentProgress);
             progress(currentProgress, numberOfCompletedUploads, totalNumberOfUploads);
         }];
         
@@ -138,10 +137,9 @@ static dispatch_queue_t serialQueue;
     }];
     
     [self enqueueBatchOfHTTPRequestOperations:operations progressBlock:^(NSUInteger numberOfCompletedOperations, NSUInteger totalNumberOfOperations) {
-        numberOfCompletedUploads = numberOfCompletedUploads;
+        numberOfCompletedUploads = numberOfCompletedOperations;
         totalNumberOfUploads = totalNumberOfOperations;
-        progress(currentProgress, numberOfCompletedUploads, totalNumberOfUploads);
-        NSLog(@"<KXLog> %d out of %d is uploaded", numberOfCompletedUploads, totalNumberOfUploads);
+        progress(0.0, numberOfCompletedUploads, totalNumberOfUploads);
     } completionBlock:^(NSArray *operations) {
         success([NSArray arrayWithArray:assets]);
     }];
@@ -236,7 +234,6 @@ static dispatch_queue_t serialQueue;
         
 //        NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kGCClientPUT path:asset.uploadInfo.uploadUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //            NSString *name = asset.caption ? asset.caption : @"";
-//#warning TODO: implement in-memory upload functionality
 //            // If the image is already in an instance variable
 //            UIImage *image = [[UIImage alloc] initWithContentsOfFile:asset.uploadInfo.filePath];
 //            [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:name fileName:@"image1.jpg" mimeType:@"image/jpeg"];
