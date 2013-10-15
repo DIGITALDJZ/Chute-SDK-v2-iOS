@@ -153,7 +153,7 @@
     }
 }
 
-#pragma makr - UIAlertView Delegate Methods
+#pragma mark - UIAlertView Delegate Methods
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

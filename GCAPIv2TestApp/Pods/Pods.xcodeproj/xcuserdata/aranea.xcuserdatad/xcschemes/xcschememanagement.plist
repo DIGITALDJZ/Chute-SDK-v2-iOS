@@ -8,61 +8,61 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
+		</dict>
+		<key>Pods-Chute-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-DCKeyValueObjectMapping.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-Lockbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0650B3E77B804BFBAE3FCE96</key>
+		<key>074900B9B165436888F4038A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>676C21E407D74D48A7C956D8</key>
+		<key>3BBF3B539C824F9C9CD29145</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69B14A08CEB94B7C8D800563</key>
+		<key>56ABC4C0F4AE43B994CBA275</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7FB2D4A2D70451AA9E4383A</key>
+		<key>C575289B70124609A29935BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E50909E214B1493BA0F2B966</key>
+		<key>D77E98B4D046414D906B05A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC77DA8FB2FF45E2B4E39855</key>
 		<dict>
 			<key>primary</key>
 			<true/>

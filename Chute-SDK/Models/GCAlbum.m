@@ -13,6 +13,7 @@
 #import "GCAsset.h"
 #import "GCServiceAsset.h"
 #import "GCServiceAlbum.h"
+#import "GCResponse.h"
 
 @implementation GCAlbum
 
@@ -134,6 +135,34 @@
 {
     [GCServiceAsset importAssetsFromURLs:urls forAlbumWithID:self.id success:^(GCResponseStatus *reponseStatus, NSArray *assets, GCPagination *pagination) {
         success(reponseStatus, assets, pagination);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
+- (void)moveAssetWithID:(NSNumber *)assetID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure
+{
+    
+    [GCServiceAlbum moveAssetWithID:assetID fromAlbumWithID:self.id toAlbumWithID:destinationAlbumID success:^(GCResponseStatus *responseStatus, GCAsset *asset) {
+        success(responseStatus,asset);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
+- (void)copyAssetWithID:(NSNumber *)assetID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure
+{
+    [GCServiceAlbum copyAssetWithID:assetID fromAlbumWithID:self.id toAlbumWithID:destinationAlbumID success:^(GCResponseStatus *responseStatus, GCAsset *asset) {
+        success(responseStatus,asset);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
+- (void)listAllAlbumsWithinWithSuccess:(void (^)(GCResponseStatus *, NSArray *))success failure:(void (^)(NSError *))failure
+{
+    [GCServiceAlbum listAllAlbumsWithinForAlbumWithID:self.id success:^(GCResponseStatus *responseStatus, NSArray *listOfAlbums) {
+        success(responseStatus,listOfAlbums);
     } failure:^(NSError *error) {
         failure(error);
     }];

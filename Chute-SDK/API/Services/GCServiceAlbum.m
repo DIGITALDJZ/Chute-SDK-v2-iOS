@@ -217,5 +217,49 @@ static NSString * const kGCDefaultPerPage = @"100";
     
 }
 
++ (void)moveAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)sourceAlbumID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, int *))success failure:(void (^)(NSError *))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/move/%@", sourceAlbumID, assetID,destinationAlbumID];
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPOST path:path parameters:nil];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response,response.data);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
++ (void)copyAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)sourceAlbumID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, int *))success failure:(void (^)(NSError *))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/copy/%@", sourceAlbumID, assetID,destinationAlbumID];
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPOST path:path parameters:nil];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response,response.data);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
++ (void)listAllAlbumsWithinForAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, NSArray *))success failure:(void (^)(NSError *))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"albums/%@/albums",albumID];
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:nil];
+    
+    [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
+        success(response.response, response.data);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
 
 @end
