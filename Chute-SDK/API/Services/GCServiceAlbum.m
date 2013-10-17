@@ -217,7 +217,7 @@ static NSString * const kGCDefaultPerPage = @"100";
     
 }
 
-+ (void)moveAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)sourceAlbumID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, int *))success failure:(void (^)(NSError *))failure
++ (void)moveAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)sourceAlbumID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure
 {
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -232,7 +232,7 @@ static NSString * const kGCDefaultPerPage = @"100";
     }];
 }
 
-+ (void)copyAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)sourceAlbumID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, int *))success failure:(void (^)(NSError *))failure
++ (void)copyAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)sourceAlbumID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure
 {
     GCClient *apiClient = [GCClient sharedClient];
     

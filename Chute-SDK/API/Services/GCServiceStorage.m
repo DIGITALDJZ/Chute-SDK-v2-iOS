@@ -36,7 +36,7 @@ NSString *const kGCStorageTypes[] = {
     }];
 }
 
-+ (void)putThisValue:(id)info toStorageWithKey:(NSString *)key forStorageType:(GCStorageType)storageType success:(void (^)(GCResponseStatus *, GCStorage *))success failure:(void (^)(NSError *))failure
++ (void)putThisInfo:(id)info toStorageWithKey:(NSString *)key forStorageType:(GCStorageType)storageType success:(void (^)(GCResponseStatus *, GCStorage *))success failure:(void (^)(NSError *))failure
 {
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -51,11 +51,18 @@ NSString *const kGCStorageTypes[] = {
     } failure:failure];
 }
 
-+ (void)postThisInfo:(id)info toStorageWithKey:(NSString *)key forStorageType:(GCStorageType)storageType success:(void (^)(GCResponseStatus *, int *))success failure:(void (^)(NSError *))failure
++ (void)postThisInfo:(NSString *)info toStorageWithKey:(NSString *)key forStorageType:(GCStorageType)storageType success:(void (^)(GCResponseStatus *, GCStorage *))success failure:(void (^)(NSError *))failure
 {
     GCClient *apiClient = [GCClient sharedClient];
     
-    NSString *path = [NSString stringWithFormat:@"storage/%@/%@",kGCStorageTypes[storageType],key];
+    NSString *path;
+    
+    if(key == nil) {
+        path = [NSString stringWithFormat:@"storage/%@/",kGCStorageTypes[storageType]];
+    }
+    else {
+        path = [NSString stringWithFormat:@"storage/%@/%@",kGCStorageTypes[storageType],key];
+    }
     
     NSDictionary *params = @{@"data":info};
     

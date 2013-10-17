@@ -15,7 +15,7 @@
 
 @synthesize id,value,createdAt,updatedAt,url;
 
-- (void)getStorageForStorageType:(GCStorageType)storageType success:(void (^)(int *, GCStorage *))success failure:(void (^)(NSError *))failure
+- (void)getStorageForStorageType:(GCStorageType)storageType success:(void (^)(GCResponseStatus *, GCStorage *))success failure:(void (^)(NSError *))failure
 {
     [GCServiceStorage getStorageForKey:self.id forStorageType:storageType success:^(GCResponseStatus *responseStatus, GCStorage *storage) {
         success(responseStatus,storage);

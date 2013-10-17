@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class GCResponseStatus, GCAlbum, GCPagination;
+@class GCResponseStatus, GCAlbum, GCPagination,GCAsset;
 
 @interface GCServiceAlbum : NSObject
 
