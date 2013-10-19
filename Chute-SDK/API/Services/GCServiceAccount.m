@@ -9,7 +9,6 @@
 #import "GCServiceAccount.h"
 #import "GCAccount.h"
 #import "GCAccountAlbum.h"
-#import "GCAccountAssets.h"
 #import "PhotoPickerClient.h"
 #import "GCConfiguration.h"
 #import "NSDictionary+GCAccountAsset.h"
@@ -21,9 +20,6 @@
 #import "GCResponseStatus.h"
 #import "GetChute.h"
 #import "AFJSONRequestOperation.h"
-
-static NSString * const kGCAuth = @"Authorization";
-static NSString * const kClientGET = @"GET";
 
 @implementation GCServiceAccount
 
@@ -53,24 +49,6 @@ static NSString * const kClientGET = @"GET";
     } failure:failure];
 }
 
-//+ (void)getDataForServiceWithName:(NSString *)serviceName forAccountWithID:(NSString *)accountID forAlbumWithID:(NSNumber *)albumID success:(void (^)(GCResponseStatus *, NSArray *, NSArray *))success failure:(void (^)(NSError *))failure
-//{
-//    PhotoPickerClient *apiClient = [PhotoPickerClient sharedClient];
-//    NSString *path;
-//    if(albumID == nil)
-//        path = [NSString stringWithFormat:@"%@/%@/files",serviceName,accountID];
-//    else
-//    {
-//        NSString *albumIDString = [[NSString stringWithFormat:@"%@",albumID] stringByEscapingForURL];
-//        path = [NSString stringWithFormat:@"%@/%@/folders/%@/files",serviceName,accountID,albumIDString];
-//    }
-//    
-//    NSMutableURLRequest *request = [apiClient requestWithMethod:kClientGET path:path parameters:nil];
-//    
-//    [apiClient request:request success:^(GCResponseStatus *responseStatus, NSArray *folders, NSArray *files) {
-//        success(responseStatus,folders,files);
-//    } failure:failure];
-//}
 
 + (void)postSelectedImages:(NSArray *)selectedImages success:(void(^)(GCResponseStatus *, NSArray *))success failure:(void(^)(NSError *))failure
 {
@@ -93,11 +71,6 @@ static NSString * const kClientGET = @"GET";
     NSString *path = @"widgets/native";
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPOST path:path parameters:param];
-//    [request setValue:[apiClient authorizationToken] forHTTPHeaderField:kGCAuth];
-
-//    [apiClient request:request factoryClass:[GCAccountAssets class] success:^(GCResponse *response) {
-//        success(response.response,response.data);
-//    } failure:failure];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSDictionary *data = @{
