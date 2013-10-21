@@ -41,5 +41,5 @@ extern NSString * const kGCLoginTypes[];
 
 - (NSURLRequest *)requestAccessForLoginType:(GCLoginType)loginType;
 - (void)verifyAuthorizationWithAccessCode:(NSString *)code success:(void(^)(void))success failure:(void(^)(NSError *error))failure;
-
+- (void)clearCookiesForLoginType:(GCLoginType)loginType;
 @end
