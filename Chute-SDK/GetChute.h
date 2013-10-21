@@ -18,6 +18,8 @@
 #import "GCServiceTag.h"
 #import "GCServiceVote.h"
 #import "GCAlbum.h"
+#import "GCAccount.h"
+#import "GCServiceAccount.h"
 #import "GCApiLimits.h"
 #import "GCAsset.h"
 #import "GCAssetDimensions.h"

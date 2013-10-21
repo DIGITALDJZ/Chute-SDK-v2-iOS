@@ -58,6 +58,6 @@
  
  @warning This method require `GCResponseStatus` class. Add an `#import "GCResponseStatus.h"` in your header/implementation file.
 */
-+ (void)postSelectedImages:(NSArray *)selectedImages success:(void(^)(GCResponseStatus *responseStatus, NSArray *returnedArray))success failure:(void(^)(NSError *error))failure;
+//+ (void)postSelectedImages:(NSArray *)selectedImages success:(void(^)(GCResponseStatus *responseStatus, NSArray *returnedArray))success failure:(void(^)(NSError *error))failure;
 
 @end
