@@ -12,6 +12,9 @@
 
 #import "GetChute.h"
 #import "MBProgressHUD.h"
+#import "UIImageView+AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
+
 
 @interface AlbumsViewController ()
 @property (nonatomic) BOOL isManagingAlbumsEnabled;
@@ -75,9 +78,21 @@
     AlbumViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AlbumCell" forIndexPath:indexPath];
     
     GCAlbum *album = (GCAlbum *)self.albums[indexPath.item];
-    
+    GCAsset *asset;
+    if ([album coverAsset] != nil)
+         asset = [album coverAsset];
+    else if ([album asset] != nil)
+        asset = [album asset];
     // just for initial version a simple label representing albumID.
     cell.albumTitleLabel.text = [album name];
+    
+    AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:[asset thumbnail]]] success:^(UIImage *image) {
+        [cell.coverImage setImage:image];
+    }];
+    
+    [operation start];
+//    [cell.coverImage setImageWithURL:[NSURL URLWithString:asset.thumbnail]];
+
     
     if (cell.selected)
         cell.backgroundColor = [UIColor blueColor]; // highlight selection
@@ -145,8 +160,7 @@
     if(buttonIndex)
     {
         UITextField *inputField = [alertView textFieldAtIndex:0];
-        
-        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+
         [GCAlbum createAlbumWithName:inputField.text moderateMedia:NO moderateComments:NO success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:NO];
             [self getAlbums];

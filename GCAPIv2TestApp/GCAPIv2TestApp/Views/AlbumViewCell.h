@@ -11,5 +11,6 @@
 @interface AlbumViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *albumTitleLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *coverImage;
 
 @end

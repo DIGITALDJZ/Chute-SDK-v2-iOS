@@ -38,14 +38,17 @@ static NSString * const kGCDefaultPerPage = @"100";
     
     NSString *path = @"albums";
     
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:@{kGCPerPage:kGCDefaultPerPage}];
+    NSDictionary *params = @{kGCPerPage:kGCDefaultPerPage,
+                             @"include":@"asset"};
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:params];
     
     [apiClient request:request factoryClass:[GCAlbum class] success:^(GCResponse *response) {
         success(response.response, response.data, response.pagination);
     } failure:failure];
 }
 
-+ (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
++ (void)createAlbumWithName:(NSString *)name withCoverAssetWithID:(NSNumber *)coverAssetID moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -69,10 +72,17 @@ static NSString * const kGCDefaultPerPage = @"100";
     if (name == nil)
         name = @"Album";
     
-    NSDictionary *params = @{@"name":name,
-                             @"moderate_media":@(moderateMedia),
-                             @"moderate_comments":@(moderateComments)};
+    NSDictionary *params = [[NSDictionary alloc] init];
     
+    if(coverAssetID == nil)
+        params = @{@"name":name,
+                   @"moderate_media":@(moderateMedia),
+                   @"moderate_comments":@(moderateComments)};
+    else
+        params = @{@"name":name,
+                   @"moderate_media":@(moderateMedia),
+                   @"moderate_comments":@(moderateComments),
+                   @"cover_asset_id":coverAssetID};
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPOST path:path parameters:params];
     
@@ -82,7 +92,7 @@ static NSString * const kGCDefaultPerPage = @"100";
 }
 
 
-+ (void)updateAlbumWithID:(NSNumber *)albumID name:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
++ (void)updateAlbumWithID:(NSNumber *)albumID name:(NSString *)name coverAssetID:(NSNumber *)coverAssetID moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
@@ -106,9 +116,17 @@ static NSString * const kGCDefaultPerPage = @"100";
     if (name == nil)
         name = kGCDefaultAlbumName;
     
-    NSDictionary *params = @{@"name":name,
-                             @"moderate_media":@(moderateMedia),
-                             @"moderate_comments":@(moderateComments)};
+    NSDictionary *params = [[NSDictionary alloc] init];
+    
+    if(coverAssetID != nil)
+        params = @{@"name":name,
+                   @"moderate_media":@(moderateMedia),
+                   @"moderate_comments":@(moderateComments),
+                   @"cover_asset_id":coverAssetID};
+    else
+        params = @{@"name":name,
+                   @"moderate_media":@(moderateMedia),
+                   @"moderate_comments":@(moderateComments)};
     
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPUT path:path parameters:params];
