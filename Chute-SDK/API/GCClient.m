@@ -153,7 +153,7 @@ static dispatch_queue_t serialQueue;
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
      
-        GCLogVerbose(@"URL: %@ Data: %@", [[request URL] absoluteString], JSON);
+        GCLogVerbose(@"URL: %@", [[request URL] absoluteString]);
         [self parseJSON:JSON withFactoryClass:factoryClass success:success];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
