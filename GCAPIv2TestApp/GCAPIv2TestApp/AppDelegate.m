@@ -7,13 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "GCLog.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 //    [[GCClient sharedClient] setAuthorizationHeaderWithToken:@"HARD_CODED_TOKEN"];
-    
+
+    [GCLog setLogLevel:LOG_LEVEL_VERBOSE];
+
     return YES;
 }
 							

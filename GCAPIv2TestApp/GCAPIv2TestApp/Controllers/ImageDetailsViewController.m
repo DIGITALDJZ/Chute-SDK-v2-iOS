@@ -13,6 +13,7 @@
 #import "MBProgressHUD.h"
 #import "UIImageView+AFNetworking.h"
 #import "AFImageRequestOperation.h"
+#import "GCLog.h"
 
 @interface ImageDetailsViewController ()
 
@@ -135,7 +136,7 @@
             isItHearted = YES;
             [self.heartButton setBackgroundImage:[UIImage imageNamed:@"heart.png"] forState:UIControlStateNormal];
         } failure:^(NSError *error) {
-            NSLog(@"Unable to heart this asset!");
+            GCLogWarning(@"Unable to heart this asset!");
         }];
     }
     else
@@ -146,7 +147,7 @@
             [self.heartButton setBackgroundImage:[UIImage imageNamed:@"unheart.png"] forState:UIControlStateNormal];
 
         } failure:^(NSError *error) {
-            NSLog(@"Unable to unheart this asset!");
+            GCLogWarning(@"Unable to unheart this asset!");
 
         }];
     }
@@ -163,7 +164,7 @@
             [self.voteButton setBackgroundImage:[UIImage imageNamed:@"vote"] forState:UIControlStateNormal];
 
         } failure:^(NSError *error) {
-            NSLog(@"Unable to vote this asset!");
+            GCLogWarning(@"Unable to vote this asset!");
 
         }];
     }
@@ -175,7 +176,7 @@
             [self.voteButton setBackgroundImage:[UIImage imageNamed:@"unvote"] forState:UIControlStateNormal];
 
         } failure:^(NSError *error) {
-            NSLog(@"Unable to remove vote from this asset!");
+            GCLogWarning(@"Unable to remove vote from this asset!");
 
         }];
     }
@@ -190,7 +191,7 @@
             [self.flagButton setBackgroundImage:[UIImage imageNamed:@"flag.png"] forState:UIControlStateNormal];
             
         } failure:^(NSError *error) {
-            NSLog(@"Unable to flag this asset!");
+            GCLogWarning(@"Unable to flag this asset!");
         }];
     }
     else
@@ -200,7 +201,7 @@
             isItFlagged = NO;
             [self.flagButton setBackgroundImage:[UIImage imageNamed:@"unflag.png"] forState:UIControlStateNormal];
         } failure:^(NSError *error) {
-            NSLog(@"Unable to flag this asset!");
+            GCLogWarning(@"Unable to flag this asset!");
         }];
     }
 }
@@ -266,7 +267,7 @@
         self.heartsLabel.text = [heartCount.count stringValue];
 
     } failure:^(NSError *error) {
-        NSLog(@"Failed to obtain heart count!");
+        GCLogWarning(@"Failed to obtain heart count!");
 
     }];
 }
@@ -277,7 +278,7 @@
         self.votesLabel.text = [voteCount.count stringValue];
 
     } failure:^(NSError *error) {
-        NSLog(@"Failed to obtain vote count!");
+        GCLogWarning(@"Failed to obtain vote count!");
 
     }];
 }
@@ -287,7 +288,7 @@
     [self.asset getFlagCountForAssetInAlbumWithID:self.album.id success:^(GCResponseStatus *responseStatus, GCFlagCount *flagCount) {
         self.flagLabel.text = [flagCount.count stringValue];
     } failure:^(NSError *error) {
-        NSLog(@"Failed to obtain flag count!");
+        GCLogWarning(@"Failed to obtain flag count!");
     }];
 }
 
@@ -299,7 +300,7 @@
         [self adjustHeightOfTableview];
         [self setScrollViewContentSize];
     } failure:^(NSError *error) {
-        NSLog([error localizedDescription]);
+        GCLogWarning([error localizedDescription]);
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Comments can't be retrieved." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     }];
 }

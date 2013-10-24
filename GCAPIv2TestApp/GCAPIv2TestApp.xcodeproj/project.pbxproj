@@ -55,6 +55,9 @@
 		CC921C39180DB69F00547457 /* NSString+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = CC921C0A180DB69F00547457 /* NSString+QueryString.m */; };
 		CC921C3A180DB69F00547457 /* GCLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC921C0D180DB69F00547457 /* GCLoginView.m */; };
 		CC921C3B180DB69F00547457 /* GCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC921C0F180DB69F00547457 /* GCPopupView.m */; };
+		CCBACE931819758200EB598E /* ColorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBACE8E1819758200EB598E /* ColorLog.m */; };
+		CCBACE941819758200EB598E /* GCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBACE901819758200EB598E /* GCLog.m */; };
+		CCBACE951819758200EB598E /* GCLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBACE921819758200EB598E /* GCLogFormatter.m */; };
 		CCC359581689F8CA009E372C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359571689F8CA009E372C /* UIKit.framework */; };
 		CCC3595A1689F8CA009E372C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359591689F8CA009E372C /* Foundation.framework */; };
 		CCC3595C1689F8CA009E372C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC3595B1689F8CA009E372C /* CoreGraphics.framework */; };
@@ -191,6 +194,12 @@
 		CC921C0D180DB69F00547457 /* GCLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLoginView.m; sourceTree = "<group>"; };
 		CC921C0E180DB69F00547457 /* GCPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPopupView.h; sourceTree = "<group>"; };
 		CC921C0F180DB69F00547457 /* GCPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPopupView.m; sourceTree = "<group>"; };
+		CCBACE8D1819758200EB598E /* ColorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorLog.h; sourceTree = "<group>"; };
+		CCBACE8E1819758200EB598E /* ColorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorLog.m; sourceTree = "<group>"; };
+		CCBACE8F1819758200EB598E /* GCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLog.h; sourceTree = "<group>"; };
+		CCBACE901819758200EB598E /* GCLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLog.m; sourceTree = "<group>"; };
+		CCBACE911819758200EB598E /* GCLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLogFormatter.h; sourceTree = "<group>"; };
+		CCBACE921819758200EB598E /* GCLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLogFormatter.m; sourceTree = "<group>"; };
 		CCC359531689F8CA009E372C /* GCAPIv2TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCAPIv2TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC359571689F8CA009E372C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CCC359591689F8CA009E372C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -372,6 +381,12 @@
 		CC921BFE180DB69F00547457 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				CCBACE8D1819758200EB598E /* ColorLog.h */,
+				CCBACE8E1819758200EB598E /* ColorLog.m */,
+				CCBACE8F1819758200EB598E /* GCLog.h */,
+				CCBACE901819758200EB598E /* GCLog.m */,
+				CCBACE911819758200EB598E /* GCLogFormatter.h */,
+				CCBACE921819758200EB598E /* GCLogFormatter.m */,
 				CC921BFF180DB69F00547457 /* GCFileManager.h */,
 				CC921C00180DB69F00547457 /* GCFileManager.m */,
 				CC921C01180DB69F00547457 /* GCMD5Hash.c */,
@@ -675,14 +690,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBACE941819758200EB598E /* GCLog.m in Sources */,
 				CC921C22180DB69F00547457 /* GCCounter.m in Sources */,
 				CC921C13180DB69F00547457 /* GCServiceAlbum.m in Sources */,
 				CC921C26180DB69F00547457 /* GCHeart.m in Sources */,
 				CC921C2D180DB69F00547457 /* GCUploadInfo.m in Sources */,
+				CCBACE931819758200EB598E /* ColorLog.m in Sources */,
 				CC921C1E180DB69F00547457 /* GCAssetDimensions.m in Sources */,
 				CC921C2C180DB69F00547457 /* GCResponseStatus.m in Sources */,
 				CC921C1F180DB69F00547457 /* GCAssetSource.m in Sources */,
 				CC921C32180DB69F00547457 /* GCVote.m in Sources */,
+				CCBACE951819758200EB598E /* GCLogFormatter.m in Sources */,
 				CC921C10180DB69F00547457 /* GCClient.m in Sources */,
 				CC921C18180DB69F00547457 /* GCServiceTag.m in Sources */,
 				CC921C35180DB69F00547457 /* GCMD5Hash.c in Sources */,

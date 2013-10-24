@@ -167,15 +167,13 @@
     GCUploader *uploader = [GCUploader sharedUploader];
     
     [uploader uploadImages:@[[info objectForKey:UIImagePickerControllerOriginalImage]] inAlbumWithID:self.album.id progress:^(CGFloat currentUploadProgress, NSUInteger numberOfCompletedUploads, NSUInteger totalNumberOfUploads) {
-         NSLog(@"File %d of %d - Progress: %f", numberOfCompletedUploads, totalNumberOfUploads, currentUploadProgress);
+         GCLogInfo(@"File %d of %d - Progress: %f", numberOfCompletedUploads, totalNumberOfUploads, currentUploadProgress);
     } success:^(NSArray *assets) {
-        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-        }];
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         [self getAssets];
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        GCLogWarning([error localizedDescription]);
         [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Unable to upload images.Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
     }];
 }
