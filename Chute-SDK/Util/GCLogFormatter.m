@@ -30,9 +30,9 @@
     switch (logMessage->logFlag)
     {
         case LOG_FLAG_ERROR : logLevel = [NSString stringWithFormat:@"%@ERROR", (IsXcodeColorsEnabled() ? LCL_RED : @"")]; break;
-        case LOG_FLAG_WARN  : logLevel = [NSString stringWithFormat:@"%@WARNING", (IsXcodeColorsEnabled() ? LCL_RED : @"")]; break;
-        case LOG_FLAG_INFO  : logLevel = [NSString stringWithFormat:@"%@INFO", (IsXcodeColorsEnabled() ? LCL_RED : @"")]; break;
-        default             : logLevel = @""; break;
+        case LOG_FLAG_WARN  : logLevel = [NSString stringWithFormat:@"%@WARNING", (IsXcodeColorsEnabled() ? LCL_MAGENTA : @"")]; break;
+        case LOG_FLAG_INFO  : logLevel = [NSString stringWithFormat:@"%@INFO", (IsXcodeColorsEnabled() ? LCL_BLUE : @"")]; break;
+        default             : logLevel = @"VERBOSE"; break;
     }
     
     NSString *dateAndTime = [_dateFormatter stringFromDate:(logMessage->timestamp)];

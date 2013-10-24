@@ -50,3 +50,4 @@
 #import "NSString+QueryString.h"
 #import "GCLoginView.h"
 #import "GCPopupView.h"
+#import "GCLog.h"

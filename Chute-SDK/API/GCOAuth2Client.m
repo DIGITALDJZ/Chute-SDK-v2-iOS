@@ -10,6 +10,7 @@
 #import "AFJSONRequestOperation.h"
 #import "NSDictionary+QueryString.h"
 #import "GCClient.h"
+#import "GCLog.h"
 
 static NSString * const kGCBaseURLString = @"https://getchute.com";
 
@@ -85,13 +86,6 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
     redirectURI = _redirectURI;
     scope = _scope;
     
-//    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-//        if (status == AFNetworkReachabilityStatusNotReachable) {
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No Internet connection detected." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alertView show];
-//        }
-//    }];
-    
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     
     [self setDefaultHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
@@ -118,9 +112,9 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
         [apiClient setAuthorizationHeaderWithToken:[JSON objectForKey:@"access_token"]];
         success();
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        GCLogWarning(@"URL: %@\n\tError: %@", [[request URL] absoluteString], [error localizedDescription]);
         failure(error);
     }];
-    
     [operation start];
 }
 
@@ -137,7 +131,7 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
                                                                                kGCLoginTypes[loginType],
                                                                                [params stringWithFormEncodedComponents]]]];
 //    [self clearCookiesForLoginType:loginType];
-    NSLog(@"Request description:%@",[request description]);
+    GCLogVerbose(@"Request description:%@",[request description]);
     return request;
 }
 
@@ -149,6 +143,9 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
         NSHTTPCookie *cookie = obj;
         NSString* domainName = [cookie domain];
         NSRange domainRange = [domainName rangeOfString:kGCLoginTypes[loginType]];
+        
+        GCLogVerbose(@"Clear cookies for %@", domainName);
+        
         if(domainRange.length > 0)
         {
             [storage deleteCookie:cookie];

@@ -14,6 +14,7 @@
 #import "DCKeyValueObjectMapping.h"
 #import "GCUploads.h"
 #import "Lockbox.h"
+#import "GCLog.h"
 
 NSString * const kGCClientGET = @"GET";
 NSString * const kGCClientPOST = @"POST";
@@ -152,10 +153,11 @@ static dispatch_queue_t serialQueue;
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
      
+        GCLogVerbose(@"URL: %@ Data: %@", [[request URL] absoluteString], JSON);
         [self parseJSON:JSON withFactoryClass:factoryClass success:success];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"Failure: %@", JSON);
+        GCLogWarning(@"Error: %@ \n\tJSON: %@", [error localizedDescription], JSON);
         
         failure(error);
         

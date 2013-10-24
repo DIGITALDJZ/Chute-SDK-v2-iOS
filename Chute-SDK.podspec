@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
   s.dependency 'DCKeyValueObjectMapping', '~> 1.4'
   s.dependency 'MBProgressHUD', '~> 0.7'
   s.dependency 'Lockbox', '~> 1.4.3'
+  s.dependency 'CocoaLumberjack', '~> 1.6.2'
   # s.dependency 'Kiwi', '~> 2.2.1'
 end
