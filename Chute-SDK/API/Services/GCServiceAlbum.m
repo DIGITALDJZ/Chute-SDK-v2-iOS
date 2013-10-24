@@ -31,15 +31,19 @@ static NSString * const kGCDefaultPerPage = @"100";
     } failure:failure];
 }
 
-+ (void)getAlbumsWithSuccess:(void (^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success
-                     failure:(void (^)(NSError *error))failure {
++ (void)getAlbumsWithCoverAsset:(BOOL)includeAsset success:(void (^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void (^)(NSError *error))failure {
     
     GCClient *apiClient = [GCClient sharedClient];
     
     NSString *path = @"albums";
     
-    NSDictionary *params = @{kGCPerPage:kGCDefaultPerPage,
-                             @"include":@"asset"};
+    NSDictionary *params = [[NSDictionary alloc] init];
+    
+    if(includeAsset)
+        params = @{kGCPerPage:kGCDefaultPerPage,
+                   @"include":@"asset"};
+    else
+        params = @{kGCDefaultPerPage:kGCDefaultPerPage};
     
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientGET path:path parameters:params];
     

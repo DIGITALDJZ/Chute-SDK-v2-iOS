@@ -20,12 +20,22 @@
 
 + (void)getAllAlbumsWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
 {
-    [GCServiceAlbum getAlbumsWithSuccess:^(GCResponseStatus *response, NSArray *albums, GCPagination *pagination) {
-        success(response,albums,pagination);
+    [GCServiceAlbum getAlbumsWithCoverAsset:NO success:^(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination) {
+        success(responseStatus,albums,pagination);
     } failure:^(NSError *error) {
         failure(error);
     }];
 }
+
++ (void)getAllAlbumsWithCoverAssetWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
+{
+    [GCServiceAlbum getAlbumsWithCoverAsset:YES success:^(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination) {
+        success(responseStatus,albums,pagination);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
 
 - (void)getAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void(^)(NSError *error))failure
 {
