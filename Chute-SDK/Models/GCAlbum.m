@@ -16,16 +16,26 @@
 
 @implementation GCAlbum
 
-@synthesize id, links, counters, shortcut, name, user, moderateMedia, moderateComments, createdAt, updatedAt, description;
+@synthesize id, links, counters, shortcut, name, user, moderateMedia, moderateComments, createdAt, updatedAt, description, coverAsset, imagesCount,asset;
 
 + (void)getAllAlbumsWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
 {
-    [GCServiceAlbum getAlbumsWithSuccess:^(GCResponseStatus *response, NSArray *albums, GCPagination *pagination) {
-        success(response,albums,pagination);
+    [GCServiceAlbum getAlbumsWithCoverAsset:NO success:^(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination) {
+        success(responseStatus,albums,pagination);
     } failure:^(NSError *error) {
         failure(error);
     }];
 }
+
++ (void)getAllAlbumsWithCoverAssetWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination))success failure:(void(^)(NSError *error))failure
+{
+    [GCServiceAlbum getAlbumsWithCoverAsset:YES success:^(GCResponseStatus *responseStatus, NSArray *albums, GCPagination *pagination) {
+        success(responseStatus,albums,pagination);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
 
 - (void)getAlbumWithSuccess:(void(^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void(^)(NSError *error))failure
 {
@@ -39,16 +49,36 @@
 + (void)createAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
 {
     
-    [GCServiceAlbum createAlbumWithName:name moderateMedia:moderateMedia moderateComments:moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
+    [GCServiceAlbum createAlbumWithName:name withCoverAssetWithID:nil moderateMedia:moderateMedia moderateComments:moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
         success(responseStatus, album);
     } failure:^(NSError *error) {
         failure(error);
     }];
 }
 
-- (void)updateAlbumWithName:(NSString *)name moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
++ (void)createAlbumWithName:(NSString *)name withCoverAssetWithID:(NSNumber *)coverAssetID moderateMedia:(BOOL)moderateMedia moderateComments:(BOOL)moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
 {
-    [GCServiceAlbum updateAlbumWithID:self.id name:name moderateMedia:moderateMedia moderateComments:moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
+    [GCServiceAlbum createAlbumWithName:name withCoverAssetWithID:coverAssetID moderateMedia:moderateMedia moderateComments:moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
+        success(responseStatus,album);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
+
+- (void)updateAlbumWithName:(NSString *)_name coverAssetID:(NSNumber *)coverAssetID moderateMedia:(BOOL)_moderateMedia moderateComments:(BOOL)_moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
+{
+    [GCServiceAlbum updateAlbumWithID:self.id name:_name coverAssetID:coverAssetID moderateMedia:_moderateMedia moderateComments:_moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
+        success(responseStatus, album);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
+
+- (void)updateAlbumWithName:(NSString *)_name moderateMedia:(BOOL)_moderateMedia moderateComments:(BOOL)_moderateComments success:(void (^)(GCResponseStatus *responseStatus, GCAlbum *album))success failure:(void (^)(NSError *error))failure
+{
+    [GCServiceAlbum updateAlbumWithID:self.id name:_name coverAssetID:nil moderateMedia:_moderateMedia moderateComments:_moderateComments success:^(GCResponseStatus *responseStatus, GCAlbum *album) {
         success(responseStatus, album);
     } failure:^(NSError *error) {
         failure(error);
