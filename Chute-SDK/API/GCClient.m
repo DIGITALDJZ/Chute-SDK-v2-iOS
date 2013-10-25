@@ -119,8 +119,9 @@ static dispatch_queue_t serialQueue;
         NSRange rangeYahoo = [[cookie domain] rangeOfString:@"yahoo"];
         NSRange rangeMicrosoft = [[cookie domain] rangeOfString:@"live"];
         NSRange rangeInstagram = [[cookie domain] rangeOfString:@"instagram"];
+        NSRange rangeTwitter = [[cookie domain] rangeOfString:@"twitter"];
         
-        if(rangeDropBox.location == NSNotFound || rangeFacebook.location == NSNotFound || rangeGoogle.location == NSNotFound || rangeChute.location == NSNotFound || rangeFlick.location == NSNotFound || rangeYahoo.location == NSNotFound || rangeMicrosoft.location == NSNotFound || rangeInstagram.location == NSNotFound)
+        if(rangeDropBox.location == NSNotFound || rangeFacebook.location == NSNotFound || rangeGoogle.location == NSNotFound || rangeChute.location == NSNotFound || rangeFlick.location == NSNotFound || rangeYahoo.location == NSNotFound || rangeMicrosoft.location == NSNotFound || rangeInstagram.location == NSNotFound || rangeTwitter.location == NSNotFound)
             
             [storage deleteCookie:cookie];
     }
