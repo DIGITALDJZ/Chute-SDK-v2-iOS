@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Chute-SDK.xcscheme</key>
+		<key>Pods-CocoaLumberjack.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>107A1402BCDC4C01ACC05195</key>
+		<key>0349D4E3A19A4A8A827D2363</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>258020B8D2BF44BE9F2ED166</key>
+		<key>2609BA5FC75849EBB65C55D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B18190FF83B46E18921C372</key>
+		<key>5CEA78A71B524D129BFD8B38</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91603C5990EB43CF85A8CDD5</key>
+		<key>7DBDC5F43F20492A9A42D7CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A14673C439A84DCC9287A0B3</key>
+		<key>E9FB3366122B4E0785C9F0F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9AE1E033B914E9885DAEC96</key>
+		<key>EF5787745E7D4129A092202D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
