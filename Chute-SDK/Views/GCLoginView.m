@@ -13,6 +13,7 @@
 #import "AFJSONRequestOperation.h"
 #import "GCClient.h"
 #import "GCOAuth2Client.h"
+#import "GCLog.h"
 
 @implementation GCLoginView
 
@@ -132,6 +133,14 @@
         return NO;
     }
  }
+ else if ([[[request URL] absoluteString] isEqualToString:@"http://getchute.com/v2/oauth/failure"]) {
+     
+     GCLogWarning(@"The user canceled the approval of the Chute App.");
+     if (failure) {
+         failure([NSError errorWithDomain:@"Chute" code:400 userInfo:nil]);
+     }
+     
+    }
     return YES;
 }
 

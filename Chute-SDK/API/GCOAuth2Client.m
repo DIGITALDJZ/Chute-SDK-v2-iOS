@@ -108,7 +108,7 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
     NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPOST path:@"oauth/token" parameters:params];
         
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-
+        
         [apiClient setAuthorizationHeaderWithToken:[JSON objectForKey:@"access_token"]];
         success();
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
