@@ -386,6 +386,10 @@
 {
     
     [self.navigationController.toolbar setItems:toolbarItemsToBeAdd animated:YES];
+    
+    NSDictionary* info = [notification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
     /* Move the toolbar to above the keyboard */
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -393,16 +397,16 @@
     if([[UIDevice currentDevice] orientation] != UIInterfaceOrientationLandscapeLeft && [[UIDevice currentDevice] orientation] != UIInterfaceOrientationLandscapeRight)
     {
         if(UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
-            frame.origin.y = self.view.frame.size.height - 150.0;
+            frame.origin.y -= kbSize.height;
         else
-            frame.origin.y = self.view.frame.size.height - 27.0;
+            frame.origin.y -= 72;
     }
     else
     {
         if(UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
-            frame.origin.y = self.view.frame.size.height - 110.0;
+            frame.origin.y -= kbSize.width;
         else
-            frame.origin.y = self.view.frame.size.height - 180.0;
+            frame.origin.y -= 224;
     }
     self.navigationController.toolbar.frame = frame;
     [UIView commitAnimations];
@@ -411,6 +415,10 @@
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     [self.navigationController.toolbar setItems:toolbarItemsToBeAdd animated:YES];
+    
+    NSDictionary* info = [notification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
     /* Move the toolbar back to bottom of the screen */
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -418,16 +426,16 @@
     if([[UIDevice currentDevice] orientation] != UIInterfaceOrientationLandscapeLeft && [[UIDevice currentDevice] orientation] != UIInterfaceOrientationLandscapeRight)
     {
         if(UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
-            frame.origin.y = self.view.frame.size.height+62.0;
+            frame.origin.y += kbSize.height;
         else
-            frame.origin.y = self.view.frame.size.height+45.0;
+            frame.origin.y += 72;
     }
     else
     {
         if(UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
-            frame.origin.y = self.view.frame.size.height+50.0;
+            frame.origin.y += kbSize.width;
         else
-            frame.origin.y = self.view.frame.size.height+45.0;
+            frame.origin.y += 224;
     }
     
     self.navigationController.toolbar.frame = frame;
