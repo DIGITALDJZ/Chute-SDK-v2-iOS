@@ -115,6 +115,8 @@
     
 // Gaurav's code
 
+    NSLog(@"\n Request URL: %@",[[request URL] absoluteString]);
+    
  if ([[[request URL] path] isEqualToString:@"/oauth/callback"]) {
         NSString *_code = [[NSDictionary dictionaryWithFormEncodedString:[[request URL] query]] objectForKey:@"code"];
     
