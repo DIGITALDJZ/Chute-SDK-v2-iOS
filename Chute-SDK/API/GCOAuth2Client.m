@@ -24,6 +24,7 @@ static NSString * const kGCResponseType = @"response_type";
 static NSString * const kGCResponseTypeValue = @"code";
 static NSString * const kGCRedirectURI = @"redirect_uri";
 static NSString * const kGCRedirectURIDefaultValue = @"http://getchute.com/oauth/callback";
+static NSString * const kGCRetainSession = @"retain_session";
 
 static NSString * const kGCOAuth = @"oauth";
 
@@ -97,8 +98,26 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
         
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
         
-        [apiClient setAuthorizationHeaderWithToken:[JSON objectForKey:@"access_token"]];
-        success();
+        if([apiClient authorizationToken] == nil){
+            [apiClient setAuthorizationHeaderWithToken:[JSON objectForKey:@"access_token"]];
+            success();
+        }
+        else {
+            NSString *savedToken = [[[apiClient authorizationToken] componentsSeparatedByString:@" "] objectAtIndex:1];
+            NSLog(@"\n token:%@", savedToken);
+            
+            if (![savedToken isEqualToString:[JSON objectForKey:@"access_token"]]) {
+                GCLogWarning(@"Logged account belongs to another user");
+                NSDictionary *userInfo = @{@"token":[JSON objectForKey:@"access_token"]};
+                failure ([NSError errorWithDomain:@"Chute" code:302 userInfo:userInfo]);
+            }
+            else {
+                [apiClient setAuthorizationHeaderWithToken:[JSON objectForKey:@"access_token"]];
+                success();
+            }
+                
+        }
+
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         GCLogWarning(@"URL: %@\n\tError: %@", [[request URL] absoluteString], [error localizedDescription]);
         failure(error);
@@ -113,6 +132,7 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
                              kGCResponseType:kGCResponseTypeValue,
                              kGCClientID:clientID,
                              kGCRedirectURI:kGCRedirectURIDefaultValue,
+                             kGCRetainSession:@"true",
                              };
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://getchute.com/v2/oauth/%@/authorize?%@",
