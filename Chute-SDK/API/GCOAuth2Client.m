@@ -108,7 +108,7 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
             
             if (![savedToken isEqualToString:[JSON objectForKey:@"access_token"]]) {
                 GCLogWarning(@"Logged account belongs to another user");
-                NSDictionary *userInfo = @{@"token":[JSON objectForKey:@"access_token"]};
+                NSDictionary *userInfo = @{@"new_token":[JSON objectForKey:@"access_token"]};
                 failure ([NSError errorWithDomain:@"Chute" code:302 userInfo:userInfo]);
             }
             else {
@@ -132,7 +132,7 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
                              kGCResponseType:kGCResponseTypeValue,
                              kGCClientID:clientID,
                              kGCRedirectURI:kGCRedirectURIDefaultValue,
-                             kGCRetainSession:@"true",
+//                             kGCRetainSession:@"true",
                              };
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://getchute.com/v2/oauth/%@/authorize?%@",
