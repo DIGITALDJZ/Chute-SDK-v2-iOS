@@ -59,6 +59,6 @@
 
 - (void)copyAssetWithID:(NSNumber *)assetID toAlbumWithID:(NSNumber *)destinationAlbumID success:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure;
 
-+ (void)listAllAlbumsWithinWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *listOfAlbums))success failure:(void(^)(NSError *error))failure;
+- (void)listAllAlbumsWithinWithSuccess:(void(^)(GCResponseStatus *responseStatus, NSArray *listOfAlbums))success failure:(void(^)(NSError *error))failure;
 
 @end

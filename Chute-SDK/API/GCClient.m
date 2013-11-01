@@ -132,7 +132,7 @@ static dispatch_queue_t serialQueue;
 #pragma mark - Overrided Methods
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {
-    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@" %@", token]];
+    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", token]];
     [Lockbox setString:token forKey:kGCToken];
 }
 
