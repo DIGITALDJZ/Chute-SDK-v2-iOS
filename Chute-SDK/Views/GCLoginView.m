@@ -109,7 +109,12 @@
                     success();
             }];
         } failure:^(NSError *error) {
-            if (failure)
+            if([error code] == 302){
+                [self closePopupWithCompletition:^{
+                    failure(error);
+                }];
+            }
+            else if (failure)
                 failure(error);
             else
                 NSAssert(!error, [error localizedDescription]);
@@ -120,10 +125,11 @@
  else if ([[[request URL] absoluteString] isEqualToString:@"http://getchute.com/v2/oauth/failure"]) {
      
      GCLogWarning(@"The user canceled the approval of the Chute App.");
-     if (failure) {
-         failure([NSError errorWithDomain:@"Chute" code:400 userInfo:nil]);
-     }
-     
+     [self closePopupWithCompletition:^{
+         if (failure) {
+             failure([NSError errorWithDomain:@"Chute" code:400 userInfo:nil]);
+         }
+     }];
     }
     return YES;
 }

@@ -104,11 +104,14 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
         }
         else {
             NSString *savedToken = [[[apiClient authorizationToken] componentsSeparatedByString:@" "] objectAtIndex:1];
-            NSLog(@"\n token:%@", savedToken);
+            GCLogVerbose(@"\n Saved token:%@", savedToken);
+            
+            NSString *newToken = [JSON objectForKey:@"access_token"];
+            GCLogVerbose(@"\n New token:%@",newToken);
             
             if (![savedToken isEqualToString:[JSON objectForKey:@"access_token"]]) {
                 GCLogWarning(@"Logged account belongs to another user");
-                NSDictionary *userInfo = @{@"new_token":[JSON objectForKey:@"access_token"]};
+                NSDictionary *userInfo = @{@"new_token":newToken};
                 failure ([NSError errorWithDomain:@"Chute" code:302 userInfo:userInfo]);
             }
             else {
