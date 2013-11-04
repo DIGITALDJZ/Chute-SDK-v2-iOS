@@ -14,9 +14,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0700ec7a58c36ad217173e167f6e4df7270df66b
-  CocoaLumberjack: d73e1e317ced14ab930797dda6c17156ff17aaa1
+  CocoaLumberjack: 2619775f386bbec1e870eddb5040f870c68726b1
   DCKeyValueObjectMapping: 39adaf0a54ff6368a22d9221db60f0696d81ad7b
   Lockbox: 1bcfd564f034b83456fcad5bdd49470a80a38d2b
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
 
-COCOAPODS: 0.26.2
+COCOAPODS: 0.27.1

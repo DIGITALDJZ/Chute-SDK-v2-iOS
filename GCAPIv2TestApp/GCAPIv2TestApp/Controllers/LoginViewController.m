@@ -31,9 +31,7 @@
 
 - (void)showLoginForLoginType:(GCLoginType)loginType fromStartPoint:(CGPoint)point {
     
-    
-    GCOAuth2Client *oauth2Client = [GCOAuth2Client clientWithClientID:@"50d9c930018d1672df00002e"  clientSecret:@"ee9b33013c0592aa41d30d1f347ff62514b737e61e6ce9c64fb13a44d31917d9"];
-    [GCLoginView showInView:self.view fromStartPoint:point oauth2Client:oauth2Client withLoginType:loginType success:^{
+    [GCLoginView showInView:self.view fromStartPoint:point withLoginType:loginType success:^{
         GCLogInfo(@"Logged in.");
         [self dismissViewControllerAnimated:YES completion:^{}];
     } failure:^(NSError *error) {

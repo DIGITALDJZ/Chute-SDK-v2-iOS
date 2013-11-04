@@ -27,6 +27,10 @@
 		CCC3597E1689F8CB009E372C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359591689F8CA009E372C /* Foundation.framework */; };
 		CCC359861689F8CB009E372C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCC359841689F8CB009E372C /* InfoPlist.strings */; };
 		CCC359891689F8CC009E372C /* GCAPIv2TestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC359881689F8CC009E372C /* GCAPIv2TestAppTests.m */; };
+		CCD3C3D618284C5100E31F78 /* GCConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD3C3D318284C5100E31F78 /* GCConfiguration.m */; };
+		CCD3C3D718284C5100E31F78 /* GCConfigurationFile.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD3C3D518284C5100E31F78 /* GCConfigurationFile.m */; };
+		CCD3C3DA1828527300E31F78 /* GCConfiguration-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCD3C3D81828527300E31F78 /* GCConfiguration-Sample.plist */; };
+		CCD3C3DB1828527300E31F78 /* GCConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCD3C3D91828527300E31F78 /* GCConfiguration.plist */; };
 		E40CE344181EC56C007668FD /* GCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E40CE2DF181EC56C007668FD /* GCClient.m */; };
 		E40CE345181EC56C007668FD /* GCOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = E40CE2E1181EC56C007668FD /* GCOAuth2Client.m */; };
 		E40CE346181EC56C007668FD /* GCUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = E40CE2E3181EC56C007668FD /* GCUploader.m */; };
@@ -129,6 +133,12 @@
 		CCC359851689F8CB009E372C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCC359871689F8CC009E372C /* GCAPIv2TestAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCAPIv2TestAppTests.h; sourceTree = "<group>"; };
 		CCC359881689F8CC009E372C /* GCAPIv2TestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCAPIv2TestAppTests.m; sourceTree = "<group>"; };
+		CCD3C3D218284C5100E31F78 /* GCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCConfiguration.h; sourceTree = "<group>"; };
+		CCD3C3D318284C5100E31F78 /* GCConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCConfiguration.m; sourceTree = "<group>"; };
+		CCD3C3D418284C5100E31F78 /* GCConfigurationFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCConfigurationFile.h; sourceTree = "<group>"; };
+		CCD3C3D518284C5100E31F78 /* GCConfigurationFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCConfigurationFile.m; sourceTree = "<group>"; };
+		CCD3C3D81828527300E31F78 /* GCConfiguration-Sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GCConfiguration-Sample.plist"; sourceTree = "<group>"; };
+		CCD3C3D91828527300E31F78 /* GCConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GCConfiguration.plist; sourceTree = "<group>"; };
 		E40CE2DE181EC56C007668FD /* GCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCClient.h; sourceTree = "<group>"; };
 		E40CE2DF181EC56C007668FD /* GCClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCClient.m; sourceTree = "<group>"; };
 		E40CE2E0181EC56C007668FD /* GCOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOAuth2Client.h; sourceTree = "<group>"; };
@@ -365,9 +375,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CCD3C3D118284C5100E31F78 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				CCD3C3D218284C5100E31F78 /* GCConfiguration.h */,
+				CCD3C3D318284C5100E31F78 /* GCConfiguration.m */,
+				CCD3C3D418284C5100E31F78 /* GCConfigurationFile.h */,
+				CCD3C3D518284C5100E31F78 /* GCConfigurationFile.m */,
+				CCD3C3D81828527300E31F78 /* GCConfiguration-Sample.plist */,
+				CCD3C3D91828527300E31F78 /* GCConfiguration.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		E40CE2DC181EC56C007668FD /* Chute-SDK */ = {
 			isa = PBXGroup;
 			children = (
+				CCD3C3D118284C5100E31F78 /* Configuration */,
 				E40CE2DD181EC56C007668FD /* API */,
 				E40CE2F5181EC56C007668FD /* Chute-SDK-Prefix.pch */,
 				E40CE2F6181EC56C007668FD /* GetChute.h */,
@@ -629,9 +653,11 @@
 				CCC359621689F8CA009E372C /* InfoPlist.strings in Resources */,
 				CCC3596A1689F8CA009E372C /* Default.png in Resources */,
 				CCC3596C1689F8CA009E372C /* Default@2x.png in Resources */,
+				CCD3C3DA1828527300E31F78 /* GCConfiguration-Sample.plist in Resources */,
 				CCC3596E1689F8CA009E372C /* Default-568h@2x.png in Resources */,
 				CCC359711689F8CA009E372C /* MainStoryboard-iPhone.storyboard in Resources */,
 				CC4DA52E17143FFA004E2191 /* MainStoryboard-iPad.storyboard in Resources */,
+				CCD3C3DB1828527300E31F78 /* GCConfiguration.plist in Resources */,
 				E4A3614617E0C0670058C1ED /* chute.png in Resources */,
 				E4A3614717E0C0670058C1ED /* flag.png in Resources */,
 				E4A3614817E0C0670058C1ED /* heart.png in Resources */,
@@ -726,7 +752,9 @@
 				E40CE35E181EC56C007668FD /* GCLinks.m in Sources */,
 				E4A3613417E0C0550058C1ED /* ImageDetailsViewController.m in Sources */,
 				E40CE35D181EC56C007668FD /* GCImageData.m in Sources */,
+				CCD3C3D618284C5100E31F78 /* GCConfiguration.m in Sources */,
 				E40CE360181EC56C007668FD /* GCResponse.m in Sources */,
+				CCD3C3D718284C5100E31F78 /* GCConfigurationFile.m in Sources */,
 				E40CE350181EC56C007668FD /* GCAlbum.m in Sources */,
 				E40CE34B181EC56C007668FD /* GCServiceFlag.m in Sources */,
 				E40CE373181EC56C007668FD /* GCPopupView.m in Sources */,

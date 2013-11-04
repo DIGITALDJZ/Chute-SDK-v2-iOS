@@ -11,8 +11,10 @@
 #import "NSDictionary+QueryString.h"
 #import "GCClient.h"
 #import "GCLog.h"
+#import "GCConfiguration.h"
 
 static NSString * const kGCBaseURLString = @"https://getchute.com";
+static dispatch_queue_t serialQueue;
 
 static NSString * const kGCScope = @"scope";
 static NSString * const kGCScopeDefaultValue = @"all_resources manage_resources profile resources";
@@ -47,48 +49,34 @@ NSString * const kGCGrantTypeValue = @"authorization_code";
 
 @implementation GCOAuth2Client
 
-+ (instancetype)clientWithBaseURL:(NSURL *)url {
-    NSAssert(NO, @"GCOAuth2Client instance cannot be generated with this method.");
-    return nil;
-}
-
-+ (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret {
-    return [self clientWithClientID:_clientID clientSecret:_clientSecret redirectURI:kGCRedirectURIDefaultValue scope:kGCScopeDefaultValue];
-}
-
-+ (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret redirectURI:(NSString *)_redirectURI {
-    return [self clientWithClientID:_clientID clientSecret:_clientSecret redirectURI:_redirectURI scope:kGCScopeDefaultValue];
-}
-
-+ (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret scope:(NSString *)_scope {
-    return [self clientWithClientID:_clientID clientSecret:_clientSecret redirectURI:kGCRedirectURIDefaultValue scope:_scope];
-}
-
-+ (instancetype)clientWithClientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret redirectURI:(NSString *)_redirectURI scope:(NSString *)_scope {
-    return [[GCOAuth2Client alloc] initWithBaseURL:[NSURL URLWithString:kGCBaseURLString] clientID:_clientID clientSecret:_clientSecret redirectURI:_redirectURI scope:_scope];
-}
-
-- (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)_clientID clientSecret:(NSString *)_clientSecret redirectURI:(NSString *)_redirectURI scope:(NSString *)_scope {
++ (instancetype)sharedClient
+{
+    static GCOAuth2Client *_sharedClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        serialQueue = dispatch_queue_create("com.getchute.gcoauth2client.serialqueue", NULL);
+        _sharedClient = [[GCOAuth2Client alloc] initWithBaseURL:[NSURL URLWithString:kGCBaseURLString]];
+    });
     
-    NSParameterAssert(_clientID);
-    NSParameterAssert(_clientSecret);
-    NSParameterAssert(_redirectURI);
-    NSParameterAssert(_scope);
-    
+    return _sharedClient;
+}
+
+- (id)initWithBaseURL:(NSURL *)url
+{
     self = [super initWithBaseURL:url];
     
     if (!self) {
         return nil;
     }
     
-    clientID = _clientID;
-    clientSecret = _clientSecret;
-    redirectURI = _redirectURI;
-    scope = _scope;
-    
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     
     [self setDefaultHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
+    
+    clientID = [[GCConfiguration configuration] appId];
+    clientSecret = [[GCConfiguration configuration] appSecret];
+    redirectURI = kGCRedirectURIDefaultValue;
+    scope = kGCScopeDefaultValue;
     
     return self;
 }

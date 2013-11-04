@@ -34,7 +34,8 @@ static dispatch_queue_t serialQueue;
 
 @implementation GCClient
 
-+ (GCClient *)sharedClient {
++ (instancetype)sharedClient
+{
     static GCClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -47,7 +48,8 @@ static dispatch_queue_t serialQueue;
     return _sharedClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
+- (id)initWithBaseURL:(NSURL *)url
+{
     
 /*
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kGCClient];
