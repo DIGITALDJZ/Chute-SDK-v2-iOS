@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26B73345F8574FA6AC075CCB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4716EB6ABE44C6E822EEF78 /* libPods.a */; };
 		CC49266D168A4AE200397C1E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */; };
 		CC49266E168A4AE200397C1E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC492669168A4AC400397C1E /* SystemConfiguration.framework */; };
 		CC4DA5171710BA7C004E2191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4DA5141710BA70004E2191 /* QuartzCore.framework */; };
 		CC4DA52E17143FFA004E2191 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC4DA52D17143FFA004E2191 /* MainStoryboard-iPad.storyboard */; };
+		CC543582182931A800BD0830 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC543581182931A800BD0830 /* libPods.a */; };
 		CCC359581689F8CA009E372C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359571689F8CA009E372C /* UIKit.framework */; };
 		CCC3595A1689F8CA009E372C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC359591689F8CA009E372C /* Foundation.framework */; };
 		CCC3595C1689F8CA009E372C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC3595B1689F8CA009E372C /* CoreGraphics.framework */; };
@@ -113,6 +113,7 @@
 		CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CC4DA5141710BA70004E2191 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CC4DA52D17143FFA004E2191 /* MainStoryboard-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
+		CC543581182931A800BD0830 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		CCC359531689F8CA009E372C /* GCAPIv2TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCAPIv2TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC359571689F8CA009E372C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CCC359591689F8CA009E372C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -266,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC543582182931A800BD0830 /* libPods.a in Frameworks */,
 				E49B2422179FF74D004CE8A4 /* AssetsLibrary.framework in Frameworks */,
 				CC4DA5171710BA7C004E2191 /* QuartzCore.framework in Frameworks */,
 				CC49266D168A4AE200397C1E /* MobileCoreServices.framework in Frameworks */,
@@ -273,7 +275,6 @@
 				CCC359581689F8CA009E372C /* UIKit.framework in Frameworks */,
 				CCC3595A1689F8CA009E372C /* Foundation.framework in Frameworks */,
 				CCC3595C1689F8CA009E372C /* CoreGraphics.framework in Frameworks */,
-				26B73345F8574FA6AC075CCB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +315,7 @@
 		CCC359561689F8CA009E372C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC543581182931A800BD0830 /* libPods.a */,
 				E49B2421179FF74C004CE8A4 /* AssetsLibrary.framework */,
 				CC4DA5141710BA70004E2191 /* QuartzCore.framework */,
 				CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */,
@@ -626,6 +628,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Aleksandar Trpeski";
+				TargetAttributes = {
+					CCC359521689F8CA009E372C = {
+						DevelopmentTeam = FZ9KPE4AN7;
+					};
+				};
 			};
 			buildConfigurationList = CCC3594D1689F8CA009E372C /* Build configuration list for PBXProject "GCAPIv2TestApp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -848,7 +855,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Chute-SDK/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -860,6 +867,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PODS_ROOT}/Headers/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -868,7 +880,7 @@
 				);
 				PROVISIONING_PROFILE = "0B8EC19B-AF03-4B54-B30B-23C60AC5F855";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 			};
 			name = Debug;
 		};
@@ -884,11 +896,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Chute-SDK/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${PODS_ROOT}/Headers/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -898,7 +915,7 @@
 				);
 				PROVISIONING_PROFILE = "0B8EC19B-AF03-4B54-B30B-23C60AC5F855";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "/Users/aleksandartrpeski/Documents/Chute/GetChute/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -908,7 +925,8 @@
 			baseConfigurationReference = 60F3E5DB13FF428A83AE6167 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"$(inherited)",
@@ -918,9 +936,9 @@
 				INFOPLIST_FILE = "GCAPIv2TestApp/GCAPIv2TestApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DFA4179E-F722-427E-8F85-26B037950A63";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -930,7 +948,8 @@
 			baseConfigurationReference = 60F3E5DB13FF428A83AE6167 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aleksandar Trpeski (7R77UE2JVS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)\"",
 					"$(inherited)",
@@ -940,9 +959,9 @@
 				INFOPLIST_FILE = "GCAPIv2TestApp/GCAPIv2TestApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DFA4179E-F722-427E-8F85-26B037950A63";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
