@@ -94,6 +94,8 @@
 		E4A3614D17E0C0670058C1ED /* AlbumViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3614117E0C0670058C1ED /* AlbumViewCell.m */; };
 		E4A3614E17E0C0670058C1ED /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3614317E0C0670058C1ED /* CommentCell.m */; };
 		E4A3614F17E0C0670058C1ED /* ImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A3614517E0C0670058C1ED /* ImageViewCell.m */; };
+		E4AE1274182D092A0011B9F5 /* GCServiceUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AE1273182D092A0011B9F5 /* GCServiceUser.m */; };
+		E4AE1277182D0E890011B9F5 /* GCUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AE1276182D0E890011B9F5 /* GCUserProfile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +262,10 @@
 		E4A3614317E0C0670058C1ED /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		E4A3614417E0C0670058C1ED /* ImageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewCell.h; sourceTree = "<group>"; };
 		E4A3614517E0C0670058C1ED /* ImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewCell.m; sourceTree = "<group>"; };
+		E4AE1272182D092A0011B9F5 /* GCServiceUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServiceUser.h; sourceTree = "<group>"; };
+		E4AE1273182D092A0011B9F5 /* GCServiceUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServiceUser.m; sourceTree = "<group>"; };
+		E4AE1275182D0E890011B9F5 /* GCUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCUserProfile.h; sourceTree = "<group>"; };
+		E4AE1276182D0E890011B9F5 /* GCUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCUserProfile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +444,8 @@
 				E40CE2F2181EC56C007668FD /* GCServiceTag.m */,
 				E40CE2F3181EC56C007668FD /* GCServiceVote.h */,
 				E40CE2F4181EC56C007668FD /* GCServiceVote.m */,
+				E4AE1272182D092A0011B9F5 /* GCServiceUser.h */,
+				E4AE1273182D092A0011B9F5 /* GCServiceUser.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -497,6 +505,8 @@
 				E40CE329181EC56C007668FD /* GCVote.m */,
 				E40CE32A181EC56C007668FD /* GCVoteCount.h */,
 				E40CE32B181EC56C007668FD /* GCVoteCount.m */,
+				E4AE1275182D0E890011B9F5 /* GCUserProfile.h */,
+				E4AE1276182D0E890011B9F5 /* GCUserProfile.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -767,6 +777,7 @@
 				E40CE373181EC56C007668FD /* GCPopupView.m in Sources */,
 				E40CE366181EC56C007668FD /* GCUser.m in Sources */,
 				E40CE355181EC56C007668FD /* GCComment.m in Sources */,
+				E4AE1277182D0E890011B9F5 /* GCUserProfile.m in Sources */,
 				E40CE353181EC56C007668FD /* GCAssetDimensions.m in Sources */,
 				E40CE36F181EC56C007668FD /* NSDictionary+QueryString.m in Sources */,
 				E40CE34D181EC56C007668FD /* GCServiceTag.m in Sources */,
@@ -785,6 +796,7 @@
 				E4A3614E17E0C0670058C1ED /* CommentCell.m in Sources */,
 				E40CE370181EC56C007668FD /* NSMutableDictionary+GCUtil.m in Sources */,
 				E40CE372181EC56C007668FD /* GCLoginView.m in Sources */,
+				E4AE1274182D092A0011B9F5 /* GCServiceUser.m in Sources */,
 				E40CE357181EC56C007668FD /* GCCounter.m in Sources */,
 				E40CE371181EC56C007668FD /* NSString+QueryString.m in Sources */,
 				E40CE358181EC56C007668FD /* GCFile.m in Sources */,

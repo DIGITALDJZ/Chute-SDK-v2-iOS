@@ -43,6 +43,8 @@
 #import "GCUploadInfo.h"
 #import "GCURL.h"
 #import "GCUser.h"
+#import "GCUserProfile.h"
+#import "GCServiceUser.h"
 #import "GCVote.h"
 #import "GCVoteCount.h"
 #import "GCMD5Hash.h"
