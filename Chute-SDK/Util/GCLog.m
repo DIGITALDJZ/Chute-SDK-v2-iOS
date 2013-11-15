@@ -30,7 +30,7 @@ int gcLogLevel;
 	[GCLog addLogger:[DDASLLogger sharedInstance]];
 	[GCLog addLogger:[DDTTYLogger sharedInstance]];
     
-    gcLogLevel =  LOG_FLAG_WARN | LOG_LEVEL_VERBOSE;
+    gcLogLevel = LOG_LEVEL_WARN;
 
 }
 
