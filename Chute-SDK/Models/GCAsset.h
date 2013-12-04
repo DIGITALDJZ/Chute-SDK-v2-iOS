@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class GCComment,GCResponseStatus,GCLinks,GCAssetDimensions,GCAssetSource,GCCoordinate,GCPagination,GCHeart,GCHeartCount, GCVote,GCVoteCount,GCFlag,GCFlagCount;
+@class GCComment,GCResponseStatus,GCLinks,GCAssetDimensions,GCAssetSource,GCCoordinate,GCPagination,GCHeart,GCHeartCount, GCVote,GCVoteCount,GCFlag,GCFlagCount, GCUser;
 
 @interface GCAsset : NSObject
 
@@ -21,6 +21,7 @@
 @property (strong, nonatomic) GCAssetDimensions *dimensions;
 @property (strong, nonatomic) GCAssetSource     *source;
 @property (strong, nonatomic) GCCoordinate      *coordinate;
+@property (strong, nonatomic) GCUser            *user;
 
 - (void)createComment:(NSString *)comment forAlbumWithID:(NSNumber *)albumID fromUserWithName:(NSString *)name andEmail:(NSString *)email success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure;
 
