@@ -19,7 +19,7 @@
 
 @implementation GCAsset
 
-@synthesize id, links, thumbnail, url, type, caption, dimensions, source;
+@synthesize id, links, thumbnail, url, type, caption, dimensions, source, user;
 
 
 - (void)createComment:(NSString *)comment forAlbumWithID:(NSNumber *)albumID fromUserWithName:(NSString *)name andEmail:(NSString *)email success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure
