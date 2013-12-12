@@ -29,8 +29,13 @@ static NSDictionary *sGCServiceFeatures;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if (![fileManager fileExistsAtPath:path]) {
-        NSData *stockData = [[NSData alloc] initWithContentsOfFile:bundlePath];
-        [stockData writeToFile:path atomically:YES];
+        if ([fileManager fileExistsAtPath:bundlePath]) {
+            NSData *stockData = [[NSData alloc] initWithContentsOfFile:bundlePath];
+            [stockData writeToFile:path atomically:YES];
+        }
+        else {
+            GCLogError(@"Configuration.plist missing!");
+        }
     }
     GCLogVerbose(@"Read configuration Path: %@", path);
     return [[NSDictionary alloc] initWithContentsOfFile:path];
