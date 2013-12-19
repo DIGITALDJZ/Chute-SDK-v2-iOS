@@ -18,6 +18,8 @@
 
 + (void)getAssetWithID:(NSNumber *)assetID fromAlbumWithID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure;
 
++ (void)updateAssetWithID:(NSNumber *)assetID andAlbumID:(NSNumber *)albumID caption:(NSString *)caption success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure;
+
 
 //                              THE FOLLOWING METHODS ARE DEPRECATED                            //
 
