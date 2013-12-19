@@ -59,4 +59,19 @@ static NSString * const kGCDefaultPerPage = @"100";
     } failure:failure];
 }
 
++ (void)updateAssetWithID:(NSNumber *)assetID andAlbumID:(NSNumber *)albumID caption:(NSString *)caption success:(void (^)(GCResponseStatus *, GCAsset *))success failure:(void (^)(NSError *))failure
+{
+    GCClient *apiClient = [GCClient sharedClient];
+    
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@",albumID, assetID];
+    
+    NSDictionary *param = @{@"caption":caption};
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientPUT path:path parameters:param];
+    
+    [apiClient request:request factoryClass:[GCAsset class] success:^(GCResponse *response) {
+        success(response.response, response.data);
+    } failure:failure];
+}
+
 @end

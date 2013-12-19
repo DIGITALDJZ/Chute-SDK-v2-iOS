@@ -21,6 +21,14 @@
 
 @synthesize id, links, thumbnail, url, type, caption, dimensions, source, user;
 
+- (void)updateAssetWithCaption:(NSString *)_caption inAlbumID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure
+{
+    [GCServiceAsset updateAssetWithID:self.id andAlbumID:albumID caption:_caption success:^(GCResponseStatus *responseStatus, GCAsset *asset) {
+        success(responseStatus, asset);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
 
 - (void)createComment:(NSString *)comment forAlbumWithID:(NSNumber *)albumID fromUserWithName:(NSString *)name andEmail:(NSString *)email success:(void (^)(GCResponseStatus *responseStatus, GCComment *comment))success failure:(void (^)(NSError *error))failure
 {
