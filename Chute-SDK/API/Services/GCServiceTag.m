@@ -77,14 +77,17 @@ static NSString * const kGCTags = @"tags";
     
     GCClient *apiClient = [GCClient sharedClient];
     
-    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/tags", albumID, assetID];
-    NSDictionary *params = @{kGCTags: tags};
+    NSString *stringTags = [tags componentsJoinedByString:@","];
     
-    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientDELETE path:path parameters:params];
+    NSString *path = [NSString stringWithFormat:@"albums/%@/assets/%@/tags/%@", albumID, assetID, stringTags];
+    //    NSDictionary *params = @{kGCTags: tags};
+    
+    NSMutableURLRequest *request = [apiClient requestWithMethod:kGCClientDELETE path:path parameters:nil];
     
     [apiClient request:request factoryClass:nil success:^(GCResponse *response) {
         success(response.response, response.data);
     } failure:failure];
+
 }
 
 @end
