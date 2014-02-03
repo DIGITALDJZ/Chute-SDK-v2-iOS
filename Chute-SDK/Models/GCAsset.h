@@ -22,6 +22,13 @@
 @property (strong, nonatomic) GCAssetSource     *source;
 @property (strong, nonatomic) GCCoordinate      *coordinate;
 @property (strong, nonatomic) GCUser            *user;
+@property (strong, nonatomic) NSString          *videoUrl;
+@property (strong, nonatomic) NSDate            *createdAt;
+@property (strong, nonatomic) NSDate            *updatedAt;
+@property (strong, nonatomic) NSString          *shortcut;
+@property (strong, nonatomic) NSString          *service;
+@property (strong, nonatomic) NSString          *username;
+
 
 - (void)updateAssetWithCaption:(NSString *)_caption inAlbumID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure;
 
