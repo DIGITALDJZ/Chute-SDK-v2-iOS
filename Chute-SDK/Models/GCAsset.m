@@ -19,7 +19,7 @@
 
 @implementation GCAsset
 
-@synthesize id, links, thumbnail, url, type, caption, dimensions, source, user, videoUrl, updatedAt, createdAt;
+@synthesize id, links, thumbnail, url, type, caption, dimensions, source, user, videoUrl, updatedAt, createdAt, shortcut, service, username;
 
 - (void)updateAssetWithCaption:(NSString *)_caption inAlbumID:(NSNumber *)albumID success:(void(^)(GCResponseStatus *responseStatus, GCAsset *asset))success failure:(void(^)(NSError *error))failure
 {
