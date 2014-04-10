@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Chute-SDK"
-  s.version      = "2.0.5"
+  s.version      = "2.0.6"
   s.summary      = "iOS SDK for developing apps using the Chute Platform."
   s.homepage     = "http://getchute.com"
   s.license      = {:type => 'MIT'}

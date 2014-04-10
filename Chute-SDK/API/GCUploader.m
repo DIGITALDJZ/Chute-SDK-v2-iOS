@@ -127,7 +127,7 @@ static dispatch_queue_t serialQueue;
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
             [apiClient parseJSON:responseDictionary withFactoryClass:[GCAsset class] success:^(GCResponse *response) {
-                [assets addObject:response.data];
+                [assets addObject:[response.data objectAtIndex:0]];
             }];
         
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

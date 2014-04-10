@@ -115,7 +115,7 @@
 		CC49266B168A4ACC00397C1E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CC4DA5141710BA70004E2191 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CC4DA52D17143FFA004E2191 /* MainStoryboard-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
-		CC543581182931A800BD0830 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		CC543581182931A800BD0830 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		CCC359531689F8CA009E372C /* GCAPIv2TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCAPIv2TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC359571689F8CA009E372C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CCC359591689F8CA009E372C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
